@@ -1,0 +1,68 @@
+
+useDynLib(miceadds)
+
+#############################
+## exports
+export(
+    datalist2mids ,
+    draw.pv.ctt ,
+#    imptrun1.mice ,
+    mi.anova ,
+    mice.impute.2l.contextual.norm ,
+    mice.impute.2l.contextual.pmm , 
+    mice.impute.2l.groupmean.elim , 
+    mice.impute.2l.groupmean , 
+    mice.impute.2l.latentgroupmean ,
+    mice.impute.2l.plausible.values ,
+#    mice.impute.distance.matching ,
+#    mice.impute.midas.pmm ,
+    mice.impute.pmm3 , 
+    mice.impute.pmm4 ,  
+    mice.impute.pmm5 ,  
+    mice.impute.pmm6 ,     
+#    mice.impute.norm3 , 
+    mice.impute.tricube.pmm , 
+    mice.impute.tricube.pmm2 , 
+    mice.impute.weighted.norm ,
+    mice.impute.weighted.pmm ,
+    micombine.chisquare ,
+    micombine.cor ,
+    micombine.F ,
+    pca.covridge ,
+    Rhat.mice ,
+    tw.imputation ,
+    tw.mcmc.imputation ,
+    write.mice.imputation ,
+    kernelpls.fit2 ,
+    write.pspp ,
+    fast.groupmean ,
+    mice.impute.2l.pls ,
+    mice.impute.2l.pls2 ,
+    fast.groupsum,
+    ma.scale2 ,
+    mice.1chain ,
+    mice.impute.2l.eap ,
+    mids2datlist 
+        )
+
+###################################
+# S3 methods
+S3method(predict,kernelpls.fit2)
+S3method(summary, mids.1chain )
+S3method(plot, mids.1chain )
+
+
+###################################
+## imports
+import(sirt)
+import(lme4)
+importFrom(MBESS,ci.reliability)
+import(pls)
+# import(inline)
+import(mitools)
+import(pan)
+import(MASS)
+import(mice)
+import(mvtnorm)
+importFrom(bayesm,rtrun)
+importFrom(Rcpp, evalCpp)

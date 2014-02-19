@@ -1,0 +1,81 @@
+----------------------- miceadds NEWS -------------------------
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+miceadds:  Some additional multiple imputation functions, 
+           especially for mice
+
+
+                         (\-.
+                         / _`> .---------.
+                 _)     / _)=  |'-------'|
+                (      / _/    |O   O   o|
+                 `-.__(___)_   | o O . o |
+                               `---------'
+   
+                                          oo__
+                                         <;___)------
+                                    oo__   " "
+                                   <;___)------     oo__
+                                     " "           <;___)------
+                                                     " "
+
+Alexander Robitzsch
+Federal Institute for Educational Research, Innovation and 
+Development of the Austrian School System (BIFIE)
+Salzburg (Austria)
+http://www.bifie.at
+
+See also URL: 
+https://sites.google.com/site/alexanderrobitzsch/software
+
+Questions or suggestions about miceadds can be sent to
+a.robitzsch /-\ bifie.at
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CHANGELOG miceadds
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+---
+Versions 0.11 -- 2014-02-19
+---
+x fixed a bug in tw.mcmc.imputation for rows with only missings
+x included function write.pspp for writing SPSS files using PSPP
+x included predict method for kernelpls.fit2 function
+x export and extended fast.groupmean function to include weights
+x export mice.impute.2l.pls and mice.impute.2l.pls2
+x fixed a bug in the creation of interactions in 
+  mice.impute.2l.pls (thanks to Takuya Yanagida)
+x included calculation of weighted covariance matrix with missing
+  entries in datasets
+x included mice.impute.pmm3, mice.impute.pmm4, mice.impute.pmm5 and
+  mice.impute.pmm6
+x included scale2 as a faster substitute for the scale function in R
+x included mice.1chain as an alternative to the mice function
+  which multiply imputes data from a long chain
+x included imputation function 'mice.impute.2l.eap' for imputation
+  from a known (normal) posterior distribution
+x included function mids2datlist for conversion of a mids object
+  into a list of datasets 
+* included datasets: all datasets contained in the package
+* included examples: for all functions
+
+
+
+
+''''''''''''''''''''''''''''''''''''''''
+' older miceadds versions (formerly micetrun)
+
+Versions 0.10 -- 2013-08-18
+Versions 0.8  -- 2012-10-18
+Versions 0.7  -- 2012-06-18
+Versions 0.6  -- 2011-11-29
+Versions 0.5  -- 2011-06-02
+Versions 0.4  -- 2008-05-31
+Versions 0.3  -- 2008-04-07
+Versions 0.2  -- 2008-03-27
+Versions 0.1  -- 2007-10-21
