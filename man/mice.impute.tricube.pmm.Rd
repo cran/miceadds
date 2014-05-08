@@ -79,8 +79,6 @@ library(mice)
 data(nhanes, package="mice")
 set.seed(9090)
 
-source.all(pfmiceadds)
-
 #*** Model 1: Use default of tricube predictive mean matching
 varnames <- colnames(nhanes) 
 VV <- length(varnames)

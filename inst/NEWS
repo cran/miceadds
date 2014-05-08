@@ -41,6 +41,18 @@ CHANGELOG miceadds
 
 
 ---
+Versions 0.12 -- 2014-05-08
+---
+x included bug fixes for 'mice.impute.2lonly.pmm' (mice version
+  2.21) as 'mice.impute.2lonly.pmm2' in miceadds 
+  -> the same foe 'mice.impute.2lonly.norm'
+
+* included/modified datasets: 
+* included/modified examples: 
+
+
+
+---
 Versions 0.11 -- 2014-02-19
 ---
 x fixed a bug in tw.mcmc.imputation for rows with only missings
