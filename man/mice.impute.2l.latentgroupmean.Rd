@@ -153,7 +153,7 @@ impMethod[ c("Dscore" , "Mscore") ] <- "2l.pan"
 predM[ c("Dscore","Mscore") , "misei" ] <- 2    # random slopes on 'misei'
 predM[  , "idclass" ] <- -2
 
-# For imputing 'manote' and 'denote' use contextual effects (i.e. cluszer means)
+# For imputing 'manote' and 'denote' use contextual effects (i.e. cluster means)
 # of variables 'misei' and 'migrant'
 impMethod[ c("denote" , "manote") ] <- "2l.contextual.pmm"
 predM[ c("denote" , "manote") , c("misei","migrant")] <- 2

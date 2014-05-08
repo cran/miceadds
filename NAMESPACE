@@ -42,7 +42,9 @@ export(
     ma.scale2 ,
     mice.1chain ,
     mice.impute.2l.eap ,
-    mids2datlist 
+    mids2datlist  ,
+    mice.impute.2lonly.norm2 ,
+    mice.impute.2lonly.pmm2
         )
 
 ###################################

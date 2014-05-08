@@ -73,9 +73,11 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 		datalong <- rbind( datalong , 
 				data.frame( ".imp"=mm , "id" = ids , datlist[[mm]] ) )
 						}
+	# midsobj <- datalist2mids(dat.list=datlist, progress = FALSE)
+	# as.mids in mice	
+	midsobj <- as.mids(data = datalong , .imp=1, .id=2)
 	
-	midsobj <- datalist2mids(dat.list=datlist, progress = FALSE)												
-
+	
 	# adjust M and Var for chains
 	vars <- colnames(chainMean)
 	cM <- nrow(chainMean)
@@ -90,11 +92,12 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 				matrix( ( NObs[vars])* VarObs[vars] , nrow=cM , ncol=length(vars) , byrow=TRUE ) ) /
 						( eps+ matrix( NObs[vars] + NMiss[vars] , nrow=cM , ncol=length(vars) , byrow=TRUE ) )						
 	midsobj <- as.mids(datalong , .imp=1)
-
+#	midsobj$m <- Nimp
+	
 	imm <- implist[[mm+1]]
 	midsobj$predictorMatrix <- imm$predictorMatrix
 	midsobj$method <- imm$method
-	midsobj$m <- Nimp
+#	midsobj$m <- Nimp
 	
 	
 	res <- list( "midsobj"=midsobj , "datlist"=datlist , "datalong" = datalong , 

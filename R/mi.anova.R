@@ -7,13 +7,15 @@ function( mi.res , formula ){
     mi.list <- mi.res
     if( class(mi.list) == "mids.1chain" ){	
 		mi.list <- mi.list$midsobj
-			}		
+			}
     if( class(mi.list) == "mids" ){
             # number of imputations 
             m <- mi.list$m
             # list of completed datasets
             h1 <- list( rep("", m ))
-            for (ii in 1:m){ h1[[ii]] <- as.data.frame( complete( mi.list , ii ) ) }
+            for (ii in 1:m){ 
+				h1[[ii]] <- as.data.frame( complete( mi.list , ii ) ) 
+							}										
             mi.list <- h1
             }
     # converting mi.norm objects
@@ -24,9 +26,11 @@ function( mi.res , formula ){
     # number of F statistics to be evaluated
     FF <- nrow( anova.imp[[1]][[1]] ) - 1
     anova.imp.inf <- t( sapply( 1:FF , FUN = function(ff){
-            micombine.F( sapply( 1:( length(anova.imp) ) , FUN = function(ii){ anova.imp[[ii]][[1]]$'F value'[ff] } ) ,
-                            df1 = anova.imp[[1]][[1]]$Df[ff] , display = F )
-            } ) )
+            micombine.F( sapply( 1:( length(anova.imp) ) , FUN = function(ii){ 
+						anova.imp[[ii]][[1]]$'F value'[ff] } ) ,
+                            df1 = anova.imp[[1]][[1]]$Df[ff] , display = FALSE )
+				} ) )
+		
     # ANOVA results
     res <- anova.imp.inf[ , c(3,4,1,2) ]
     res <- matrix( res , ncol = 4 )
@@ -35,7 +39,8 @@ function( mi.res , formula ){
     rownames(res) <- rownames( anova.imp[[1]][[1]] )[1:FF]
     res <- data.frame(res)
     # compute eta squared and partial eta squared coefficients
-    SS <- rowMeans( matrix( unlist( lapply( anova.imp , FUN = function(ll){ ll[[1]][,2] } ) ) , ncol = length(mi.list) )  )
+    SS <- rowMeans( matrix( unlist( lapply( anova.imp , FUN = function(ll){ 
+				ll[[1]][,2] } ) ) , ncol = length(mi.list) )  )
     # calculate (average) R squared
     r.squared <-  sum(SS[ - (FF+1) ]) / sum(SS) 
     res$eta2 <- round( SS[ - ( FF + 1 ) ] / sum( SS ) , 6 )

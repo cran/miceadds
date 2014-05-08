@@ -101,11 +101,12 @@ A list with following entries
 }
 
 
-\references{
-Schafer, J. L., & Kang, J. (2008). Average causal effects from nonrandomized 
-studies: a practical guide and simulated example. 
-\emph{Psychological Methods}, \bold{13}, 279.
-}
+%\references{
+%}
+%Schafer, J. L., & Kang, J. (2008). Average causal effects from nonrandomized 
+%studies: a practical guide and simulated example. 
+%\emph{Psychological Methods}, \bold{13}, 279-313.
+
 
 \author{
 Alexander Robitzsch
@@ -164,7 +165,9 @@ summary( imp.mi1$midsobj )
 #############################################################################
 # EXAMPLE 3: Multiple imputation with counterfactuals for estimating
 #            causal effects (average treatment effects)
-# See Schafer and Kang (2008)
+# Schafer, J. L., & Kang, J. (2008). Average causal effects from nonrandomized 
+#    studies: a practical guide and simulated example. 
+#    Psychological Methods, 13, 279-313.
 #############################################################################
 
 data(data.ma01)
