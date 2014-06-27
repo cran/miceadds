@@ -18,6 +18,7 @@ Rcpp::List kernelplsaux(Rcpp::NumericMatrix Yr, Rcpp::NumericMatrix Xr, Rcpp::Nu
     int nresp = Yr.ncol() ;
     int ncomp = nc[0] ;
 
+//    double eps_add = pow(10,-10) ;
     double eps_add = 1e-10 ;
     
     
