@@ -44,7 +44,29 @@ export(
     mice.impute.2l.eap ,
     mids2datlist  ,
     mice.impute.2lonly.norm2 ,
-    mice.impute.2lonly.pmm2
+    mice.impute.2lonly.pmm2 ,
+    str_C.expand.grid   ,
+    crlrem ,
+    cxxfunction.copy , 
+    grep.vec , 
+    index.dataframe , 
+    load.Rdata , 
+    save.Rdata , 
+    output.format1 , 
+    Reval , 
+    round2 , 
+    Rsessinfo , 
+    scan.vec ,
+    scan.vector , 
+    source.all , 
+    systime ,
+    Revalpr ,
+    Revalprstr  ,
+    sumpreserving.rounding   ,
+    ma.wtd.covNA , 
+    ma.wtd.corNA ,     
+    ma.wtd.meanNA , 
+    ma.wtd.sdNA     
         )
 
 ###################################
@@ -68,3 +90,4 @@ import(mice)
 import(mvtnorm)
 importFrom(bayesm,rtrun)
 importFrom(Rcpp, evalCpp)
+import(inline)

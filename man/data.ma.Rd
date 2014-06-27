@@ -133,6 +133,7 @@ level are \code{sprengel} and \code{groesse}.
 	
 \code{\link{mice.1chain}} (Example 3),
 \code{\link{mice.impute.weighted.pmm}} (Example 1),
+\code{\link{ma.wtd.statNA}} (Example 1)
 
 %%%%%%% data.ma02
 \emph{Dataset} \code{data.ma02} 	
