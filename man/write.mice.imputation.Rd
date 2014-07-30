@@ -52,7 +52,7 @@ Format of the saved dataset: \code{csv} or \code{csv2}
 %}
 \value{
 Several files are saved using \code{impxxx} (the \code{name})
-as the suffix:
+as the prefix:
 
  \item{impxxx.Rdata}{Saved object of class \code{mids}}
  \item{impxxx__DATALIST.Rdata}{Saved object of a list containing multiply
