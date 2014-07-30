@@ -10,7 +10,7 @@ the \eqn{D_2} statistic which is based on combining \eqn{\chi^2} statistics
 (see Allison, 2001; \code{\link{micombine.F}}, \code{\link{micombine.chisquare}}).
 }
 \usage{
-mi.anova(mi.res, formula)
+mi.anova(mi.res, formula, type=2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +19,10 @@ Object of class \code{mids} or \code{mids.1chain}
 }
   \item{formula}{
 Formula for \code{lm} function. Note that this can be also a string.
+}
+\item{type}{
+Type for ANOVA calculations. For \code{type=3}, the \code{Anova} function
+form the \pkg{car} package is used.
 }
 }
 
@@ -51,31 +55,33 @@ Alexander Robitzsch
 }
 
 \examples{
-\dontrun{
 #############################################################################
 # EXAMPLE 1: nhanes2 data | two-way ANOVA
 #############################################################################
 
 library(mice)
+library(car)
 data(nhanes2, package="mice")
 set.seed(9090)
 
 # nhanes data in one chain and 8 imputed datasets
 mi.res <- mice.1chain( nhanes2 , burnin=4 , iter=20 , Nimp=8 )
-# 2-way analysis of variance
-an2 <- mi.anova(mi.res=mi.res, formula="bmi ~ age * hyp")
-##   Univariate ANOVA for Multiply Imputed Data 
-##   
-##   lm Formula:  bmi ~ age * hyp
-##   R^2=0.201354 
-##   ..........................................................................
-##   ANOVA Table 
-##                      SSQ df1       df2 F value  Pr(>F)    eta2 partial.eta2
-##   age          61.45624   2  42.19467  1.2055 0.30964 0.15483      0.16238
-##   hyp          16.17124   1 638.27517  0.8599 0.35412 0.04074      0.04854
-##   age:hyp       2.29723   1 669.47653  0.0782 0.77981 0.00579      0.00719
-##   Residual    317.01177  NA        NA      NA      NA      NA           NA
-}
+# 2-way analysis of variance (type 2)
+an2a <- mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" )
+# 2-way analysis of variance (type 3)
+an2b <- mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" , type=3)
+
+#****** analysis based on first imputed dataset
+
+# extract first dataset
+dat1 <- complete( mi.res$mids )
+
+# type 2 ANOVA
+lm1 <- lm( bmi ~ age * chl , data = dat1 )
+summary( aov( lm1 ) )
+# type 3 ANOVA
+lm2 <- lm( bmi ~ age * chl , data= dat1,    contrasts=list(age=contr.sum))
+car::Anova( lm2 , type=3)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

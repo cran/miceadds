@@ -6,6 +6,16 @@ load.Rdata <- function( filename , objname ){
     d1 <- load( filename )
     eval( parse( text=paste( objname ,  "<<- " , d1  ) ) )
             }
+
+#**********************************************
+# load Rdata objects			
+load.Rdata2 <- function( filename , path=getwd() ){
+    d1 <- load( file=file.path(path,filename) )
+    objname <- "ma01"
+	eval(parse(text = paste(objname, "<- ", d1)))	
+    eval( parse(text= paste0( "return( " , objname , ")" ) ) )			
+					}
+			
 #****************************************			
 # save R data objects			
 save.Rdata <- function( dat , name , path = NULL , part.numb = 1000 ){

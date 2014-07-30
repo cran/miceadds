@@ -66,7 +66,10 @@ export(
     ma.wtd.covNA , 
     ma.wtd.corNA ,     
     ma.wtd.meanNA , 
-    ma.wtd.sdNA     
+    ma.wtd.sdNA   ,
+    load.Rdata2 ,
+    load.data ,
+    save.data
         )
 
 ###################################
@@ -91,3 +94,5 @@ import(mvtnorm)
 importFrom(bayesm,rtrun)
 importFrom(Rcpp, evalCpp)
 import(inline)
+importFrom( car , Anova)
+importFrom( foreign , read.spss )

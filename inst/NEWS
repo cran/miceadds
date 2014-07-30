@@ -41,26 +41,42 @@ CHANGELOG miceadds
 
 
 ---
-Versions 0.13 -- 2014-0m-dd  --  CRAN miceadds 0.13-vv
+Versions 0.14 -- 2014-07-30  --  CRAN miceadds 0.14-9
+---
+ADDED * included Type 3 sum of squares in ANOVA in 'mi.anova'
+        (thanks to Florian Buchwald)
+ADDED * included a function 'load.Rdata2' which prevents from 
+        the definition of the output in the global environment
+        as in 'load.Rdata'       
+ADDED * included utility function 'load.data' and 'save.data'
+        for loading and saving data files from and to several formats
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: mi.anova (1), load.Rdata,
+        load.data, save.data
+
+---
+Versions 0.13 -- 2014-06-27  --  CRAN miceadds 0.13-7
 ---
 
-x included several R utility functions
+ADDED * included several R utility functions
 
-* included/modified datasets: ---
-* included/modified examples: ---
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 ---
 Versions 0.12 -- 2014-05-08  --  CRAN miceadds 0.12-9
 ---
-x included bug fixes for 'mice.impute.2lonly.pmm' (mice version
-  2.21) as 'mice.impute.2lonly.pmm2' in miceadds 
-  -> the same for 'mice.impute.2lonly.norm'
+FIXED * included bug fixes for 'mice.impute.2lonly.pmm' (mice version
+        2.21) as 'mice.impute.2lonly.pmm2' in miceadds 
+        -> the same for 'mice.impute.2lonly.norm'
 
-* included/modified datasets: ---
-* included/modified examples: ---
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 ---
 Versions 0.11 -- 2014-02-19  --  CRAN miceadds 0.11-121
+              [**** FIRST CRAN RELEASE ****]
 ---
 x fixed a bug in tw.mcmc.imputation for rows with only missings
 x included function write.pspp for writing SPSS files using PSPP
@@ -82,7 +98,6 @@ x included function mids2datlist for conversion of a mids object
   into a list of datasets 
 * included datasets: all datasets contained in the package
 * included examples: for all functions
-
 
 
 
