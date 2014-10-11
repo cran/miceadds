@@ -1,13 +1,18 @@
 micombine.cor <-
-function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
+function (mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]])), conf.level = 0.95)
+{
     # INPUT:
     # mi.res    ... MICE object
     # variables ... which variables are selected?
+    # subset    ... which cases are selected?
 	if ( class(mi.res) == "mids.1chain"){
 		mi.res <- mi.res$midsobj
 			}	
-    mi.list <- .milist( mi.res )
-    N <- nrow( mi.list[[1]] )
+    mi.list <- .milist( mi.res )    
+    if(is.logical(subset)) {
+      subset<-which(subset)
+    } 
+    N<-length(subset)
     VV <- length(variables)    
     # check if variables are given in character form
     if (is.character(variables)){ variables <- which( colnames(mi.list[[1]]) %in%  variables ) }
@@ -19,13 +24,13 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
             jj <- variables[j]
                 if ( i != j){ 
                     # calculate correlation coefficients
-                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  cor( dat[ , ii] , dat[,jj] ) } ) )
+                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  cor( dat[ subset, ii] , dat[subset, jj] ) } ) )
                     res.ii.jj <- .sub.micombine.cor( cor.list = cor.ii.jj , N = N , conf.level = conf.level )
                     dfr <- rbind( dfr , c( ii , jj , res.ii.jj ) )
             }   }}}
     vars <- colnames( mi.list[[1]] )
-	dfr1 <- dfr
-	dfr <- rbind( dfr , dfr1[ , c(2,1,seq(3,ncol(dfr) )) ] )
+    dfr1 <- dfr
+    dfr <- rbind( dfr , dfr1[ , c(2,1,seq(3,ncol(dfr) )) ] )
     if (VV == 2 ){  dfr <- dfr[ , -c(1:2) ] 
                     cat( paste( "Correlation of " , vars[ii] , " with " , vars[jj] )  , "\n" ) 
                     print( round( dfr[1,] , 4 ) )
@@ -35,13 +40,6 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
             }
     invisible(dfr)
     }
-
-	
-	
-	
-
-
-
 #----------------------------------------------------------------------------------------------------#
 # subroutine for combining correlations for multiply imputed data                                    #
 .sub.micombine.cor <- function( cor.list , N , conf.level ){
@@ -57,7 +55,7 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
         res <- c( "r" = fisher2cor(zr)  ,  
             "fisher_r" = zr ,
             "fisher_rse" = zr.se ,
-			"fmi" = fisher.cor.combine$missinfo ,			
+			      "fmi" = fisher.cor.combine$missinfo ,			
             "t" = t.zr  , 
             "p" = 2 * pnorm( abs(t.zr) , lower.tail = FALSE ) ,
              fisher2cor( zr + qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) , 
@@ -68,7 +66,7 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
         names(res)[9] <- "rse"
         res <- res[ c(1,9,2:8) ]
         return(res)
-            }
+}
 #----------------------------------------------------------------------------------------------------#
 
 #-------------------------------------------------------------------------

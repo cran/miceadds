@@ -9,7 +9,8 @@ Statistical inference for correlation coefficients for multiply
 imputed datasets
 }
 \usage{
-micombine.cor(mi.res, variables = 1:(ncol(mi.list[[1]])), conf.level = 0.95)
+micombine.cor(mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]])), conf.level = 0.95)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +20,10 @@ Object of class \code{mids} or \code{mids.1chain}
   \item{variables}{
 Indices of variables for selection
 }
+  \item{subset}{
+  an optional logical or numeric vector specifying a subset of observations
+}
+
   \item{conf.level}{
 Confidence level
 }
