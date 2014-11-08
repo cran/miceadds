@@ -2,10 +2,22 @@
 
 #########################################################################
 # miceadds::load.data: load Rdata objects coveniently
-load.data <- function( filename , type="Rdata" , path=getwd() , ...){
+load.data <- function( filename , type="Rdata" , path=getwd() , 
+				spss.default=TRUE , ...){
 	#*** the resulting object is dat4!	
 	dir <- path
 	file <- filename
+	
+	files <- list.files( dir , filename )	
+	type1 <- type
+	if ( type=="table" ){
+		files <- grep.vec( c("dat","txt") , files , "OR" )$x
+						}		
+	
+	files <- grep( gsub("csv2","csv" , type1) , files , value=TRUE)
+	file <- max(files)
+	cat( paste0( "*** Load " , file , "\n"))
+
     #*** Rdata objects	
 	if (type == "Rdata" ){
 		dat4 <- load.Rdata2( filename=file , path=dir )
@@ -24,7 +36,13 @@ load.data <- function( filename , type="Rdata" , path=getwd() , ...){
 						}
     #*** sav objects (SPSS objects)
 	if (type == "sav" ){
-		dat4 <- foreign::read.spss( file.path(dir,file) , ... )
+	  if ( ! spss.default){
+			dat4 <- foreign::read.spss( file.path(dir,file) , ... )
+							}
+	  if (  spss.default){
+			dat4 <- foreign::read.spss( file.path(dir,file) , 
+				to.data.frame=TRUE , use.value.labels=FALSE , ... )
+							}			
 				}				
 	return(dat4)
 			}

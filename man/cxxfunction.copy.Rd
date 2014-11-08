@@ -49,7 +49,7 @@ See also the \code{cxxfunction} in the \pkg{inline} package
 \examples{
 \dontrun{
 # define Rcpp file
-code1 <- '
+code1 <- "
     // array A
     Rcpp::NumericMatrix AA(A);
     // Rcpp::IntegerVector dimAA(dimA);
@@ -66,7 +66,7 @@ code1 <- '
                     }
                 
     return( wrap(Alogis) );
-    '
+    "
 # compile Rcpp code
 calc1 <- cxxfunction( signature( A= "matrix"), code1, plugin = "Rcpp", verbose=TRUE )
 cxxfunction.copy( cppfct=calc1, name="calclogis" )

@@ -13,23 +13,29 @@ or matrices.
 }
 
 \usage{
-load.data( filename , type="Rdata" , path=getwd() , ...)
+load.data( filename , type="Rdata" , path=getwd() , spss.default=TRUE , ...)
 }
 
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{filename}{
-Data file (matrix or data frame)
+Name of the data file (matrix or data frame). This can also be a part
+of the file name and the most recent file is loaded.
 }
   \item{type}{
 The type of file in which the data frame or matrix should be loaded.
 This can be \code{Rdata} (for \R binary format, using \code{\link{load.Rdata2}}), 
-\code{csv} (using \code{\link{read.csv2}}), \code{csv} (using \code{\link{read.csv}}),
-\code{table} (using \code{\link{read.table}}) or 
+\code{csv} (using \code{\link{read.csv2}}), \code{csv2} (using \code{\link{read.csv}}),
+\code{table} (using \code{\link{read.table}}; the dataset
+must have the file extension \code{dat} or \code{txt}) or 
 \code{sav} (using \code{\link[foreign:read.spss]{read.spss}} (\pkg{foreign})).	  
   	  }
 \item{path}{Directory from which the dataset should be loaded}
+\item{spss.default}{Optional logical which is only applied
+	for \code{type="sav"} indicating whether the arguments
+	\code{to.data.frame=TRUE} and \code{use.value.labels=FALSE}
+	are used.}
 \item{\dots}{Further arguments to be passed to \code{load.Rdata2},
 	\code{read.csv2}, \code{read.csv}, \code{read.table}
 	or \code{read.spss} (\pkg{foreign}).

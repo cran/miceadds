@@ -1,4 +1,4 @@
-4c45d3c7d7e5cc95e8463069827207a4 *DESCRIPTION
+7334580abd2ced165a283b2dbafbc699 *DESCRIPTION
 21dbdf8b8c90c1818fd6d55b9ade872d *NAMESPACE
 59ccc3406dd7ec859d550372202054c4 *R/ARb_utils.R
 13b6cda973899bebd7380fcac23d2dbc *R/Rhat.mice.R
@@ -10,7 +10,7 @@ e560faecb5c0238fe82d7396d7bec390 *R/draw.pv.ctt.R
 7d2c2ae87ffaf8857f26f0a6424e1dbf *R/fast.groupmean.R
 857302a672f4839f93f0f4a3e3e992ba *R/kernelpls.fit2.R
 90cbec58b4228137649be901f4de6a2e *R/latent.regression.em.R
-69510aea74bb12c14a3c727dda973518 *R/load.data.R
+e0d665c64172d7990bb807b1884a1f26 *R/load.data.R
 cbda7db287edb30cb6603661ca883ef7 *R/ma.scale2.R
 69f429d8f00027888e1cefad7921bc60 *R/ma.wtd.statNA.R
 7b17155e7a8f6c8a834a460d944ea4b0 *R/mi.anova.R
@@ -53,7 +53,7 @@ d3469c9fca76017628e0b2110ab04e83 *R/str_C.expand.grid.R
 ac2c956b988094c40c46b8bdf29fd782 *R/tw.imputation.R
 478c2be4ebb42d06e9625a7972287eb9 *R/tw.mcmc.imputation.R
 babf37a2c0938d32e0e04dba93d069b0 *R/write.mice.imputation.R
-db2c5ad39e694bb032bd85c23e110372 *R/write.pspp.R
+bdd8239bb6d714367a3c040e9c7bf786 *R/write.pspp.R
 ab9a21db5f0aca14fd3c161d6ac53fde *R/zzz.R
 96d80b5b892677306e92d91cc6e4dd11 *data/data.allison.gssexp.rda
 d7fe50435a3d5ea971351d1e67762cf3 *data/data.allison.hip.rda
@@ -69,18 +69,18 @@ cd28ec19380b65b188e08c08a7678bd1 *data/data.enders.employee.rda
 906ff321703e1cac38233fc2316e28d9 *data/data.ma04.rda
 7b3a5243eb51bdd5d339cd62278b1811 *data/data.ma05.rda
 8c27bdeabaf8fc979a17c2c864d2550d *data/data.smallscale.rda
-725b73a827cdafb28f4deedf1fd42ff5 *inst/NEWS
+6608c1bb0ec21af564dad4cf16712261 *inst/NEWS
 2f04e568f72d0cb81c13a5cf8887eaf7 *man/Reval.Rd
 edc09c1ec25213bee0512a2b29f13116 *man/Rhat.mice.Rd
 ceec464248940a8cb5f6173cd926226d *man/Rsessinfo.Rd
 84838728072d1b5f7f12f32c6ef931b6 *man/crlrem.Rd
-feb7cea1a89134ecefb8de117731c029 *man/cxxfunction.copy.Rd
+8512d740cdec86aa7b07343041b82b7e *man/cxxfunction.copy.Rd
 8b36e7ce09ed561e4256a3c9d066ff49 *man/data.allison.Rd
 2a619c2d9b3a5c81d6895ae7bf9c1374 *man/data.enders.Rd
 90cbf45304872c129464859d6d44c5cc *man/data.internet.Rd
-a3fba604c50290e8e968142f900fe402 *man/data.largescale.Rd
+7b88a908aea9b935bc063203489957a9 *man/data.largescale.Rd
 07b67df6ed83cc41c7fe56a81932dbcc *man/data.ma.Rd
-cdd0adbfa940a12ee3f0ed6ffb96c2b7 *man/data.smallscale.Rd
+319a712f7c7ff0b6cd3e0a1ebc3a365f *man/data.smallscale.Rd
 9fe05ba96e3b559cd620e03d93a20f46 *man/datalist2mids.Rd
 b28e7bc9f0d099484f1d87bbd4d233ca *man/draw.pv.ctt.Rd
 4372c945bd084a3cc0de34d0d1310f3c *man/fast.groupmean.Rd
@@ -88,7 +88,7 @@ efc5ced98c2f064bf4a06f5a1d1382e9 *man/grep.vec.Rd
 502958c86b65806b95df93da456e4d32 *man/index.dataframe.Rd
 0b53748bb176d2269ec8cc7e20f06210 *man/kernelpls.fit2.Rd
 9fd8d92202414189fbe58d781e8d8399 *man/load.Rdata.Rd
-cd9ef89b7b3a6dafba62749aaa9678fa *man/load.data.Rd
+ca3e0b9da5af9a35972459d9f11d3307 *man/load.data.Rd
 7a3212f383bd982f7dd8774b64e1ea63 *man/ma.scale2.Rd
 4dbbf9701dd693bc25a39132fcb76877 *man/ma.wtd.statNA.Rd
 9bbf6ed49aca0fdd6b105acc5fa75e5b *man/mi.anova.Rd
@@ -104,7 +104,7 @@ f0baa43c74a9a122f80060440b9891d7 *man/mice.impute.pmm3.Rd
 6ae49af1dea4cfec2248af755ecf5803 *man/mice.impute.tricube.pmm.Rd
 91ef1fc0bb36452f24af645b7d205de4 *man/mice.impute.weighted.norm.Rd
 c7b429db844afa98737650b248dfd5ac *man/mice.impute.weighted.pmm.Rd
-1c1799415ee1f486b650b4aa33586fa2 *man/miceadds-package.Rd
+c7c99147d7951fcde57bf07a96bd1341 *man/miceadds-package.Rd
 3236045ac5da046e029fda9a1364c8f2 *man/micombine.F.Rd
 713e7b6dbec43ea31e8d0fb3256f311b *man/micombine.chisquare.Rd
 46656e381b2bb4b85d806c0154ea408a *man/micombine.cor.Rd

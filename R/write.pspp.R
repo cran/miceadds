@@ -24,12 +24,12 @@ function (data , datafile, pspp.path , decmax=6 ,
      }
 #     cat("DATA LIST FILE=", dQuote(datafile), " list\n", file = codefile)
 	# log dfn
+	eps2 <- .001
 	ldfn <- lapply( dfn ,  FUN = function(vv){
 			if ( is.numeric(vv) ){	
-				floor( max( log(abs(vv),10) , na.rm=TRUE ) )+2  } else { max( nchar(vv) ) }
+				floor( max( log(abs(vv)+1,10) , na.rm=TRUE ) )+2  } else { max( nchar(vv) ) }
 						}  
 						)
-				
 	# number of decimals after digits
 	V <- length(dfn)
 	lafter_dfn <-  rep(0,V)	

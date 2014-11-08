@@ -43,56 +43,7 @@ data(data.largescale)
 %\references{
 %%  ~~ possibly secondary sources and usages ~~
 %}
-\examples{
-\dontrun{
-data(data.largescale)
-    
-# missing proportions
-round( colMeans( is.na( data.largescale[,-1] )) , 3)
-##   > round( colMeans( is.na( data.largescale[,-1] )) , 3)
-##      D1    D2    D3    D4    D5    v1    v2    v3    v4    v5    v6    v7 
-##   0.000 0.000 0.000 0.000 0.000 0.001 0.000 0.008 0.015 0.020 0.112 0.048
-
-data <- data.largescale[,-1]
-
-#*****
-# Model 1: Multiple imputation with predictive mean matching
-#     select imputation methods 'pmm', 'pmm3', 'pmm4' and 'pmm5'
-impmeth1 <- rep( "pmm" , ncol(data) )
-names(impmeth1) <- colnames(data)
-
-impmeth3 <- gsub( "pmm" , "pmm3" , impmeth1 )
-impmeth4 <- gsub( "pmm" , "pmm4" , impmeth1 )
-impmeth5 <- gsub( "pmm" , "pmm5" , impmeth1 )
-impmeth6 <- gsub( "pmm" , "pmm6" , impmeth1 )
-
-# compare timing using the rbenchmark package
-library(rbenchmark)
-# define imputation functions
-fct_pmm <- function(){ mice( data , m = 1 , maxit=1 ,  imputationMethod = impmeth1 ) } 
-fct_pmm3 <- function(){ mice( data , m = 1 , maxit=1 ,  imputationMethod = impmeth3 ) } 
-fct_pmm4 <- function(){ mice( data , m = 1 , maxit=1 ,  imputationMethod = impmeth4 ) } 
-fct_pmm5 <- function(){ mice( data , m = 1 , maxit=1 ,  imputationMethod = impmeth5 ) }
-fct_pmm6 <- function(){ mice( data , m = 1 , maxit=1 ,  imputationMethod = impmeth6 ) }
-fct_fastpmm <- function(){ mice( data , m = 1 , maxit=1 ,  imputationMethod = impmeth7 ) }
-
-res <- rbenchmark::benchmark(fct_pmm(),fct_pmm4(),fct_pmm3(),fct_pmm5(),fct_pmm6(),
-                             fct_fastpmm() ,
-                             columns=c("test", "replications", "elapsed",
-                                       "relative", "user.self", "sys.self"),
-                             order="relative" , replications = 1)
-##   > res
-##              test replications elapsed relative user.self sys.self
-##   5    fct_pmm6()            1    0.60    1.000      0.60     0.00
-##   4    fct_pmm5()            1    0.74    1.233      0.75     0.00
-##   2    fct_pmm4()            1    1.20    2.000      1.20     0.00
-##   6 fct_fastpmm()            1    2.17    3.617      2.15     0.00
-##   3    fct_pmm3()            1    4.76    7.933      4.38     0.37
-##   1     fct_pmm()            1    6.04   10.067      6.02     0.00
-
-## -> The methods 'pmm5'/'pmm6' are the fastest imputation methods, but they are
-##    probably the crudest ones.
-}
-}
+%\examples{
+%}
 
 \keyword{datasets}

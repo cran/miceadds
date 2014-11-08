@@ -41,6 +41,19 @@ CHANGELOG miceadds
 
 
 ---
+Versions 1.0  -- 2014-11-07
+---
+NOTE  * fixed a minor bug in write.pspp when a variable only
+        contains values of zero
+NOTE  * allow specification of a part of the file name in 'load.data';
+        the most recent file is loaded
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
+---
 Versions 0.14 -- 2014-07-30  --  CRAN miceadds 0.14-9
 ---
 ADDED * included Type 3 sum of squares in ANOVA in 'mi.anova'
