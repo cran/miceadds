@@ -2,23 +2,31 @@ mice.impute.2l.plausible.values <-
 function (y, ry, x, type , alpha = NULL  , 
                         alpha.se = 0 ,
                         scale.values = NULL , sig.e.miss = 1000000 , 
+						like=NULL , theta=NULL , normal.approx=NULL , 
                         pviter = 15 , imputationWeights = rep(1, length(y)) , 
                         plausible.value.print = TRUE , 
                         pls.facs=NULL , interactions=NULL , quadratics =NULL , ...){  
     #*******
 	# old arguments which are now excluded from the function
 	itemdiff=NULL ; item.resp = NULL ;
-    pvirt.iter = 30 ; pvirt.burnin =10 ; pvirt.printprogress=TRUE ;	
+    pvirt.iter = 30 ; pvirt.burnin =10 ; 
+	pvirt.printprogress=TRUE ;	
+	pvirt.printprogress=FALSE ;	
+	
 	#********
     # define imputation method
     vname <- get("vname", pos = parent.frame()) # get variable name
     newstate <- get( "newstate" , pos = parent.frame() )  
     pvmethod <- 0
-    if ( ! is.null( scale.values[[ vname ]] )){ pvmethod <- 3 } 
-    if ( ! is.null( item.resp[[vname ]] )){ pvmethod <- 4 }            
+    if ( ! is.null( scale.values[[ vname ]] )){ 
+			pvmethod <- 3 
+					} 
+    if ( ! is.null( like[[vname ]] )){ 
+			pvmethod <- 4 			
+			     }            
     if (pvmethod == 0){
-          if ( !is.null( alpha[[ vname ]] )){ pvmethod <- 1 }
-          if ( is.null( alpha[[vname ]] )){ pvmethod <- 2 }            
+          if ( ! is.null( alpha[[ vname ]] )){ pvmethod <- 1 }
+          if (  is.null( alpha[[vname ]] )){ pvmethod <- 2 }            
                     }  
 					
     # define scale type
@@ -51,19 +59,28 @@ function (y, ry, x, type , alpha = NULL  ,
         #*+*+* 
          cluster <- res$cluster
          # item response data matrix
-         y1 <- as.matrix( item.resp[[ vname ]] )
-         i1 <- match( colnames(y1) , itemdiff[[vname]][,1] )
-         b <- itemdiff[[vname]][ i1 , 2 ]   # item difficulties
-         a <- itemdiff[[vname]][ i1 , 3 ]   # item discriminations
-         c <- itemdiff[[vname]][ i1 , 3 ]   # item discriminations
-         if (is.null(a)){ a <-  1 + 0*b }
-         if (is.null(c)){ c <-  0*b }
-         # pv imputation
-## remove dependency on this function within mice and use only function in sirt!		 
-         mod1 <- plausible.value.imputation( data = y1 , X=X , Z = NULL , cluster = cluster , 
-                      b = b ,a = a , c=c , iter= pvirt.iter , burnin= pvirt.burnin , nplausible=1 ,
-                      printprogress =  pvirt.printprogress )
-         ximp <- mod1$pvdraws[,1]
+		 
+		 # extract theta grid and likelihood here!!
+         like <- as.matrix( like[[ vname ]] )		 
+         theta <- as.matrix( theta[[ vname ]] )		 
+		 if ( ! is.null( normal.approx[[ vname ]] ) ){
+			normal.approx <- normal.approx 
+					} else {
+			normal.approx <- TRUE
+						}
+		
+		 X <- X[,-1]	# exclude intercept
+		 
+		 #-- perform latent regression		 
+		 mod0 <- tam.latreg(like=like, theta=theta, Y = X ,
+								control=list( progress=FALSE )  )		 
+		 #-- draw plausible values
+		 cat("\n")
+		 mod1 <- tam.pv( mod0 , normal.approx=normal.approx ,
+		 			nplausible=1 , samp.regr=TRUE 	)
+         # pv imputation				  
+   	     ximp <- mod1$pv[,2]
+	 
                     }
     #############################################
     # Plausible value imputation with known scale scores and standard errors
@@ -149,7 +166,7 @@ function (y, ry, x, type , alpha = NULL  ,
                 cat( "\n",paste( "Items corresponding to scale" , vname , 
                         "must be declared by entries of 3 in the predictor matrix"),"\n")
                                }
-        dat.scale <- x[ , type == 3 ]
+        dat.scale <- x[ , type == 3 , drop=FALSE ]
         x1 <- x[ , type %in% c(1,2) ]
         # group level predictors
         res <- .include.2l.predictors( y=y, x=x , ry=ry , type=type , ... )
@@ -179,7 +196,6 @@ function (y, ry, x, type , alpha = NULL  ,
         if (pvmethod  %in% c(1,2) ){
             if (pvmethod == 2){  
                 alpha.est <- .cronbach.alpha( dat.scale )
-            # hier muss Schätzung aus MBESS Paket stehen
             cirel.type <- "Normal Theory"
 #            if (scale.type == "congeneric"){ cirel.type <- "Factor Analytic" }
             cir <- ci.reliability( data = dat.scale , type = cirel.type , interval.type = TRUE )
@@ -219,9 +235,10 @@ function (y, ry, x, type , alpha = NULL  ,
             }
     if (pvmethod == 3){ cat("with known scale scores and known measurement" ,
 		   "error standard deviations") }                        
-    if (pvmethod == 4){ cat("using an unidimensional Rasch model") }                        
+    if (pvmethod == 4){ cat("using a provided likelihood") }                        
     cat("\n") ; flush.console()
                                 }
-    # return imputed values	
+    
+	# return imputed values	
     return(ximp)	
 }

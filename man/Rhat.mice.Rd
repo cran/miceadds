@@ -54,10 +54,10 @@ set.seed(9090)
 # nhanes 3 parallel chains
 imp1 <- mice( nhanes ,m=3 , maxit=10 , imputationMethod=rep("norm" , 4 ) )
 Rhat.mice( imp1 )
-##     variable MissProp Rhat.M.imp Rhat.Var.imp
-##   1      bmi       36  1.0181998     1.155807
-##   2      hyp       32  1.0717677     1.061174
-##   3      chl       40  0.9717109     1.318721
+  ##     variable MissProp Rhat.M.imp Rhat.Var.imp
+  ##   1      bmi       36  1.0181998     1.155807
+  ##   2      hyp       32  1.0717677     1.061174
+  ##   3      chl       40  0.9717109     1.318721
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

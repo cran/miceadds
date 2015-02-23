@@ -34,9 +34,9 @@ Alexander Robitzsch
 %}
 \examples{
 systime()
-##   > systime()
-##   [1] "2013-09-22 10:59:44" "2013-09-22"          "20130922"            "2013-09-22_1059"    
-##   [5] "2013-09-22_1000"    
+  ##   > systime()
+  ##   [1] "2013-09-22 10:59:44" "2013-09-22"          "20130922"            "2013-09-22_1059"    
+  ##   [5] "2013-09-22_1000"    
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

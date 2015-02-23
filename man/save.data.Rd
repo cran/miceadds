@@ -13,7 +13,7 @@ or matrices.
 }
 
 \usage{
-save.data( data , filename , type="Rdata" , path=getwd() , ...)
+save.data( data, filename, type="Rdata", path=getwd(), row.names=FALSE, na=NULL, ...)
 }
 
 
@@ -31,6 +31,10 @@ This can be \code{Rdata} (for \R binary format, using \code{\link{save}}),
 \code{sav} (using \code{\link[miceadds:write.pspp]{write.pspp}} (\pkg{miceadds})).	  
   	  }
 \item{path}{Directory from which the dataset should be loaded}
+\item{row.names}{Optional logical indicating whether row names
+should be included in saved \code{csv} or \code{csv2} files.}
+\item{na}{Missing value handling. The default is \code{""} for \code{type="csv"}
+and \code{type="csv2"} and is \code{"."} for \code{type="table"}.}
 \item{\dots}{Further arguments to be passed to \code{save},
 	\code{write.csv2}, \code{write.csv}, \code{write.table}
 	or \code{write.pspp} (\pkg{miceadds}).

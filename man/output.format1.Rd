@@ -5,7 +5,7 @@
 \R Utilities: Formatting R Output on the \R Console
 }
 \description{
-Thsi function does some formatting of output.
+This function does some formatting of output.
 }
 \usage{
 output.format1(stringtype , label , rep.N=1 ,stringlength = 70)
@@ -16,7 +16,7 @@ output.format1(stringtype , label , rep.N=1 ,stringlength = 70)
 Type of string for display, e.g. \code{"*"}, \code{"-"}, ...
 }
 \item{label}{
-Some comment for the output on the console
+Some comment which should be displayed at the console
 }
  \item{rep.N}{
 Number of lines which shall be left blank

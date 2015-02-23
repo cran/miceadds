@@ -3,7 +3,8 @@
 
 
 \title{
-Plausible Value Imputation using Classical Test Theory
+Plausible Value Imputation using Classical Test Theory and
+Based on Individual Likelihood
 }
 
 \description{
@@ -11,15 +12,20 @@ This imputation function performs unidimensional plausible value
 imputation if (subject-wise) measurement errors or the reliability
 of the scale is known (Mislevy, 1991; see also Asparouhov & Muthen, 2010;
 Blackwell, Honaker & King, 2011).
+The function also allows the input of an individual likelihood
+obtained by fitting an item response model.
 }
 
 \usage{
 mice.impute.2l.plausible.values(y, ry, x, type, alpha = NULL, 
-    alpha.se = 0, scale.values = NULL, sig.e.miss = 1e+06, pviter = 15, 
-    imputationWeights = rep(1, length(y)), plausible.value.print = TRUE, 
+    alpha.se = 0, scale.values = NULL, sig.e.miss = 1e+06, 
+    like=NULL , theta=NULL , normal.approx=NULL , 
+    pviter = 15, imputationWeights = rep(1, length(y)), plausible.value.print = TRUE, 
     pls.facs = NULL, interactions = NULL, 
     quadratics = NULL, ...)
 }
+
+%% like=NULL , theta=NULL , normal.approx=NULL , 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{y}{
@@ -55,6 +61,10 @@ corresponding standard errors (see Example 1).
   \item{sig.e.miss}{
 A standard error of measurement for cases with missing values on a scale
 }
+\item{like}{Individual likelihood evaluated at \code{theta}}
+\item{theta}{Grid of unidimensional latent variable}
+\item{normal.approx}{Logical indicating whether the
+individual posterior should be approximated by a normal distribution}	 
   \item{pviter}{
 Number of iterations in each imputation which should be run until the
 plausible values are drawn
@@ -203,7 +213,7 @@ summary(imp1)
 dat11 <- complete( imp , 1 )
 
 #*** Imputation Model 2: Imputation using one long chain
-imp2 <- mice( dat , predictorMatrix = predM , burnin=10 , iter=20 , Nimp=4 , 
+imp2 <- mice.1chain( dat , predictorMatrix = predM , burnin=10 , iter=20 , Nimp=4 , 
           alpha.se = alpha.se ,  imputationMethod = impMethod ,  allow.na = TRUE  , alpha = alpha,
           scale.values = scale.values  )
 summary(imp2)	
@@ -231,6 +241,87 @@ summary(mod)
 
 mod <- lmer( scale1 ~ ( 1 | group) , data = dat10)
 summary(mod)
+
+#############################################################################
+# SIMULATED EXAMPLE 2: Plausible value imputation with chained equations
+#############################################################################
+
+# - simulate a latent variable theta and dichotomous item responses
+# - two covariates X in which the second covariate has measurement error
+
+library(sirt)
+library(TAM)
+library(lavaan)
+
+set.seed(7756)
+N <- 2000    # number of persons
+I <- 10     # number of items
+
+# simulate covariates
+X <- mvrnorm( N , mu=c(0,0) , Sigma = matrix( c(1,.5,.5,1) ,2 ,2 ) )
+colnames(X) <- paste0("X",1:2)
+# second covariate with measurement error with variance var.err
+var.err <- .3
+X.err <- X
+X.err[,2] <-X[,2] + rnorm(N, sd = sqrt(var.err) )
+# simulate theta
+theta <- .5*X[,1] + .4*X[,2] + rnorm( N , sd = .5 )
+# simulate item responses
+itemdiff <- seq( -2 , 2 , length=I)  # item difficulties
+dat <- sirt::sim.raschtype( theta , b = itemdiff )
+
+#***********************
+#*** Model 0: Regression model with true variables
+mod0 <- lm( theta ~ X )
+summary(mod0)
+
+#**********************
+# plausible value imputation for abilities and error-prone
+# covariates using the mice package
+
+# creating the likelihood for plausible value for abilities
+mod11 <- TAM::tam.mml( dat )
+likePV <- IRT.likelihood(mod11)
+# creating the likelihood for error-prone covariate X2
+# The known measurement error variance is 0.3.
+lavmodel <- "
+  X2true =~ 1*X2
+  X2 ~~ 0.3*X2
+    "
+mod12 <- lavaan::cfa( lavmodel , data = as.data.frame(X.err) )
+summary(mod12)
+likeX2 <- IRTLikelihood.cfa( data= X.err , cfaobj=mod12)
+str(likeX2)
+
+#-- create data input for mice package
+data <- data.frame( "PVA" = NA , "X1" = X[,1] , "X2" = NA  ) 
+vars <- colnames(data)
+V <- length(vars)
+predictorMatrix <- 1 - diag(V)
+rownames(predictorMatrix) <- colnames(predictorMatrix) <- vars
+imputationMethod <- rep("norm" , V )
+names(imputationMethod) <- vars
+imputationMethod[c("PVA","X2")] <- "2l.plausible.values"
+
+#-- create argument lists for plausible value imputation
+# likelihood and theta grid of plausible value derived from IRT model
+like <- list( "PVA" = likePV  , "X2" = likeX2 )
+theta <- list( "PVA" = attr(likePV,"theta") ,
+                "X2" = attr(likeX2 , "theta") )                     
+#-- initial imputations
+data.init <- data
+data.init$PVA <- mod11$person$EAP
+data.init$X2 <- X.err[,"X2"]
+
+#-- imputation using the mice and miceadds package
+imp1 <- mice::mice( as.matrix(data) , predictorMatrix = predictorMatrix , m = 4, maxit = 6 ,  
+             imputationMethod = imputationMethod ,  allow.na = TRUE ,
+             theta=theta , like=like , data.init=data.init )
+summary(imp1)
+
+# compute linear regression
+mod4a <- with( imp1 , lm( PVA ~ X1 + X2 ) )
+summary( pool(mod4a) )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -6,7 +6,7 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
 	if ( class(mi.res) == "mids.1chain"){
 		mi.res <- mi.res$midsobj
 			}	
-    mi.list <- .milist( mi.res )
+    mi.list <- .milist( mi.res )		
     N <- nrow( mi.list[[1]] )
     VV <- length(variables)    
     # check if variables are given in character form
@@ -47,7 +47,7 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
 .sub.micombine.cor <- function( cor.list , N , conf.level ){
         # convert correlations to Fisher transformed values
         fisher.cor.list <- as.list(1/2*log( ( 1 + cor.list) / ( 1 - cor.list ) ))
-        var.fisher <- as.list( rep( 1/(N-3) , length(cor.list) ) )
+        var.fisher <- as.list( rep( 1/(N-3) , length(cor.list) ) )		
         # combination of point estimators according Rubin's formula
         fisher.cor.combine <- MIcombine( fisher.cor.list , var.fisher)		
         zr <- coef(fisher.cor.combine)
@@ -76,7 +76,7 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
 .milist <- function( mi.res ){ 
     mi.list <- NULL
     M <- mi.res$m   # extrahiere Anzahl der Imputationen
-    for (ii in 1:M){ # M Einträge der Liste für M imputierte Datensätze anlegen
+    for (ii in 1:M){ 
         mi.list[[ii]] <- complete( mi.res , action= ii )
         }
     return(mi.list)

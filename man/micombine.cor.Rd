@@ -62,14 +62,14 @@ imp.mi <- mice.1chain( nhanes , burnin=5 , iter=20 , Nimp=4 ,
         imputationMethod=rep("norm" , 4 ) )
 # correlation coefficients of variables 4,2 and 3 (indexed in nhanes data)
 res <- micombine.cor(mi.res=imp.mi, variables = c(4,2,3) )
-##     variable1 variable2       r    rse fisher_r fisher_rse    fmi       t      p
-##   1       chl       bmi  0.2458 0.2236   0.2510     0.2540 0.3246  0.9879 0.3232
-##   2       chl       hyp  0.2286 0.2152   0.2327     0.2413 0.2377  0.9643 0.3349
-##   3       bmi       hyp -0.0084 0.2198  -0.0084     0.2351 0.1904 -0.0358 0.9714
-##     lower95 upper95
-##   1 -0.2421  0.6345
-##   2 -0.2358  0.6080
-##   3 -0.4376  0.4239
+  ##     variable1 variable2       r    rse fisher_r fisher_rse    fmi       t      p
+  ##   1       chl       bmi  0.2458 0.2236   0.2510     0.2540 0.3246  0.9879 0.3232
+  ##   2       chl       hyp  0.2286 0.2152   0.2327     0.2413 0.2377  0.9643 0.3349
+  ##   3       bmi       hyp -0.0084 0.2198  -0.0084     0.2351 0.1904 -0.0358 0.9714
+  ##     lower95 upper95
+  ##   1 -0.2421  0.6345
+  ##   2 -0.2358  0.6080
+  ##   3 -0.4376  0.4239
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

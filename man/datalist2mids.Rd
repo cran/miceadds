@@ -65,7 +65,7 @@ data(nhanes,package="mice")
 set.seed(566)  # fix random seed
 
 # impute 10 datasets using Amelia
-a.out <- amelia(x =  nhanes , m=10)
+a.out <- Amelia::amelia(x =  nhanes , m=10)
 # plot of observed and imputed data
 plot(a.out)
 
@@ -75,35 +75,35 @@ a.mids <- datalist2mids( a.out$imputations )
 # linear regression: apply mice functionality lm.mids
 mod <- with( a.mids , lm( bmi ~ age ) )
 summary( pool( mod ) )
-##                     est      se         t       df     Pr(>|t|)    lo 95
-##   (Intercept) 30.718881 2.22960 13.777753 12.58135 5.830925e-09 25.88578
-##   age         -2.435746 1.08551 -2.243872 14.93153 4.043506e-02 -4.75038
-##                    hi 95 nmis       fmi    lambda
-##   (Intercept) 35.5519834   NA 0.4013689 0.3132139
-##   age         -0.1211117    0 0.3153636 0.2294162
+  ##                     est      se         t       df     Pr(>|t|)    lo 95
+  ##   (Intercept) 30.718881 2.22960 13.777753 12.58135 5.830925e-09 25.88578
+  ##   age         -2.435746 1.08551 -2.243872 14.93153 4.043506e-02 -4.75038
+  ##                    hi 95 nmis       fmi    lambda
+  ##   (Intercept) 35.5519834   NA 0.4013689 0.3132139
+  ##   age         -0.1211117    0 0.3153636 0.2294162
 
 \dontrun{
 # fit linear regression model in Zelig
 library(Zelig)
-mod2 <- zelig( bmi ~ age , model="ls" , data=a.out$imputations , cite=FALSE)
+mod2 <- Zelig::zelig( bmi ~ age , model="ls" , data=a.out$imputations , cite=FALSE)
 summary(mod2)
-##   > summary(mod2)
-##   
-##     Model: ls
-##     Number of multiply imputed data sets: 10 
-##   
-##   Combined results:
-##   
-##   Call:
-##   lm(formula = formula, weights = weights, model = F, data = data)
-##   
-##   Coefficients:
-##                   Value Std. Error    t-stat      p-value
-##   (Intercept) 30.718881    2.22960 13.777753 4.603995e-24
-##   age         -2.435746    1.08551 -2.243872 2.612377e-02
-##   
-##   For combined results from datasets i to j, use summary(x, subset = i:j).
-##   For separate results, use print(summary(x), subset = i:j).
+  ##   > summary(mod2)
+  ##   
+  ##     Model: ls
+  ##     Number of multiply imputed data sets: 10 
+  ##   
+  ##   Combined results:
+  ##   
+  ##   Call:
+  ##   lm(formula = formula, weights = weights, model = F, data = data)
+  ##   
+  ##   Coefficients:
+  ##                   Value Std. Error    t-stat      p-value
+  ##   (Intercept) 30.718881    2.22960 13.777753 4.603995e-24
+  ##   age         -2.435746    1.08551 -2.243872 2.612377e-02
+  ##   
+  ##   For combined results from datasets i to j, use summary(x, subset = i:j).
+  ##   For separate results, use print(summary(x), subset = i:j).
 }
 }
 

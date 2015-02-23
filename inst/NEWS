@@ -40,8 +40,23 @@ CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
 ---
-Versions 1.0  -- 2014-11-07
+Versions 1.1  -- 2015-02-23  --  CRAN miceadds 1.1-1
+---
+NOTE  * extended 'datalist2mids' function to handle a single dataset
+ADDED * included plausible value imputation via a provided
+        individual likelihood 
+NOTE  * included row.names argument and missing value argumant
+        in 'save.data'
+        
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: mice.impute.2l.plausible.values (2)
+
+
+---
+Versions 1.0  -- 2014-11-07  --  CRAN miceadds 1.0
 ---
 NOTE  * fixed a minor bug in write.pspp when a variable only
         contains values of zero
@@ -50,8 +65,6 @@ NOTE  * allow specification of a part of the file name in 'load.data';
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
-
-
 
 ---
 Versions 0.14 -- 2014-07-30  --  CRAN miceadds 0.14-9

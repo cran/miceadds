@@ -3,15 +3,15 @@
 \alias{miceadds}
 \docType{package}
 \title{
-Some additional multiple imputation functions, especially for \pkg{mice} 
+Some Additional Multiple Imputation Functions, Especially for \pkg{mice} 
 }
 \description{
-The package miceadds contains some auxiliary functions for
-multiple imputation which complements existing functionality in \R.
-In addition to some utility functions, main features include 
-plausible value imputation, multilevel imputation functions,
-imputation using partial least squares (PLS) for high dimensional 
-predictors and two-way imputation.
+    Contains some auxiliary functions for multiple imputation which 
+    complements existing functionality in \R.
+    In addition to some utility functions, main features include 
+    plausible value imputation, multilevel imputation functions,
+    imputation using partial least squares (PLS) for high dimensional 
+    predictors and two-way imputation.
 }
 
 \details{
@@ -20,8 +20,8 @@ predictors and two-way imputation.
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 1.0 \cr
-Publication Year: \tab 2014\cr
+Version: \tab 1.1 \cr
+Publication Year: \tab 2015\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
 }

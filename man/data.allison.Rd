@@ -106,24 +106,24 @@ Allison, P. D. (2002). \emph{Missing data}. Newbury Park, CA: Sage.
 # at first, the hip dataset is 'melted' for imputation
 
 data(data.allison.hip)
-##   head(data.allison.hip)
-##     SID WAVE ADL PAIN SRH WALK   CESD
-##   1   1    1   3    0   2    1  9.000
-##   2   1    2   2    5   4    0 28.000
-##   3   1    3   3    0   2    0 31.000
-##   4   1    4   3    0   2    0 11.579
-##   5   2    1   3    0   4    0     NA
-##   6   2    2   1    1   1    0  2.222
+  ##   head(data.allison.hip)
+  ##     SID WAVE ADL PAIN SRH WALK   CESD
+  ##   1   1    1   3    0   2    1  9.000
+  ##   2   1    2   2    5   4    0 28.000
+  ##   3   1    3   3    0   2    0 31.000
+  ##   4   1    4   3    0   2    0 11.579
+  ##   5   2    1   3    0   4    0     NA
+  ##   6   2    2   1    1   1    0  2.222
 
 library(reshape)
 hip.wide <- reshape(data.allison.hip, idvar = "SID", timevar = "WAVE", direction = "wide")
-##   > head(hip.wide , 2)
-##     SID ADL.1 PAIN.1 SRH.1 WALK.1 CESD.1 ADL.2 PAIN.2 SRH.2 WALK.2 CESD.2 ADL.3
-##   1   1     3      0     2      1      9     2      5     4      0 28.000     3
-##   5   2     3      0     4      0     NA     1      1     1      0  2.222     2
-##     PAIN.3 SRH.3 WALK.3 CESD.3 ADL.4 PAIN.4 SRH.4 WALK.4 CESD.4
-##   1      0     2      0     31     3      0     2      0 11.579
-##   5      5     1      0     12     1     NA     2      0     NA
+  ##   > head(hip.wide , 2)
+  ##     SID ADL.1 PAIN.1 SRH.1 WALK.1 CESD.1 ADL.2 PAIN.2 SRH.2 WALK.2 CESD.2 ADL.3
+  ##   1   1     3      0     2      1      9     2      5     4      0 28.000     3
+  ##   5   2     3      0     4      0     NA     1      1     1      0  2.222     2
+  ##     PAIN.3 SRH.3 WALK.3 CESD.3 ADL.4 PAIN.4 SRH.4 WALK.4 CESD.4
+  ##   1      0     2      0     31     3      0     2      0 11.579
+  ##   5      5     1      0     12     1     NA     2      0     NA
 
 # imputation of the hip wide dataset
 imp <- mice( as.matrix( hip.wide[,-1] ) , m=5 , maxit=3 )

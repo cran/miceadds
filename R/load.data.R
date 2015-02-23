@@ -1,14 +1,20 @@
 
 
 #########################################################################
-# miceadds::load.data: load Rdata objects coveniently
+# miceadds::load.data: load conveniently R objects of different data formats
 load.data <- function( filename , type="Rdata" , path=getwd() , 
 				spss.default=TRUE , ...){
 	#*** the resulting object is dat4!	
 	dir <- path
 	file <- filename
 	
-	files <- list.files( dir , filename )	
+	i1 <- grep.vec( c("Rdata" , "csv" , "csv2" , "table" , "sav" ) , file ,
+				"OR" )$x
+	if ( length(i1) == 0 ){							
+		files <- list.files( dir , filename )	
+					} else {
+		files <- file
+					}
 	type1 <- type
 	if ( type=="table" ){
 		files <- grep.vec( c("dat","txt") , files , "OR" )$x

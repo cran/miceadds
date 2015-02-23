@@ -62,9 +62,9 @@ Reval <- function( Rstring , print.string=TRUE){
             }
   
 Reval( "a <- 2^3" )
-## a <- 2^3 
+  ## a <- 2^3 
 a
-## [1] 8  
+  ## [1] 8  
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

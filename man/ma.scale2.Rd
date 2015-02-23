@@ -93,12 +93,12 @@ for (bb in 1:B){
 d1      # scale in R
 d2      # scale in miceadds (no missing handling)
 d3      # scale in miceadds (with missing handling)
-##   > d1      # scale in R
-##   Time difference of 1.622431 secs
-##   > d2      # scale in miceadds (no missing handling)
-##   Time difference of 0.156003 secs
-##   > d3      # scale in miceadds (with missing handling)
-##   Time difference of 0.2028039 secs
+  ##   > d1      # scale in R
+  ##   Time difference of 1.622431 secs
+  ##   > d2      # scale in miceadds (no missing handling)
+  ##   Time difference of 0.156003 secs
+  ##   > d3      # scale in miceadds (with missing handling)
+  ##   Time difference of 0.2028039 secs
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

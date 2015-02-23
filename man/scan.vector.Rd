@@ -45,10 +45,10 @@ Alexander Robitzsch
 %}
 \examples{
 vars <- scan.vector( "female urbgrad  groesse  Nausg    grpgroesse   privat  ")
-# Read 6 items
+  ## Read 6 items
 vars
-# [1] "female"     "urbgrad"    "groesse"    "Nausg"      "grpgroesse"
-# [6] "privat"    
+  ## [1] "female"     "urbgrad"    "groesse"    "Nausg"      "grpgroesse"
+  ## [6] "privat"    
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -1,19 +1,7 @@
 write.mice.imputation <-
 function( mi.res , name , include.varnames = TRUE , long = TRUE , 
                            mids2spss = TRUE , spss.dec = "," , dattype = NULL ){
-        #################################################
-        # INPUT:
-        # mi.res    ... durch mice generiertes Objekt
-        # name      ... Name der abzuspeichernden Datensätze
-        # include.varnames ... Variablennamen in erster Zeile für Datensätze einfügen?
-        #                   (TRUE oder FALSE als Input zugelassen)
-        # long      ... langen Datensatz herausschreiben
-        # spss.dec ... Dezimaltrenner für SPSS
-        # dattype   ... if dattype = csv2, then additionally csv2 files are produced
-        #............................................
-        # Anzahl Imputationen aus MICE-Objekt mice.imp1 extrahieren
-        # alle Datensätze werden in einen Unterordner 'IMP_name' geschrieben
-        # Hier muss nichts mehr geändert werden!
+
 		
 		ismids <- TRUE
 		if ( class(mi.res) == "mids.1chain" ){
@@ -28,7 +16,6 @@ function( mi.res , name , include.varnames = TRUE , long = TRUE ,
         dir.create(pf.subf)                 # lege Unterordner an
         # schreibe Variablenlegende heraus
         writeLines( colnames(mi.res$data) , file.path( pf.subf , paste( name , "__LEGENDE.txt" , sep="") ))
-        # File mit Liste der zu imputierenden Datensätze
         l1 <- paste( name , "__IMPDATA" , 1:mi.res$m , ".dat" , sep="")
         write.table( l1 , file.path( pf.subf , paste( name , "__IMP_LIST.txt" , sep="") ) , col.names=F , row.names=F , quote=F)
         # lege Summary der Imputation in dieser Unterordner ab

@@ -47,13 +47,13 @@ Alexander Robitzsch
 
 x1 <- list( c("a","b" ) , c("t", "r","v") ) 
 str_C.expand.grid( x1 )
-##   [1] "at" "bt" "ar" "br" "av" "bv"
+  ##   [1] "at" "bt" "ar" "br" "av" "bv"
 
 x1 <- list( c("a","b" ) , paste0("_" , 1:4 ) , c("t", "r","v") ) 
 str_C.expand.grid( x1 , indices=c(2,1,3) )
-##    [1] "_1at" "_1bt" "_2at" "_2bt" "_3at" "_3bt" "_4at" "_4bt" "_1ar" "_1br"
-##   [11] "_2ar" "_2br" "_3ar" "_3br" "_4ar" "_4br" "_1av" "_1bv" "_2av" "_2bv"
-##   [21] "_3av" "_3bv" "_4av" "_4bv"
+  ##    [1] "_1at" "_1bt" "_2at" "_2bt" "_3at" "_3bt" "_4at" "_4bt" "_1ar" "_1br"
+  ##   [11] "_2ar" "_2br" "_3ar" "_3br" "_4ar" "_4br" "_1av" "_1bv" "_2av" "_2bv"
+  ##   [21] "_3av" "_3bv" "_4av" "_4bv"
 
 \dontrun{
 ##***************************************************************************

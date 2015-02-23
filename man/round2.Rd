@@ -47,24 +47,24 @@ vec <- c( 1.5 , 2.5 , 3.5 , 1.51 ,  1.49)
 vec
 round(vec)
 round2(vec)
-##   > vec
-##   [1] 1.50 2.50 3.50 1.51 1.49
-##   > round(vec)
-##   [1] 2 2 4 2 1
-##   > round2(vec)
-##   [1] 2 3 4 2 1
+  ##   > vec
+  ##   [1] 1.50 2.50 3.50 1.51 1.49
+  ##   > round(vec)
+  ##   [1] 2 2 4 2 1
+  ##   > round2(vec)
+  ##   [1] 2 3 4 2 1
 
 #*** EXAMPLE 2
 vec <- - c( 1.5 , 2.5 , 3.5 , 1.51 ,  1.49)
 vec
 round(vec)
 round2(vec)
-##   > vec
-##   [1] -1.50 -2.50 -3.50 -1.51 -1.49
-##   > round(vec)
-##   [1] -2 -2 -4 -2 -1
-##   > round2(vec)
-##   [1] -2 -3 -4 -2 -1
+  ##   > vec
+  ##   [1] -1.50 -2.50 -3.50 -1.51 -1.49
+  ##   > round(vec)
+  ##   [1] -2 -2 -4 -2 -1
+  ##   > round2(vec)
+  ##   [1] -2 -3 -4 -2 -1
 
 #*** EXAMPLE 3
 vec <- c(8.4999999 , 8.5 , 8.501 , 7.4999999 , 7.5 , 7.501 )
@@ -72,14 +72,14 @@ round(vec)
 round2( vec )
 round2( vec , digits=1)
 round2( -vec )
-##   > round(vec)
-##   [1] 8 8 9 7 8 8
-##   > round2( vec )
-##   [1] 8 9 9 7 8 8
-##   > round2( vec , digits=1)
-##   [1] 8.5 8.5 8.5 7.5 7.5 7.5
-##   > round2( -vec )
-##   [1] -8 -9 -9 -7 -8 -8
+  ##   > round(vec)
+  ##   [1] 8 8 9 7 8 8
+  ##   > round2( vec )
+  ##   [1] 8 9 9 7 8 8
+  ##   > round2( vec , digits=1)
+  ##   [1] 8.5 8.5 8.5 7.5 7.5 7.5
+  ##   > round2( -vec )
+  ##   [1] -8 -9 -9 -7 -8 -8
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

@@ -64,10 +64,10 @@ Alexander Robitzsch
 
 Fvalues <- c( 6.76 , 4.54 , 4.23 , 5.45 , 4.78 )
 micombine.F(Fvalues, df1=4 )
-##   Combination of Chi Square Statistics for Multiply Imputed Data
-##   Using 5 Imputed Data Sets
-##   F(4,67.11)=4.097     p=0.00497 
-##   Chi Square Approximation Chi2(4)=16.387     p=0.00254 
+  ##   Combination of Chi Square Statistics for Multiply Imputed Data
+  ##   Using 5 Imputed Data Sets
+  ##   F(4,67.11)=4.097     p=0.00497 
+  ##   Chi Square Approximation Chi2(4)=16.387     p=0.00254 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
