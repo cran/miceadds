@@ -18,8 +18,9 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 	type1 <- type
 	if ( type=="table" ){
 		files <- grep.vec( c("dat","txt") , files , "OR" )$x
+		type1 <- "dat"
 						}		
-	
+
 	files <- grep( gsub("csv2","csv" , type1) , files , value=TRUE)
 	file <- max(files)
 	cat( paste0( "*** Load " , file , "\n"))
@@ -38,7 +39,7 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 				}
     #*** table objects
 	if (type == "table" ){
-		dat4 <- read.table( file.path(dir,file) , ... )
+		dat4 <- read.table( file.path(dir,file) , header=TRUE , ... )
 						}
     #*** sav objects (SPSS objects)
 	if (type == "sav" ){

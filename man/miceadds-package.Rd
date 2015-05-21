@@ -11,7 +11,7 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
     In addition to some utility functions, main features include 
     plausible value imputation, multilevel imputation functions,
     imputation using partial least squares (PLS) for high dimensional 
-    predictors and two-way imputation.
+    predictors, nested multiple imputation, and two-way imputation.
 }
 
 \details{
@@ -20,7 +20,7 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 1.1 \cr
+Version: \tab 1.2 \cr
 Publication Year: \tab 2015\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
@@ -31,6 +31,9 @@ URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
 \item In addition to the usual \code{mice} imputation function which employs
 parallel chains, the function \code{\link{mice.1chain}} does multiple 
 imputation from a single chain. 
+
+\item Nested multiple imputation can be conducted with
+\code{\link{mice.nmi}}.
 
 \item Imputation based on partial least squares regression is implemented
 in \code{\link{mice.impute.2l.pls}}.

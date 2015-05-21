@@ -34,9 +34,10 @@ Alexander Robitzsch
 %}
 \examples{
 systime()
-  ##   > systime()
-  ##   [1] "2013-09-22 10:59:44" "2013-09-22"          "20130922"            "2013-09-22_1059"    
-  ##   [5] "2013-09-22_1000"    
+  ##  > systime()
+  ##  [1] "2015-05-14 17:38:02" "2015-05-14"          "20150514"           
+  ##  [4] "2015-05-14_1738"     "2015-05-14_1700"     "20150514_173802"    
+  ##  [7] "20150514173802"      "SD70_20150514173802"
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

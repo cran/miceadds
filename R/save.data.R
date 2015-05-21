@@ -46,10 +46,12 @@ save.data <- function( data , filename , type="Rdata" , path=getwd() ,
 				}
     #*** sav objects (SPSS objects)
 	if (type == "sav" ){
-	    dir2 <- getwd()
-	    setwd( path)
-		miceadds::write.pspp( data ,  datafile= file , ... )
-		setwd(dir2)
+#	    dir2 <- getwd()
+#	    setwd( path)
+#		miceadds::write.pspp( data ,  datafile= file , ... )
+#		setwd(dir2)
+		data <- sjmisc::set_var_labels( data, lab=attr(data, "variable.labels") )
+		sjmisc::write_spss( data , file.path( dir , file ) )		
 				}				
 			}
 #########################################################################			

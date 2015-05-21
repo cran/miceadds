@@ -22,7 +22,7 @@ write.mice.imputation(mi.res, name, include.varnames = TRUE,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{mi.res}{
-Object of class \code{mids}
+Object of class \code{mids} or \code{mids.1chain}
 }
   \item{name}{
 Name of created folder and datasets

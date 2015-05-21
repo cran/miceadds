@@ -1,3 +1,5 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 ----------------------- miceadds NEWS -------------------------
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -40,24 +42,68 @@ CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+---------------------------------------------------------------------
+Versions 1.2  -- 2015-05-20  --  CRAN miceadds 1.2-0
+---------------------------------------------------------------------
 
----
+NOTE  * fixed a bug in 'load.data' for loading datasets of type 'table'
+ADDED * included utility function 'mids2mlwin' for writing MLwiN files
+        (contributed by Thorsten Luka)
+NOTE  * added suggestions to sav file writing functions in haven and
+        sjmisc packages
+NOTE  * removed dependency on PSPP for writing sav files in 'save.data'.
+        Now, the function 'write_spss' from the sjmisc package is used.
+NOTE  * added further values in 'systime' function
+ADDED * added a utility function 'visitSequence.determine' for 
+        determining visit sequence for an imputation model when passive 
+        variables are involved
+ADDED * added function 'mice.nmi' for conducting nested multiple 
+        imputation generating objects of class 'mids.nmi'
+ADDED * extended 'complete' function from mice package for objects of
+        classes 'mids.1chain' (function 'complete.mids.1chain') and
+        'mids.nmi' (function 'complete.mids.nmi')
+ADDED * extended 'mids2datlist' for objects of class 'mids.nmi'
+ADDED * added 'with' S3 method for objects of class 'mids.1chain' and
+        'mids.nmi' producing objects of class 'mira' (defined in mice)
+        and 'mira.nmi'. For 'mira.nmi', a summary method is defined. 
+ADDED * added 'within' S3 methods for objects of class 'imputationList'
+        (which are defined in the mitools package) 
+ADDED * added statistical inference for nested multiply imputed datasets
+        in 'pool.mids.nmi' function
+ADDED * added functions 'lm.cluster' and 'glm.cluster' for cluster robust 
+        standard errors for 'lm' and 'glm' functions using the 
+        multiwaycov package (and the function 'cluster.vcov' therein)
+ADDED * added function 'NestedImputationList' function for creating objects
+        of class 'NestedImputationList'. S3 Methods 'with' and 'within' are
+        defined for operating on this list of lists of datasets.
+        The S3 method 'MIcombine' (from mitools package) is extended
+        to objects of class 'Nested ImputationResultList'.        
+             
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: write.pspp (1), save.data (1),
+        systime (1), visitSequence.determine (1), datalist2mids (1),
+        mice.nmi (1), complete.miceadds (1,2), mids2datlist (2),
+        with.miceadds (1,2), pool.mids.nmi (1), lm.cluster (1),
+        NestedImputationList (1)        
+
+
+---------------------------------------------------------------------
 Versions 1.1  -- 2015-02-23  --  CRAN miceadds 1.1-1
----
+---------------------------------------------------------------------
+
 NOTE  * extended 'datalist2mids' function to handle a single dataset
 ADDED * included plausible value imputation via a provided
         individual likelihood 
 NOTE  * included row.names argument and missing value argumant
         in 'save.data'
         
-
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: mice.impute.2l.plausible.values (2)
 
-
----
+---------------------------------------------------------------------
 Versions 1.0  -- 2014-11-07  --  CRAN miceadds 1.0
----
+---------------------------------------------------------------------
+
 NOTE  * fixed a minor bug in write.pspp when a variable only
         contains values of zero
 NOTE  * allow specification of a part of the file name in 'load.data';
@@ -66,9 +112,10 @@ NOTE  * allow specification of a part of the file name in 'load.data';
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
 
----
+---------------------------------------------------------------------
 Versions 0.14 -- 2014-07-30  --  CRAN miceadds 0.14-9
----
+---------------------------------------------------------------------
+
 ADDED * included Type 3 sum of squares in ANOVA in 'mi.anova'
         (thanks to Florian Buchwald)
 ADDED * included a function 'load.Rdata2' which prevents from 
@@ -81,18 +128,19 @@ DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: mi.anova (1), load.Rdata,
         load.data, save.data
 
----
+---------------------------------------------------------------------
 Versions 0.13 -- 2014-06-27  --  CRAN miceadds 0.13-7
----
+---------------------------------------------------------------------
 
 ADDED * included several R utility functions
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
 
----
+---------------------------------------------------------------------
 Versions 0.12 -- 2014-05-08  --  CRAN miceadds 0.12-9
----
+---------------------------------------------------------------------
+
 FIXED * included bug fixes for 'mice.impute.2lonly.pmm' (mice version
         2.21) as 'mice.impute.2lonly.pmm2' in miceadds 
         -> the same for 'mice.impute.2lonly.norm'
@@ -100,10 +148,11 @@ FIXED * included bug fixes for 'mice.impute.2lonly.pmm' (mice version
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
 
----
+---------------------------------------------------------------------
 Versions 0.11 -- 2014-02-19  --  CRAN miceadds 0.11-121
               [**** FIRST CRAN RELEASE ****]
----
+---------------------------------------------------------------------
+
 x fixed a bug in tw.mcmc.imputation for rows with only missings
 x included function write.pspp for writing SPSS files using PSPP
 x included predict method for kernelpls.fit2 function
@@ -127,8 +176,8 @@ x included function mids2datlist for conversion of a mids object
 
 
 
-''''''''''''''''''''''''''''''''''''''''
-' older miceadds versions (formerly micetrun)
+---------------------------------------------------------------------
+#### older miceadds versions (formerly micetrun)
 
 Versions 0.10 -- 2013-08-18
 Versions 0.8  -- 2012-10-18

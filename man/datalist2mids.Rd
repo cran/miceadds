@@ -104,6 +104,18 @@ summary(mod2)
   ##   
   ##   For combined results from datasets i to j, use summary(x, subset = i:j).
   ##   For separate results, use print(summary(x), subset = i:j).
+
+# fit linear regression using mitools package
+library(mitools)
+datimp <- mitools::imputationList(a.out$imputations)
+mod3 <- with( datimp, lm( bmi ~ age ) )
+summary( mitools::MIcombine( mod3 ) )
+  ##  Multiple imputation results:
+  ##        with(datimp, lm(bmi ~ age))
+  ##        MIcombine.default(mod3)
+  ##                results      se    (lower     upper) missInfo
+  ##  (Intercept) 30.718881 2.22960 26.290536 35.1472266     33 %
+  ##  age         -2.435746 1.08551 -4.578471 -0.2930208     24 %  
 }
 }
 

@@ -69,14 +69,66 @@ export(
     ma.wtd.sdNA   ,
     load.Rdata2 ,
     load.data ,
-    save.data
+    save.data,
+    visitSequence.determine ,
+    mice.nmi ,
+    complete.mids.nmi ,
+    complete.mids.1chain ,
+    pool.mids.nmi,
+    within.imputationList ,
+    lm.cluster ,
+    glm.cluster,
+    NestedImputationList ,
+    MIcombine.NestedImputationResultList
         )
 
 ###################################
 # S3 methods
+
+
+
+#-- coef
+S3method(coef, lm.cluster)
+S3method(coef, glm.cluster)
+S3method(coef, mipo.nmi)
+
+
+#-- MIcombine
+S3method(MIcombine,NestedImputationResultList)
+
+
+#-- predict
 S3method(predict,kernelpls.fit2)
-S3method(summary, mids.1chain )
-S3method(plot, mids.1chain )
+
+
+#-- plot
+S3method(plot, mids.1chain)
+
+
+#-- summary
+S3method(summary, mids.1chain)
+S3method(summary, mids.nmi)
+S3method(summary, mira.nmi)
+S3method(summary, mipo.nmi)
+S3method(summary, lm.cluster)
+S3method(summary, glm.cluster)
+
+
+#-- vcov
+S3method(vcov, lm.cluster)
+S3method(vcov, glm.cluster)
+S3method(vcov, mipo.nmi)
+
+
+#-- with
+S3method(with, mids.1chain)
+S3method(with, mids.nmi)
+S3method(with, NestedImputationList)
+
+
+#-- within
+S3method(within, imputationList)
+S3method(within, NestedImputationList)
 
 
 ###################################
@@ -85,15 +137,17 @@ import(sirt)
 import(lme4)
 importFrom(MBESS,ci.reliability)
 import(pls)
-# import(inline)
 import(mitools)
 import(pan)
 import(MASS)
 import(mice)
 import(mvtnorm)
 importFrom(bayesm,rtrun)
-importFrom(Rcpp, evalCpp)
+importFrom(Rcpp,evalCpp)
 import(inline)
-importFrom( car , Anova)
-importFrom( foreign , read.spss )
+importFrom(car,Anova)
+importFrom(foreign,read.spss)
 import(TAM)
+importFrom(sjmisc,write_spss)
+importFrom(sjmisc,set_var_labels)
+importFrom(multiwayvcov,cluster.vcov)
