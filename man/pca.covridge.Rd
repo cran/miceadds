@@ -60,11 +60,11 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-Principal component analysis in \code{stats}: 
+Principal component analysis in \pkg{stats}: 
 \code{\link[stats:princomp]{princomp}}
 
 For calculating first eigenvalues of a symmetric matrix see also
-\code{\link[sirt:eigenvalues.sirt]{eigenvalues.sirt}} in the
+\code{\link[sirt:eigenvalues.sirt]{sirt::eigenvalues.sirt}} in the
 \pkg{sirt} package.
 }
 

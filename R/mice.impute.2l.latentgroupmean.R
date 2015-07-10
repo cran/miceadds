@@ -33,14 +33,15 @@ function (y, ry, x, type ,
             covaggr.l2r <- as.matrix(plsout$yimp[,-1])
             covaggr <- as.matrix( covaggr.l2r[ match( cluster , covaggr.l2[,1] ) , ] )
                 }		
-        mod <- lmer( y ~ as.matrix( covaggr  ) + ( 1 | cluster ) )
+        mod <- lme4::lmer( y ~ as.matrix( covaggr  ) + ( 1 | cluster ) )
                     } else {
-        mod <- lmer( y ~ ( 1 | cluster ) )
+        mod <- lme4::lmer( y ~ ( 1 | cluster ) )
                     }							
 #    modr <- ranef( mod , postVar = TRUE )
-    modr <- ranef( mod , condVar = TRUE )
+    modr <- lme4::ranef( mod , condVar = TRUE )
     modr <- modr$cluster
-    modf <- fitted( mod )	
+    # modf <- fitted( mod )	
+	modf <- modr@resp$mu		
     # extract cluster indices
     a1 <- aggregate( modf , list( cluster) , mean )
     a1[,3] <-  sqrt( attr( modr , "postVar" )[1,1,] )

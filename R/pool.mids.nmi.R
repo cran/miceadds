@@ -19,11 +19,18 @@ pool.mids.nmi <- function( object , method="largesample" ){
 						}
 
 		pool1 <- pool_results[[1]]$u[1,,]
+		
+		
 		NV <- nrow(pool1)
-
+		cn <- colnames(pool)
+		v1 <- vcov( object$analyses[[1]][[1]] )
+		if ( ! is.null( rownames(v1) ) ){
+			cn <- rownames(v1)
+								}
+		
 		# collect parameter estimates
 		qhat <- array( NA , dim=c( NB , NW , NV ) )
-		dimnames(qhat)[[3]] <- colnames(pool1) 
+		dimnames(qhat)[[3]] <- cn
 		dimnames(qhat)[[1]] <- paste0("Between_Imp" , 1:NB ) 
 		dimnames(qhat)[[2]] <- paste0("Within_Imp" , 1:NW )
 		for (bb in 1:NB){
@@ -32,7 +39,7 @@ pool.mids.nmi <- function( object , method="largesample" ){
 
 		# collect estimated variance matrices
 		u <- array( NA , dim=c( NB , NW , NV , NV) )
-		dimnames(u)[[4]] <- dimnames(u)[[3]] <- colnames(pool1) 
+		dimnames(u)[[4]] <- dimnames(u)[[3]] <- cn
 		dimnames(u)[[1]] <- paste0("Between_Imp" , 1:NB ) 
 		dimnames(u)[[2]] <- paste0("Within_Imp" , 1:NW )
 

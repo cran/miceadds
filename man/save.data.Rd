@@ -28,7 +28,7 @@ The type of file in which the data frame or matrix should be loaded.
 This can be \code{Rdata} (for \R binary format, using \code{\link{save}}), 
 \code{csv} (using \code{\link{write.csv2}}), \code{csv} (using \code{\link{write.csv}}),
 \code{table} (using \code{\link{write.table}}) or 
-\code{sav} (using \code{\link[miceadds:write.pspp]{write_spss}} (\pkg{sjmisc})).	  
+\code{sav} (using \code{\link[sjmisc:write_spss]{sjmisc::write_spss}}).	  
   	  }
 \item{path}{Directory from which the dataset should be loaded}
 \item{row.names}{Optional logical indicating whether row names
@@ -37,7 +37,7 @@ should be included in saved \code{csv} or \code{csv2} files.}
 and \code{type="csv2"} and is \code{"."} for \code{type="table"}.}
 \item{\dots}{Further arguments to be passed to \code{save},
 	\code{write.csv2}, \code{write.csv}, \code{write.table}
-	or \code{write_spss} (\pkg{sjmisc}).
+	or \code{sjmisc::write_spss}.
 }
 }
 

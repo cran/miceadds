@@ -15,9 +15,9 @@ Evaluates an Expression for (Nested) Multiply Imputed Datasets
 \description{
 Evaluates an expression for (nested) multiply imputed datasets. These
 functions extend the following functions:
-\code{\link[mice:with.mids]{with.mids}} (\pkg{mice}),
-\code{\link[base:within.data.frame]{within.data.frame}} (\pkg{base}),
-\code{\link[mitools:with.imputationList]{with.imputationList}} (\pkg{mitools})
+\code{\link[mice:with.mids]{mice::with.mids}},
+\code{\link[base:within.data.frame]{within.data.frame}},
+\code{\link[mitools:with.imputationList]{mitools::with.imputationList}}.
 }
 
 \usage{
@@ -73,9 +73,9 @@ Additional parameters to be passed to \code{expr}.
 %% ~put references to the literature/web site here ~
 %}
 \author{
-Slightly modified code of \code{\link[mice:with.mids]{with.mids}} (\pkg{mice}), 
-\code{\link[mice:summary.mira]{summary.mira}} (\pkg{mice}),
-\code{\link[base:within.data.frame]{within.data.frame}} (\pkg{base})
+Slightly modified code of \code{\link[mice:with.mids]{mice::with.mids}}, 
+\code{\link[mice:summary.mira]{mice::summary.mira}},
+\code{\link[base:within.data.frame]{within.data.frame}}
 }
 %\note{
 %%  ~~further notes~~
@@ -84,10 +84,10 @@ Slightly modified code of \code{\link[mice:with.mids]{with.mids}} (\pkg{mice}),
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link[mice:with.mids]{with.mids}} (\pkg{mice}),
-\code{\link[mice:summary.mira]{summary.mira}} (\pkg{mice}),
-\code{\link[base:within.data.frame]{within.data.frame}} (\pkg{base}),
-\code{\link[mitools:with.imputationList]{with.imputationList}} (\pkg{mitools})
+\code{\link[mice:with.mids]{mice::with.mids}},
+\code{\link[mice:summary.mira]{mice::summary.mira}},
+\code{\link[base:within.data.frame]{within.data.frame}},
+\code{\link[mitools:with.imputationList]{mitools::with.imputationList}}
 
 Imputation functions in \pkg{miceadds}: 
 \code{\link{mice.1chain}}, \code{\link{mice.nmi}}

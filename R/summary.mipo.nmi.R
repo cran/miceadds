@@ -19,6 +19,17 @@ summary.mipo.nmi <- function(object, digits=3 ,  ...) {
     table[, "fmi"] <- x$lambda
     table[, "fmi_Betw"] <- x$lambda_Between
 	table[, "fmi_Within"] <- x$lambda_Within
+	table <- as.data.frame(table)
+	if ( is.na(table$se)[1] ){
+			table$df <- NA
+						}
+	if ( ! is.null( object$u_NULL ) ){
+		if ( object$u_NULL){
+			table <- table[ , "est" , drop=FALSE ]		
+						}
+					}
+						
+						
 	table0 <- table
 	for (vv in seq(1 , ncol(table) ) ){
 		table[,vv] <- round( table[,vv] , digits=digits )

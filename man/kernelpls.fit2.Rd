@@ -35,7 +35,7 @@ Number of components to be extracted
 %}
 
 \value{
-The same list as in \code{kernelpls.fit} of the \pkg{pls} package is
+The same list as in \code{pls::kernelpls.fit} of the \pkg{pls} package is
 produced.
 
 In addition, \eqn{R^2} measures are contained in
@@ -55,7 +55,7 @@ Principal component and partial least squares regression in \R.
 Alexander Robitzsch
 
 This code is a \pkg{Rcpp} translation of the original 
-\code{kernelpls.fit} function from the \pkg{pls} package
+\code{pls::kernelpls.fit} function from the \pkg{pls} package
 (see Mevik & Wehrens, 2007). 
 }
 
@@ -81,7 +81,7 @@ rho1 <- .6      # correlations between predictors
 
 # simulate data
 Sigma <- diag(1-rho1,p) + rho1
-X <- rmvnorm( N , sigma=Sigma )
+X <- mvtnorm::rmvnorm( N , sigma=Sigma )
 beta <- seq( 0 , 1 , len=p )
 y <- ( X \%*\% beta )[,1] + rnorm( N , sd = .6 )
 Y <- matrix(y,nrow=N , ncol=1 )
@@ -100,7 +100,7 @@ Xpred <- predict( res , X = X[1:10,] )
 # use kernelpls.fit from pls package
 library(pls)
 data(yarn,package="pls")
-mod1 <- kernelpls.fit( X = yarn$NIR , Y = yarn$density , ncomp = 10 )
+mod1 <- pls::kernelpls.fit( X = yarn$NIR , Y = yarn$density , ncomp = 10 )
 # use kernelpls.fit2 from miceadds package
 Y <- matrix( yarn$density, ncol=1 )
 mod2 <- kernelpls.fit2( X = yarn$NIR , Y = Y , ncomp = 10 )

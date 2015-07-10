@@ -72,8 +72,8 @@ Alexander Robitzsch
 
 \seealso{
 For imputations at level 2 variables see 
-\code{\link[mice:mice.impute.2lonly.norm]{mice.impute.2lonly.norm}} (\pkg{mice})
-and \code{\link[mice:mice.impute.2lonly.pmm]{mice.impute.2lonly.pmm}} (\pkg{mice}).
+\code{\link[mice:mice.impute.2lonly.norm]{mice::mice.impute.2lonly.norm}}
+and \code{\link[mice:mice.impute.2lonly.pmm]{mice::mice.impute.2lonly.pmm}}.
 }
 
 

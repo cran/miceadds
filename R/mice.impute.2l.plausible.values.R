@@ -72,11 +72,11 @@ function (y, ry, x, type , alpha = NULL  ,
 		 X <- X[,-1]	# exclude intercept
 		 
 		 #-- perform latent regression		 
-		 mod0 <- tam.latreg(like=like, theta=theta, Y = X ,
+		 mod0 <- TAM::tam.latreg(like=like, theta=theta, Y = X ,
 								control=list( progress=FALSE )  )		 
 		 #-- draw plausible values
 		 cat("\n")
-		 mod1 <- tam.pv( mod0 , normal.approx=normal.approx ,
+		 mod1 <- TAM::tam.pv( mod0 , normal.approx=normal.approx ,
 		 			nplausible=1 , samp.regr=TRUE 	)
          # pv imputation				  
    	     ximp <- mod1$pv[,2]
@@ -137,7 +137,7 @@ function (y, ry, x, type , alpha = NULL  ,
 #			 mod <- lm( y.pv ~ xcov1a ) 	
             # draw regression parameters
             v <- vcov(mod)
-            beta.star <- coef(mod) + mvrnorm( 1, mu = rep(0,nrow(v) ) , Sigma = v )
+            beta.star <- coef(mod) + MASS::mvrnorm( 1, mu = rep(0,nrow(v) ) , Sigma = v )
             # calculate residual variance in regression
             sigma2 <- mean( residuals(mod)^2 )
             # fitted regression coefficients
@@ -198,7 +198,7 @@ function (y, ry, x, type , alpha = NULL  ,
                 alpha.est <- .cronbach.alpha( dat.scale )
             cirel.type <- "Normal Theory"
 #            if (scale.type == "congeneric"){ cirel.type <- "Factor Analytic" }
-            cir <- ci.reliability( data = dat.scale , type = cirel.type , interval.type = TRUE )
+            cir <- MBESS::ci.reliability( data = dat.scale , type = cirel.type , interval.type = TRUE )
             alpha.est <- cir$Estimated.reliability
             alpha.se <- cir$SE.reliability
                                 }

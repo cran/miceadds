@@ -6,7 +6,7 @@ Automatic Determination of a Visit Sequence in \code{mice}
 }
 \description{
 This function automatically determines a visit sequence for a specified
-model in \code{\link[mice:mice]{mice}} when passive variables are defined
+model in \code{\link[mice:mice]{mice::mice}} when passive variables are defined
 as imputation methods. Note that redundant visits could be computed and
 a user should check the plausibility of the result.
 }
@@ -49,7 +49,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link[mice:mice]{mice}} (\pkg{mice})
+\code{\link[mice:mice]{mice::mice}}
 }
 
 

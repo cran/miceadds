@@ -8,9 +8,9 @@
 Multiple Imputation by Chained Equations using One Chain
 }
 \description{
-This function modifies the \code{\link[mice:mice]{mice}} function to
+This function modifies the \code{\link[mice:mice]{mice::mice}} function to
 multiply impute a dataset using a long chain instead of multiple parallel chains
-which is the approach employed in \code{mice}.
+which is the approach employed in \code{mice::mice}.
 }
 \usage{
 mice.1chain(data, burnin = 10, iter = 20, Nimp = 10, 
@@ -42,40 +42,40 @@ Total number of imputations (larger than \code{burnin})
 Number of imputations
 }
   \item{method}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{predictorMatrix}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{visitSequence}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{form}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{post}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{defaultMethod}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{diagnostics}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{printFlag}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{seed}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{imputationMethod}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{defaultImputationMethod}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
   \item{data.init}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
 \item{object}{Object of class \code{mids.1chain}}
 \item{x}{Object of class \code{mids.1chain}}
@@ -83,7 +83,7 @@ See \code{\link[mice:mice]{mice}}
 should be included in the traceplot}
 \item{ask}{An optional logical indicating a user request for viewing next plot}
   \item{\dots}{
-See \code{\link[mice:mice]{mice}}
+See \code{\link[mice:mice]{mice::mice}}
 }
 }
 %\details{
@@ -120,7 +120,7 @@ Multiple imputation can also be used for determining causal effects
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link[mice:mice]{mice}} (\pkg{mice})
+\code{\link[mice:mice]{mice::mice}}
 }
 
 

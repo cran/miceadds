@@ -29,7 +29,7 @@ This can be \code{Rdata} (for \R binary format, using \code{\link{load.Rdata2}})
 \code{csv} (using \code{\link{read.csv2}}), \code{csv2} (using \code{\link{read.csv}}),
 \code{table} (using \code{\link{read.table}}; the dataset
 must have the file extension \code{dat} or \code{txt}) or 
-\code{sav} (using \code{\link[foreign:read.spss]{read.spss}} (\pkg{foreign})).	  
+\code{sav} (using \code{\link[foreign:read.spss]{foreign::read.spss}}).	  
   	  }
 \item{path}{Directory from which the dataset should be loaded}
 \item{spss.default}{Optional logical which is only applied
@@ -38,7 +38,7 @@ must have the file extension \code{dat} or \code{txt}) or
 	are used.}
 \item{\dots}{Further arguments to be passed to \code{load.Rdata2},
 	\code{read.csv2}, \code{read.csv}, \code{read.table}
-	or \code{read.spss} (\pkg{foreign}).
+	or \code{foreign::read.spss}.
 }
 }
 

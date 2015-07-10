@@ -55,8 +55,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also the corresponding \code{\link[mice:complete]{complete}} function
-in the \pkg{mice} package.	
+See also the corresponding \code{\link[mice:complete]{mice::complete}} function.	
 	
 Imputation methods: \code{\link{mice.nmi}}, \code{\link{mice.1chain}} 
 }

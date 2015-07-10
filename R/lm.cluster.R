@@ -3,8 +3,14 @@
 ##################################################
 # linear model for clustered data
 lm.cluster <- function( data , formula , cluster , ... ){
+	# requireNamespace("multiwayvcov")
 	mod <- lm( data=data , formula=formula ,  ... )
-	dfr <- data.frame( "idschool" = data[ , cluster ] ) 
+	if ( length(cluster) > 1 ){
+			v1 <- cluster 
+				} else {
+			v1 <- data[,cluster]
+						}	
+	dfr <- data.frame( cluster = v1 ) 
 	vcov2 <- multiwayvcov::cluster.vcov( model = mod , cluster = dfr)	
 	res <- list( "lm_res" = mod , "vcov" = vcov2 )
 	class(res) <- "lm.cluster"

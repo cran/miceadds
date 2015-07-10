@@ -18,7 +18,7 @@ Cluster Robust Standard Errors for Linear Models and General Linear Models
 Computes cluster robust standard errors for linear model
 (\code{\link[stats:lm]{lm}}) and general linear models 
 (\code{\link[stats:glm]{glm}}) using the 
-\code{\link[multiwayvcov:cluster.vcov]{cluster.vcov}} 
+\code{\link[multiwayvcov:cluster.vcov]{multiwayvcov::cluster.vcov}} 
 function in the \pkg{multiwayvcov} package.
 }
 
@@ -50,7 +50,8 @@ Data frame
 An \R formula
 }
   \item{cluster}{
-Variable name for clustering contained in \code{data}
+Variable name for cluster variable contained in \code{data} or a vector
+with cluster identifiers
 }
   \item{\dots}{
 Further arguments to be passed to \code{\link[stats:lm]{lm}} and 
@@ -91,7 +92,7 @@ Alexander Robitzsch
 
 \seealso{
 \code{\link[stats:lm]{lm}}, \code{\link[stats:glm]{glm}},
-\code{\link[multiwayvcov:cluster.vcov]{cluster.vcov}} (\pkg{multiwayvcov})
+\code{\link[multiwayvcov:cluster.vcov]{multiwayvcov::cluster.vcov}}
 }
 
 
@@ -110,6 +111,11 @@ coef(mod1)
 vcov(mod1)
 summary(mod1)
 
+# estimate Model 1, but cluster is provided as a vector
+mod1b <- lm.cluster( data = dat, formula = read ~ hisei + female, 
+                 cluster = dat$idschool)
+summary(mod1b)
+
 #*** Model 2: Logistic regression
 dat$highmath <- 1 * ( dat$math > 600 )   # create dummy variable
 mod2 <- glm.cluster( data = dat , formula = highmath ~ hisei + female , 
@@ -117,6 +123,31 @@ mod2 <- glm.cluster( data = dat , formula = highmath ~ hisei + female ,
 coef(mod2)
 vcov(mod2)
 summary(mod2)		
+
+\dontrun{
+#############################################################################
+# EXAMPLE 2: Cluster robust standard errors for multiply imputed datasets
+#############################################################################
+
+library(mitools)
+data(data.ma05)
+dat <- data.ma05
+
+# imputation of the dataset: use just a single imputation for simplicity
+resp <- dat[ , - c(1:2) ]
+imp <- mice::mice( resp , imputationMethod="norm" , maxit=3 , m=6 )
+datlist <- mids2datlist( imp )
+
+# linear regression with cluster robust standard errors
+mod <- lapply(  datlist, FUN = function(data){
+            lm.cluster( data=data , formula=denote ~ migrant+ misei , cluster = dat$idclass  )
+                                }  )
+# extract parameters and covariance matrix
+betas <- lapply( mod , FUN = function(rr){ coef(rr) } )
+vars <- lapply( mod , FUN = function(rr){ vcov(rr) } )
+# conduct statistical inference
+summary( mitools::MIcombine(betas,vars) )
+}
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

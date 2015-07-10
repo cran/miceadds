@@ -8,7 +8,7 @@ Nested Multiple Imputation
 }
 \description{
 Performs nested multiple imputation (Rubin, 2003) for the functions 
-\code{\link[mice:mice]{mice}} (\pkg{mice}) and \code{\link{mice.1chain}}. 
+\code{\link[mice:mice]{mice::mice}} and \code{\link{mice.1chain}}. 
 The function \code{mice.nmi} generates an object of class \code{mids.nmi}.
 }
 \usage{
@@ -22,11 +22,11 @@ mice.nmi(datlist, type = "mice", ...)
 List of datasets for which nested multiple imputation should be applied
 }
   \item{type}{
-Imputation model: \code{type="mice"} for \code{\link[mice:mice]{mice}}  or 
+Imputation model: \code{type="mice"} for \code{\link[mice:mice]{mice::mice}}  or 
 \code{type="mice.1chain"} for \code{\link{mice.1chain}}.
 }
   \item{\dots}{
-Arguments to be passed to \code{\link[mice:mice]{mice}}  or 
+Arguments to be passed to \code{\link[mice:mice]{mice::mice}}  or 
 \code{\link{mice.1chain}}.
 }
 \item{object}{Object of class \code{mids.nmi}.}
@@ -59,8 +59,8 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-For imputation models see \code{\link[mice:mice]{mice}} 
-(\pkg{mice}) and \code{\link{mice.1chain}}.
+For imputation models see \code{\link[mice:mice]{mice::mice}} 
+and \code{\link{mice.1chain}}.
 
 Functions for analysis for nested multiply imputed datasets:
 \code{\link{complete.mids.nmi}}, \code{\link{with.mids.nmi}}, 

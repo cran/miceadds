@@ -6,6 +6,7 @@
 \alias{data.ma03}
 \alias{data.ma04}
 \alias{data.ma05}
+\alias{data.ma06}
 
 \docType{data}
 
@@ -24,6 +25,7 @@ data(data.ma02)
 data(data.ma03)
 data(data.ma04)
 data(data.ma05)
+data(data.ma06)
 }
 
 
@@ -122,6 +124,21 @@ level are \code{sprengel} and \code{groesse}.
 \code{ $ sprengel: int  0 0 0 0 0 0 0 0 0 0 ...} \cr
 \code{ $ groesse : int  25 25 25 25 25 25 25 25 25 25 ...} \cr
 
+\item Dataset \code{data.ma06}:
+
+This is a dataset in which the variable \code{FC} is only available
+with grouped values (coarse data or interval data).
+
+\code{'data.frame':   198 obs. of  7 variables:} \cr
+\code{ $ id    : num  1001 1002 1003 1004 1005 ...} \cr
+\code{ $ A1    : int  14 7 10 15 0 5 9 6 8 0 ...} \cr
+\code{ $ A2    : int  5 6 4 8 2 5 4 0 7 0 ...} \cr
+\code{ $ Edu   : int  4 3 1 5 5 1 NA 1 5 3 ...} \cr
+\code{ $ FC    : int  3 2 2 2 2 NA NA 2 2 NA ...} \cr
+\code{ $ FC_low: num  10 5 5 5 5 0 0 5 5 0 ...} \cr
+\code{ $ FC_upp: num  15 10 10 10 10 100 100 10 10 100 ...} \cr
+
+
 }
 }
 
@@ -161,6 +178,12 @@ level are \code{sprengel} and \code{groesse}.
 \code{\link{mice.impute.2l.contextual.pmm}} (Example 1),
 \code{\link{mice.impute.2l.latentgroupmean}} (Example 1)
 
+
+
+%%%%%%% data.ma06
+\emph{Dataset} \code{data.ma06} 	
+	
+\code{\link{mice.impute.grouped}} (Example 1),
 
 }
 

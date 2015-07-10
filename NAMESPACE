@@ -1,12 +1,80 @@
 
 useDynLib(miceadds)
 
+
+
+######################################
+########### IMPORTS ##################
+
+
+
+#***************************************************
+#*************** R Basics / Linking To *************
+
+
+importFrom(graphics, par)
+importFrom(graphics, plot)
+importFrom(methods, is)
+importFrom(Rcpp, evalCpp)
+import(stats)
+importFrom(utils, citation)
+importFrom(utils, flush.console)
+importFrom(utils, install.packages)
+importFrom(utils, packageDescription)
+importFrom(utils, read.csv)
+importFrom(utils, read.csv2)
+importFrom(utils, read.fwf)
+importFrom(utils, read.table)
+importFrom(utils, sessionInfo)
+importFrom(utils, str)
+importFrom(utils, write.csv)
+importFrom(utils, write.csv2)
+importFrom(utils, write.table)
+
+
+#***************************************************
+#************** Depends ****************************
+
+import(mice)
+
+
+#***************************************************
+#************** Imports ****************************
+ 
+importFrom(bayesm, rtrun)
+importFrom(car, Anova) 
+importFrom(foreign, read.spss) 
+importFrom(grouped, grouped)
+importFrom(inline, getDynLib)
+importFrom(lme4, lmer)
+importFrom(lme4, ranef)
+importFrom(MASS, mvrnorm)
+importFrom(MBESS, ci.reliability)
+importFrom(mitools, MIcombine)
+importFrom(mvtnorm, dmvnorm)
+importFrom(mvtnorm, rmvnorm)
+importFrom(multiwayvcov, cluster.vcov)
+importFrom(pls, plsr)
+importFrom(sirt, rowKSmallest2.sirt)
+importFrom(sjmisc, write_spss)
+importFrom(sjmisc, set_var_labels)
+importFrom(TAM, tam.pv)
+importFrom(TAM, tam.latreg)
+
+
+
+
+
+
+######################################
+########### EXPORTS ##################
+
+
 #############################
 ## exports
 export(
     datalist2mids ,
     draw.pv.ctt ,
-#    imptrun1.mice ,
     mi.anova ,
     mice.impute.2l.contextual.norm ,
     mice.impute.2l.contextual.pmm , 
@@ -14,13 +82,10 @@ export(
     mice.impute.2l.groupmean , 
     mice.impute.2l.latentgroupmean ,
     mice.impute.2l.plausible.values ,
-#    mice.impute.distance.matching ,
-#    mice.impute.midas.pmm ,
     mice.impute.pmm3 , 
     mice.impute.pmm4 ,  
     mice.impute.pmm5 ,  
     mice.impute.pmm6 ,     
-#    mice.impute.norm3 , 
     mice.impute.tricube.pmm , 
     mice.impute.tricube.pmm2 , 
     mice.impute.weighted.norm ,
@@ -79,12 +144,20 @@ export(
     lm.cluster ,
     glm.cluster,
     NestedImputationList ,
-    MIcombine.NestedImputationResultList
+    MIcombine.NestedImputationResultList ,
+    mice.impute.grouped ,
+    NMIcombine ,
+    create.designMatrices.waldtest ,
+    NMIwaldtest ,
+    MIwaldtest ,
+    jomo2datlist,
+    NMIextract ,
+    library_install
         )
 
-###################################
-# S3 methods
 
+#########################################
+########### S3 METHODS ##################
 
 
 #-- coef
@@ -112,6 +185,8 @@ S3method(summary, mira.nmi)
 S3method(summary, mipo.nmi)
 S3method(summary, lm.cluster)
 S3method(summary, glm.cluster)
+S3method(summary, NMIwaldtest)
+S3method(summary, MIwaldtest)
 
 
 #-- vcov
@@ -130,24 +205,3 @@ S3method(with, NestedImputationList)
 S3method(within, imputationList)
 S3method(within, NestedImputationList)
 
-
-###################################
-## imports
-import(sirt)
-import(lme4)
-importFrom(MBESS,ci.reliability)
-import(pls)
-import(mitools)
-import(pan)
-import(MASS)
-import(mice)
-import(mvtnorm)
-importFrom(bayesm,rtrun)
-importFrom(Rcpp,evalCpp)
-import(inline)
-importFrom(car,Anova)
-importFrom(foreign,read.spss)
-import(TAM)
-importFrom(sjmisc,write_spss)
-importFrom(sjmisc,set_var_labels)
-importFrom(multiwayvcov,cluster.vcov)

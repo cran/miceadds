@@ -6,7 +6,7 @@ Converting a List of Multiply Imputed Data Sets into a \code{mids} Object
 }
 \description{
 This function converts a list of multiply imputed data sets
-to a \code{\link[mice:mids]{mids}} (\pkg{mice} package) object.
+to a \code{\link[mice:mids]{mice::mids}} object.
 }
 %% mids-class {mice}
 
@@ -49,7 +49,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See \code{\link[mice:as.mids]{as.mids}} (\pkg{mice}) for converting
+See \code{\link[mice:as.mids]{mice::as.mids}} for converting
 a multiply imputed dataset in long format into a \code{mids} object.
 }
 

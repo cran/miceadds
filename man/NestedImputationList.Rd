@@ -14,7 +14,7 @@ and converts this into an object of class \code{NestedImputationList}.
 Statistical models can be estimated with the function
 \code{\link{with.NestedImputationList}}.
 
-The \code{\link[mitools:MIcombine]{MIcombine}} (\pkg{mitools}) 
+The \code{\link[mitools:MIcombine]{mitools::MIcombine}}
 method can be used for objects of class
 \code{NestedImputationResultList} which are the output of
 \code{\link{with.NestedImputationList}}. 
@@ -66,7 +66,8 @@ Alexander Robitzsch
 \seealso{
 \code{\link{with.NestedImputationList}},
 \code{\link{within.NestedImputationList}},
-\code{\link{pool.mids.nmi}}
+\code{\link{pool.mids.nmi}},
+\code{\link{NMIcombine}}
 }
 
 

@@ -64,7 +64,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also \code{\link[mice:pool.compare]{pool.compare}} (\pkg{mice})
+See also \code{\link[mice:pool.compare]{mice::pool.compare}}
 for a Wald test to compare two fitted models in the \pkg{mice} package.
 }
 

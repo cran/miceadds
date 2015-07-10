@@ -16,8 +16,7 @@ indicators is taken into account.
 
 The imputation method \code{mice.impute.2l.groupmean} just imputes (i.e. computes) 
 the manifest group mean. See also 
-\code{\link[mice:mice.impute.2lonly.mean]{mice.impute.2lonly.mean}} 
-(\pkg{mice}). 
+\code{\link[mice:mice.impute.2lonly.mean]{mice::mice.impute.2lonly.mean}}. 
 
 The imputation method \code{mice.impute.2l.groupmean.elim} computes the
 group mean eliminating the subject under study from the calculation.
@@ -106,9 +105,9 @@ Alexander Robitzsch
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+\code{\link[mice:mice.impute.2lonly.mean]{mice::mice.impute.2lonly.mean}}
+}
 
 \examples{
 \dontrun{

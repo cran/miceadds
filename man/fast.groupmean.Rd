@@ -9,9 +9,9 @@ Calculation of Groupwise Descriptive Statistics for Matrices
 Calculates some groupwise descriptive statistics
 }
 \usage{
-fast.groupmean(data, group,weights=NULL)
+fast.groupmean(data, group, weights=NULL, extend=FALSE)
 
-fast.groupsum(data, group,weights=NULL)
+fast.groupsum(data, group, weights=NULL, extend=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +22,8 @@ A numeric data frame
 A vector of group identifiers
 }
 \item{weights}{An optional vector of sample weights}
+\item{extend}{Optional logical indicating whether the group means (or sums)
+should be extended to the original dimensions of the dataset.}
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -54,6 +56,10 @@ dat <- data.ma02[[1]] # select first dataset
 
 # group means for read and math
 fast.groupmean( dat[ , c("read","math") ] , group=dat$idschool )
+
+
+# extend group means to original dataset
+fast.groupmean( dat[ , c("read","math") ] , group=dat$idschool , extend =TRUE )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

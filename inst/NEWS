@@ -42,6 +42,39 @@ CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+---------------------------------------------------------------------
+Versions 1.3  -- 2015-07-10  --  CRAN miceadds 1.3-0
+---------------------------------------------------------------------
+
+ADDED * added imputation method 'grouped' for grouped (coarsed)
+        data
+ADDED * included 'NMIcombine' function as an extension to
+        'MIcombine' (mitools package) to nested multiply
+        imputed datasets
+ADDED * included function 'NMIwaldtest' which performs a multi-
+        parameter Wald test for nested multiply imputed datasets
+NOTE  * added argument 'extend' in 'fast.groupmean' which is useful
+        for the inclusion of group means in original datasets
+ADDED * added D1 statistic (Wald test) 'MIwaldtest' as a 
+        multiparameter test for multiply imputed datasets
+FIXED * fixed a bug in 'lm.cluster' and 'glm.cluster'. 
+NOTE  * The 'cluster' argument in 'lm.cluster' now allows vector input.
+NOTE  * included datasets from missing data book of Graham (data.graham)        
+NOTE  * included some examples of the jomo package
+NOTE  * added argument 'NMI' in 'NMIcombine' function which now also
+        allows input for non-nested multiple imputation
+ADDED * added 'NMIextract' function as an extension of 'MIextract'
+        (mitools package) to nested multiply imputed datasets
+NOTE  * added utility function 'library_install' which loads packages
+        and conducts installations if required
+
+DATA  * included/modified datasets: data.ma06, data.graham
+EXAMP * included/modified examples: mice.impute.grouped (1),
+        pool.mids.nmi (1.4,1.5), NMIwaldtest (1,2), fast.groupmean (1),
+        lm.cluster (1,2), jomo2datlist (1), pool.mids.nmi (1),
+        library_install (1)
+
 ---------------------------------------------------------------------
 Versions 1.2  -- 2015-05-20  --  CRAN miceadds 1.2-0
 ---------------------------------------------------------------------
@@ -85,7 +118,6 @@ EXAMP * included/modified examples: write.pspp (1), save.data (1),
         mice.nmi (1), complete.miceadds (1,2), mids2datlist (2),
         with.miceadds (1,2), pool.mids.nmi (1), lm.cluster (1),
         NestedImputationList (1)        
-
 
 ---------------------------------------------------------------------
 Versions 1.1  -- 2015-02-23  --  CRAN miceadds 1.1-1
@@ -153,26 +185,26 @@ Versions 0.11 -- 2014-02-19  --  CRAN miceadds 0.11-121
               [**** FIRST CRAN RELEASE ****]
 ---------------------------------------------------------------------
 
-x fixed a bug in tw.mcmc.imputation for rows with only missings
-x included function write.pspp for writing SPSS files using PSPP
-x included predict method for kernelpls.fit2 function
-x export and extended fast.groupmean function to include weights
-x export mice.impute.2l.pls and mice.impute.2l.pls2
-x fixed a bug in the creation of interactions in 
-  mice.impute.2l.pls (thanks to Takuya Yanagida)
-x included calculation of weighted covariance matrix with missing
-  entries in datasets
-x included mice.impute.pmm3, mice.impute.pmm4, mice.impute.pmm5 and
-  mice.impute.pmm6
-x included scale2 as a faster substitute for the scale function in R
-x included mice.1chain as an alternative to the mice function
-  which multiply imputes data from a long chain
-x included imputation function 'mice.impute.2l.eap' for imputation
-  from a known (normal) posterior distribution
-x included function mids2datlist for conversion of a mids object
-  into a list of datasets 
-* included datasets: all datasets contained in the package
-* included examples: for all functions
+FIXED * fixed a bug in tw.mcmc.imputation for rows with only missings
+ADDED * included function write.pspp for writing SPSS files using PSPP
+ADDED * included predict method for kernelpls.fit2 function
+NOTE  * export and extended fast.groupmean function to include weights
+NOTE  * export mice.impute.2l.pls and mice.impute.2l.pls2
+FIXED * fixed a bug in the creation of interactions in 
+        mice.impute.2l.pls (thanks to Takuya Yanagida)
+NOTE  * included calculation of weighted covariance matrix with missing
+        entries in datasets
+ADDED * included mice.impute.pmm3, mice.impute.pmm4, mice.impute.pmm5 and
+        mice.impute.pmm6
+NOTE  * included scale2 as a faster substitute for the scale function in R
+ADDED * included mice.1chain as an alternative to the mice function
+        which multiply imputes data from a long chain
+ADDED * included imputation function 'mice.impute.2l.eap' for imputation
+        from a known (normal) posterior distribution
+ADDED * included function mids2datlist for conversion of a mids object
+        into a list of datasets 
+NOTE  * included datasets: all datasets contained in the package
+NOTE  * included examples: for all functions
 
 
 

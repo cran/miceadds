@@ -89,8 +89,9 @@ Plausible value imputation is also labeled as multiple overimputation
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also \code{\link[sirt:plausible.value.imputation.raschtype]{plausible.value.imputation.raschtype}}
-(\pkg{sirt}) for plausible value imputation.
+See also 
+\code{\link[sirt:plausible.value.imputation.raschtype]{sirt::plausible.value.imputation.raschtype}}
+for plausible value imputation.
 }
 %% plausible.value.imputation.raschtype
 

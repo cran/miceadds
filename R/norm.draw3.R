@@ -26,7 +26,6 @@
     sigma.star <- sqrt(sum((residuals)^2)/rchisq(1, df_r ))
     beta.star <- coef + (t(chol((v + t(v))/2)) %*% rnorm(ncol(x))) * 
         sigma.star
-#	beta.star <- matrix( mvrnorm(n = 1, mu=coef, Sigma=v ) , ncol=1 )
     parm <- list(coef, beta.star, sigma.star)
     names(parm) <- c("coef", "beta", "sigma")	
     return(parm)
