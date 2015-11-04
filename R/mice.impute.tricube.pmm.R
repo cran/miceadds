@@ -1,5 +1,4 @@
-mice.impute.tricube.pmm <-
-function (y, ry, x, tricube.pmm.scale= .2 , tricube.boot = FALSE , ...){
+mice.impute.tricube.pmm <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.boot = FALSE , ...){
     x <- cbind(1, as.matrix(x))
 	# print some informations
         vname <- get("vname", pos = parent.frame()) # get variable name        

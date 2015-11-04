@@ -1,5 +1,4 @@
-mice.impute.weighted.pmm <-
-function (y, ry, x,  imputationWeights = NULL , 
+mice.impute.weighted.pmm <- function (y, ry, x,  imputationWeights = NULL , 
                                     pls.facs = NULL ,  interactions = NULL , quadratics = NULL ,  ...){
     x <- cbind(1, as.matrix(x))
     # .weighted.norm.draw

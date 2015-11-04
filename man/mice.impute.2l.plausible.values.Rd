@@ -114,7 +114,15 @@ using Mplus}. Technical Report. \url{https://www.statmodel.com/papers.shtml}
 Blackwell, M., Honaker, J., & King, G. (2011). 
 \emph{Multiple overimputation: A unified approach to measurement error and 
 missing data}. Technical Report. 
-	
+
+Blackwell, M., Honaker, J., & King, G. (2015a). 
+A unified approach to measurement error and missing data: Overview and
+applications. \emph{Sociological Methods & Research}, \bold{xx}, xxx-xxx. 
+
+Blackwell, M., Honaker, J., & King, G. (2015b). 
+A unified approach to measurement error and missing data: Details and
+extensions. \emph{Sociological Methods & Research}, \bold{xx}, xxx-xxx.
+
 Mislevy, R. J. (1991). Randomization-based inference about latent variables 
 from complex samples. \emph{Psychometrika}, \bold{56}, 177-196.
 }
@@ -125,15 +133,19 @@ Alexander Robitzsch
 }
 
 
-%\note{
-%%  ~~further notes~~
-%}
+\note{
+Plausible value imputation is also known as multiple overimputation
+(Blackwell, Honaker & King, 2015a, 2015b) which is implemented
+in the \pkg{Amelia} package, see \code{\link[Amelia:moPrep]{Amelia::moPrep}}
+and \code{\link[Amelia:amelia]{Amelia::amelia}}.
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+See \code{\link[TAM:tam.latreg]{TAM::tam.latreg}} for fitting latent regression
+models.
+}
 
 
 \examples{

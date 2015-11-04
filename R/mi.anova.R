@@ -1,5 +1,4 @@
-mi.anova <-
-function( mi.res , formula , type = 2 ){
+mi.anova <- function( mi.res , formula , type = 2 ){
     # INPUT:
     # mi.res  ... mids object (from mice imputation function)
     # formula ... formula for ANOVA model (variable names must be in colnames(mi.list[[1]]), ...

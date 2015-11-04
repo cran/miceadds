@@ -1,5 +1,4 @@
-mice.impute.pmm3 <-
-function (y, ry, x, donors=3 , noise = 10^5 , 
+mice.impute.pmm3 <- function (y, ry, x, donors=3 , noise = 10^5 , 
 		ridge = 10^(-5) , ...){
     x <- cbind(1, as.matrix(x))	
 	Nmis <- sum(!ry)

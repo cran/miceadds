@@ -1,5 +1,4 @@
-mice.impute.2l.contextual.pmm <-
-function (y, ry, x, type , imputationWeights = NULL , 
+mice.impute.2l.contextual.pmm <- function (y, ry, x, type , imputationWeights = NULL , 
                 interactions=NULL , quadratics = NULL , ...){
 
    vname <- get("vname", pos = parent.frame()) # get variable name            

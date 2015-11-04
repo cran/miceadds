@@ -20,7 +20,7 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 1.3 \cr
+Version: \tab 1.4 \cr
 Publication Year: \tab 2015\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
@@ -55,10 +55,9 @@ accomplished by two-way imputation (\code{\link{tw.imputation}}).
 }
 \author{
 Alexander Robitzsch \cr 
-Federal Institute for Education Research, Innovation and Development of the 
-Austrian School System (BIFIE Salzburg), Austria
-\cr \cr
-Maintainer: Alexander Robitzsch <a.robitzsch@bifie.at> \cr \cr
+IPN - Leibniz Institute for Science and Mathematics Education
+at Kiel University \cr \cr
+Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de> \cr \cr
 URL: \url{https://sites.google.com/site/alexanderrobitzsch/}
 }
 

@@ -1,5 +1,4 @@
-micombine.chisquare <-
-function( dk , df , display = TRUE ){
+micombine.chisquare <- function( dk , df , display = TRUE ){
         # INPUT:
         # dk    ... vector of chi square values resulting from multiply imputed data
         # df    ... degrees of freedom of chi square statistics

@@ -1,5 +1,4 @@
-mice.impute.tricube.pmm2 <-
-function (y, ry, x, tricube.pmm.scale= .2 , tricube.boot = FALSE , ...){
+mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.boot = FALSE , ...){
 	NM <- NULL
     x <- cbind(1, as.matrix(x))	
 	# print some informations

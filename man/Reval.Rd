@@ -29,7 +29,7 @@ Should the string printed on the console?
 }
 \details{
 The string is evaluated in the parent environment. See 
-\code{\link[base]{eval}} for the definition of environments in \R.
+\code{\link[base:eval]{base::eval}}  for the definition of environments in \R.
 }
 %\value{
 %%  ~Describe the value returned

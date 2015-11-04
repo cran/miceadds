@@ -1,5 +1,4 @@
-mice.impute.2l.pls <-
-function(y, ry, x , type , pls.facs = NULL , 
+mice.impute.2l.pls <- function(y, ry, x , type , pls.facs = NULL , 
                                 pls.impMethod = "tricube.pmm2" , 
                                 pls.method = NULL , 
                                 pls.print.progress = TRUE , 

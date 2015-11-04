@@ -9,7 +9,8 @@ Statistical inference for correlation coefficients for multiply
 imputed datasets
 }
 \usage{
-micombine.cor(mi.res, variables = 1:(ncol(mi.list[[1]])), conf.level = 0.95)
+micombine.cor(mi.res, variables = 1:(ncol(mi.list[[1]])), conf.level = 0.95,
+     method="pearson")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,6 +22,10 @@ Indices of variables for selection
 }
   \item{conf.level}{
 Confidence level
+}
+\item{method}{Method for calculating correlations. Must be one
+of \code{"pearson"} or \code{"spearman"}. The default is the
+calculation of the Pearson correlation.
 }
 }
 %\details{
@@ -70,6 +75,41 @@ res <- micombine.cor(mi.res=imp.mi, variables = c(4,2,3) )
   ##   1 -0.2421  0.6345
   ##   2 -0.2358  0.6080
   ##   3 -0.4376  0.4239
+  
+#############################################################################
+# EXAMPLE 2: nhanes data | comparing different correlation coefficients
+#############################################################################  
+  
+library(psych)
+library(mitools)
+
+# imputing data
+imp1 <- mice( nhanes ,  imputationMethod=rep("norm" , 4 ) )
+summary(imp1)
+
+#*** Pearson correlation
+res1 <- micombine.cor(mi.res=imp1, variables = c(4,2) )
+
+#*** Spearman rank correlation
+res2 <- micombine.cor(mi.res=imp1, variables = c(4,2) ,  method="spearman")
+
+#*** Kendalls tau
+# test of computation of tau for first imputed dataset
+dat1 <- complete(imp1, action=1)
+tau1 <- psych::corr.test(x=dat1[,c(4,2)], method = "kendall")
+tau1$r[1,2]    # estimate
+tau1$se     # standard error
+
+# results of Kendalls tau for all imputed datasets
+res3 <- with( data=imp1 , 
+        expr = psych::corr.test( x = cbind( chl , bmi ) , method="kendall") )
+# extract estimates
+betas <- lapply( res3$analyses , FUN = function(ll){ ll$r[1,2] } )
+# extract variances
+vars <- lapply( res3$analyses , FUN = function(ll){ ll$se^2 } )
+# Rubin inference
+tau_comb <- mitools::MIcombine( betas , vars )
+summary(tau_comb)  
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

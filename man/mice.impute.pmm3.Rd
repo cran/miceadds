@@ -10,7 +10,8 @@ Imputation by Predictive Mean Matching (in \pkg{miceadds})
 }
 \description{
 This function imputes values by predictive mean matching like
-the \code{pmm} method in the \pkg{mice} package.
+the \code{\link[mice:mice.impute.pmm]{mice::mice.impute.pmm}}  
+method in the \pkg{mice} package.
 }
 
 \usage{
@@ -51,7 +52,8 @@ Further arguments to be passed
 
 
 \details{
-The imputation method \code{pmm3} imitates \code{\link[mice:mice.impute.pmm]{pmm}}
+The imputation method \code{pmm3} imitates 
+\code{\link[mice:mice.impute.pmm]{mice::mice.impute.pmm}} imputation method
 in \pkg{mice}. 
 
 The imputation method \code{pmm4} ignores ties in predicted \eqn{y} values.

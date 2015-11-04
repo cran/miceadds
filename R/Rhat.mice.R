@@ -1,5 +1,4 @@
-Rhat.mice <-
-function( mice.object){ 
+Rhat.mice <- function( mice.object){ 
         #############################################################################
 #	if (class( mice.object) == "mids.1chain"){	
 #		mice.object <- mice.object$midsobj		
@@ -31,7 +30,7 @@ function( mice.object){
         # Stable URL: http://www.jstor.org/stable/2246093
         ## Matches gelman.diag() from package "coda", but not WinBUGS() "summary" component.
         ## Better than gelman.diag() because multivariate stat is not bothered to be calculated
-        Rhat1 <- function(mat) {
+Rhat1 <- function(mat) {
         m <- ncol(mat)
         n <- nrow(mat)
         b <- apply(mat,2,mean)

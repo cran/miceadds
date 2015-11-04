@@ -1,12 +1,5 @@
 
 
-# 0.01  2012-11-20  o initial release sumpreserving rounding
-# 0.02  2012-11-20  o corrected a bug in matrices
-
-
-
-# 0.01  2012-11-xx  o xxx
-
 ############################################################
 
 

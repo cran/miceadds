@@ -1,5 +1,4 @@
-mice.impute.2l.contextual.norm <-
-function (y, ry, x, type , ridge = 10^(-5) , imputationWeights = NULL , 
+mice.impute.2l.contextual.norm <- function (y, ry, x, type , ridge = 10^(-5) , imputationWeights = NULL , 
                 interactions=NULL , quadratics = NULL ,  ...){
    vname <- get("vname", pos = parent.frame()) # get variable name            
    newstate <- get( "newstate" , pos = parent.frame() )  

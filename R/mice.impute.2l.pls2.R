@@ -1,5 +1,4 @@
-mice.impute.2l.pls2 <-
-function(y, ry, x , type , pls.facs = NULL , 
+mice.impute.2l.pls2 <- function(y, ry, x , type , pls.facs = NULL , 
                                 pls.impMethod = "pmm" , 
                                 pls.print.progress = TRUE , 
                                 imputationWeights = rep( 1,length(y) ) , 

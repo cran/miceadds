@@ -1,5 +1,4 @@
-mice.impute.2l.plausible.values <-
-function (y, ry, x, type , alpha = NULL  , 
+mice.impute.2l.plausible.values <- function (y, ry, x, type , alpha = NULL  , 
                         alpha.se = 0 ,
                         scale.values = NULL , sig.e.miss = 1000000 , 
 						like=NULL , theta=NULL , normal.approx=NULL , 

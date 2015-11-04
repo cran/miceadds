@@ -16,7 +16,7 @@ Evaluates an Expression for (Nested) Multiply Imputed Datasets
 Evaluates an expression for (nested) multiply imputed datasets. These
 functions extend the following functions:
 \code{\link[mice:with.mids]{mice::with.mids}},
-\code{\link[base:within.data.frame]{within.data.frame}},
+\code{\link[base:within.data.frame]{base::within.data.frame}},
 \code{\link[mitools:with.imputationList]{mitools::with.imputationList}}.
 }
 
@@ -75,7 +75,7 @@ Additional parameters to be passed to \code{expr}.
 \author{
 Slightly modified code of \code{\link[mice:with.mids]{mice::with.mids}}, 
 \code{\link[mice:summary.mira]{mice::summary.mira}},
-\code{\link[base:within.data.frame]{within.data.frame}}
+\code{\link[base:within.data.frame]{base::within.data.frame}}
 }
 %\note{
 %%  ~~further notes~~
@@ -86,7 +86,7 @@ Slightly modified code of \code{\link[mice:with.mids]{mice::with.mids}},
 \seealso{
 \code{\link[mice:with.mids]{mice::with.mids}},
 \code{\link[mice:summary.mira]{mice::summary.mira}},
-\code{\link[base:within.data.frame]{within.data.frame}},
+\code{\link[base:within.data.frame]{base::within.data.frame}},
 \code{\link[mitools:with.imputationList]{mitools::with.imputationList}}
 
 Imputation functions in \pkg{miceadds}: 

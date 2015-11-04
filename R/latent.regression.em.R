@@ -1,5 +1,4 @@
-latent.regression.em <-
-function( data , X , weights = rep(1,nrow(data)) , 
+latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) , 
                                 beta.init=rep(0,ncol(X)) , sigma.init =1 , 
                                 b = b , a= rep(1 , length(b)) , c= rep(0 , length(b)) , 
                                 max.parchange=.0001 , 

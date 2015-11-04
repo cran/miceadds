@@ -1,5 +1,4 @@
-cxxfunction.copy <-
-function( cppfct , name ){
+cxxfunction.copy <- function( cppfct , name ){
 #    code1 <- paste( readLines( codefile ) , collapse="\n      ")
 #    fx <- cxxfunction( signature.input , code1 , plugin = plugin , verbose=verbose )
 #    g1 <-  getDynLib(cppfct)

@@ -16,8 +16,8 @@ Cluster Robust Standard Errors for Linear Models and General Linear Models
 
 \description{
 Computes cluster robust standard errors for linear model
-(\code{\link[stats:lm]{lm}}) and general linear models 
-(\code{\link[stats:glm]{glm}}) using the 
+(\code{\link[stats:lm]{stats::lm}}) and general linear models 
+(\code{\link[stats:glm]{stats::glm}}) using the 
 \code{\link[multiwayvcov:cluster.vcov]{multiwayvcov::cluster.vcov}} 
 function in the \pkg{multiwayvcov} package.
 }
@@ -54,8 +54,8 @@ Variable name for cluster variable contained in \code{data} or a vector
 with cluster identifiers
 }
   \item{\dots}{
-Further arguments to be passed to \code{\link[stats:lm]{lm}} and 
-\code{\link[stats:glm]{glm}}
+Further arguments to be passed to \code{\link[stats:lm]{stats::lm}} and 
+\code{\link[stats:glm]{stats::glm}}
 }
   \item{object}{
 Object of class \code{lm.cluster} or \code{glm.cluster}
@@ -69,8 +69,8 @@ Object of class \code{lm.cluster} or \code{glm.cluster}
 
 \value{
 List with following entries
-  \item{lm_res}{Value of \code{\link[stats:lm]{lm}}}
-  \item{glm_res}{Value of \code{\link[stats:glm]{glm}}}
+  \item{lm_res}{Value of \code{\link[stats:lm]{stats::lm}}}
+  \item{glm_res}{Value of \code{\link[stats:glm]{stats::glm}}}
   \item{vcov}{Covariance matrix of parameter estimates}
 }
 
@@ -91,7 +91,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link[stats:lm]{lm}}, \code{\link[stats:glm]{glm}},
+\code{\link[stats:lm]{stats::lm}}, \code{\link[stats:glm]{stats::glm}},
 \code{\link[multiwayvcov:cluster.vcov]{multiwayvcov::cluster.vcov}}
 }
 

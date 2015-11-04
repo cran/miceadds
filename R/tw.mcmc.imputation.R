@@ -1,5 +1,4 @@
-tw.mcmc.imputation <-
-function( data , iter = 100 , integer = FALSE ){
+tw.mcmc.imputation <- function( data , iter = 100 , integer = FALSE ){
     # set N and J
     N <- nrow(data)
     J <- ncol(data)

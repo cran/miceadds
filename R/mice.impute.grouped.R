@@ -2,8 +2,7 @@
 
 #############################################
 # imputation for grouped data
-mice.impute.grouped <-
-function (y, ry, x, low=NULL , upp=NULL ,  ...){
+mice.impute.grouped <- function (y, ry, x, low=NULL , upp=NULL ,  ...){
     x <- cbind(1, as.matrix(x))
     newstate <- get( "newstate" , pos = parent.frame() )  
     vname <- get("vname", pos = parent.frame())

@@ -57,7 +57,7 @@ Alexander Robitzsch
 See also \code{\link{save.Rdata}} for saving data frames in
 a \code{Rdata} format.
 
-See also: \code{\link[base:load]{load}}, \code{\link[base:save]{save}}
+See also: \code{\link[base:load]{base::load}}, \code{\link[base:save]{base::save}}
 
 }
 

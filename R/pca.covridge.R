@@ -1,5 +1,4 @@
-pca.covridge <-
-function( x , ridge = 10^(-10) ){
+pca.covridge <- function( x , ridge = 10^(-10) ){
     cx <- cov(x)
     diag(cx) <- diag(cx) + ridge
     pcax <- princomp( covmat=cx )

@@ -26,8 +26,9 @@ of the file name and the most recent file is loaded.
   \item{type}{
 The type of file in which the data frame or matrix should be loaded.
 This can be \code{Rdata} (for \R binary format, using \code{\link{load.Rdata2}}), 
-\code{csv} (using \code{\link{read.csv2}}), \code{csv2} (using \code{\link{read.csv}}),
-\code{table} (using \code{\link{read.table}}; the dataset
+\code{csv} (using \code{\link[utils:read.csv2]{utils::read.csv2}}), 
+\code{csv2} (using \code{\link[utils:read.csv]{utils::read.csv}}),
+\code{table} (using \code{\link[utils:read.table]{utils::read.table}}; the dataset
 must have the file extension \code{dat} or \code{txt}) or 
 \code{sav} (using \code{\link[foreign:read.spss]{foreign::read.spss}}).	  
   	  }

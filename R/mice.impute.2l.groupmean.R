@@ -1,5 +1,4 @@
-mice.impute.2l.groupmean <-
-function (y, ry, x, type , grmeanwarning=TRUE, ...){  
+mice.impute.2l.groupmean <- function (y, ry, x, type , grmeanwarning=TRUE, ...){  
     if ( ( ncol(x) > 2 ) & grmeanwarning )   warning("\nMore than one variable is requested to be aggregated.\n") 
 	clusterx <- paste( x[,type==-2] )
 	a1 <- rowsum( x[ , type %in% c(1,2) ] , clusterx ,  na.rm= TRUE )	

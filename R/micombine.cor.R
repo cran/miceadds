@@ -1,12 +1,12 @@
-micombine.cor <-
-function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
+micombine.cor <- function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ,
+		method="pearson"  ){
     # INPUT:
     # mi.res    ... MICE object
     # variables ... which variables are selected?
 	if ( class(mi.res) == "mids.1chain"){
 		mi.res <- mi.res$midsobj
 			}	
-    mi.list <- .milist( mi.res )		
+	mi.list <- .milist( mi.res )		
     N <- nrow( mi.list[[1]] )
     VV <- length(variables)    
     # check if variables are given in character form
@@ -19,7 +19,9 @@ function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ){
             jj <- variables[j]
                 if ( i != j){ 
                     # calculate correlation coefficients
-                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  cor( dat[ , ii] , dat[,jj] ) } ) )
+                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  
+								cor( dat[ , ii] , dat[,jj] , method=method) 
+									} ) )
                     res.ii.jj <- .sub.micombine.cor( cor.list = cor.ii.jj , N = N , conf.level = conf.level )
                     dfr <- rbind( dfr , c( ii , jj , res.ii.jj ) )
             }   }}}

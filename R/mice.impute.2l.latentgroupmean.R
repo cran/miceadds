@@ -1,5 +1,4 @@
-mice.impute.2l.latentgroupmean <-
-function (y, ry, x, type , 
+mice.impute.2l.latentgroupmean <- function (y, ry, x, type , 
                     pls.facs = NULL , imputationWeights = NULL ,
                     interactions = NULL , quadratics = NULL , 
                      ...){  
@@ -39,9 +38,9 @@ function (y, ry, x, type ,
                     }							
 #    modr <- ranef( mod , postVar = TRUE )
     modr <- lme4::ranef( mod , condVar = TRUE )
-    modr <- modr$cluster
-    # modf <- fitted( mod )	
-	modf <- modr@resp$mu		
+    modr <- modr$cluster	
+#    modf <- fixef( mod )	
+	modf <- mod@resp$mu		
     # extract cluster indices
     a1 <- aggregate( modf , list( cluster) , mean )
     a1[,3] <-  sqrt( attr( modr , "postVar" )[1,1,] )

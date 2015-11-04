@@ -1,5 +1,4 @@
-mice.impute.pmm5 <-
-function (y, ry, x, donors=3 , noise = 10^5 , 
+mice.impute.pmm5 <- function (y, ry, x, donors=3 , noise = 10^5 , 
 		ridge = 10^(-5) , ...){
     x <- cbind(1, as.matrix(x))
     parm <- .norm.draw3(y, ry, x, ridge=ridge )   

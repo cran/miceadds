@@ -1,5 +1,4 @@
-draw.pv.ctt <-
-function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alpha = NULL ,
+draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alpha = NULL ,
                             sig.e = NULL , var.e=NULL , true.var = NULL ){ 
     #---------------------------------------------------------------------------##
     # INPUT:                                                                    ##

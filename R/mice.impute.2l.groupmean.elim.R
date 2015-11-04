@@ -1,5 +1,4 @@
-mice.impute.2l.groupmean.elim <-
-function (y, ry, x, type ,  ...){  
+mice.impute.2l.groupmean.elim <- function (y, ry, x, type ,  ...){  
     if ( ncol(x) > 2)   warning("\nOnly one variable is allowed to be aggregated.\n")
     # aggregated mean of x
     clusterx <- paste( x[,type==-2] )

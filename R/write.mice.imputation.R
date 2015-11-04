@@ -1,5 +1,4 @@
-write.mice.imputation <-
-function( mi.res , name , include.varnames = TRUE , long = TRUE , 
+write.mice.imputation <- function( mi.res , name , include.varnames = TRUE , long = TRUE , 
                            mids2spss = TRUE , spss.dec = "," , dattype = NULL ){
 
 		

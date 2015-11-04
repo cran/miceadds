@@ -1,5 +1,4 @@
-plausible.value.draw <-
-function( data , X , beta0 , sig0 , b = b , 
+plausible.value.draw <- function( data , X , beta0 , sig0 , b = b , 
                     a = rep(1 , length(b) ) , c = rep(0 , length(b) ) , 
                     theta.list = seq(-5,5,len=40) , pvdraw = 1 ){
     #........................................................................

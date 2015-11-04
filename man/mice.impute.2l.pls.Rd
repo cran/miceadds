@@ -73,7 +73,7 @@ matching with tricube kernel
 model 
 }
 \item{pls.method}{
-Calculation method of PLS regression. See \code{\link[pls:plsr]{plsr}}
+Calculation method of PLS regression. See \code{\link[pls:plsr]{pls::plsr}}
 (\pkg{pls}) for more details.
 }
   \item{pls.print.progress}{

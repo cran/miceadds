@@ -3,10 +3,13 @@
 #########################################################################
 # miceadds: saving data
 save.data <- function( data , filename , type="Rdata" , path=getwd() , 
-          row.names=FALSE , na = NULL , ...){
+          row.names=FALSE , na = NULL , suffix = NULL , suffix_space = "__" , ...){
 	#*** the resulting object is dat4!	
 	dir <- path
 	file <- filename	
+	if ( ! is.null(suffix ) ){
+		file <- paste0( file , suffix_space , suffix )
+							}
 	
 	#*** missing handling
 	if ( is.null(na) ){

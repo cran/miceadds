@@ -1,5 +1,4 @@
-tw.imputation <-
-function( data , integer = FALSE ){
+tw.imputation <- function( data , integer = FALSE ){
         n <- nrow(data)
         p <- ncol(data)        
         # person mean      

@@ -61,7 +61,7 @@ Alexander Robitzsch
 
 \seealso{
 Principal component analysis in \pkg{stats}: 
-\code{\link[stats:princomp]{princomp}}
+\code{\link[stats:princomp]{stats::princomp}}
 
 For calculating first eigenvalues of a symmetric matrix see also
 \code{\link[sirt:eigenvalues.sirt]{sirt::eigenvalues.sirt}} in the
