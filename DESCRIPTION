@@ -2,8 +2,8 @@ Package: miceadds
 Type: Package
 Title: Some Additional Multiple Imputation Functions, Especially for
         'mice'
-Version: 1.4-0
-Date: 2015-11-04
+Version: 1.5-0
+Date: 2015-11-21
 Author: Alexander Robitzsch [aut, cre]
 Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Authors@R: c(person("Alexander", "Robitzsch", role =
@@ -22,8 +22,7 @@ Imports: methods, stats, graphics, utils, Rcpp, TAM, lme4, inline, car,
 LinkingTo: Rcpp, RcppArmadillo
 Suggests: Amelia, Zelig, jomo, haven, BIFIEsurvey, mitml, pan
 License: GPL (>= 2)
-URL: https://sites.google.com/site/alexanderrobitzsch/software
-Packaged: 2015-11-04 15:45:44 UTC; robitzsch
 NeedsCompilation: yes
+Packaged: 2015-11-21 17:14:37 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2015-11-04 19:04:40
+Date/Publication: 2015-11-22 11:48:21

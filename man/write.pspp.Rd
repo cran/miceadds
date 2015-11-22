@@ -115,7 +115,7 @@ haven::write_sav( data , "example_data1a.sav" )
 
 #****
 # write sav file using sjmisc package
-data <- sjmisc::set_var_labels( data, attr(data, "variable.labels") )
+data <- sjmisc::set_label( data, attr(data, "variable.labels") )
 sjmisc::write_spss( data , "example_data1b.sav" )
 }
 }

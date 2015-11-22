@@ -57,7 +57,7 @@ importFrom(multiwayvcov, cluster.vcov)
 importFrom(pls, plsr)
 importFrom(sirt, rowKSmallest2.sirt)
 importFrom(sjmisc, write_spss)
-importFrom(sjmisc, set_var_labels)
+importFrom(sjmisc, set_label)
 importFrom(TAM, tam.pv)
 importFrom(TAM, tam.latreg)
 

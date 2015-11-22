@@ -53,7 +53,8 @@ save.data <- function( data , filename , type="Rdata" , path=getwd() ,
 #	    setwd( path)
 #		miceadds::write.pspp( data ,  datafile= file , ... )
 #		setwd(dir2)
-		data <- sjmisc::set_var_labels( data, lab=attr(data, "variable.labels") )
+#		data <- sjmisc::set_var_labels( data, lab=attr(data, "variable.labels") )
+		data <- sjmisc::set_label( data, lab=attr(data, "variable.labels") )
 		sjmisc::write_spss( data , file.path( dir , file ) )		
 				}				
 			}
