@@ -32,31 +32,34 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 
 	#******************************
     cat("************ BURNIN PHASE |", "Iterations 1 -" , burnin , 
-			"******************\n") ; flush.console()
-    implist[[1]] <- imp0 <- mice( data , maxit=burnin , m=1 , 
+			"******************\n") 
+			utils::flush.console()
+    implist[[1]] <- imp0 <- mice::mice( data , maxit=burnin , m=1 , 
                 imputationMethod = imputationMethod ,
                 predictorMatrix = predictorMatrix , method=method , visitSequence=visitSequence ,
                 form=form , post=post , defaultMethod=defaultMethod ,  diagnostics=diagnostics ,
                 printFlag=printFlag , seed=seed , defaultImputationMethod=defaultImputationMethod ,
                 data.init = data.init , ... )
-    dat0 <- complete( imp0 , 1 )
+    dat0 <- mice::complete( imp0 , 1 )
 	chainMean <- t( imp0$chainMean[,,1] )
 	chainVar <- t( imp0$chainVar[,,1] )
 	rownames(chainVar)[ nrow(chainVar) ] <- rownames(chainMean)[ nrow(chainMean) ] <- "end_burnin"
     # imputation phase
 	
     cat("\n\n************ IMPUTATION PHASE |", "Iterations", burnin+1 , "-" , iter , 
-			"******************\n") ; flush.console()
+			"******************\n") ; 
+	utils::flush.console()
     for ( mm in 1:Nimp){
 	    cat("\n --- Imputation" , mm , "| Iterations" ,
-			iterstep0[mm] , "-" , iterstep0[mm+1] , "\n" ) ; flush.console()
-		implist[[mm+1]] <- imp1 <- mice( data , maxit=iterstep[mm] , m=1 , 
+			iterstep0[mm] , "-" , iterstep0[mm+1] , "\n" ) ; 
+		utils::flush.console()
+		implist[[mm+1]] <- imp1 <- mice::mice( data , maxit=iterstep[mm] , m=1 , 
 					imputationMethod = imputationMethod ,
 					predictorMatrix = predictorMatrix , method=method , visitSequence=visitSequence ,
 					form=form , post=post , defaultMethod=defaultMethod ,  diagnostics=diagnostics ,
 					printFlag=printFlag , seed=seed , defaultImputationMethod=defaultImputationMethod ,
 					data.init = dat0 , ... ) 		
-        datlist[[mm]] <- dat0 <- complete( imp1 , 1 )
+        datlist[[mm]] <- dat0 <- mice::complete( imp1 , 1 )
 		chainMean <- rbind( chainMean , t( imp1$chainMean[,,1] ) )
 		chainVar <- rbind( chainVar , t( imp1$chainVar[,,1] ) )
 		rownames(chainVar)[ nrow(chainVar) ] <- 
@@ -75,8 +78,7 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 						}
 	# midsobj <- datalist2mids(dat.list=datlist, progress = FALSE)
 	# as.mids in mice	
-	midsobj <- as.mids(data = datalong , .imp=1, .id=2)
-	
+	midsobj <- mice::as.mids(data = datalong , .imp=1, .id=2)
 	
 	# adjust M and Var for chains
 	vars <- colnames(chainMean)
@@ -91,7 +93,7 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 	chainVarPar <- ( chainVar * matrix( (NMiss[vars]) , nrow=cM , ncol=length(vars) , byrow=TRUE ) +
 				matrix( ( NObs[vars])* VarObs[vars] , nrow=cM , ncol=length(vars) , byrow=TRUE ) ) /
 						( eps+ matrix( NObs[vars] + NMiss[vars] , nrow=cM , ncol=length(vars) , byrow=TRUE ) )						
-	midsobj <- as.mids(datalong , .imp=1)
+	midsobj <- mice::as.mids(datalong , .imp=1)
 #	midsobj$m <- Nimp
 	
 	imm <- implist[[mm+1]]
@@ -128,7 +130,7 @@ summary.mids.1chain <- function( object , ... ){
 # S3 plot method
 plot.mids.1chain <- function( x , plot.burnin=FALSE , ask=TRUE , ... ){
     VV <- ncol( x$chainMean )
-    par(mfrow=c(2,2))
+    graphics::par(mfrow=c(2,2))
 	if (!plot.burnin){
 		iter_vec <- seq( x$burnin + 1 , x$iter )
 				} else { iter_vec <- 1:x$iter }
@@ -144,5 +146,5 @@ plot.mids.1chain <- function( x , plot.burnin=FALSE , ask=TRUE , ... ){
                                 )
         if (vv %% 2 == 0){ par(ask=ask) }
                 }
-    par(mfrow=c(1,1))
+    graphics::par(mfrow=c(1,1))
         }

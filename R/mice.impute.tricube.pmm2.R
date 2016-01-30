@@ -42,7 +42,7 @@ mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.
 # print(tricube.pmm.scale)	
 #    tricube.pmm.scale <- .extract.list.arguments( micearg = tricube.pmm.scale , 
 #                           vname = vname , miceargdefault = .2 )
-    flush.console()
+    utils::flush.console()
     # doing tricube pmm
 	# distance function
 	dg <- d0 <- d <- abs( outer( yhatmis[,1] , yhatobs[,1] , "-" ) )
@@ -51,7 +51,7 @@ mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.
 	# add some small noise to create unique entries in matrix d0
 	d00 <- abs(d0)
 	fg1 <- min( d00[ d00 > 0 ] )
-	d0 <- d0 + matrix( runif( nrow(d0)*ncol(d0) , 0 , fg1/10000000 ) , ncol=ncol(d0) )
+	d0 <- d0 + matrix( stats::runif( nrow(d0)*ncol(d0) , 0 , fg1/10000000 ) , ncol=ncol(d0) )
 	# DONOR1
 	rmin1 <- apply( d0 , 1 , min )	
 	d0 <- d0 + DM*( d0 == outer( rmin1 , rep(1,ncol(d0)) ) )
@@ -76,7 +76,7 @@ mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.
 	probcs <- t( sapply( seq(1,nrow(prob.x)) , FUN = function(ii){ cumsum(prob.x[ii,]) } ) )
 	probcs2 <- probcs
 	# draw a random number
-	RU <- runif( nrow(d)  )
+	RU <- stats::runif( nrow(d)  )
 	# write a function which calculates the index when random
 	# number exceeded cumulated probability the first time
 	matr <- probcs2	

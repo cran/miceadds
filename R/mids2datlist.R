@@ -1,4 +1,4 @@
-mids2datlist <- function( midsobj ){
+mids2datlist <- function( midsobj , X = NULL){
 	if ( class(midsobj) == "mids.1chain" ){
 		midsobj <- midsobj$midsobj		
 			}
@@ -8,8 +8,13 @@ mids2datlist <- function( midsobj ){
 		m <- midsobj$m
 		datlist <- as.list( 1:m )
 		for (ii in 1:m){  
-				datlist[[ii]] <- mice::complete( midsobj , ii ) 
+				h1 <- mice::complete( midsobj , ii ) 
+				if ( ! is.null(X) ){
+					h1 <- data.frame(  X , h1	)										
+								   }	
+				datlist[[ii]] <- h1
 						}
+		class(datlist) <- "datlist"
 					}	
 	#******************************
     # object of class mids.nmi		
@@ -23,9 +28,14 @@ mids2datlist <- function( midsobj ){
 			datlist[[bb]] <- dat1
 			for (ww in 1:Nimp["within"] ){
 				# ww <- 1
-				datlist[[bb]][[ww]] <- complete.mids.nmi( midsobj , action= c(bb,ww) )	
+				h1 <- complete.mids.nmi( midsobj , action= c(bb,ww) )	
+				if ( ! is.null(X) ){
+					h1 <- data.frame(  X , h1	)										
+								   }				
+				datlist[[bb]][[ww]] <- h1
 										}
 								}
+		class(datlist) <- "nested.datlist"
 			}		
     return(datlist)
         }

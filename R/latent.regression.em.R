@@ -30,13 +30,14 @@ latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) ,
         pv1 <- plausible.value.draw( data=data , X=X , beta0 =beta0  , sig0 =sig0 ,
                      b = b , a=a , c = c , theta.list = theta.list , pvdraw= FALSE )
         # estimate latent regression model (linear model)
-        mod <- lm( pv1$EAP ~ 0 + X , weights = weights)
-        cmod <- coef(mod)
+        mod <- stats::lm( pv1$EAP ~ 0 + X , weights = weights)
+        cmod <- stats::coef(mod)
         # Calculation of residual sd
-        sigma <- sqrt( mean( weights* ( pv1$SE.EAP^2 + resid(mod)^2 ) ) )
+        sigma <- sqrt( mean( weights* ( pv1$SE.EAP^2 + stats::resid(mod)^2 ) ) )
         parchange <- max( abs(sigma - sig0) , abs( cmod - beta0) )
         cat( paste("Iteration " , iter,": max parm. change " , round( parchange , 8 ) ,sep="") , " # Regr. Coeff. " , 
-                                        as.vector(cmod) , "\n") ; flush.console()
+                                        as.vector(cmod) , "\n") ; 
+		utils::flush.console()
         # parameter update
         sig0 <- sigma ; beta0 <- cmod ; iter <- iter + 1
                     }
@@ -55,7 +56,7 @@ latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) ,
         scoefs[vv,3] <- sqrt( 1 / sum( h1 ) )    
         }    
     scoefs$t <- scoefs$est / scoefs$se
-    scoefs$p <- 2 * ( 1 - pnorm( abs( scoefs$t ) ) )
+    scoefs$p <- 2 * ( 1 - stats::pnorm( abs( scoefs$t ) ) )
     if ( ! is.null( colnames(X) ) ){ rownames(scoefs) <- colnames(X) } # use column names of X
     #********
     # list of results
@@ -77,19 +78,20 @@ latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) ,
         # Z         ... matrix of covariates for explaining residual variance
         #.............................................................
         # latent regression model
-        mod <- lm( pv ~ 0 + X )
-        res <- list( "est.beta" = coef(mod) , "vcov.beta" = vcov(mod) )
+        mod <- stats::lm( pv ~ 0 + X )
+        res <- list( "est.beta" = stats::coef(mod) , "vcov.beta" = stats::vcov(mod) )
         # sample beta parameter
         res$samp.beta <- MASS::mvrnorm( mu = res$est.beta , Sigma = res$vcov.beta )
         # residual standard deviation
-        n <- nrow(X) ; p <- ncol(X)
+        n <- nrow(X)
+		p <- ncol(X)
         res$est.sigma <- summary(mod)$sigma
-        residuals.mod <- ( resid(mod) ) ^2   * (n-1) / ( n - p - 1)
-        mod1 <- lm( residuals.mod ~ 0 + Z )
+        residuals.mod <- ( stats::resid(mod) ) ^2   * (n-1) / ( n - p - 1)
+        mod1 <- stats::lm( residuals.mod ~ 0 + Z )
         summary(mod1)
         # sample gamma coefficients for heteroscedasticity
         samp.gamma <- MASS::mvrnorm( mu = coef(mod1) , Sigma = vcov(mod1) )
-        res$fitted.sigma <- sqrt( fitted(mod1) )
+        res$fitted.sigma <- sqrt( stats::fitted(mod1) )
         res$lm.latent.regression <- mod
         res$lm.residualsd <- mod1
         return(res)

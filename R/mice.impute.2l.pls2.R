@@ -275,10 +275,10 @@ mice.impute.2l.pls2 <- function(y, ry, x , type , pls.facs = NULL ,
 								
 		# look for largest correlations
 			if ( ! use.ymat ){ 
-					c1 <- cor( y[ry] , x[ry,] ) 
+					c1 <- stats::cor( y[ry] , x[ry,] ) 
 							}	else {  
 											# look for correlations of all the dummy variables
-									c1 <- cor( y[ry,] , x[ry,] ) 
+									c1 <- stats::cor( y[ry,] , x[ry,] ) 
 									c1 <- apply( abs(c1) , 2 , mean , na.rm=T )
 											}
 		#***---***---***---***---***---***---***---***---											
@@ -298,7 +298,7 @@ mice.impute.2l.pls2 <- function(y, ry, x , type , pls.facs = NULL ,
 			x <- x[ , dfr1[ 1:N.largest , "index" ] ]
 			# look if some columns do have complete missing entries or SD of zero
 			cmna1 <- which( colMeans( is.na(x))  == 1 )
-			cmna2 <- which( apply( x , 2, sd ) == 0 )
+			cmna2 <- which( apply( x , 2, stats::sd ) == 0 )
 			cmna <- unique( sort( c( cmna1 , cmna2 ) ) )
 		
 			if ( length(cmna) > 0 ){ 
@@ -367,7 +367,7 @@ mice.impute.2l.pls2 <- function(y, ry, x , type , pls.facs = NULL ,
         # include imputationWeights here and calculate weight.obs
         # in the regression model, only PLS factors of X are used
 		
-        if( sd(weight.obs) > 0){
+        if( stats::sd(weight.obs) > 0){
                 yobs <- weight.obs * yobs
                 xobs <- outer( weight.obs , rep(1,ncol(xobs) ) ) * xobs
                                 }

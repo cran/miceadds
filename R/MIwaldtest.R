@@ -74,7 +74,7 @@ MIwaldtest <- function( qhat , u , Cdes=NULL , rdes=NULL ,
 
 		stat <- data.frame( "F" = stat , "df1" = df1 ,
 					          "df2" = df2 , 
-							  "pval" = 1 - pf( stat , df1=df1 , df2 = df2 ) )			
+							  "pval" = 1 - stats::pf( stat , df1=df1 , df2 = df2 ) )			
 		res <- list( stat=stat , linear_hyp = res0 ,
 					qhat = qhat , u=u , Cdes = Cdes , rdes=rdes )
 		class(res) <- "MIwaldtest"
@@ -137,7 +137,7 @@ summaryMIwaldtest_linear_hyp <- function(object, digits) {
     table[, 3] <- table[, 1]/table[, 2]
     table[, 4] <- x$df
     table[, 5] <- if (all(x$df > 0)) 
-        2 * (1 - pt(abs(table[, 3]), x$df)) else NA
+        2 * (1 - stats::pt(abs(table[, 3]), x$df)) else NA
     table[, 6] <- table[, 1] - qt(0.975, x$df) * table[, 2]
     table[, 7] <- table[, 1] + qt(0.975, x$df) * table[, 2]
 #    if (is.null(x$nmis) | is.null(names(x$qbar)))

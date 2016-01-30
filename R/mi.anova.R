@@ -13,7 +13,7 @@ mi.anova <- function( mi.res , formula , type = 2 ){
             # list of completed datasets
             h1 <- list( rep("", m ))
             for (ii in 1:m){ 
-				h1[[ii]] <- as.data.frame( complete( mi.list , ii ) ) 
+				h1[[ii]] <- as.data.frame( mice::complete( mi.list , ii ) ) 
 							}										
             mi.list <- h1
             }
@@ -22,14 +22,16 @@ mi.anova <- function( mi.res , formula , type = 2 ){
 	#**** type II sum of squares
 	if ( type==2){
 		anova.imp0 <- lapply( mi.list , FUN = function(dat){ 
-						lm( formula, data = dat ) } )                 
-		anova.imp <- lapply( anova.imp0 , FUN = function( obj){ summary(aov(obj)) } )
+						stats::lm( formula, data = dat ) } )                 
+		anova.imp <- lapply( anova.imp0 , FUN = function( obj){ 
+					summary( stats::aov(obj)) 
+							} )
 				}
 	#**** type III sum of squares
 	if (type==3){
 	     Nimp <- length(mi.list)
 #		 Nimp <- 1
-	     vars <- all.vars( as.formula( formula ))[-1]
+	     vars <- base::all.vars( as.formula( formula ))[-1]
 		 VV <- length(vars)
 		 # define contrasts
          ma_contrasts <- as.list(1:VV)		 
@@ -46,7 +48,7 @@ mi.anova <- function( mi.res , formula , type = 2 ){
 		 # estimate linear model				
 		 anova.imp0 <- lapply( as.list( 1:Nimp) , FUN = function(ii){				
 			dat <- mi.list[[ii]]
-			mod1 <- lm( formula , data=dat , contrasts=ma_contrasts)
+			mod1 <- stats::lm( formula , data=dat , contrasts=ma_contrasts)
 			return(mod1)
 				} )
 		 # compute summary

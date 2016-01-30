@@ -29,7 +29,7 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 			datl2 <- dat.list[[ii]]
 			r1[ , impvars] <- r1[,impvars] + 1*( datl2[,impvars] != datl1[,impvars ] )
 			datl1 <- datl2
-			if (progress){ cat("-") ; flush.console() }
+			if (progress){ cat("-") ; utils::flush.console() }
 					}
 				}
 	#*******
@@ -39,7 +39,7 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 #		datl1[1,1] <- NA
 #			}
 				
-    if (progress){ cat("\n") ; flush.console() }                
+    if (progress){ cat("\n") ; utils::flush.console() }                
     r1[ r1>0 ] <- 1
     dat0 <- datl1
     dat0[ r1 == 1 ] <- NA
@@ -52,7 +52,7 @@ datalist2mids <- function( dat.list , progress=TRUE ){
         pM[  elimvars , ] <- 0
         pM[ , elimvars ] <- 0
                 }
-    imp1 <- mice( dat0 , maxit=0 , imputationMethod=iM , predictorMatrix=pM , 
+    imp1 <- mice::mice( dat0 , maxit=0 , imputationMethod=iM , predictorMatrix=pM , 
                     m=M , allow.na=TRUE)
 #	if ( M == 1 ){
 #		  imp1$data[1,1] <- v11
@@ -74,7 +74,7 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 					
                         }
 			#********
-            if (progress){ cat(".") ; flush.console() }
+            if (progress){ cat(".") ; utils::flush.console() }
                 }
 	
     if (progress){ cat("\n") }

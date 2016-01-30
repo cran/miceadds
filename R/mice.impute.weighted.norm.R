@@ -24,7 +24,7 @@ mice.impute.weighted.norm <- function(y, ry, x, ridge = .00001 , pls.facs = NULL
       if ( is.null(pls.facs) ){ 
           parm <- .weighted.norm.draw( yobs = yobs , xobs = xobs , ry = ry , y = y , x = x ,
                               weights.obs = weights.obs , ... )   
-          yimp <- x[!ry,  ] %*% parm$beta + rnorm(sum(!ry)) * parm$sigma
+          yimp <- x[!ry,  ] %*% parm$beta + stats::rnorm(sum(!ry)) * parm$sigma
                                 }
       return(yimp)
     }
@@ -45,8 +45,8 @@ mice.impute.weighted.norm <- function(y, ry, x, ridge = .00001 , pls.facs = NULL
     residuals <- yobs - xobs %*% coef
     # calculate weighted residuals
     residuals2 <- weights.obs * residuals
-    sigma.star <- sqrt(sum((residuals2)^2)/rchisq(1, sum(ry) - ncol(x)))  
-    beta.star <- coef + (t(chol((v + t(v))/2)) %*% rnorm(ncol(x))) * sigma.star
+    sigma.star <- sqrt(sum((residuals2)^2)/ stats::rchisq(1, sum(ry) - ncol(x)))  
+    beta.star <- coef + (t(chol((v + t(v))/2)) %*% stats::rnorm(ncol(x))) * sigma.star
     parm <- list(coef, beta.star, sigma.star)     
     names(parm) <- c("coef","beta", "sigma") 
     return(parm)

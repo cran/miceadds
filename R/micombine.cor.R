@@ -20,7 +20,7 @@ micombine.cor <- function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf
                 if ( i != j){ 
                     # calculate correlation coefficients
                     cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  
-								cor( dat[ , ii] , dat[,jj] , method=method) 
+								stats::cor( dat[ , ii] , dat[,jj] , method=method) 
 									} ) )
                     res.ii.jj <- .sub.micombine.cor( cor.list = cor.ii.jj , N = N , conf.level = conf.level )
                     dfr <- rbind( dfr , c( ii , jj , res.ii.jj ) )
@@ -61,12 +61,12 @@ micombine.cor <- function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf
             "fisher_rse" = zr.se ,
 			"fmi" = fisher.cor.combine$missinfo ,			
             "t" = t.zr  , 
-            "p" = 2 * pnorm( abs(t.zr) , lower.tail = FALSE ) ,
-             fisher2cor( zr + qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) , 
-             fisher2cor( zr - qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) )
+            "p" = 2 * stats::pnorm( abs(t.zr) , lower.tail = FALSE ) ,
+             fisher2cor( zr + stats::qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) , 
+             fisher2cor( zr - stats::qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) )
             names(res)[7] <- paste( "lower" , round(100*conf.level,2),sep="")
             names(res)[8] <- paste( "upper" , round(100*conf.level,2),sep="")
-        res <- c( res , - ( res[8] - res[7] ) / ( 2* qnorm( ( 1 - conf.level )/2 ) ) )
+        res <- c( res , - ( res[8] - res[7] ) / ( 2* stats::qnorm( ( 1 - conf.level )/2 ) ) )
         names(res)[9] <- "rse"
         res <- res[ c(1,9,2:8) ]
         return(res)
@@ -79,7 +79,7 @@ micombine.cor <- function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf
     mi.list <- NULL
     M <- mi.res$m   # extrahiere Anzahl der Imputationen
     for (ii in 1:M){ 
-        mi.list[[ii]] <- complete( mi.res , action= ii )
+        mi.list[[ii]] <- mice::complete( mi.res , action= ii )
         }
     return(mi.list)
      }

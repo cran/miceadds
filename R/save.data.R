@@ -13,7 +13,7 @@ save.data <- function( data , filename , type="Rdata" , path=getwd() ,
 	
 	#*** missing handling
 	if ( is.null(na) ){
-		na <- switch( type , 
+		na <- base::switch( type , 
 					"csv" = "" , 
 					"csv2" = "" ,
 					"table" = "." )
@@ -33,19 +33,19 @@ save.data <- function( data , filename , type="Rdata" , path=getwd() ,
 	
     #*** Rdata objects	
 	if (type == "Rdata" ){
-		save( data , file= file.path( dir , file ) )
+		base::save( data , file= file.path( dir , file ) )
 				}
     #*** csv2 objects
 	if (type == "csv2" ){
-		write.csv2( data , file.path(dir,file) , row.names=row.names , na=na ,... )
+		utils::write.csv2( data , file.path(dir,file) , row.names=row.names , na=na ,... )
 				}
     #*** csv objects
 	if (type == "csv" ){
-		write.csv( data , file.path(dir,file) , row.names=row.names , na=na,  ... )
+		utils::write.csv( data , file.path(dir,file) , row.names=row.names , na=na,  ... )
 				}
     #*** table objects
 	if (type == "table" ){
-		write.table( data , file.path(dir,file) , na=na , ... )
+		utils::write.table( data , file.path(dir,file) , na=na , ... )
 				}
     #*** sav objects (SPSS objects)
 	if (type == "sav" ){

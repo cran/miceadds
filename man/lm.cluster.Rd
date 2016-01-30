@@ -15,7 +15,7 @@ Cluster Robust Standard Errors for Linear Models and General Linear Models
 }
 
 \description{
-Computes cluster robust standard errors for linear model
+Computes cluster robust standard errors for linear models
 (\code{\link[stats:lm]{stats::lm}}) and general linear models 
 (\code{\link[stats:glm]{stats::glm}}) using the 
 \code{\link[multiwayvcov:cluster.vcov]{multiwayvcov::cluster.vcov}} 
@@ -133,14 +133,15 @@ library(mitools)
 data(data.ma05)
 dat <- data.ma05
 
-# imputation of the dataset: use just a single imputation for simplicity
+# imputation of the dataset: use six imputations
 resp <- dat[ , - c(1:2) ]
 imp <- mice::mice( resp , imputationMethod="norm" , maxit=3 , m=6 )
 datlist <- mids2datlist( imp )
 
 # linear regression with cluster robust standard errors
 mod <- lapply(  datlist, FUN = function(data){
-            lm.cluster( data=data , formula=denote ~ migrant+ misei , cluster = dat$idclass  )
+            lm.cluster( data=data , formula=denote ~ migrant+ misei , 
+                    cluster = dat$idclass )
                                 }  )
 # extract parameters and covariance matrix
 betas <- lapply( mod , FUN = function(rr){ coef(rr) } )

@@ -62,7 +62,7 @@ Alexander Robitzsch
 For imputation models see \code{\link[mice:mice]{mice::mice}} 
 and \code{\link{mice.1chain}}.
 
-Functions for analysis for nested multiply imputed datasets:
+Functions for analyses of nested multiply imputed datasets:
 \code{\link{complete.mids.nmi}}, \code{\link{with.mids.nmi}}, 
 \code{\link{pool.mids.nmi}}
 }

@@ -31,15 +31,15 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 				}
     #*** csv2 objects
 	if (type == "csv2" ){
-		dat4 <- read.csv2( file.path(dir,file) , ... )
+		dat4 <- utils::read.csv2( file.path(dir,file) , ... )
 				}
     #*** csv objects
 	if (type == "csv" ){
-		dat4 <- read.csv( file.path(dir,file) , ... )
+		dat4 <- utils::read.csv( file.path(dir,file) , ... )
 				}
     #*** table objects
 	if (type == "table" ){
-		dat4 <- read.table( file.path(dir,file) , header=TRUE , ... )
+		dat4 <- utils::read.table( file.path(dir,file) , header=TRUE , ... )
 						}
     #*** sav objects (SPSS objects)
 	if (type == "sav" ){

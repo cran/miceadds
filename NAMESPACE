@@ -16,7 +16,39 @@ importFrom(graphics, par)
 importFrom(graphics, plot)
 importFrom(methods, is)
 importFrom(Rcpp, evalCpp)
-import(stats)
+importFrom(stats, aggregate)
+importFrom(stats, aov)
+importFrom(stats, as.formula)
+importFrom(stats, coef)
+importFrom(stats, cov)
+importFrom(stats, cov2cor)
+importFrom(stats, cor)
+importFrom(stats, dnorm)
+importFrom(stats, fitted)
+importFrom(stats, get_all_vars)
+importFrom(stats, glm)
+importFrom(stats, lm)
+importFrom(stats, model.matrix)
+importFrom(stats, na.omit)
+importFrom(stats, pchisq)
+importFrom(stats, pf)
+importFrom(stats, plogis)
+importFrom(stats, pnorm)
+importFrom(stats, predict)
+importFrom(stats, princomp)
+importFrom(stats, pt)
+importFrom(stats, qnorm)
+importFrom(stats, qt)
+importFrom(stats, rbinom)
+importFrom(stats, rchisq)
+importFrom(stats, resid)
+importFrom(stats, residuals)
+importFrom(stats, rnorm)
+importFrom(stats, runif)
+importFrom(stats, sd)
+importFrom(stats, var)
+importFrom(stats, vcov)
+importFrom(stats, weighted.mean)
 importFrom(utils, citation)
 importFrom(utils, flush.console)
 importFrom(utils, install.packages)
@@ -45,11 +77,13 @@ importFrom(bayesm, rtrun)
 importFrom(car, Anova) 
 importFrom(foreign, read.spss) 
 importFrom(grouped, grouped)
+importFrom(Hmisc, wtd.var)
 importFrom(inline, getDynLib)
 importFrom(lme4, lmer)
 importFrom(lme4, ranef)
 importFrom(MASS, mvrnorm)
 importFrom(MBESS, ci.reliability)
+importFrom(MCMCglmm, MCMCglmm)
 importFrom(mitools, MIcombine)
 importFrom(mvtnorm, dmvnorm)
 importFrom(mvtnorm, rmvnorm)
@@ -72,87 +106,91 @@ importFrom(TAM, tam.latreg)
 
 #############################
 ## exports
+
 export(
-    datalist2mids ,
-    draw.pv.ctt ,
-    mi.anova ,
-    mice.impute.2l.contextual.norm ,
-    mice.impute.2l.contextual.pmm , 
-    mice.impute.2l.groupmean.elim , 
-    mice.impute.2l.groupmean , 
-    mice.impute.2l.latentgroupmean ,
-    mice.impute.2l.plausible.values ,
-    mice.impute.pmm3 , 
-    mice.impute.pmm4 ,  
-    mice.impute.pmm5 ,  
-    mice.impute.pmm6 ,     
-    mice.impute.tricube.pmm , 
-    mice.impute.tricube.pmm2 , 
-    mice.impute.weighted.norm ,
-    mice.impute.weighted.pmm ,
-    micombine.chisquare ,
-    micombine.cor ,
-    micombine.F ,
-    pca.covridge ,
-    Rhat.mice ,
-    tw.imputation ,
-    tw.mcmc.imputation ,
-    write.mice.imputation ,
-    kernelpls.fit2 ,
-    write.pspp ,
-    fast.groupmean ,
-    mice.impute.2l.pls ,
-    mice.impute.2l.pls2 ,
+    complete.mids.1chain,
+    complete.mids.nmi,
+    create.designMatrices.waldtest,
+    crlrem,
+    cxxfunction.copy, 
+    datalist2mids,
+    datlist_create,
+    draw.pv.ctt,
+    fast.groupmean,
     fast.groupsum,
-    ma.scale2 ,
-    mice.1chain ,
-    mice.impute.2l.eap ,
-    mids2datlist  ,
-    mice.impute.2lonly.norm2 ,
-    mice.impute.2lonly.pmm2 ,
-    str_C.expand.grid   ,
-    crlrem ,
-    cxxfunction.copy , 
-    grep.vec , 
-    index.dataframe , 
-    load.Rdata , 
-    save.Rdata , 
-    output.format1 , 
-    Reval , 
-    round2 , 
-    Rsessinfo , 
-    scan.vec ,
-    scan.vector , 
-    source.all , 
-    systime ,
-    Revalpr ,
-    Revalprstr  ,
-    sumpreserving.rounding   ,
-    ma.wtd.covNA , 
-    ma.wtd.corNA ,     
-    ma.wtd.meanNA , 
-    ma.wtd.sdNA   ,
-    load.Rdata2 ,
-    load.data ,
-    save.data,
-    visitSequence.determine ,
-    mice.nmi ,
-    complete.mids.nmi ,
-    complete.mids.1chain ,
-    pool.mids.nmi,
-    within.imputationList ,
-    lm.cluster ,
     glm.cluster,
-    NestedImputationList ,
-    MIcombine.NestedImputationResultList ,
-    mice.impute.grouped ,
-    NMIcombine ,
-    create.designMatrices.waldtest ,
-    NMIwaldtest ,
-    MIwaldtest ,
+    grep.vec, 
+    index.dataframe, 
     jomo2datlist,
-    NMIextract ,
-    library_install
+    kernelpls.fit2,
+    library_install,
+    lm.cluster,
+    load.data,
+    load.Rdata, 
+    load.Rdata2,
+    ma.scale2,
+    ma.wtd.corNA,     
+    ma.wtd.covNA, 
+    ma.wtd.meanNA, 
+    ma.wtd.sdNA ,
+    mi.anova,
+    mice.1chain,
+    mice.impute.2l.contextual.norm,
+    mice.impute.2l.contextual.pmm, 
+    mice.impute.2l.eap,
+    mice.impute.2l.groupmean, 
+    mice.impute.2l.groupmean.elim, 
+    mice.impute.2l.latentgroupmean,
+    mice.impute.2l.plausible.values,
+    mice.impute.2l.pls,
+    mice.impute.2l.pls2,
+    mice.impute.2lonly.norm2,
+    mice.impute.2lonly.pmm2,
+    mice.impute.grouped,
+    mice.impute.pmm3, 
+    mice.impute.pmm4,  
+    mice.impute.pmm5,  
+    mice.impute.pmm6,     
+    mice.impute.tricube.pmm, 
+    mice.impute.tricube.pmm2, 
+    mice.impute.weighted.norm,
+    mice.impute.weighted.pmm,
+    mice.nmi,
+    micombine.chisquare,
+    micombine.cor,
+    micombine.F,
+    MIcombine.NestedImputationResultList,
+    mids2datlist,
+    MIwaldtest,
+    nested.datlist_create,
+    NestedImputationList,
+    NMIcombine,
+    NMIextract,
+    NMIwaldtest,
+    output.format1, 
+    pca.covridge,
+    pool.mids.nmi,
+    Reval, 
+    Revalpr,
+    Revalprstr,
+    Rhat.mice,
+    round2, 
+    Rsessinfo, 
+    save.data,
+    save.Rdata, 
+    scale_datlist,
+    scan.vec,
+    scan.vector, 
+    source.all, 
+    str_C.expand.grid ,
+    sumpreserving.rounding ,
+    systime,
+    tw.imputation,
+    tw.mcmc.imputation,
+    visitSequence.determine,
+    within.imputationList,
+    write.mice.imputation,
+    write.pspp 
         )
 
 
@@ -160,48 +198,25 @@ export(
 ########### S3 METHODS ##################
 
 
-#-- coef
-S3method(coef, lm.cluster)
 S3method(coef, glm.cluster)
+S3method(coef, lm.cluster)
 S3method(coef, mipo.nmi)
-
-
-#-- MIcombine
-S3method(MIcombine,NestedImputationResultList)
-
-
-#-- predict
-S3method(predict,kernelpls.fit2)
-
-
-#-- plot
+S3method(MIcombine, NestedImputationResultList)
 S3method(plot, mids.1chain)
-
-
-#-- summary
+S3method(predict, kernelpls.fit2)
+S3method(summary, glm.cluster)
+S3method(summary, lm.cluster)
 S3method(summary, mids.1chain)
 S3method(summary, mids.nmi)
-S3method(summary, mira.nmi)
 S3method(summary, mipo.nmi)
-S3method(summary, lm.cluster)
-S3method(summary, glm.cluster)
-S3method(summary, NMIwaldtest)
+S3method(summary, mira.nmi)
 S3method(summary, MIwaldtest)
-
-
-#-- vcov
-S3method(vcov, lm.cluster)
+S3method(summary, NMIwaldtest)
 S3method(vcov, glm.cluster)
+S3method(vcov, lm.cluster)
 S3method(vcov, mipo.nmi)
-
-
-#-- with
 S3method(with, mids.1chain)
 S3method(with, mids.nmi)
 S3method(with, NestedImputationList)
-
-
-#-- within
 S3method(within, imputationList)
 S3method(within, NestedImputationList)
-

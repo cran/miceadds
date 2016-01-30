@@ -23,12 +23,12 @@ mice.impute.2l.contextual.norm <- function (y, ry, x, type , ridge = 10^(-5) , i
    if ( sum( type==2)  > 0 ){   
         z <-  as.matrix(x[,type == 2 ]) 
         # calculate aggregated values
-        a1 <- aggregate( z , list( clusterx ) , mean , na.rm=F)
+        a1 <- stats::aggregate( z , list( clusterx ) , mean , na.rm=F)
         colnames(a1)[-1] <- paste( "M." , colnames(z) , sep="")
                             } 
    # calculate aggregated value for y
-   a21 <- aggregate( y , list( clusterx ) , sum , na.rm=F)
-   a22 <- aggregate( 1+0*y , list( clusterx ) , sum , na.rm=F)
+   a21 <- stats::aggregate( y , list( clusterx ) , sum , na.rm=F)
+   a22 <- stats::aggregate( 1+0*y , list( clusterx ) , sum , na.rm=F)
    ic <- match( clusterx , a21[,1] )
    y2 <- ( a21[ ic , 2] - y ) / ( a22[ ic , 2 ] - 1 )
    y2[ is.na(y2) ] <- mean(y2,na.rm=T)                   

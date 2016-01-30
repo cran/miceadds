@@ -26,12 +26,12 @@ plausible.value.draw <- function( data , X , beta0 , sig0 , b = b ,
     # matrix of theta values
     thetaM <- outer( rep(1,n) , theta.list )
     # compute density resulting from regression
-    dens.Regr <- dnorm( thetaM , mean=M.Regr , sd = SD.Regr )
+    dens.Regr <- stats::dnorm( thetaM , mean=M.Regr , sd = SD.Regr )
     # conditional distribution of item responses
     dens.Resp <- matrix( 0 , nrow=n , ncol= ncol(dens.Regr) )
     for (tt in seq(1 , length(theta.list)) ){
         # tt <- theta.list[1]
-        ptt <- outer( rep(1 , n) , c + (1-c)*plogis( a * ( theta.list[tt] - b ) ) )
+        ptt <- outer( rep(1 , n) , c + (1-c)*stats::plogis( a * ( theta.list[tt] - b ) ) )
         dens.Resp[,tt] <- exp( rowSums( respind *y * log( ptt) + respind*( 1-y) * log( 1-ptt)  ) )
         }
 #print( cbind(b,a,c))
@@ -44,7 +44,8 @@ plausible.value.draw <- function( data , X , beta0 , sig0 , b = b ,
     SD.Post <- sqrt( rowSums( theta.listM^2 * dens.total ) -  EAP^2 )
     # one draw of plausible values
     if (pvdraw == FALSE ){ pvdraw <- NULL } else { 
-                pvdraw <- matrix( rnorm( n*pvdraw , mean = rep(EAP,each=pvdraw) , sd = rep(SD.Post,each=pvdraw) ) , ncol=pvdraw , byrow=T )
+                pvdraw <- matrix( stats::rnorm( n*pvdraw , mean = rep(EAP,each=pvdraw) , 
+						sd = rep(SD.Post,each=pvdraw) ) , ncol=pvdraw , byrow=T )
                          }
     # results
     res <- list( "posterior.density" = dens.total , "EAP" = EAP , "SE.EAP" = SD.Post ,

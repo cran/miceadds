@@ -14,7 +14,7 @@ mice.impute.pmm4 <- function (y, ry, x, donors=3 , noise = 10^5 ,
 	# add some small noise to create unique entries in matrix d0
 	d00 <- abs(diff(dfr$yhat))
 	fg1 <- min( d00[ d00 > 0 ] )	
-	dfr$yhat <- dfr$yhat + runif( nrow(dfr) , 0 , fg1 / noise )
+	dfr$yhat <- dfr$yhat + stats::runif( nrow(dfr) , 0 , fg1 / noise )
 	dfr <- data.frame(dfr[ order(dfr[,3] ) , ])		
 	dfr$sortindex <- seq( 1 , nrow(dfr))
 		

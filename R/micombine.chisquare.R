@@ -4,13 +4,13 @@ micombine.chisquare <- function( dk , df , display = TRUE ){
         # df    ... degrees of freedom of chi square statistics
         M <- length(dk)
         mean.dk <-  mean( dk )
-        sdk.square <- var( sqrt( dk ) )
+        sdk.square <- stats::var( sqrt( dk ) )
         Dval <- ( mean.dk / df  - ( 1 - 1/M) * sdk.square )/ ( 1+ ( 1 + 1/M) * sdk.square )
         df2 <- ( M - 1 )/ df^(3/M)  * ( 1  + M / ( M + 1/M) / sdk.square )^2
-        pval <- pf( Dval , df1 = df , df2 = df2 , lower.tail = F)
+        pval <- stats::pf( Dval , df1 = df , df2 = df2 , lower.tail = F)
 		# chi square approximation
 		chisq.approx <- Dval * df
-		p.approx <- 1 - pchisq( chisq.approx , df=df )
+		p.approx <- 1 - stats::pchisq( chisq.approx , df=df )
         res <- c( "D" = Dval , "p" = pval , "df" = df , "df2" = df2 ,
 				"chisq.approx" = chisq.approx , "p.approx" = p.approx )
         if (display){   

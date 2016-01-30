@@ -54,7 +54,7 @@ kernelpls.fit2 <- function(X, Y, ncomp ){
 		# R^2 measures
 		R2 <- cumsum(res$Xvar) / res$Xtotvar
 		R21 <- sapply( 1:ncomp , FUN = function(cc){
-             1 - var( Y[,1] -  res$fitted.values[,cc] ) / var( Y[,1] )
+             1 - stats::var( Y[,1] -  res$fitted.values[,cc] ) / stats::var( Y[,1] )
             } )
 		R2 <- rbind( R2 , R21)
 		rownames(R2) <- c("R2(X)" , "R2(Y)")

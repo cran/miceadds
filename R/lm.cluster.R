@@ -4,7 +4,7 @@
 # linear model for clustered data
 lm.cluster <- function( data , formula , cluster , ... ){
 	# requireNamespace("multiwayvcov")
-	mod <- lm( data=data , formula=formula ,  ... )
+	mod <- stats::lm( data=data , formula=formula ,  ... )
 	if ( length(cluster) > 1 ){
 			v1 <- cluster 
 				} else {
@@ -30,7 +30,7 @@ summary.lm.cluster <- function( object , ... ){
 	csmod <- smod$coefficients
 	csmod[,"Std. Error"] <- sqrt( diag( vcov(object) ))
 	csmod[,"t value"] <-  csmod[,"Estimate"] / csmod[,"Std. Error"]
-	csmod[,"Pr(>|t|)"] <- pnorm( - abs( csmod[,"t value"] ) )*2
+	csmod[,"Pr(>|t|)"] <- stats::pnorm( - abs( csmod[,"t value"] ) )*2
 	R2 <- smod$r.squared
 	cat("R^2 =" , round(R2 , 5),"\n\n" )
 	print(csmod)

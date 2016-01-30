@@ -27,7 +27,8 @@ visitSequence.determine <- function( impMethod , vis ,
 #*********************************************+
 # handle one passive variable
 handle.variable <- function( var.ii , impMethod , vis1 , dat ){
-    ness.ii <- colnames( get_all_vars( as.formula( impMethod[ var.ii ] ) , data=dat[1,] ) )
+    ness.ii <- colnames( stats::get_all_vars( 
+				stats::as.formula( impMethod[ var.ii ] ) , data=dat[1,] ) )
     IN <- length(ness.ii)
     for (nn in 1:IN){
     #    nn <- 1

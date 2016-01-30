@@ -32,8 +32,8 @@ plausible.value.imputation <- function( data , X , Z = NULL, beta0=rep(0,ncol(X)
         # function to calculate adjusted mean: eliminate score on the individual
         # variable <- pv1$plausible.value[,1]
         .adj.groupmean <- function( variable , cluster ){
-            a1 <- aggregate( variable ,    list( cluster ) , mean  )
-            a2 <- aggregate( 1+0*variable ,    list( cluster ) , sum  )
+            a1 <- stats::aggregate( variable ,    list( cluster ) , mean  )
+            a2 <- stats::aggregate( 1+0*variable ,    list( cluster ) , sum  )
             ind <- match( cluster , a1[,1] )
             ( a2[ind,2] * a1[ ind , 2] - variable ) / a2[ ind , 2] 
                     }
@@ -58,7 +58,7 @@ plausible.value.imputation <- function( data , X , Z = NULL, beta0=rep(0,ncol(X)
                                 }
         if ( printprogress ){ 
                 if (ii == 1 ){ cat("\n Iteration ") }
-                cat(paste(ii , ".",sep="")); flush.console() 
+                cat(paste(ii , ".",sep="")); utils::flush.console() 
                 if ( ( ii %% 10 == 0 ) | ( ii == iter  ) ){ cat("\n     ") }
                         }
                 }

@@ -36,11 +36,11 @@ mice.impute.2lonly.norm2 <- function (y, ry, x, type , ...){
     x1 <- as.matrix(a1[, -c(1,N1)])
     # norm imputation at level 2
     if ( imputationMethod == "norm" ){ 
-        ximp2 <- mice.impute.norm( y= as.matrix(a1[,N1]), ry=ry2, x = x1[,-1] , ...) 
+        ximp2 <- mice::mice.impute.norm( y= as.matrix(a1[,N1]), ry=ry2, x = x1[,-1] , ...) 
     }
     # pmm imputation at level 2
     if ( imputationMethod == "pmm" ){ 
-        ximp2 <- mice.impute.pmm( y= as.matrix(a1[,N1]), ry=ry2, x = x1[,-1] , ...) 
+        ximp2 <- mice::mice.impute.pmm( y= as.matrix(a1[,N1]), ry=ry2, x = x1[,-1] , ...) 
     }
     # data postprocessing
     cly2 <- a1[ ! ry2 , 1] 

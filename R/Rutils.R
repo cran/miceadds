@@ -30,7 +30,7 @@ save.Rdata <- function( dat , name , path = NULL , part.numb = 1000 ){
 	cat( paste( Sys.time() , "\n") )
 	cat( Rsessinfo() , "\n\n")	
 	cat( file.path( path , paste( name , ".Rdata" , sep="") ) , "\n\n")
-	cat( str( dat , list.len = ncol(dat) + 50 ))
+	cat( utils::str( dat , list.len = ncol(dat) + 50 ))
 		sink()
 	dfr <- data.frame( "column" = 1:(ncol(dat)) , "variable" = colnames(dat) )
     write.csv2( dfr, 
@@ -51,7 +51,7 @@ source.all <- function( path , grepstring= "\\.R" , print.source=TRUE ){
 			source( file.path( path , ff ) ) 
 			if ( print.source ){ 
 				cat( paste( "*** source" , ff ) , "\n") 
-				flush.console()
+				utils::flush.console()
 						}
 				}
             }

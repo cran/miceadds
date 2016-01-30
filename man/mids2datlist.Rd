@@ -6,17 +6,19 @@ Converting a \code{mids}, \code{mids.1chain} or \code{mids.nmi}
 Object in a Dataset List
 }
 \description{
-Converts a \code{mids} \code{mids.1chain} or \code{mids.nmi} 
+Converts a \code{mids}, \code{mids.1chain} or \code{mids.nmi} 
 object in a dataset list.
 }
 \usage{
-mids2datlist(midsobj)
+mids2datlist(midsobj, X = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{midsobj}{
 Object of class \code{mids}, \code{mids.1chain} or \code{mids.nmi} 
 }
+\item{X}{Optional data frame of variables to be included in
+imputed datasets.}
 }
 
 %\details{
@@ -24,7 +26,8 @@ Object of class \code{mids}, \code{mids.1chain} or \code{mids.nmi}
 %}
 
 \value{
-List of multiply imputed datasets
+List of multiply imputed datasets of classes
+\code{datlist} or \code{nested.datlist}.
 }
 %\references{
 %% ~put references to the literature/web site here ~
@@ -53,7 +56,7 @@ Alexander Robitzsch
 data(nhanes,package="mice")
 
 #**** imputation using mice
-imp1 <- mice( nhanes , m=3 , maxit=5 )
+imp1 <- mice::mice( nhanes , m=3 , maxit=5 )
 # convert mids object into list
 datlist1 <- mids2datlist( imp1 )
 
@@ -91,6 +94,22 @@ summary(imp2)
 # conversion into a datalist
 datlist.i1 <- mids2datlist( imp1 )
 datlist.i2 <- mids2datlist( imp2 )
+
+#############################################################################
+# EXAMPLE 3: mids object conversion and inclusion of further variables
+#############################################################################
+
+data(data.ma05)
+dat <- data.ma05
+
+# imputation
+resp <- dat[ , - c(1:2) ]
+imp <- mice::mice( resp , imputationMethod="norm" , maxit=2 , m=3 )
+
+# convert mids object into datalist
+datlist0 <- mids2datlist( imp )
+# convert mids object into datalist and include some id variables
+datlist1 <- mids2datlist( imp , X = dat[,c(1,2) ] )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

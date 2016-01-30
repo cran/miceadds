@@ -64,7 +64,7 @@ NMIwaldtest <- function( qhat , u , Cdes = NULL , rdes = NULL ,
 		
 		stat <- data.frame( "F" = stat , "df1" = df1 ,
 					          "df2" = df2 , 
-							  "pval" = 1 - pf( stat , df1=df1 , df2 = df2 ) )					
+							  "pval" = 1 - stats::pf( stat , df1=df1 , df2 = df2 ) )					
 		res <- list( stat=stat , linear_hyp = res0 ,
 					qhat = qhat , u=u , Cdes = Cdes , rdes=rdes )
 		class(res) <- "NMIwaldtest"

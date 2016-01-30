@@ -46,7 +46,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link[base:scale]{scale}}
+\code{\link[base:scale]{base::scale}}
 }
 
 

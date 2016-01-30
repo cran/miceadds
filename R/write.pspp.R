@@ -59,13 +59,10 @@ write.pspp <- function (data , datafile, pspp.path , decmax=6 ,
 
 	dfn1 <- as.data.frame( dfn )
 	
-	write.csv2( dfn1 , paste0( datafile , ".csv" ) , row.names=FALSE , 
+	utils::write.csv2( dfn1 , paste0( datafile , ".csv" ) , row.names=FALSE , 
 			quote= FALSE, na ="")
 	
 	
-#	write.fwf4(dat=dfn1 , format.full=unlist(ldfn) + 3 + lafter_dfn, 
-#			format.round=lafter_dfn , savename=paste0( datafile  ) , dec="," )
-
 		
 #     cat(paste0( "DATA LIST FILE='", gsub( "\\" , "//" , getwd(), fixed=TRUE )  , "/" , datafile , 
 #				".dat' list\n" ) , file = codefile)
@@ -124,7 +121,7 @@ write.pspp <- function (data , datafile, pspp.path , decmax=6 ,
 	# run PSPP		
 	p1 <- paste0( "\"" , pspp.path , "pspp.exe\" "  , codefile  )
 	if ( use.bat ){
-		writeLines( p1 , "_batch_pspp.bat" )
+		base::writeLines( p1 , "_batch_pspp.bat" )
 		system( "_batch_pspp.bat" )			
 				} else {
 		system( p1 )

@@ -12,7 +12,7 @@ mice.impute.tricube.pmm <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.b
 	if ( tricube.boot ){
 		y1 <- y[ry] ; x1 <- x[ry,]
 		B <- length(y1)
-		ind <- sample( 1:B , replace = T )
+		ind <- sample( 1:B , replace = TRUE )
 		parm2 <- .norm.draw(y = y1[ind] , ry = rep(TRUE,B) , x = x1[ind,] , ...)	
 		yhatmis <- x[!ry, ] %*% parm2$beta		
 				}

@@ -12,13 +12,14 @@
 #}
 version <- function(pkg="miceadds"){
   lib <- dirname(system.file(package = pkg))
-  d <- packageDescription(pkg)
+  d <- utils::packageDescription(pkg)
   return(paste(d$Package,d$Version,d$Date,lib))
 }
 # on attach TAM
 .onAttach <- function(libname,pkgname){
-  d <- packageDescription("miceadds")
-  packageStartupMessage("::'''''''''''''''''''''''''''''''''::\n",
+  d <- utils::packageDescription("miceadds")
+  base::packageStartupMessage(
+       "::'''''''''''''''''''''''''''''''''::\n",
 		paste(":: " , d$Package," " , d$Version," (",d$Date,")   ::",sep="") ,
 		"\n::'''''''''''''''''''''''''''''''''::\n" )
 }

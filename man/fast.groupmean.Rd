@@ -57,7 +57,6 @@ dat <- data.ma02[[1]] # select first dataset
 # group means for read and math
 fast.groupmean( dat[ , c("read","math") ] , group=dat$idschool )
 
-
 # extend group means to original dataset
 fast.groupmean( dat[ , c("read","math") ] , group=dat$idschool , extend =TRUE )
 }

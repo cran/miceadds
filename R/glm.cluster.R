@@ -3,7 +3,7 @@
 ##################################################
 # linear model for clustered data
 glm.cluster <- function( data , formula , cluster , ... ){
-	mod <- glm( data=data , formula=formula ,  ... )
+	mod <- stats::glm( data=data , formula=formula ,  ... )
 	if ( length(cluster) > 1 ){
 			v1 <- cluster 
 				} else {
@@ -29,7 +29,7 @@ summary.glm.cluster <- function( object , ... ){
 	csmod <- smod$coefficients
 	csmod[,"Std. Error"] <- sqrt( diag( vcov(object) ))
 	csmod[,"z value"] <-  csmod[,"Estimate"] / csmod[,"Std. Error"]
-	csmod[,"Pr(>|z|)"] <- pnorm( - abs( csmod[,"z value"] ) )*2
+	csmod[,"Pr(>|z|)"] <- stats::pnorm( - abs( csmod[,"z value"] ) )*2
 	# R2 <- smod$r.squared
 	# cat("R^2 =" , round(R2 , 5),"\n\n" )
 	print(csmod)

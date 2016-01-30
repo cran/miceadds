@@ -25,7 +25,8 @@ individuals within the same group.
 }
 \usage{
 mice.impute.2l.latentgroupmean(y, ry, x, type, pls.facs = NULL, 
-    imputationWeights = NULL, interactions = NULL, quadratics = NULL, ...)
+    imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
+     mcmc.burnin=100 , mcmc.iter=1000 , ...)
 	
 mice.impute.2l.groupmean(y, ry, x, type, grmeanwarning = TRUE, ...)
 
@@ -62,6 +63,8 @@ Vector of variable names used for creating interactions
   \item{quadratics}{
 Vector of variable names used for creating quadratic terms
 }
+\item{mcmc.burnin}{Number of MCMC burn-in iterations.}
+\item{mcmc.iter}{Total number of MCMC iterations.}
   \item{grmeanwarning}{
 An optional logical indicating whether some group means cannot be calculated.
 }
@@ -72,8 +75,9 @@ Further arguments to be passed.
 
 
 \details{
-The imputation of the latent group mean uses the \code{lmer} function
-of the \pkg{lme4} package. Latent group mean imputation also follows
+The imputation of the latent group mean uses the 
+\code{\link[MCMCglmm:MCMCglmm]{MCMCglmm::MCMCglmm}} function
+of the \pkg{MCMCglmm} package. Latent group mean imputation also follows
 Mislevy (1991).
 }
 
@@ -96,7 +100,7 @@ from complex samples. \emph{Psychometrika}, \bold{56}, 177-196.
 }
 
 \author{
-Alexander Robitzsch
+Alexander Robitzsch, Simon Grund
 }
 
 %\note{

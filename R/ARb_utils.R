@@ -6,7 +6,7 @@
 ############################################################################
 # This function reads fwf files                                            #
 read.fwf2 <- function( file , format , variables = NULL){
-    ff <- readLines( file )
+    ff <- base::readLines( file )
     ind.ff1 <- c( 1, cumsum(format)[- length(format) ] + 1 )
     ind.ff2 <- cumsum(format)
     I <- length(format)
@@ -55,7 +55,7 @@ write.fwf2 <- function( dat  , format.full , format.round , savename ){
                 }
         matr <- apply( matr , 1 , FUN = function(ll){ paste( ll , 
 						collapse="" ) } )
-        write.table( matr , paste( savename , ".dat" , sep="") , 
+        utils::write.table( matr , paste( savename , ".dat" , sep="") , 
 						quote=F , row.names=F , col.names=F)
         dfr <- data.frame( "variable" = colnames(dat) , 
                     "begin" = c( 1 , cumsum( format.full )[ - ncol(dat) ] 
@@ -63,7 +63,7 @@ write.fwf2 <- function( dat  , format.full , format.round , savename ){
                     "end" = cumsum( format.full )  ,
                     "length" = format.full
                             )
-        write.table( dfr , paste( savename , "__LEGEND.txt",sep="") , 
+        utils::write.table( dfr , paste( savename , "__LEGEND.txt",sep="") , 
 				quote=FALSE , row.names=FALSE , col.names=TRUE)
         return(dfr)
         }

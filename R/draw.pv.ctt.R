@@ -31,9 +31,9 @@ draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alph
 	if ( ! is.null(x) ){
 	    x0ind <- TRUE
 		x0 <- scale( x , scale=FALSE )
-		mod <- lm( y0 ~ as.matrix(x0) )
+		mod <- stats::lm( y0 ~ as.matrix(x0) )
 			} else { 
-		mod <- lm( y0 ~ 1 ) 
+		mod <- stats::lm( y0 ~ 1 ) 
 		x0ind <- FALSE
 			}				
     # determine fitted y (regression model)
@@ -41,15 +41,15 @@ draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alph
     smod <- summary(mod)
 
     # calculate true variance of scale
-    if ( is.null(sig.e) ){   var.ytrue <- var(y,na.rm=TRUE) * alpha }
+    if ( is.null(sig.e) ){   var.ytrue <- stats::var(y,na.rm=TRUE) * alpha }
     if ( ( ! is.null(sig.e) ) & ( ! is.null( true.var ) ) ){ var.ytrue <- true.var }
     if ( ( ! is.null(sig.e) ) & ( is.null( true.var ) ) ){ 
-                        var.ytrue <- var(y , na.rm=TRUE ) - mean( sig.e^2 , na.rm=TRUE) 				
+                        var.ytrue <- stats::var(y , na.rm=TRUE ) - mean( sig.e^2 , na.rm=TRUE) 				
 #						var.ytrue <- var(yfitted) + var( resid(mod) ) - mean( sig.e^2 , na.rm=TRUE) 
                                                 }
     # calculate residual variance in the regression model
     sig2.th.y1 <-  var.ytrue * ( 1 - smod$r.squared )
-	vary <- var(y,na.rm=TRUE)
+	vary <- stats::var(y,na.rm=TRUE)
     sig2.th.y <-  vary * ( 1 - smod$r.squared )
 
 
@@ -63,11 +63,11 @@ draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alph
     # draw new residual variance
     if ( samp.pars ){ 
         N <- length(y)
-        sig2.th.y <- N * sig2.th.y / rchisq(1, N )
+        sig2.th.y <- N * sig2.th.y / stats::rchisq(1, N )
                     }
 	# calculate measurement error variance
     if (is.null(sig.e) ){ 
-                 sig2.e <- var(y) * ( 1 - alpha )
+                 sig2.e <- stats::var(y) * ( 1 - alpha )
                         } else {   
 				sig2.e <- sig.e^2
 				sig2.e <- ifelse( is.na( sig2.e ) , 1000*mean( sig2.e , na.rm=TRUE) , sig2.e )
@@ -76,8 +76,8 @@ draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alph
     rho.c <- sig2.th.y / ( sig2.th.y + sig2.e ) 
     # draw regression parameter
     if ( samp.pars ){ 
-        v <- vcov(mod)	
-        beta.star <- coef(mod) + MASS::mvrnorm( 1 , mu = rep(0, nrow(v) ) , Sigma = v )
+        v <- stats::vcov(mod)	
+        beta.star <- stats::coef(mod) + MASS::mvrnorm( 1 , mu = rep(0, nrow(v) ) , Sigma = v )
         # draw new fitted y
 		if ( x0ind ){
 			yfitted <- cbind(1,x0) %*% beta.star
@@ -91,14 +91,13 @@ draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alph
     theta.bar <- rho.c * y0 + ( 1 - rho.c ) * yfitted
     # add random noise
     sd.pv <- sqrt(  ( 1 - rho.c ) * sig2.th.y )
-    y.pv <- theta.bar + rnorm( length(y) , mean=0 , 
-			sd = sd.pv )
+    y.pv <- theta.bar + stats::rnorm( length(y) , mean=0 , sd = sd.pv )
     y.pv <- as.vector( y.pv )
 	#****************
 	# print
 	cat("\nPlausible Value Imputation\n\n")
-	h1 <- round( var(y0, na.rm=TRUE) , 4 )
-	h2 <- round( var(y.pv, na.rm=TRUE) , 4 )
+	h1 <- round( stats::var(y0, na.rm=TRUE) , 4 )
+	h2 <- round( stats::var(y.pv, na.rm=TRUE) , 4 )
 	cat( "Observed variance:" , h1 , "\n")
 	cat( "Sampled PV variance:" , h2 , "\n")
 	cat( "PV Reliability:" , round(h2 / h1 ,4  ) , "\n")	
@@ -115,7 +114,7 @@ draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alph
 # unstandardized estimate of Cronbach's alpha
 .cronbach.alpha <- function( dat.scale ){
         I <- ncol( dat.scale )
-        var.scale <- var( dat.scale , use="pairwise.complete.obs" )
+        var.scale <- stats::var( dat.scale , use="pairwise.complete.obs" )
         v.bar <- mean( diag( var.scale )  )
         c.bar <- mean( var.scale[ upper.tri( var.scale ) ] )
         alpha <- ( I * c.bar ) / ( v.bar + (I-1) * c.bar )

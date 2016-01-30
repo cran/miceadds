@@ -7,7 +7,7 @@ Imputation by Tricube Predictive Mean Matching
 }
 \description{
 This function performs tricube predictive mean matching (see
-\url{http://www.rdocumentation.org/packages/Hmisc/functions/aregImpute})
+\code{\link[Hmisc:aregImpute]{Hmisc::aregImpute}})
 in which donors are weighted according to distances of predicted values.
 }
 \usage{
@@ -58,14 +58,14 @@ Alexander Robitzsch
 }
 
 \note{
-The imputation method \code{tricube.pmm2} is ordinarily somewhat faster
+The imputation method \code{tricube.pmm2} is usually somewhat faster
 than \code{tricube.pmm}.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\url{http://www.rdocumentation.org/packages/Hmisc/functions/aregImpute}
+\code{\link[Hmisc:aregImpute]{Hmisc::aregImpute}}
 }
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 

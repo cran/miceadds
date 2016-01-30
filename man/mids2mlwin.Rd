@@ -2,7 +2,8 @@
 \alias{mids2mlwin}
 \title{Export \code{mids} object to MLwiN}
 \usage{
-mids2mlwin(imp, file.prefix, path = getwd(), sep = " ", dec = ".", silent = FALSE)
+mids2mlwin(imp, file.prefix, path = getwd(), sep = " ", dec = ".", silent = FALSE,
+   X = NULL)
 }
 \arguments{
   \item{imp}{The \code{imp} argument is an object of class
@@ -22,6 +23,9 @@ mids2mlwin(imp, file.prefix, path = getwd(), sep = " ", dec = ".", silent = FALS
   
   \item{silent}{A logical flag stating whether the names of
   the files should be printed.}
+
+  \item{X}{Optional data frame of variables to be included in
+imputed datasets.}  
 }
 \value{
   The return value is \code{NULL}.

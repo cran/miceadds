@@ -87,7 +87,7 @@ mice.impute.2l.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
         M.scale <- scale.values[[ vname ]][[ "M" ]]
         SE.scale <- scale.values[[ vname ]][[ "SE" ]]
         # compute true variance 
-        true.var <- var.ytrue <- var( M.scale , na.rm=T)  - mean( (SE.scale[ ! is.na(M.scale) ])^2 , na.rm=T )
+        true.var <- var.ytrue <- stats::var( M.scale , na.rm=T)  - mean( (SE.scale[ ! is.na(M.scale) ])^2 , na.rm=T )
         miss <- ( is.na(M.scale) ) | ( is.na(SE.scale ) )
         M.scale[miss] <- Mscale <- mean( M.scale , na.rm=TRUE )
         SE.scale[miss] <- sig.e.miss
@@ -130,23 +130,23 @@ mice.impute.2l.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
         # begin iterations for drawing plausible values
         for (iter in 1:pviter){ 
             # draw plausible value for individuals
-            y.pv <- rnorm( length(EAP) , mean = EAP , sd = sqrt( Var.EAP) )
+            y.pv <- stats::rnorm( length(EAP) , mean = EAP , sd = sqrt( Var.EAP) )
             # calculate linear regression
-            mod <- lm( y.pv ~ xcov1 ) 
+            mod <- stats::lm( y.pv ~ xcov1 ) 
 #			 mod <- lm( y.pv ~ xcov1a ) 	
             # draw regression parameters
-            v <- vcov(mod)
-            beta.star <- coef(mod) + MASS::mvrnorm( 1, mu = rep(0,nrow(v) ) , Sigma = v )
+            v <- stats::vcov(mod)
+            beta.star <- stats::coef(mod) + MASS::mvrnorm( 1, mu = rep(0,nrow(v) ) , Sigma = v )
             # calculate residual variance in regression
-            sigma2 <- mean( residuals(mod)^2 )
+            sigma2 <- mean( stats::residuals(mod)^2 )
             # fitted regression coefficients
-            yfitted <- cbind(1,xcov1) %*% coef(mod)
+            yfitted <- cbind(1,xcov1) %*% stats::coef(mod)
             # update posterior distribution
             EAP <- ( SE.scale^(-2)*M.scale + sigma2^(-1)*yfitted )/( SE.scale^(-2) + sigma2^(-1) )
             Var.EAP <- 1 / ( SE.scale^(-2) + sigma2^(-1) ) 
             # draw plausible value
-            y.pv <- rnorm( length(y) ,  mean = EAP , sd = sqrt( Var.EAP) )
-			if ( pvirt.printprogress ){  cat("*");  flush.console()  }
+            y.pv <- stats::rnorm( length(y) ,  mean = EAP , sd = sqrt( Var.EAP) )
+			if ( pvirt.printprogress ){  cat("*");  utils::flush.console()  }
             # add mean plausible value
             if ( sum( type==-2) ){ 
                 x1b <- cbind( x[ , type== -2 ] , y.pv )
@@ -210,7 +210,7 @@ mice.impute.2l.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
                     alpha.est <- alpha.known
                             }   
             # sampling of Cronbach's Alpha
-            alpha.samp <- rnorm( 1 , mean = alpha.est , sd = alpha.se ) 
+            alpha.samp <- stats::rnorm( 1 , mean = alpha.est , sd = alpha.se ) 
             alpha.samp <- min( .99 , max( .01 , alpha.samp ) )      # restriction of range
             ximp <- draw.pv.ctt( y = y1 , dat.scale = dat.scale , x =x1 , alpha = alpha.samp )        
                         }    
@@ -235,7 +235,7 @@ mice.impute.2l.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
     if (pvmethod == 3){ cat("with known scale scores and known measurement" ,
 		   "error standard deviations") }                        
     if (pvmethod == 4){ cat("using a provided likelihood") }                        
-    cat("\n") ; flush.console()
+    cat("\n") ; utils::flush.console()
                                 }
     
 	# return imputed values	

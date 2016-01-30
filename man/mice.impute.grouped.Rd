@@ -56,7 +56,8 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-This function uses the \pkg{grouped} package.	
+This function uses the \code{\link[grouped:grouped]{grouped::grouped}}
+function in the \pkg{grouped} package.	
 }
 
 \examples{

@@ -1,0 +1,140 @@
+\name{scale_datlist}
+\alias{scale_datlist}
+%- Also NEED an '\alias' for EACH other topic documented here.
+
+\title{
+Adding a Standardized Variable to a List of Multiply Imputed Datasets or a
+Single Datasets
+}
+
+\description{
+Adds a standardized variable to a list of multiply imputed datasets or 
+a single dataset. This function extends \code{\link[base:scale]{base::scale}}
+for a data frame to a list of multiply imputed datasets.
+}
+
+\usage{
+scale_datlist(datlist, orig_var, trafo_var, weights = NULL, M = 0, SD = 1, 
+    digits = NULL)
+}
+
+
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{datlist}{
+A data frame, a list of multiply imputed datasets of one of the classes
+\code{datlist} or \code{imputationList} or a list of nested multiply 
+imputed datasets of one of the classes \code{nested_datlist} or
+\code{NestedImputationList}.
+}
+  \item{orig_var}{
+Name of the variable to be transformed
+}
+  \item{trafo_var}{
+Name of the standardized variable
+}
+  \item{weights}{
+Optional vector of sample weights
+}
+  \item{M}{
+Mean of the transformed variable
+}
+  \item{SD}{
+Standard deviation of the transformed variable
+}
+  \item{digits}{
+Number of digits used for rounding the standardized variable
+}
+}
+
+%\details{
+%%  ~~ If necessary, more details than the description above ~~
+%}
+
+\value{
+A vector or a matrix
+}
+%\references{
+%% ~put references to the literature/web site here ~
+%}
+\author{
+Alexander Robitzsch
+}
+%\note{
+%%  ~~further notes~~
+%}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+
+\seealso{
+\code{\link[base:scale]{base::scale}}, \code{\link{ma.scale2}}
+}
+
+
+\examples{
+\dontrun{	
+#############################################################################
+# EXAMPLE 1: Standardized variables in list of multiply imputed datasets
+#############################################################################
+	
+data(data.ma02)
+datlist <- data.ma02
+
+#--- object of class 'datlist'
+datlist <- datlist_create( datlist )
+
+# mean and SD of variable hisei
+ma.wtd.meanNA(data=datlist, weights = datlist[[1]]$studwgt , vars = "hisei" )
+mean( unlist( lapply( datlist , FUN = function(data){
+        weighted.mean( data$hisei , data$studwgt )  } ) ) )
+ma.wtd.sdNA(data=datlist, weights = datlist[[1]]$studwgt , vars = "hisei" )
+mean( unlist( lapply( datlist , FUN = function(data){
+        sqrt( Hmisc::wtd.var( data$hisei , data$studwgt ) ) } ) ) )
+
+# standardize variable hisei to M=100 and SD=15        
+datlist1a <- scale_datlist( datlist=datlist, orig_var="hisei", trafo_var="hisei100", 
+               weights = datlist[[1]]$studwgt , M=100, SD=15 )
+
+# check mean and SD
+ma.wtd.meanNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
+ma.wtd.sdNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
+
+#--- transformation for a single dataset
+dat0 <- datlist[[1]]
+dat0a <- scale_datlist( datlist=dat0 , orig_var="hisei" , trafo_var="hisei100" , 
+                    weights = dat0$studwgt , M=100, SD=15 )
+weighted.mean( dat0a[,"hisei"] ,  w = dat0a$studwgt )                    
+weighted.mean( dat0a[,"hisei100"] ,  w = dat0a$studwgt )
+sqrt( Hmisc::wtd.var( dat0a[,"hisei100"] ,  weights = dat0a$studwgt ) )
+
+#--- Standardizations for objects of class imputationList
+datlist2 <- mitools::imputationList(datlist)   # object class conversion
+datlist2a <- scale_datlist( datlist=datlist2 , orig_var="hisei" , trafo_var="hisei100" , 
+               weights = datlist[[1]]$studwgt , M=100, SD=15 )
+               
+#############################################################################
+# EXAMPLE 2: Standardized variables in list of nested multiply imputed datasets
+#############################################################################
+               
+# nested multiply imputed dataset in BIFIEsurvey package
+data(data.timss4, package="BIFIEsurvey")
+datlist <- data.timss4
+wgt <- datlist[[1]][[1]]$TOTWGT
+
+# class nested.datlist
+imp1 <- nested.datlist_create( datlist )
+# class NestedImputationList
+imp2 <- NestedImputationList( datlist )
+
+# standardize variable scsci
+imp1a <- scale_datlist( datlist=imp1, orig_var="scsci", trafo_var="zscsci", weights =wgt)
+# check descriptives
+ma.wtd.meanNA( imp1a , weights=wgt , vars = c("scsci" , "zscsci" ) )
+ma.wtd.sdNA( imp1a , weights=wgt , vars = c("scsci" , "zscsci" ) )
+}	
+}
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
+\keyword{z-Standardization}
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
