@@ -34,7 +34,9 @@ Name of the variable to be transformed
 Name of the standardized variable
 }
   \item{weights}{
-Optional vector of sample weights
+Optional vector of sample weights. Alternatively, the \code{weights}
+can also be a string indicating the variable used from
+\code{datlist}.
 }
   \item{M}{
 Mean of the transformed variable
@@ -87,7 +89,7 @@ datlist <- datlist_create( datlist )
 # mean and SD of variable hisei
 ma.wtd.meanNA(data=datlist, weights = datlist[[1]]$studwgt , vars = "hisei" )
 mean( unlist( lapply( datlist , FUN = function(data){
-        weighted.mean( data$hisei , data$studwgt )  } ) ) )
+        stats::weighted.mean( data$hisei , data$studwgt )  } ) ) )
 ma.wtd.sdNA(data=datlist, weights = datlist[[1]]$studwgt , vars = "hisei" )
 mean( unlist( lapply( datlist , FUN = function(data){
         sqrt( Hmisc::wtd.var( data$hisei , data$studwgt ) ) } ) ) )
@@ -100,12 +102,28 @@ datlist1a <- scale_datlist( datlist=datlist, orig_var="hisei", trafo_var="hisei1
 ma.wtd.meanNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
 ma.wtd.sdNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
 
+#--- do standardization for unweighted sample with books <= 3
+# -> define a weighting variable at first
+datlist0 <- mitools::imputationList( datlist )
+datlist2a <- within.imputationList( datlist0 , {
+	         # define weighting variable
+                 wgt_books <- 1 * ( books <= 3 )
+                    } )
+
+# standardize variable hisei to M=100 and SD=15 with respect to weighting variable
+datlist2b <- scale_datlist( datlist=datlist2a, orig_var="hisei", trafo_var="hisei100",
+         weights = "wgt_books" , M=100, SD=15 )
+
+% # check mean and SD (groupwise)
+% ma.wtd.meanNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
+% ma.wtd.sdNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
+
 #--- transformation for a single dataset
 dat0 <- datlist[[1]]
 dat0a <- scale_datlist( datlist=dat0 , orig_var="hisei" , trafo_var="hisei100" , 
                     weights = dat0$studwgt , M=100, SD=15 )
-weighted.mean( dat0a[,"hisei"] ,  w = dat0a$studwgt )                    
-weighted.mean( dat0a[,"hisei100"] ,  w = dat0a$studwgt )
+stats::weighted.mean( dat0a[,"hisei"] ,  w = dat0a$studwgt )                    
+stats::weighted.mean( dat0a[,"hisei100"] ,  w = dat0a$studwgt )
 sqrt( Hmisc::wtd.var( dat0a[,"hisei100"] ,  weights = dat0a$studwgt ) )
 
 #--- Standardizations for objects of class imputationList

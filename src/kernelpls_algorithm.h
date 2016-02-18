@@ -153,12 +153,22 @@ Rcpp::List kernelplsaux(Rcpp::NumericMatrix Yr, Rcpp::NumericMatrix Xr, Rcpp::Nu
     return Rcpp::List::create(
            Rcpp::Named("Y_used") = Y,
            Rcpp::Named("X_used") = X ,
-           _["R"] = R , _["P"] = P , _["tQ"] = tQ ,
-           _["B"]=B , _["XtY"] = XtY ,
-           _["wa"] = wa , _["ra"]=ra , _["ta"]=ta ,
-           _["tsq"] = tsq , _["pa"]=pa , _["qa"]=qa ,
-           _["W"]=W , _["U"]=U , _["TT"]=TT ,
-           _["tsqs"]=tsqs , _["fitted"]=fitted 
+           Rcpp::_["R"] = R , 
+           Rcpp::_["P"] = P , 
+           Rcpp::_["tQ"] = tQ ,
+           Rcpp::_["B"]=B , 
+           Rcpp::_["XtY"] = XtY ,
+           Rcpp::_["wa"] = wa , 
+           Rcpp::_["ra"]=ra , 
+           Rcpp::_["ta"]=ta ,
+           Rcpp::_["tsq"] = tsq , 
+           Rcpp::_["pa"]=pa , 
+           Rcpp::_["qa"]=qa ,
+           Rcpp::_["W"]=W , 
+           Rcpp::_["U"]=U , 
+           Rcpp::_["TT"]=TT ,
+           Rcpp::_["tsqs"]=tsqs , 
+           Rcpp::_["fitted"]=fitted 
                 ) ;
 
 }

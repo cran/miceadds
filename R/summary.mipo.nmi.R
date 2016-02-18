@@ -1,6 +1,6 @@
 
 #################################################################
-summary.mipo.nmi <- function(object, digits=3 ,  ...) {
+summary.mipo.nmi <- function(object, digits=4 ,  ...) {
 	# adapted from summary.mipo from mice package
     x <- object
     table <- array( x$qbar, dim = c(length(x$qbar), 10) )

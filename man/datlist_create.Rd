@@ -1,6 +1,11 @@
 \name{datlist_create}
 \alias{datlist_create}
 \alias{nested.datlist_create}
+\alias{print.datlist}
+\alias{print.nested.datlist}
+\alias{nested.datlist2datlist}
+\alias{datlist2nested.datlist}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 
 \title{
@@ -8,11 +13,23 @@ Creates Objects of Class \code{datlist} or \code{nested.datlist}
 }
 \description{
 Creates objects of class \code{datlist} or \code{nested.datlist}.
+
+The functions \code{nested.datlist2datlist} and
+\code{datlist2nested.datlist} provide list conversions for imputed
+datasets.
 }
 \usage{
 datlist_create(datasets)
 
 nested.datlist_create(datasets)
+
+\method{print}{datlist}(x, ...)
+
+\method{print}{nested.datlist}(x, ...)
+
+nested.datlist2datlist(datlist)
+
+datlist2nested.datlist(datlist, Nimp)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -24,6 +41,15 @@ For \code{datlist_create}: List of datasets, objects of class
 For \code{nested.datlist_create}: nested list of datasets,
 \code{NestedImputationList}, \code{mids.nmi}
 }
+\item{x}{Object of classes \code{datlist} or
+\code{nested.datlist}
+}
+\item{datlist}{Object of classes \code{datlist}, \code{imputationList},
+	\code{nested.datlist} or \code{NestedImputationList}.
+}
+\item{Nimp}{Vector of length 2 containing numbers of between
+and within imputations.}
+\item{\dots}{Further arguments to be passed}
 }
 
 %\details{
@@ -130,9 +156,30 @@ imp2 <- mids2datlist(imp1)
 imp3 <- NestedImputationList(imp2)
 # redefine class nested.datlist
 imp4 <- nested.datlist_create(imp3)
+
+#############################################################################
+# EXAMPLE 4: Conversions between nested lists of datasets and lists of datasets
+#############################################################################
+
+library(BIFIEsurvey)
+data(data.timss4 , package="BIFIEsurvey" )
+datlist <- data.timss4
+
+# object of class nested.datlist
+datlist1a <- nested.datlist_create(datlist)
+# object of class NestedImputationList
+datlist1b <- NestedImputationList(datlist)
+
+# conversion to datlist
+datlist2a <- nested.datlist2datlist(datlist1a)  # class datlist
+datlist2b <- nested.datlist2datlist(datlist1b)  # class imputationList
+
+# convert into a nested list with 2 between nests and 10 within nests
+datlist3a <- datlist2nested.datlist(datlist2a, Nimp=c(2,10) )
+datlist3b <- datlist2nested.datlist(datlist2b, Nimp=c(4,5) )
 }  
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-%\keyword{ ~kwd1 }
+\keyword{print}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

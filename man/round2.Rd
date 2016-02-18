@@ -17,7 +17,7 @@ round2(vec, digits = 0)
 Numeric vector
 }
   \item{digits}{
-Number of digits after decimal fort rounding
+Number of digits after decimal for rounding
 }
 }
 %\details{

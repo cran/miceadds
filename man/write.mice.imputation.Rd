@@ -25,7 +25,7 @@ write.mice.imputation(mi.res, name, include.varnames = TRUE,
 Object of class \code{mids} or \code{mids.1chain}
 }
   \item{name}{
-Name of created folder and datasets
+Name of created subdirectory and datasets
 }
   \item{include.varnames}{
 An optional logical indicating whether variable names should be included
@@ -98,7 +98,7 @@ data(nhanes,package="mice")
 
 #**********
 # Model 1: Imputation using mice
-imp1 <- mice( nhanes , m=3 , maxit=5 )
+imp1 <- mice::mice( nhanes , m=3 , maxit=5 )
 # write results
 write.mice.imputation(mi.res=imp1 , name="mice_imp1" )
 

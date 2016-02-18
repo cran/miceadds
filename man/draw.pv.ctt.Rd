@@ -92,6 +92,13 @@ Plausible value imputation is also labeled as multiple overimputation
 See also 
 \code{\link[sirt:plausible.value.imputation.raschtype]{sirt::plausible.value.imputation.raschtype}}
 for plausible value imputation.
+
+Plausible value imputations can be conducted in \pkg{mice} using the
+imputation method \code{\link{mice.impute.2l.plausible.values}}.
+
+Plausible values can be drawn in \pkg{Amelia} by specifying observation-level
+priors, see \code{\link[Amelia:moPrep]{Amelia::moPrep}} and
+\code{\link[Amelia:amelia]{Amelia::amelia}}.
 }
 %% plausible.value.imputation.raschtype
 
@@ -103,16 +110,16 @@ for plausible value imputation.
 
 set.seed(899)
 n <- 5000       # number of students
-x <- round( runif( n , 0 ,1 ) )
-y <- rnorm(n)
+x <- round( stats::runif( n , 0 ,1 ) )
+y <- stats::rnorm(n)
 # simulate true score theta
-theta <- .6 + .4*x + .5 * y + rnorm(n)
+theta <- .6 + .4*x + .5 * y + stats::rnorm(n)
 # simulate observed score by adding measurement error
 sig.e <- rep( sqrt(.40) , n )
-theta_obs <- theta + rnorm( n , sd=sig.e)
+theta_obs <- theta + stats::rnorm( n , sd=sig.e)
 
 # calculate alpha
-( alpha <- var( theta ) / var( theta_obs ) )
+( alpha <- stats::var( theta ) / stats::var( theta_obs ) )
 # [1] 0.7424108
 # => Ordinarily, sig.e or alpha will be known, assumed or estimated by using items,
 #    replications or an appropriate measurement model.
@@ -123,11 +130,31 @@ X <- as.matrix( cbind(x , y ) )
 # plausible value imputation with scale score
 imp1 <- draw.pv.ctt( y=theta_obs , x = X , sig.e =sig.e )
 # check results
-lm( imp1 ~ x + y )
+stats::lm( imp1 ~ x + y )
 
 # imputation with alpha as an input
 imp2 <- draw.pv.ctt( y=theta_obs , x = X , alpha = .74 )
-lm( imp2 ~ x + y )
+stats::lm( imp2 ~ x + y )
+
+\dontrun{
+#--- plausible value imputation in Amelia package
+library(Amelia)
+
+# define data frame
+dat <- data.frame( "x"=x , "y"=y , "theta"= theta_obs )
+# generate observation-level priors for theta
+priors <- cbind( 1:n , 3 , theta_obs , sig.e )  
+             # 3 indicates column index for theta
+overimp <- priors[,1:2]
+# run Amelia
+imp <- Amelia::amelia( dat , priors = priors , overimp=overimp, m = 10)
+# create object of class datlist and evaluate results
+datlist <- datlist_create( imp$imputations )
+withPool_MI( with( datlist , stats::var(theta) ) )
+stats::var(theta)       # compare with true variance
+mod <- with( datlist ,  stats::lm( theta ~ x + y ) ) 
+mitools::MIcombine(mod)
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

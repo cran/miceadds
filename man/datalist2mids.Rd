@@ -1,5 +1,6 @@
-\name{datalist2mids}
+\name{datlist2mids}
 \alias{datalist2mids}
+\alias{datlist2mids}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Converting a List of Multiply Imputed Data Sets into a \code{mids} Object
@@ -11,12 +12,16 @@ to a \code{\link[mice:mids]{mice::mids}} object.
 %% mids-class {mice}
 
 \usage{
+datlist2mids(dat.list, progress = TRUE)
 datalist2mids(dat.list, progress = TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dat.list}{
-List of multiply imputed data sets
+List of multiply imputed data sets or an object of class
+\code{imputationList} (see
+\code{\link[mitools:imputationList]{mitools::imputationList}}
+)
 }
   \item{progress}{
 An optional logical indicating whether conversion process be displayed
@@ -70,52 +75,41 @@ a.out <- Amelia::amelia(x =  nhanes , m=10)
 plot(a.out)
 
 # convert list of multiply imputed datasets into a mids object
-a.mids <- datalist2mids( a.out$imputations )
+a.mids <- datlist2mids( a.out$imputations )
 
 # linear regression: apply mice functionality lm.mids
-mod <- with( a.mids , lm( bmi ~ age ) )
-summary( pool( mod ) )
-  ##                     est      se         t       df     Pr(>|t|)    lo 95
-  ##   (Intercept) 30.718881 2.22960 13.777753 12.58135 5.830925e-09 25.88578
-  ##   age         -2.435746 1.08551 -2.243872 14.93153 4.043506e-02 -4.75038
-  ##                    hi 95 nmis       fmi    lambda
-  ##   (Intercept) 35.5519834   NA 0.4013689 0.3132139
-  ##   age         -0.1211117    0 0.3153636 0.2294162
+mod <- with( a.mids , stats::lm( bmi ~ age ) )
+summary( mice::pool( mod ) )
+  ##                    est       se         t       df     Pr(>|t|)     lo 95
+  ##  (Intercept) 30.624652 2.626886 11.658158 8.406608 1.767631e-06 24.617664
+  ##  age         -2.280607 1.323355 -1.723352 8.917910 1.192288e-01 -5.278451
+  ##                   hi 95 nmis       fmi    lambda
+  ##  (Intercept) 36.6316392   NA 0.5791956 0.4897257
+  ##  age          0.7172368    0 0.5549945 0.4652567
 
 \dontrun{
 # fit linear regression model in Zelig
 library(Zelig)
-mod2 <- Zelig::zelig( bmi ~ age , model="ls" , data=a.out$imputations , cite=FALSE)
+mod2 <- Zelig::zelig( bmi ~ age , model="ls" , data=a.out , cite=FALSE)
 summary(mod2)
-  ##   > summary(mod2)
-  ##   
-  ##     Model: ls
-  ##     Number of multiply imputed data sets: 10 
-  ##   
-  ##   Combined results:
-  ##   
-  ##   Call:
-  ##   lm(formula = formula, weights = weights, model = F, data = data)
-  ##   
-  ##   Coefficients:
-  ##                   Value Std. Error    t-stat      p-value
-  ##   (Intercept) 30.718881    2.22960 13.777753 4.603995e-24
-  ##   age         -2.435746    1.08551 -2.243872 2.612377e-02
-  ##   
-  ##   For combined results from datasets i to j, use summary(x, subset = i:j).
-  ##   For separate results, use print(summary(x), subset = i:j).
+  ##  Model: Combined Imputations 
+  ##              Estimate Std.Error z value Pr(>|z|)    
+  ##  (Intercept)   30.625     2.627  11.658  0.00000 ***
+  ##  age           -2.281     1.323  -1.723  0.08482    
+  ##  ---
+  ##  Signif. codes:  '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 # fit linear regression using mitools package
 library(mitools)
 datimp <- mitools::imputationList(a.out$imputations)
-mod3 <- with( datimp, lm( bmi ~ age ) )
+mod3 <- with( datimp, stats::lm( bmi ~ age ) )
 summary( mitools::MIcombine( mod3 ) )
   ##  Multiple imputation results:
-  ##        with(datimp, lm(bmi ~ age))
+  ##        with(datimp, stats::lm(bmi ~ age))
   ##        MIcombine.default(mod3)
-  ##                results      se    (lower     upper) missInfo
-  ##  (Intercept) 30.718881 2.22960 26.290536 35.1472266     33 %
-  ##  age         -2.435746 1.08551 -4.578471 -0.2930208     24 %  
+  ##                results       se    (lower     upper) missInfo
+  ##  (Intercept) 30.624652 2.626886 25.304594 35.9447092     51 %
+  ##  age         -2.280607 1.323355 -4.952051  0.3908368     49 % 
 }
 }
 

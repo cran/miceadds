@@ -1,6 +1,8 @@
 \name{NestedImputationList}
 \alias{NestedImputationList}
 \alias{MIcombine.NestedImputationResultList}
+\alias{print.NestedImputationList}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Functions for Analysis of Nested Multiply Imputed Datasets
@@ -23,6 +25,8 @@ method can be used for objects of class
 \usage{
 NestedImputationList( datasets )
 
+\method{print}{NestedImputationList}(x , ...)
+
 \method{MIcombine}{NestedImputationResultList}(results, ...)
 }
 
@@ -32,6 +36,7 @@ NestedImputationList( datasets )
   \item{datasets}{
 List of lists of datasets which are created by nested multiple imputation.
 }
+\item{x}{Object of class \code{NestedImputationResultsList}}
 \item{results}{Object of class \code{NestedImputationResultsList}}
 \item{\dots}{Further arguments to be passed.}
 }
@@ -97,9 +102,9 @@ datlist1 <- mids2datlist( imp1 )
 datlist1 <- NestedImputationList( datlist1 )
 
 # estimate linear model using with
-res1 <- with( datlist1 , lm( ASMMAT ~ female + migrant ) )
+res1 <- with( datlist1 , stats::lm( ASMMAT ~ female + migrant ) )
 # pool results
-mres1 <- MIcombine( res1 )
+mres1 <- mitools::MIcombine( res1 )
 summary(mres1)
 coef(mres1)
 vcov(mres1)

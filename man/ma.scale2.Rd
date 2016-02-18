@@ -68,9 +68,10 @@ zdat <- ma.scale2( dat , missings=TRUE )
 
 set.seed(9786)
 # 3000 cases, 200 variables
-N <- 3000 ; p <- 200
+N <- 3000
+p <- 200
 # simulate some data
-x <- matrix( rnorm( N*p ) , N , p )
+x <- matrix( stats::rnorm( N*p ) , N , p )
 x <- round( x , 2 )
 
 # compare computation times for 10 replications

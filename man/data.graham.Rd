@@ -194,6 +194,9 @@ str(imp1c)
 # convert into a list of datasets
 datlist1c <- miceadds::jomo2datlist(imp1c)
 
+# alternatively one can use the jomo wrapper function
+imp1c1 <- jomo::jomo(Y = dat , nburn=100, nbetween=10, nimp=M)
+
 #############################################################################
 # EXAMPLE 2: data.graham.8b | Imputation with categorical variables
 #############################################################################
@@ -208,7 +211,7 @@ psych::describe(dat)
 
 #*******************************
 # imputation in mice using predictive mean matching
-imp1a <- mice( dat , m=5 , maxit=10)
+imp1a <- mice::mice( dat , m=5 , maxit=10)
 datlist1a <- mitools::imputationList( miceadds::mids2datlist(imp1a) )
 print(datlist1a)
 
@@ -222,7 +225,7 @@ dat0 <- dat.categ$data
 
 # imputation in jomo treating all variables as categorical
 Y_numcat <- apply( dat0 , 2 , max , na.rm=TRUE )
-imp1b <- jomo::jomo1cat(Y_cat = dat0, Y_numcat = Y_numcat, nburn=100, 
+imp1b <- jomo::jomo1cat(Y.cat = dat0, Y.numcat = Y_numcat, nburn=100, 
                  nbetween=10, nimp=5)
 
 # recode original categories
@@ -230,6 +233,17 @@ datlist1b <- sirt::decategorize( imp1b , categ_design = dat.categ$categ_design )
 # convert into a list of datasets
 datlist1b <- miceadds::jomo2datlist(datlist1b)
 datlist1b <- mitools::imputationList( datlist1b )
+
+# Alternatively, jomo can be used but categorical variables must be
+# declared as factors
+dat <- dat0
+# define two variables as factors
+vars <- scan.vec(" rskreb71 rskreb72")
+for (vv in vars){
+    dat[, vv] <- as.factor( dat[,vv] )
+          }
+# use jomo
+imp1b1 <- jomo::jomo(Y = dat , nburn=30, nbetween=10, nimp=5)
 
 #****************************
 # compare frequency tables for both imputation packages

@@ -81,7 +81,7 @@ dat <- as.matrix(data.ma01)
 dat <- dat[ 1:1000 , ]
 
 # empty imputation
-imp0 <- mice( dat , m=0 , maxit=0)
+imp0 <- mice::mice( dat , m=0 , maxit=0)
 
 # redefine imputation methods
 meth <- imp0$method
@@ -91,8 +91,8 @@ meth[ c("paredu" , "books" , "migrant" ) ] <- "weighted.norm"
 pm <- imp0$predictorMatrix
 pm[ , 1:3 ] <- 0
 # do imputation
-imp <- mice( dat , predictorMatrix=pm , imputationMethod=meth , 
-    imputationWeights= dat[,"studwgt"] , m=3 , maxit=5)
+imp <- mice::mice( dat , predictorMatrix=pm , imputationMethod=meth , 
+           imputationWeights= dat[,"studwgt"] , m=3 , maxit=5)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

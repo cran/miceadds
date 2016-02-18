@@ -92,9 +92,9 @@ low <- list("FC_imp" = data$FC_low )
 upp <- list("FC_imp" = data$FC_upp )
 
 # perform imputation
-imp <- mice( data , imputationMethod = impM , predictorMatrix = predM , 
+imp <- mice::mice( data , imputationMethod = impM , predictorMatrix = predM , 
 	    m=1 , maxit=3 , allow.na=TRUE ,  low=low , upp=upp)
-head( complete(imp ))
+head( mice::complete(imp))
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

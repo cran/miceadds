@@ -35,8 +35,9 @@ Number of components to be extracted
 %}
 
 \value{
-The same list as in \code{pls::kernelpls.fit} of the \pkg{pls} package is
-produced.
+The same list as in 
+\code{\link[pls:kernelpls.fit]{pls::kernelpls.fit}} 
+is produced.
 
 In addition, \eqn{R^2} measures are contained in
 \code{R2}.

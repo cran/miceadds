@@ -1,6 +1,7 @@
 \name{mice.nmi}
 \alias{mice.nmi}
 \alias{summary.mids.nmi}
+\alias{print.mids.nmi}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -15,6 +16,8 @@ The function \code{mice.nmi} generates an object of class \code{mids.nmi}.
 mice.nmi(datlist, type = "mice", ...)
 
 \method{summary}{mids.nmi}(object, ...)
+
+\method{print}{mids.nmi}(x, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -30,6 +33,7 @@ Arguments to be passed to \code{\link[mice:mice]{mice::mice}}  or
 \code{\link{mice.1chain}}.
 }
 \item{object}{Object of class \code{mids.nmi}.}
+\item{x}{Object of class \code{mids.nmi}.}
 }
 
 %\details{

@@ -69,7 +69,7 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link[stats:weighted.mean]{stats::weighted.mean}}
+\code{\link[stats:weighted.mean]{stats::weighted.mean}},
 \code{\link[stats:cov.wt]{stats::cov.wt}},
 \code{\link[Hmisc:wtd.var]{Hmisc::wtd.var}}
 	

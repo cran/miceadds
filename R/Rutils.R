@@ -96,7 +96,7 @@ Revalprstr <- function( Rstring , print.string=TRUE){
 		}
 
 ##################################################
-# vectorversion of grep
+# vector version of grep
 grep.vec <- function( pattern.vec , x , operator="AND"){
 	x0 <- x
 	xv <- NULL
@@ -116,16 +116,6 @@ grep.vec <- function( pattern.vec , x , operator="AND"){
 				
 				
 ####################################################
-scan.vector <- function( vec ){ 
-    cat(vec , file="ex.data", sep="\n")
-    vars <- scan( "ex.data" , what="character")
-    file.remove( "ex.data" )
-    return(vars)
-        }
-scan.vec <- scan.vector
-####################################################				
-
-####################################################
 # adds an index to a data frame
 index.dataframe <- function (data, systime = FALSE) {
     data <- as.data.frame(data)
@@ -133,9 +123,9 @@ index.dataframe <- function (data, systime = FALSE) {
 	data$file_created <- NULL
     data1 <- data.frame(index = seq(1, nrow(data)))
     if (systime) {
-        data1$file_created <- paste0(" ", substring(Sys.time(), 
-            1, 20)) 
+        data1$file_created <- paste0(" ", substring(Sys.time(), 1, 20)) 
 		}
 	data1 <- cbind( data1 , data )
     return(data1)
 	}
+########################################################	

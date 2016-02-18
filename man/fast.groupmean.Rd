@@ -43,9 +43,10 @@ Alexander Robitzsch
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+\code{\link[mitml:clusterMeans]{mitml::clusterMeans}} 
+}
+
 \examples{
 #############################################################################
 # EXAMPLE 1: Group means data.ma02

@@ -89,13 +89,6 @@ Peter Verhoef
 %}
 
 
-\section{Example Index}{
-\code{\link{ma.scale2}} (Example 1),
-\code{\link{mice.impute.2l.pls2}} (Example 1),
-\code{\link{pca.covridge}} (Example 1),
-\code{\link{tw.imputation}} (Example 1)
-}
-
 \examples{
 data(data.internet)
 # missing proportions

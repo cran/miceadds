@@ -38,7 +38,7 @@ imputed datasets.}
 %xxx
 %}
 \author{
-Thorsten Luka <mail@thorstenluka.de>
+Thorsten Henke <mail@thorstenluka.de>
 }
 
 
@@ -46,7 +46,7 @@ Thorsten Luka <mail@thorstenluka.de>
 \dontrun{
 # imputation nhanes data
 data(nhanes)
-imp <- mice(nhanes)
+imp <- mice::mice(nhanes)
 # write files to MLwiN
 mids2mlwin(imp, file.prefix="nhanes" )
 }	

@@ -21,8 +21,9 @@ Object of class \code{mids} or \code{mids.1chain}
 Formula for \code{lm} function. Note that this can be also a string.
 }
 \item{type}{
-Type for ANOVA calculations. For \code{type=3}, the \code{Anova} function
-form the \pkg{car} package is used.
+Type for ANOVA calculations. For \code{type=3}, the 
+\code{\link[car:Anova]{car::Anova}} function
+from the \pkg{car} package is used.
 }
 }
 
@@ -51,7 +52,13 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{micombine.F}}, \code{\link{micombine.chisquare}}
+This function uses \code{\link{micombine.F}} and
+\code{\link{micombine.chisquare}}.
+
+See \code{\link[mice:pool.compare]{mice::pool.compare}} and
+\code{\link[mitml:testModels]{mitml::testModels}} for model
+comparisons based on the \eqn{D_1} statistic. The \eqn{D_2} statistic
+is also included in \code{\link[mitml:testConstraints]{mitml::testConstraints}}.
 }
 
 \examples{
@@ -74,13 +81,13 @@ an2b <- mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" , type=3)
 #****** analysis based on first imputed dataset
 
 # extract first dataset
-dat1 <- complete( mi.res$mids )
+dat1 <- mice::complete( mi.res$mids )
 
 # type 2 ANOVA
-lm1 <- lm( bmi ~ age * chl , data = dat1 )
-summary( aov( lm1 ) )
+lm1 <- stats::lm( bmi ~ age * chl , data = dat1 )
+summary( stats::aov( lm1 ) )
 # type 3 ANOVA
-lm2 <- lm( bmi ~ age * chl , data= dat1,    contrasts=list(age=contr.sum))
+lm2 <- stats::lm( bmi ~ age * chl , data= dat1, contrasts=list(age=contr.sum))
 car::Anova( lm2 , type=3)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

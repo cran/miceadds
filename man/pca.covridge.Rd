@@ -80,7 +80,7 @@ data(data.internet)
 dat <- as.matrix( data.internet)
 
 # single imputation in mice
-imp <- mice( dat , m=1 , maxit=10 )
+imp <- mice::mice( dat , m=1 , maxit=10 )
 
 # apply PCA
 pca.imp <- pca.covridge( complete(imp) )
@@ -89,10 +89,10 @@ pca.imp <- pca.covridge( complete(imp) )
   ##   3.0370905 2.3950176 2.2106816 2.0661971 1.8252900 1.7009921 1.6379599 
 
 # compare results with princomp
-pca2.imp <- princomp( complete(imp) )
+pca2.imp <- stats::princomp( complete(imp) )
   ##   > pca2.imp
   ##   Call:
-  ##   princomp(x = complete(imp))
+  ##   stats::princomp(x = complete(imp))
   ##   
   ##   Standard deviations:
   ##      Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 

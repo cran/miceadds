@@ -90,13 +90,7 @@ The datasets were downloaded from
 Enders, C. K. (2010). \emph{Applied missing data analysis}. Guilford Press.
 }
 
-\section{Example Index}{
 
-%%%%%%% data.enders.employee
-\emph{Dataset} \code{data.enders.employee} 	
-
---
-}
 %\code{\link{data.allison}} (Example 1)
 
 %\examples{

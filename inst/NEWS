@@ -27,6 +27,9 @@ Alexander Robitzsch
 Questions or suggestions about miceadds can be sent to
 robitzsch@ipn.uni-kiel.de
 
+In case of bug reporting, please always provide a
+reproducible script.
+
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -34,6 +37,73 @@ robitzsch@ipn.uni-kiel.de
 CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+
+---------------------------------------------------------------------
+Versions 1.7  -- 2016-02-18  --  CRAN miceadds 1.7-8
+---------------------------------------------------------------------
+
+NOTE  * allowed alternative specification of weighting variable in
+        'scale_datlist' which now allows for group-wise 
+        standardizations
+NOTE  * included arguments 'index' and 'systime' in 'save.data' for
+        automatic inclusion of indices and time stamps in saved 
+        datasets
+NOTE  * included argument 'se' in 'NMIcombine' function which can be
+        used if only standard errors instead of covariance matrices
+        are available
+ADDED * added utility function 'pool_mi' for inference of multiply
+        imputed datasets which has the same functionality as
+        'mice::pool' or 'mitools::MIcombine'. This function provides
+        summary, coef and vcov S3 methods.
+NOTE  * function 'datalist2mids' is now also accessible via
+        'datlist2mids' (which is more coherent to class 'datlist')
+NOTE  * defined 'pool_nmi' synonymously to 'NMIcombine'
+NOTE  * added S3 print method for 'datlist', 'nested.datlist',
+        'NestedImputationList'
+ADDED * added subsetting methods 'subset_datlist' (and the S3 method
+        subset) for multiply imputed datasets and 'subset_nested.datlist'
+        for nested multiply imputed datasets
+NOTE  * added further calculation of fraction of missing information for
+        nested multiply imputed datasets according to Harel and 
+        Schafer (2002) in 'NMIcombine' which can be assessed by the
+        argument 'method=2'.  
+NOTE  * extended imputation of latent group means to lme4-based imputation
+        in 'mice.impute.2l.latentgroupmean.ML' and MCMCglmm-based 
+        imputation in 'mice.impute.2l.latentgroupmean.MCMC'
+NOTE  * added with and within methods for objects of class 'datlist'
+        and 'nested.datlist'
+ADDED * added convenience functions 'withPool_MI' and 'withPool_NMI' for
+        pooling (averaging) estimates for (nested) multiply imputed 
+        datasets
+ADDED * added utility function 'scan0' which is 'scan' with default
+        what='character'
+ADDED * added utility functions 'nestedList2List' and 'List2nestedList'
+        for list conversions
+ADDED * added functions 'nested.datlist2datlist' and 'datlist2nested.datlist'
+        for converting nested multiply and multiply imputed datasets
+NOTE  * extended argument 'type' in 'save.data' for saving a dataset in
+        multiple file formats
+NOTE  * added example for plausible value imputation in Amelia package
+        in draw.pv.ctt.Rd (Example 1) 
+NOTE  * added 'print' methods for 'mids.1chain' and 'mids.nmi' objects
+        (the method is equivalent to 'summary')
+NOTE  * exported 'write.fwf2' and 'read.fwf2' for writing and reading
+        files in fixed width format
+NOTE  * added utility function 'VariableNames2String' for handling
+        variable names which should be converted into strings
+ADDED * added utility function 'write.datlist' for writing multiply
+        imputed datasets
+ADDED * included function 'mi_dstat' for relating missingness
+        indicators to covariates
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: scale_datlist (1), save.data (1),
+        pool.mids.nmi (1,2), pool_mi (1), subset_datlist (1,2),
+        datlist2mids (1), with.miceadds (1,2), scan.vec (1),
+        nestedList2List (1), datlist_create (4), save.data (1),
+        draw.pv.ctt (1), write.fwf2 (1), data.graham (1,2),
+        VariableNames2String (1), write.datlist (1), mi_dstat (1)
 
 
 ---------------------------------------------------------------------

@@ -2,7 +2,8 @@
 ###############################################
 # nested multiple imputation
 mice.nmi <- function( datlist , type="mice" , ... ){
-
+    
+	CALL <- match.call()
 	ND <- length(datlist)
 	imp <- list()
     
@@ -25,8 +26,11 @@ mice.nmi <- function( datlist , type="mice" , ... ){
 	if ( type=="mice.1chain"){
 		NW <- imp[[1]]$Nimp
 					}					
+	res$imp[[1]]$call <- CALL				
 	res$Nimp <- c ("between"=ND , "within" = NW )	
-    class(res) <- "mids.nmi"	
+	res$nobs <- nrow(datlist[[1]])
+	res$nvars <- ncol(datlist[[1]])
+    class(res) <- "mids.nmi"			
 	return(res)
 		}
 ##################################################		
@@ -34,9 +38,16 @@ mice.nmi <- function( datlist , type="mice" , ... ){
 summary.mids.nmi <- function( object , ... ){
 	cat("Nested Multiple Imputation\n\n")
 	Nimp <- object$Nimp
-	cat( paste0("Number of between datasets = " , Nimp["between"] , "\n") )
-	cat( paste0("Number of within datasets = " , Nimp["within"] , "\n\n") )
+	cat( paste0("Number of between imputed datasets = " , Nimp["between"] , "\n") )
+	cat( paste0("Number of within imputed datasets = " , Nimp["within"] , "\n") )	
+    cat( paste0( object$nobs , " cases and " , object$nvars , " variables \n" ) )
+	cat( paste0( "Number of iterations = " , object$imp[[1]]$iteration ) , "\n\n")
 	imp0 <- object$imp[[1]]
 	summary(imp0)
 			}
 ####################################################			
+# print method
+print.mids.nmi <- function( x , ...){
+	summary.mids.nmi( object=x , ...)
+	}
+#####################################################

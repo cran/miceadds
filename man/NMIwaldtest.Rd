@@ -116,7 +116,7 @@ imp1 <- mice.nmi( datlist ,  m=3 , maxit=2 )
 summary(imp1)
 
 #**** Model 1: Linear regression with interaction effects
-res1 <- with( imp1 , lm( likesc ~ female*migrant + female*books  ) )
+res1 <- with( imp1 , stats::lm( likesc ~ female*migrant + female*books  ) )
 pres1 <- pool.mids.nmi( res1 )
 summary(pres1)
 
@@ -136,7 +136,7 @@ wres1b <- NMIwaldtest( qhat=qhat , u=u , testnull=testnull )
 summary(wres1b)
 
 #**** Model 2: Multivariate linear regression
-res2 <- with( imp1 , lm( cbind( ASMMAT , ASSSCI ) ~ 
+res2 <- with( imp1 , stats::lm( cbind( ASMMAT , ASSSCI ) ~ 
                            0 + I(1*(female==1)) + I(1*(female==0))   ) )
 pres2 <- pool.mids.nmi( res2 )
 summary(pres2)

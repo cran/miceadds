@@ -1,21 +1,35 @@
 \name{scan.vec}
 \alias{scan.vec}
 \alias{scan.vector}
+\alias{scan0}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 \R Utilities: Scan a Character Vector
 }
 \description{
-This function splits a string into a character vector.
+The functioon \code{scan.vec} function splits a string into a character 
+vector. The function \code{scan0} is the 
+\code{\link[base:scan]{base::scan}} function using the default
+\code{what="character"}.
 }
 \usage{
 scan.vec(vec)	
 scan.vector(vec)
+
+scan0(file="", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{vec}{
 A string which should be splitted according to blanks
+}
+\item{file}{
+File to be scanned. See \code{\link[base:scan]{base::scan}}.
+}
+\item{\dots}{
+Further arguments to be passed.
+See \code{\link[base:scan]{base::scan}}.	
 }
 }
 %\details{
@@ -40,15 +54,23 @@ Alexander Robitzsch
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+\code{\link[base:scan]{base::scan}}
+}
+
 \examples{
+#############################################################################
+# EXAMPLE 1: Example scan.vec | reading a string
+#############################################################################	
+	
 vars <- scan.vector( "female urbgrad  groesse  Nausg    grpgroesse   privat  ")
-  ## Read 6 items
 vars
   ## [1] "female"     "urbgrad"    "groesse"    "Nausg"      "grpgroesse"
   ## [6] "privat"    
+
+## the next lines are only commented out to fulfill CRAN checks  
+## vars2 <- scan0()
+##     female urbgrad  groesse  Nausg    grpgroesse   privat    
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

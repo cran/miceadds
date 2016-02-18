@@ -11,7 +11,7 @@ Based on Individual Likelihood
 This imputation function performs unidimensional plausible value
 imputation if (subject-wise) measurement errors or the reliability
 of the scale is known (Mislevy, 1991; see also Asparouhov & Muthen, 2010;
-Blackwell, Honaker & King, 2011).
+Blackwell, Honaker & King, 2011, 2016a, 2016b).
 The function also allows the input of an individual likelihood
 obtained by fitting an item response model.
 }
@@ -115,11 +115,11 @@ Blackwell, M., Honaker, J., & King, G. (2011).
 \emph{Multiple overimputation: A unified approach to measurement error and 
 missing data}. Technical Report. 
 
-Blackwell, M., Honaker, J., & King, G. (2015a). 
+Blackwell, M., Honaker, J., & King, G. (2016a). 
 A unified approach to measurement error and missing data: Overview and
 applications. \emph{Sociological Methods & Research}, \bold{xx}, xxx-xxx. 
 
-Blackwell, M., Honaker, J., & King, G. (2015b). 
+Blackwell, M., Honaker, J., & King, G. (2016b). 
 A unified approach to measurement error and missing data: Details and
 extensions. \emph{Sociological Methods & Research}, \bold{xx}, xxx-xxx.
 
@@ -135,7 +135,7 @@ Alexander Robitzsch
 
 \note{
 Plausible value imputation is also known as multiple overimputation
-(Blackwell, Honaker & King, 2015a, 2015b) which is implemented
+(Blackwell, Honaker & King, 2016a, 2016b) which is implemented
 in the \pkg{Amelia} package, see \code{\link[Amelia:moPrep]{Amelia::moPrep}}
 and \code{\link[Amelia:amelia]{Amelia::amelia}}.
 }
@@ -163,7 +163,7 @@ dat$scale1 <- NA
 dat$scale2 <- NA
 
 # empty imputation
-imp <- mice( dat , m=0 , maxit=0 )
+imp <- mice::mice( dat , m=0 , maxit=0 )
 summary(imp)
 
 # define predictors
@@ -211,12 +211,12 @@ alpha.se <- list( "scale1" = .05 )  # sample alpha with a standard deviation of 
 # means and SE's of scale scores are assumed to be known
 M.scale2 <- rowMeans( dat[  , paste("B",1:5,sep="")  ] )
 # M.scale2[ is.na( m1) ] <- mean( M.scale2 , na.rm=TRUE )
-SE.scale2 <- rep( sqrt( var(M.scale2,na.rm=T)*(1-.8) ) , nrow(dat) ) 
+SE.scale2 <- rep( sqrt( stats::var(M.scale2,na.rm=T)*(1-.8) ) , nrow(dat) ) 
 # => heterogeneous measurement errors are allowed
 scale.values <- list( "scale2" = list( "M" = M.scale2 , "SE" = SE.scale2 ) )
 
 #*** Imputation Model 1: Imputation four using parallel chains
-imp1 <- mice( dat , predictorMatrix = predM , m = 4, maxit = 5 ,  
+imp1 <- mice::mice( dat , predictorMatrix = predM , m = 4, maxit = 5 ,  
           alpha.se = alpha.se ,  imputationMethod = impMethod ,  allow.na = TRUE  , alpha = alpha,
           scale.values = scale.values  )
 summary(imp1)
@@ -241,17 +241,17 @@ predM[ "scale2" , "group" ] <- -2
 predM[ "scale2" , c("V7","A1") ] <- 2
 
 # perform single imputation (m=1)
-imp <- mice( dat , predictorMatrix = predM , m = 1 , maxit=10 , 
+imp <- mice::mice( dat , predictorMatrix = predM , m = 1 , maxit=10 , 
             imputationMethod = impMethod ,  allow.na = TRUE  , alpha = alpha,
             scale.values = scale.values )
 dat10 <- complete(imp)
 
 # multilevel model
 library(lme4)
-mod <- lmer( scale1 ~ ( 1 | group) , data = dat11 )
+mod <- lme4::lmer( scale1 ~ ( 1 | group) , data = dat11 )
 summary(mod)
 
-mod <- lmer( scale1 ~ ( 1 | group) , data = dat10)
+mod <- lme4::lmer( scale1 ~ ( 1 | group) , data = dat10)
 summary(mod)
 
 #############################################################################
@@ -270,21 +270,21 @@ N <- 2000    # number of persons
 I <- 10     # number of items
 
 # simulate covariates
-X <- mvrnorm( N , mu=c(0,0) , Sigma = matrix( c(1,.5,.5,1) ,2 ,2 ) )
+X <- MASS::mvrnorm( N , mu=c(0,0) , Sigma = matrix( c(1,.5,.5,1) ,2 ,2 ) )
 colnames(X) <- paste0("X",1:2)
 # second covariate with measurement error with variance var.err
 var.err <- .3
 X.err <- X
-X.err[,2] <-X[,2] + rnorm(N, sd = sqrt(var.err) )
+X.err[,2] <- X[,2] + stats::rnorm(N, sd = sqrt(var.err) )
 # simulate theta
-theta <- .5*X[,1] + .4*X[,2] + rnorm( N , sd = .5 )
+theta <- .5*X[,1] + .4*X[,2] + stats::rnorm( N , sd = .5 )
 # simulate item responses
 itemdiff <- seq( -2 , 2 , length=I)  # item difficulties
 dat <- sirt::sim.raschtype( theta , b = itemdiff )
 
 #***********************
 #*** Model 0: Regression model with true variables
-mod0 <- lm( theta ~ X )
+mod0 <- stats::lm( theta ~ X )
 summary(mod0)
 
 #**********************
@@ -326,14 +326,14 @@ data.init$PVA <- mod11$person$EAP
 data.init$X2 <- X.err[,"X2"]
 
 #-- imputation using the mice and miceadds package
-imp1 <- mice::mice( as.matrix(data) , predictorMatrix = predictorMatrix , m = 4, maxit = 6 ,  
-             imputationMethod = imputationMethod ,  allow.na = TRUE ,
-             theta=theta , like=like , data.init=data.init )
+imp1 <- mice::mice( as.matrix(data) , predictorMatrix = predictorMatrix , m = 4, 
+            maxit = 6 , imputationMethod = imputationMethod ,  allow.na = TRUE ,
+            theta=theta , like=like , data.init=data.init )
 summary(imp1)
 
 # compute linear regression
-mod4a <- with( imp1 , lm( PVA ~ X1 + X2 ) )
-summary( pool(mod4a) )
+mod4a <- with( imp1 , stats::lm( PVA ~ X1 + X2 ) )
+summary( mice::pool(mod4a) )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

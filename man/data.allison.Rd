@@ -88,19 +88,10 @@ Allison, P. D. (2002). \emph{Missing data}. Newbury Park, CA: Sage.
 
 
 
-\section{Example Index}{
-
-%%%%%%% data.allison.hip
-\emph{Dataset} \code{data.allison.hip} 	
-	
-\code{\link{data.allison}} (Example 1)
-
-}
-
 \examples{
 \dontrun{
 #############################################################################
-# EXAMPLE 1: Hip datasets | Imputation using a wide format
+# EXAMPLE 1: Hip dataset | Imputation using a wide format
 #############################################################################
 
 # at first, the hip dataset is 'melted' for imputation

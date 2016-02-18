@@ -109,12 +109,13 @@ write.pspp( data , datafile = "example_data2" ,
         pspp.path = "C:/Program Files (x86)/PSPP/bin/"  , as.factors=FALSE )
         
 #****
-# write sav file using the haven package
+# write sav file using haven package
 library(haven)
 haven::write_sav( data , "example_data1a.sav" )      
 
 #****
 # write sav file using sjmisc package
+library(sjmisc)
 data <- sjmisc::set_label( data, attr(data, "variable.labels") )
 sjmisc::write_spss( data , "example_data1b.sav" )
 }

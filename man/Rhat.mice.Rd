@@ -52,7 +52,7 @@ data(nhanes, package="mice")
 set.seed(9090)
 
 # nhanes 3 parallel chains
-imp1 <- mice( nhanes ,m=3 , maxit=10 , imputationMethod=rep("norm" , 4 ) )
+imp1 <- mice::mice( nhanes ,m=3 , maxit=10 , imputationMethod=rep("norm" , 4 ) )
 Rhat.mice( imp1 )
   ##     variable MissProp Rhat.M.imp Rhat.Var.imp
   ##   1      bmi       36  1.0181998     1.155807

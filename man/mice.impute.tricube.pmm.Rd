@@ -85,7 +85,7 @@ VV <- length(varnames)
 imputationMethod <- rep("tricube.pmm2" , VV )
 names(imputationMethod) <- varnames
 # imputation with mice
-imp.mi1 <- mice( nhanes , m=5 , maxit=4 , imputationMethod= imputationMethod )
+imp.mi1 <- mice::mice( nhanes , m=5 , maxit=4 , imputationMethod= imputationMethod )
 
 #*** Model 2: use item-specific imputation methods
 iM2 <- imputationMethod

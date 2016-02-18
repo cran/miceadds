@@ -113,6 +113,8 @@ export(
     create.designMatrices.waldtest,
     crlrem,
     cxxfunction.copy, 
+    datlist2mids,
+    datlist2nested.datlist,
     datalist2mids,
     datlist_create,
     draw.pv.ctt,
@@ -124,6 +126,7 @@ export(
     jomo2datlist,
     kernelpls.fit2,
     library_install,
+    List2nestedList,
     lm.cluster,
     load.data,
     load.Rdata, 
@@ -134,13 +137,15 @@ export(
     ma.wtd.meanNA, 
     ma.wtd.sdNA ,
     mi.anova,
+    mi_dstat,
     mice.1chain,
     mice.impute.2l.contextual.norm,
     mice.impute.2l.contextual.pmm, 
     mice.impute.2l.eap,
     mice.impute.2l.groupmean, 
     mice.impute.2l.groupmean.elim, 
-    mice.impute.2l.latentgroupmean,
+    mice.impute.2l.latentgroupmean.MCMC,
+    mice.impute.2l.latentgroupmean.ML,
     mice.impute.2l.plausible.values,
     mice.impute.2l.pls,
     mice.impute.2l.pls2,
@@ -163,13 +168,18 @@ export(
     mids2datlist,
     MIwaldtest,
     nested.datlist_create,
+    nested.datlist2datlist,
     NestedImputationList,
+    nestedList2List,
     NMIcombine,
     NMIextract,
     NMIwaldtest,
     output.format1, 
     pca.covridge,
+    pool_mi,
+    pool_nmi,
     pool.mids.nmi,
+    read.fwf2,
     Reval, 
     Revalpr,
     Revalprstr,
@@ -181,14 +191,21 @@ export(
     scale_datlist,
     scan.vec,
     scan.vector, 
+    scan0,
     source.all, 
-    str_C.expand.grid ,
-    sumpreserving.rounding ,
+    str_C.expand.grid,
+    subset_datlist,
+    sumpreserving.rounding,
     systime,
     tw.imputation,
     tw.mcmc.imputation,
+    VariableNames2String,
     visitSequence.determine,
     within.imputationList,
+    withPool_MI,
+    withPool_NMI,
+    write.datlist,
+    write.fwf2, 
     write.mice.imputation,
     write.pspp 
         )
@@ -197,13 +214,22 @@ export(
 #########################################
 ########### S3 METHODS ##################
 
-
 S3method(coef, glm.cluster)
 S3method(coef, lm.cluster)
 S3method(coef, mipo.nmi)
+S3method(coef, pool_mi)
 S3method(MIcombine, NestedImputationResultList)
 S3method(plot, mids.1chain)
 S3method(predict, kernelpls.fit2)
+S3method(print, datlist)
+S3method(print, mids.1chain)
+S3method(print, mids.nmi)
+S3method(print, nested.datlist)
+S3method(print, NestedImputationList)
+S3method(subset, datlist)
+S3method(subset, imputationList)
+S3method(subset, mids)
+S3method(subset, mids.1chain)
 S3method(summary, glm.cluster)
 S3method(summary, lm.cluster)
 S3method(summary, mids.1chain)
@@ -212,11 +238,17 @@ S3method(summary, mipo.nmi)
 S3method(summary, mira.nmi)
 S3method(summary, MIwaldtest)
 S3method(summary, NMIwaldtest)
+S3method(summary, pool_mi)
 S3method(vcov, glm.cluster)
 S3method(vcov, lm.cluster)
 S3method(vcov, mipo.nmi)
+S3method(vcov, pool_mi)
+S3method(with, datlist)
 S3method(with, mids.1chain)
 S3method(with, mids.nmi)
+S3method(with, nested.datlist)
 S3method(with, NestedImputationList)
+S3method(within, datlist)
 S3method(within, imputationList)
+S3method(within, nested.datlist)
 S3method(within, NestedImputationList)

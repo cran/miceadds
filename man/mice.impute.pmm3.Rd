@@ -105,16 +105,16 @@ set.seed(1413)
 
 rho <- .6   # correlation between x and y
 N <- 6800    # number of cases
-x <- rnorm(N)
+x <- stats::rnorm(N)
 My <- .35   # mean of y
-y.com <- y <- My + rho * x + rnorm(N , sd = sqrt( 1 - rho^2 ) )
+y.com <- y <- My + rho * x + stats::rnorm(N , sd = sqrt( 1 - rho^2 ) )
 
 # create missingness on y depending on rho.MAR parameter
 rho.mar <- .4    # correlation response tendency z and x
 missrate <- .25  # missing response rate
 # simulate response tendency z and missings on y
-z <- rho.mar * x + rnorm(N , sd = sqrt( 1 - rho.mar^2 ) )
-y[ z < qnorm( missrate ) ] <- NA
+z <- rho.mar * x + stats::rnorm(N , sd = sqrt( 1 - rho.mar^2 ) )
+y[ z < stats::qnorm( missrate ) ] <- NA
 dat <- data.frame(x , y )
 
 # mice imputation
@@ -122,38 +122,40 @@ impmethod <- rep("pmm" , 2 )
 names(impmethod) <- colnames(dat)
 
 # pmm (in mice)
-imp1 <- mice( as.matrix(dat) , m=1 , maxit=1 , imputationMethod=impmethod) 
+imp1 <- mice::mice( as.matrix(dat) , m=1 , maxit=1 , imputationMethod=impmethod) 
 # pmm3 (in miceadds)
-imp3 <- mice( as.matrix(dat) , m=1 , maxit=1 , 
-        imputationMethod=gsub("pmm","pmm3" ,impmethod)  )
+imp3 <- mice::mice( as.matrix(dat) , m=1 , maxit=1 , 
+           imputationMethod=gsub("pmm","pmm3" ,impmethod)  )
 # pmm4 (in miceadds)
-imp4 <- mice( as.matrix(dat) , m=1 , maxit=1 , 
-        imputationMethod=gsub("pmm","pmm4" ,impmethod)  )
+imp4 <- mice::mice( as.matrix(dat) , m=1 , maxit=1 , 
+           imputationMethod=gsub("pmm","pmm4" ,impmethod)  )
 # pmm5 (in miceadds)
-imp5 <- mice( as.matrix(dat) , m=1 , maxit=1 , 
-        imputationMethod=gsub("pmm","pmm5" ,impmethod)  )
+imp5 <- mice::mice( as.matrix(dat) , m=1 , maxit=1 , 
+           imputationMethod=gsub("pmm","pmm5" ,impmethod)  )
 # pmm6 (in miceadds)
-imp6 <- mice( as.matrix(dat) , m=1 , maxit=1 , 
-        imputationMethod=gsub("pmm","pmm6" ,impmethod)  )
+imp6 <- mice::mice( as.matrix(dat) , m=1 , maxit=1 , 
+           imputationMethod=gsub("pmm","pmm6" ,impmethod)  )
 
-dat.imp1 <- complete( imp1 , 1 )
-dat.imp3 <- complete( imp3 , 1 )
-dat.imp4 <- complete( imp4 , 1 )
-dat.imp5 <- complete( imp5 , 1 )
-dat.imp6 <- complete( imp6 , 1 )
+dat.imp1 <- mice::complete( imp1 , 1 )
+dat.imp3 <- mice::complete( imp3 , 1 )
+dat.imp4 <- mice::complete( imp4 , 1 )
+dat.imp5 <- mice::complete( imp5 , 1 )
+dat.imp6 <- mice::complete( imp6 , 1 )
 
 dfr <- NULL
 # means
 dfr <- rbind( dfr , c( mean( y.com ) , mean( y , na.rm=TRUE ) , mean( dat.imp1$y)  ,
     mean( dat.imp3$y) , mean( dat.imp4$y)  , mean( dat.imp5$y)  ,  mean( dat.imp6$y)  ) )
 # SD
-dfr <- rbind( dfr , c( sd( y.com ) , sd( y , na.rm=TRUE ) , sd( dat.imp1$y)  ,
-    sd( dat.imp3$y) , sd( dat.imp4$y)  , sd( dat.imp5$y)  , sd( dat.imp6$y) ) )
+dfr <- rbind( dfr , c( stats::sd( y.com ) , stats::sd( y , na.rm=TRUE ) , 
+      stats::sd( dat.imp1$y), stats::sd( dat.imp3$y) , stats::sd( dat.imp4$y), 
+      stats::sd( dat.imp5$y)  , stats::sd( dat.imp6$y) ) )
 # correlations
-dfr <- rbind( dfr , c( cor( x,y.com ) , cor( x[ ! is.na(y) ] , y[ ! is.na(y) ] ) , 
-    cor( dat.imp1$x , dat.imp1$y) , cor( dat.imp3$x , dat.imp3$y) , 
-    cor( dat.imp4$x , dat.imp4$y) , cor( dat.imp5$x , dat.imp5$y)  , 
-    cor( dat.imp6$x , dat.imp6$y)
+dfr <- rbind( dfr , c( stats::cor( x,y.com ), 
+    stats::cor( x[ ! is.na(y) ] , y[ ! is.na(y) ] ) , 
+    stats::cor( dat.imp1$x , dat.imp1$y) , stats::cor( dat.imp3$x , dat.imp3$y) , 
+    stats::cor( dat.imp4$x , dat.imp4$y) , stats::cor( dat.imp5$x , dat.imp5$y)  , 
+    stats::cor( dat.imp6$x , dat.imp6$y)
         ) )
 rownames(dfr) <- c("M_y" , "SD_y" , "cor_xy" )
 colnames(dfr) <- c("compl" , "ld" , "pmm" , "pmm3" , "pmm4" , "pmm5","pmm6")

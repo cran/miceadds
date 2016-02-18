@@ -143,51 +143,6 @@ with grouped values (coarse data or interval data).
 }
 
 
-\section{Example Index}{
-
-%%%%%%% data.ma01
-\emph{Dataset} \code{data.ma01} 	
-	
-\code{\link{mice.1chain}} (Example 3),
-\code{\link{mice.impute.weighted.pmm}} (Example 1),
-\code{\link{ma.wtd.statNA}} (Example 1)
-
-%%%%%%% data.ma02
-\emph{Dataset} \code{data.ma02} 	
-	
-\code{\link{fast.groupmean}} (Example 1),
-
-
-%%%%%%% data.ma03
-\emph{Dataset} \code{data.ma03} 	
-	
-\code{\link{mice.impute.2l.eap}} (Example 1)
-
-
-
-%%%%%%% data.ma04
-\emph{Dataset} \code{data.ma04} 	
-	
-\code{\link{mice.impute.2l.plausible.values}} (Example 1)
-
-
-
-%%%%%%% data.ma05
-\emph{Dataset} \code{data.ma05} 	
-	
-\code{\link{mice.impute.2l.contextual.pmm}} (Example 1),
-\code{\link{mice.impute.2l.latentgroupmean}} (Example 1)
-
-
-
-%%%%%%% data.ma06
-\emph{Dataset} \code{data.ma06} 	
-	
-\code{\link{mice.impute.grouped}} (Example 1),
-
-}
-
-
 %\details{
 %%  ~~ If necessary, more details than the __description__ above ~~
 %}

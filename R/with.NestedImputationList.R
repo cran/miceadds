@@ -12,11 +12,13 @@ with.NestedImputationList <- function(data, expr,fun,...){
 	  #**************************************
 	  # This code is copied from the with.imputationList
 	  # function from the mitools package
-	  if (!is.null(match.call()$expr)){
-		expr<-substitute(expr)
-		results<-lapply(data$imputations, function(dataset) eval(expr, dataset, enclos=pf))
-	  } else {
-		results<-lapply(data$imputations, fun,...)
+	  if ( ! is.null(match.call()$expr) ){
+		expr <- substitute(expr)
+		results <- lapply(data$imputations, function(dataset){
+						eval(expr, dataset, enclos=pf)
+						} )
+				} else {
+		results <- lapply(data$imputations, FUN=fun ,...)
 	  }
 
 	  if (all(sapply(results, inherits,  what="imputationResult"))){

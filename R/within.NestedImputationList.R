@@ -4,6 +4,7 @@
 within.NestedImputationList <- function (data, expr, ...){
    res <- data
    imp <- res$imputations
+   CALL <- res$call
    NB <- length(imp)   
    NW <- length(imp[[1]])         
    for (ii in 1:NB){
@@ -25,6 +26,8 @@ within.NestedImputationList <- function (data, expr, ...){
 					}
 			  }									
 	res$imputations <- imp		
+	res <- NestedImputationList(imp)
+	res$call <- CALL
 	return(res)
 }
 ###############################################################

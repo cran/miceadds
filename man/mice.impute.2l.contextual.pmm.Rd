@@ -87,7 +87,7 @@ data(data.ma05)
 dat <- data.ma05
 
 # empty imputation
-imp0 <- mice( dat , m=0 , maxit=0 )
+imp0 <- mice::mice( dat , m=0 , maxit=0 )
 summary(imp0)
 
 # define predictor matrix
@@ -97,9 +97,7 @@ predM[ , "idstud"] <- 0
 # define idclass as the cluster variable (type=-2)
 predM[ , "idclass" ] <- -2  
 
-# define imputation methods
-impMethod <- imp0$method
-# initialisiere mit norm
+# initialize with norm method
 impMethod <- rep( "norm" , length(impMethod) )
 names(impMethod) <- names( imp0$method )
 impMethod[ c("idstud","idclass")] <- ""
@@ -136,7 +134,7 @@ impMethod[ "groesse"] <- "2lonly.norm"
 predM[ c("sprengel","groesse") , "idclass" ] <- -2
 
 # do imputation
-imp <- mice( dat , predictorMatrix = predM , m = 3 ,  maxit = 4 ,
+imp <- mice::mice( dat , predictorMatrix = predM , m = 3 ,  maxit = 4 ,
            imputationMethod = impMethod  , paniter=100)           
 summary(imp)
 }

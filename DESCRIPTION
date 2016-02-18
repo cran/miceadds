@@ -2,8 +2,8 @@ Package: miceadds
 Type: Package
 Title: Some Additional Multiple Imputation Functions, Especially for
         'mice'
-Version: 1.6-0
-Date: 2016-01-30
+Version: 1.7-8
+Date: 2016-02-18
 Author: 
     Alexander Robitzsch [aut, cre], Simon Grund [ctb],
     Thorsten Henke [ctb]
@@ -26,6 +26,6 @@ LinkingTo: Rcpp, RcppArmadillo
 Suggests: Amelia, BIFIEsurvey, haven, jomo, mitml, pan, Zelig
 License: GPL (>= 2)
 NeedsCompilation: yes
-Packaged: 2016-01-30 17:38:23 UTC; sunpn563
+Packaged: 2016-02-18 12:49:03 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2016-01-30 19:09:46
+Date/Publication: 2016-02-18 15:38:12

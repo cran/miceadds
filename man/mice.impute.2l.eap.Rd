@@ -92,7 +92,7 @@ pM[,c("idstud","math_EAP" , "math_SEEAP") ] <- 0
     # remove some variables from imputation model
 
 # imputation using three parallel chains
-imp1 <- mice( dat1 , m=3 , maxit=5 , imputationMethod=impmethod ,  
+imp1 <- mice::mice( dat1 , m=3 , maxit=5 , imputationMethod=impmethod ,  
                predictorMatrix = pM , allow.na =TRUE , eap=eap )
 summary(imp1)   # summary
 

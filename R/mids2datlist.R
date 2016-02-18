@@ -1,4 +1,5 @@
 mids2datlist <- function( midsobj , X = NULL){
+    datlist <- midsobj   # init
 	if ( class(midsobj) == "mids.1chain" ){
 		midsobj <- midsobj$midsobj		
 			}
@@ -15,6 +16,7 @@ mids2datlist <- function( midsobj , X = NULL){
 				datlist[[ii]] <- h1
 						}
 		class(datlist) <- "datlist"
+		datlist <- datlist_create(datlist)
 					}	
 	#******************************
     # object of class mids.nmi		
@@ -36,6 +38,7 @@ mids2datlist <- function( midsobj , X = NULL){
 										}
 								}
 		class(datlist) <- "nested.datlist"
+		datlist <- nested.datlist_create(datlist)
 			}		
     return(datlist)
         }

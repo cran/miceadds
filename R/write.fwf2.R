@@ -1,24 +1,6 @@
 
 
 
-
-##NS export(read.fwf2)    
-############################################################################
-# This function reads fwf files                                            #
-read.fwf2 <- function( file , format , variables = NULL){
-    ff <- base::readLines( file )
-    ind.ff1 <- c( 1, cumsum(format)[- length(format) ] + 1 )
-    ind.ff2 <- cumsum(format)
-    I <- length(format)
-    n <- length( ff )
-    dfr <- data.frame( matrix(0 , nrow= n , ncol=I ) )
-    for (ii in 1:I){  dfr[,ii ] <- as.numeric( substring( ff , ind.ff1[ii] , ind.ff2[ii] )  ) }
-    if (!is.null(variables)){ colnames(dfr) <- variables }
-    return(dfr)
-    } 
-############################################################################
-
-##NS # export(.write.format2)
 #----------------------------------------------------------------
 # utility function for formatting output in write.fwf2
 .write.format2 <- function( vec1 , ff , fr ){
@@ -40,23 +22,39 @@ read.fwf2 <- function( file , format , variables = NULL){
     }
 #---------------------------------------------------------------
 
-##NS export(write.fwf2)
+
 ##############################################################################
-write.fwf2 <- function( dat  , format.full , format.round , savename ){
-        if (is.null( colnames(dat) ) ){ colnames(dat) <- paste( "V" , 1:( ncol(dat) ) , sep="") }
+write.fwf2 <- function( dat  , format.full , format.round , file ){
+		savename <- file
+        if (is.null( colnames(dat) ) ){ 
+		     colnames(dat) <- paste( "V" , 1:( ncol(dat) ) , sep="") 
+			 			 }
         matr <- matrix( " " , nrow= nrow(dat) , ncol = ncol(dat) )
         ind1 <- which( format.round <= 0  )
         format.full[ ind1 ] <- format.full[ind1] 
         format.round[ ind1 ] <- format.round[ind1]        
-        for (vv in 1:( ncol(matr) ) ){
+		I <- ncol(matr)
+        for (vv in 1:I ){
             fvv <- format.round[vv]
             fff <- format.full[vv]
-            matr[,vv] <- .write.format2( vec1 = dat[,vv] , ff = fff , fr = fvv )
+			v1 <- .write.format2( vec1 = dat[,vv] , ff = fff , fr = fvv )
+            matr[,vv] <- v1
                 }
-        matr <- apply( matr , 1 , FUN = function(ll){ paste( ll , 
-						collapse="" ) } )
-        utils::write.table( matr , paste( savename , ".dat" , sep="") , 
-						quote=F , row.names=F , col.names=F)
+		matr1 <- matr[,1]		
+		for (ii in 2:I){
+			matr1 <- paste0( matr1 , matr[,ii] )
+				}
+		matr <- matr1
+        # matr <- apply( matr , 1 , FUN = function(ll){ paste( ll , 
+		#				collapse="" ) } )						
+		if ( length( grep( "\\." , savename , fixed=FALSE) ) > 0 ){
+				filename <- savename
+					} else {
+				filename <- paste( savename , ".dat" , sep="")
+							}
+		
+        utils::write.table( matr , file=filename , 
+						quote=FALSE , row.names=FALSE , col.names=FALSE, sep="")
         dfr <- data.frame( "variable" = colnames(dat) , 
                     "begin" = c( 1 , cumsum( format.full )[ - ncol(dat) ] 
 								+ 1 ) , 

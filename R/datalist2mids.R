@@ -1,6 +1,15 @@
 datalist2mids <- function( dat.list , progress=TRUE ){
-    M <- length(dat.list)
-	if (M == 1 ){
+    
+	CALL <- match.call()
+	
+	#*** preliminary check whether dat.list of type
+	#    imputationList
+	if ( class(dat.list) %in% "imputationList" ){
+		dat.list <- dat.list$imputations
+							}
+	#***
+	M <- length(dat.list)
+	if (M == 1){
 		dat0 <- dat.list[[1]]
 		dat0[ ,"__dummy"] <- 1
 		dat0[1,"__dummy"] <- NA
@@ -24,12 +33,18 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 	#*******
 	# more than one dataset  => typical imputation
 	if (M > 1){
+		if (progress){
+			cat("Analyze missing pattern\n-")
+			utils::flush.console()
+					}
 		for (ii in 2:M){
 			# ii <- 2
 			datl2 <- dat.list[[ii]]
 			r1[ , impvars] <- r1[,impvars] + 1*( datl2[,impvars] != datl1[,impvars ] )
 			datl1 <- datl2
-			if (progress){ cat("-") ; utils::flush.console() }
+			if (progress){ 
+				cat("-") ; utils::flush.console() 
+						}
 					}
 				}
 	#*******
@@ -61,6 +76,10 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 					
     # fill in missing in mids object
     IMP <- imp1$imp
+	if (progress){
+		    cat("Create mids object\n")
+			utils::flush.console()
+					}
     for (ii in 1:M){
         # ii <- 1
         dat.ii <- dat.list[[ii]]
@@ -79,9 +98,16 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 	
     if (progress){ cat("\n") }
     imp1$imp <- IMP
-    iM[ iM=="" ] <- "not_imputed"
-    iM[ iM!=""] <- "imputed"
+    iM[ imp1$nmis == 0 ] <- ""
+    iM[ imp1$nmis > 0 ] <- "imputed"
     imp1$method <- iM
+	imp1$visitSequence <- -99 + 0*imp1$visitSequence
+	# predictor matrix
+	imp1$predictorMatrix <- -99 + 0*imp1$predictorMatrix	
+	imp1$predictorMatrix[ iM == "" , ] <- 0
+	imp1$call <- CALL	
     return(imp1)
         }
 ###############################################################
+
+datlist2mids <- datalist2mids

@@ -180,7 +180,7 @@ names(pls.impMethod) <- names(impMethod)
 pls.impMethod[ c("IN1","IN6")] <- "pmm5"   
 
 # Model 1: Three parallel chains
-imp1 <- mice(data = dat , imputationMethod = impMethod ,  
+imp1 <- mice::mice(data = dat , imputationMethod = impMethod ,  
      m=3 , maxit=5 , predictorMatrix = predictorMatrix ,
      pls.facs = pls.facs , # number of PLS factors
      pls.impMethod = pls.impMethod ,  # Imputation Method in PLS imputation

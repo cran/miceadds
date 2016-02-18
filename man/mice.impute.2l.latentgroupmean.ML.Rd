@@ -1,5 +1,6 @@
-\name{mice.impute.2l.latentgroupmean}
-\alias{mice.impute.2l.latentgroupmean}
+\name{mice.impute.2l.latentgroupmean.ML}
+\alias{mice.impute.2l.latentgroupmean.ML}
+\alias{mice.impute.2l.latentgroupmean.MCMC}
 \alias{mice.impute.2l.groupmean}
 \alias{mice.impute.2l.groupmean.elim}
 
@@ -24,9 +25,13 @@ Therefore, this imputation method will lead to different values of
 individuals within the same group.
 }
 \usage{
-mice.impute.2l.latentgroupmean(y, ry, x, type, pls.facs = NULL, 
+mice.impute.2l.latentgroupmean.ML(y, ry, x, type, pls.facs = NULL, 
     imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
-     mcmc.burnin=100 , mcmc.iter=1000 , ...)
+    EAP=FALSE, ...)	
+	
+mice.impute.2l.latentgroupmean.MCMC(y, ry, x, type, pls.facs = NULL, 
+    imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
+    mcmc.burnin=100 , mcmc.iter=1000 , EAP=FALSE, ...)
 	
 mice.impute.2l.groupmean(y, ry, x, type, grmeanwarning = TRUE, ...)
 
@@ -63,6 +68,10 @@ Vector of variable names used for creating interactions
   \item{quadratics}{
 Vector of variable names used for creating quadratic terms
 }
+\item{EAP}{Logical indicating whether EAPs should be used for imputation.
+The default \code{FALSE} corresponds to sampling from the posterior
+distribution.
+}
 \item{mcmc.burnin}{Number of MCMC burn-in iterations.}
 \item{mcmc.iter}{Total number of MCMC iterations.}
   \item{grmeanwarning}{
@@ -76,8 +85,11 @@ Further arguments to be passed.
 
 \details{
 The imputation of the latent group mean uses the 
+\code{\link[lme4:lmer]{lme4::lmer}} function of the \pkg{lme4} package
+for \code{mice.impute.2l.latentgroupmean.ML} and the
 \code{\link[MCMCglmm:MCMCglmm]{MCMCglmm::MCMCglmm}} function
-of the \pkg{MCMCglmm} package. Latent group mean imputation also follows
+of the \pkg{MCMCglmm} package for \code{mice.impute.2l.latentgroupmean.ML}. 
+Latent group mean imputation also follows
 Mislevy (1991).
 }
 
@@ -180,7 +192,7 @@ predM[ c("sprengel","groesse") , "idclass" ] <- -2
 # manifest group mean for Mscore
 impMethod[ "M.Mscore" ] <- "2l.groupmean"
 # latent group mean for Mscore
-impMethod[ "LM.Mscore" ] <- "2l.latentgroupmean"
+impMethod[ "LM.Mscore" ] <- "2l.latentgroupmean.ML"
 predM[ "M.Mscore" , "Mscore" ] <- 2
 
 # covariates for latent group mean of 'Mscore'
@@ -188,7 +200,7 @@ predM[ "LM.Mscore" , "Mscore" ] <- 2
 predM[ "LM.Mscore" , c( "Dscore" , "sprengel" ) ] <- 1
 
 # do imputations
-imp <- mice( dat , predictorMatrix = predM , m =3 ,  maxit = 4 ,
+imp <- mice::mice( dat , predictorMatrix = predM , m =3 ,  maxit = 4 ,
          imputationMethod = impMethod  , allow.na = TRUE , pan.iter=100)
 }
 }

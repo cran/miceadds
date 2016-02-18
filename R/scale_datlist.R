@@ -43,9 +43,13 @@ scale_datlist <- function( datlist , orig_var , trafo_var , weights = NULL ,
 	    N <- nrow(datlist[[1]])
         weights <- rep(1,N)
                             }
+	weights0 <- weights
 	#---- compute means and standard deviations
     res <- lapply( datlist , FUN = function(dd){
         # dd <- datlist[[1]]
+		if ( is.character(weights0) ){
+			weights <- dd[ , weights0 ]
+					}
         m1 <- stats::weighted.mean( dd[,orig_var] , w = weights )
         sd1 <- sqrt( Hmisc::wtd.var( dd[,orig_var] , weights ) )
         c(m1,sd1)

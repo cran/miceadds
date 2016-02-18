@@ -1,7 +1,8 @@
-mice.impute.2l.latentgroupmean <- function (y, ry, x, type , 
+mice.impute.2l.latentgroupmean.MCMC <- function (y, ry, x, type , 
                     pls.facs = NULL , imputationWeights = NULL ,
                     interactions = NULL , quadratics = NULL , 
-                    mcmc.burnin=100 , mcmc.iter=1000 , ...){  
+                    mcmc.burnin=100 , mcmc.iter=1000 , 
+					EAP = FALSE , ...){  
 
     # latent group mean
     cluster <- as.numeric( x[ , type == - 2] )
@@ -81,7 +82,8 @@ mice.impute.2l.latentgroupmean <- function (y, ry, x, type ,
 
     # match cluster indices
     ind <- match( cluster , a1[,1] )
-    ximp <- stats::rnorm( nrow(a1) , mean = a1[,3]+a1[,5] , sd = sqrt(a1[,6]) )[ ind ]
+    ximp <- stats::rnorm( nrow(a1) , mean = a1[,3]+a1[,5] , 
+				sd = (1 - EAP )*sqrt(a1[,6]) )[ ind ]
     return(ximp)
 
 }
