@@ -4,7 +4,8 @@ datalist2mids <- function( dat.list , progress=TRUE ){
 	
 	#*** preliminary check whether dat.list of type
 	#    imputationList
-	if ( class(dat.list) %in% "imputationList" ){
+	# if ( class(dat.list) %in% "imputationList" ){
+	if ( base::inherits(dat.list , "imputationList" ) ){
 		dat.list <- dat.list$imputations
 							}
 	#***

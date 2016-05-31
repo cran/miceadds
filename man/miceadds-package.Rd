@@ -20,7 +20,7 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 1.7 \cr
+Version: \tab 1.8 \cr
 Publication Year: \tab 2016\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr

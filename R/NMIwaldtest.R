@@ -12,7 +12,6 @@ NMIwaldtest <- function( qhat , u , Cdes = NULL , rdes = NULL ,
 		if ( class(u) == "array" ){
 			u <- u2list(u)
 					}
-					
 		if ( ! is.null(testnull) ){
 			k <- length(testnull)
 			pars <- names( qhat[[1]][[1]] )
@@ -23,7 +22,6 @@ NMIwaldtest <- function( qhat , u , Cdes = NULL , rdes = NULL ,
 				Cdes[ ii , testnull[ii] ] <- 1
 							}
 						}
-		
 		#**************************************
 		# compute distribution of linear form
 		NB <- length( qhat )
@@ -39,8 +37,7 @@ NMIwaldtest <- function( qhat , u , Cdes = NULL , rdes = NULL ,
 				qhat[[bb]][[ww]] <- ( Cdes %*% qhat0[[bb]][[ww]] - rdes )[,1]
 				u[[bb]][[ww]] <- Cdes %*% u00 %*% t(Cdes)
 							}
-						}
-		
+						}	
 		#***********
 		# statistical inference
 		eps <- 1E-20
@@ -89,16 +86,22 @@ summary.NMIwaldtest <- function(object, digits=4 ,...){
 ################################################################
 # convert qhat into a list
 qhat2list <- function( qhat ){
-			qhat0 <- qhat
+			qhat0 <- qhat			
 			dq <- dim(qhat)
 			NB <- dq[1]
 			NW <- dq[2]
 			NV <- dq[3]
 			qhat <- as.list(1:NB)
+			parnames <- dimnames(qhat0)[[3]]
+			names(qhat) <- paste0("B_index",1:NB)
 			for (bb in 1:NB){
 				qhat1 <- as.list(1:NW)
+				names(qhat1) <- paste0("W_index",1:NW)
 			   for (ww in 1:NW){
-					qhat1[[ww]] <- qhat0[ bb , ww , ]
+					q1 <- qhat0[ bb , ww ,]
+					names(q1) <- parnames
+					qhat1[[ww]] <- q1
+					# names(qhat1)[[ww]] <- parnames
 							}
 				qhat[[bb]] <- qhat1
 						}

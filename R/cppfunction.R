@@ -2,6 +2,7 @@ cxxfunction.copy <- function( cppfct , name ){
 #    code1 <- paste( readLines( codefile ) , collapse="\n      ")
 #    fx <- cxxfunction( signature.input , code1 , plugin = plugin , verbose=verbose )
 #    g1 <-  getDynLib(cppfct)
+    requireNamespace("inline")
     g1 <-  inline::getDynLib(cppfct)
     cppname <- gsub( "\\.dll" , "\\.cpp" ,  g1[["path"]] )
     h1 <- readLines( cppname )

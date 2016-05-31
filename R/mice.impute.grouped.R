@@ -1,6 +1,6 @@
 
 
-#############################################
+##################################################
 # imputation for grouped data
 mice.impute.grouped <- function (y, ry, x, low=NULL , upp=NULL ,  ...){
     x <- cbind(1, as.matrix(x))
@@ -25,7 +25,6 @@ mice.impute.grouped <- function (y, ry, x, low=NULL , upp=NULL ,  ...){
 	samp_quant <- qlow + ( qupp - qlow)* stats::runif(N)
 	# draw imputed value
 	yimp <- stats::qnorm( samp_quant , mean=ypred , sd = sigma )
-# dfr <- cbind( ypred , Y , qlow , qupp , samp_quant , yimp)
-# Revalpr("round(dfr[1:30,],4)")	
     return(yimp)    
     }
+##################################################	

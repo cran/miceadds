@@ -27,6 +27,7 @@ mice.impute.2l.pls <- function(y, ry, x , type , pls.facs = NULL ,
 		# pls.title 		... title which is displayed 							#
         #...........................................................................#
 		time1 <- Sys.time()	
+		requireNamespace("pls")
 		n <- NULL
         imputationWeights  <- nrow(x) * imputationWeights / sum(imputationWeights)
         vname <- get("vname", pos = parent.frame()) # get variable name        
@@ -353,9 +354,9 @@ mice.impute.2l.pls <- function(y, ry, x , type , pls.facs = NULL ,
 					pls.formula  <- as.formula( paste( "Y ~ " , paste( paste( "X" , 1:VV , sep="") , collapse= " + " ) , sep="") )
 								}
 			if (is.null(pls.method )){ 
-				mod <- plsr( pls.formula , data = dfr , ncomp=nfac , validation="none"  )
+				mod <- pls::plsr( pls.formula , data = dfr , ncomp=nfac , validation="none"  )
 					} else { 
-				mod <- plsr( pls.formula , data = dfr , ncomp=nfac , validation="none"  , method = pls.method )
+				mod <- pls::plsr( pls.formula , data = dfr , ncomp=nfac , validation="none"  , method = pls.method )
 							}
             if( pls.print.progress ){  smod <- summary(mod , digits = 6 ) }
             flush.console()

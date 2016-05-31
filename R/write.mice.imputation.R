@@ -77,7 +77,7 @@ write.mice.imputation <- function( mi.res , name , include.varnames = TRUE , lon
                     paste( "FILE IS " , name , "__IMP_LIST.txt;" , sep=""),  "TYPE = IMPUTATION;"  , "" , 
                         "VARIABLE:" , "" , "NAMES ARE" , 
                        vars2 , ";" , "" , "! edit usevariables are;" , "!usevar are" , 
-                        "   " , "" , "MISSING = ." , "" , "!........................." ,
+                        "   " , "" , "MISSING = . ;" , "" , "!........................." ,
                         "! Mplus statements"
                             )
             base::writeLines( l1 , file.path( pf.subf , paste( name , "__MPLUS-INPUT-BODY.inp" , sep="") ))

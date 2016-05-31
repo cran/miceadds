@@ -4,7 +4,8 @@ mice.impute.2l.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 						like=NULL , theta=NULL , normal.approx=NULL , 
                         pviter = 15 , imputationWeights = rep(1, length(y)) , 
                         plausible.value.print = TRUE , 
-                        pls.facs=NULL , interactions=NULL , quadratics =NULL , ...){  
+                        pls.facs=NULL , interactions=NULL , quadratics =NULL , ...){  						
+	base::requireNamespace("MBESS")											
     #*******
 	# old arguments which are now excluded from the function
 	itemdiff=NULL ; item.resp = NULL ;

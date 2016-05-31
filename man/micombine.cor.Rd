@@ -1,16 +1,20 @@
 \name{micombine.cor}
 \alias{micombine.cor}
+\alias{micombine.cov}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Combination of Correlations for Multiply Imputed Data Sets
+Inference for Correlations and Covariances for Multiply Imputed Datasets
 }
 \description{
-Statistical inference for correlation coefficients for multiply
-imputed datasets
+Statistical inference for correlations and covariances 
+for multiply imputed datasets
 }
 \usage{
-micombine.cor(mi.res, variables = 1:(ncol(mi.list[[1]])), conf.level = 0.95,
-     method="pearson")
+micombine.cor(mi.res, variables = NULL, conf.level = 0.95,
+     method="pearson", nested = FALSE , partial = NULL )
+     
+micombine.cov(mi.res, variables = NULL, conf.level = 0.95,
+     nested = FALSE )     
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,14 +31,23 @@ Confidence level
 of \code{"pearson"} or \code{"spearman"}. The default is the
 calculation of the Pearson correlation.
 }
+\item{nested}{Logical indicating whether the input dataset stems from
+a nested multiple imputation.}
+\item{partial}{Formula object for computing partial correlations. The
+terms which should be residualized are written in the formula
+object \code{partial}.}
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-A data frame containing the correlation coefficient (\code{r}) and its
-corresponding standard error (\code{rse}), fraction of missing information
+A data frame containing the coefficients (\code{r}, \code{cov}) and its
+corresponding standard error (\code{rse}, \code{cov_se}), 
+fraction of missing information
 (\code{fmi}) and a \eqn{t} value (\code{t}).
+
+The corresponding coefficients can also be obtained as matrices
+by requesting \code{attr(result,"r_matrix")}.
 }
 %\references{
 %% ~put references to the literature/web site here ~
@@ -48,9 +61,10 @@ Alexander Robitzsch
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+See \code{\link[stats:cor.test]{stats::cor.test}} for testing
+correlation coefficients.
+}
 
 \examples{
 \dontrun{
@@ -65,7 +79,7 @@ set.seed(9090)
 # nhanes data in one chain
 imp.mi <- mice.1chain( nhanes , burnin=5 , iter=20 , Nimp=4 ,
                   imputationMethod=rep("norm" , 4 ) )
-# correlation coefficients of variables 4,2 and 3 (indexed in nhanes data)
+# correlation coefficients of variables 4, 2 and 3 (indexed in nhanes data)
 res <- micombine.cor(mi.res=imp.mi, variables = c(4,2,3) )
   ##     variable1 variable2       r    rse fisher_r fisher_rse    fmi       t      p
   ##   1       chl       bmi  0.2458 0.2236   0.2510     0.2540 0.3246  0.9879 0.3232
@@ -75,7 +89,17 @@ res <- micombine.cor(mi.res=imp.mi, variables = c(4,2,3) )
   ##   1 -0.2421  0.6345
   ##   2 -0.2358  0.6080
   ##   3 -0.4376  0.4239
+
+# extract matrix with correlations and its standard errors
+attr(res, "r_matrix")  
+attr(res, "rse_matrix")
   
+# inference for covariance  
+res2 <- micombine.cov(mi.res=imp.mi, variables = c(4,2,3) )  
+
+# inference can also be conducted for non-imputed data
+res3 <- micombine.cov(mi.res= nhanes , variables = c(4,2,3) )
+
 #############################################################################
 # EXAMPLE 2: nhanes data | comparing different correlation coefficients
 #############################################################################  
@@ -109,7 +133,20 @@ betas <- lapply( res3$analyses , FUN = function(ll){ ll$r[1,2] } )
 vars <- lapply( res3$analyses , FUN = function(ll){ ll$se^2 } )
 # Rubin inference
 tau_comb <- mitools::MIcombine( betas , vars )
-summary(tau_comb)  
+summary(tau_comb)
+
+#############################################################################
+# EXAMPLE 3: Inference for correlations for nested multiply imputed datasets
+#############################################################################
+
+library(BIFIEsurvey)
+data(data.timss4 , package="BIFIEsurvey" )
+datlist <- data.timss4
+
+# object of class nested.datlist
+datlist <- nested.datlist_create(datlist)
+# inference for correlations
+res2 <- micombine.cor(mi.res= datlist , variables=c("lang", "migrant", "ASMMAT"))
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

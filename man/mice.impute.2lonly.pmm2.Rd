@@ -65,7 +65,7 @@ Alexander Robitzsch
 
 
 \seealso{
-\code{\link[mice:mice.impute.2lonly.pmm]{mice.impute.2lonly.pmm}} (\pkg{mice}),
-\code{\link[mice:mice.impute.2lonly.norm]{mice.impute.2lonly.norm}} (\pkg{mice})
+\code{\link[mice:mice.impute.2lonly.pmm]{mice::mice.impute.2lonly.pmm}},
+\code{\link[mice:mice.impute.2lonly.norm]{mice::mice.impute.2lonly.norm}}
 }
 

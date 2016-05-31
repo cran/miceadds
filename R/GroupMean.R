@@ -17,6 +17,7 @@ fast.groupmean <- function( data , group , weights=NULL , extend=FALSE){
 				}
 	return(data1)
             }
+GroupMean <- fast.groupmean			
 #.....
 # ARb 2013-10-25
 # extend this function to include weights
@@ -41,3 +42,18 @@ fast.groupsum <- function( data , group , weights=NULL , extend=FALSE){
 				}	
 	return(data1)
             }
+GroupSum <- fast.groupsum			
+
+#############################################################
+# group SD
+GroupSD <- function( data , group , weights=NULL , extend=FALSE){	
+	m1 <- GroupSum( data=data^2 , group = group , weights=weights , extend=extend )
+	m2 <- GroupSum( data=1+0*data , group = group , weights=weights , extend=extend )
+	m3 <- GroupMean( data=data , group = group , weights=weights , extend=extend )
+	res <- ( m1[,-1] - m2[,-1] * m3[,-1]^2 ) / ( m2[,-1] - 1 + 1E-10)
+	res <- sqrt( res )
+	res <- data.frame( m1[,1] , res)
+#	res[,1] <- m1[,1]
+	return(res)
+	
+		}

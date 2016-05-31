@@ -12,7 +12,17 @@ subset_nested.datlist <- function( datlist , subset = TRUE ,
 		if ( class(datlist) %in% "NestedImputationList" ){
 			datlist <- datlist$imputations		
 						}
-							
+
+		#*****************************
+		# check for subset if numeric
+		if ( ! is.null(subset) ){			
+			if ( is.integer(subset) ){
+				N <- nrow(datlist[[1]][[1]])
+				subset <- ( 1:N ) %in% subset
+							}			
+					}
+
+						
 		#*****************************
 		# check for expr
 		expr <- expr_subset 

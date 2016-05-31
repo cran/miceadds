@@ -40,6 +40,58 @@ CHANGELOG miceadds
 
 
 ---------------------------------------------------------------------
+Versions 1.8  -- 2016-05-31  --  CRAN miceadds 1.8-0
+---------------------------------------------------------------------
+
+NOTE  * added argument 'subdir' in 'write.datlist' indicating whether
+        output should be written in a subdirectory or directly
+        into the working directory
+NOTE  * fixed a minor bug in creation of Mplus input files in
+        'write.mice.imputation' and 'write.datlist'
+NOTE  * deleted display of chi square approximation p value in 
+        'micombine.F' and 'micombine.chisquare' 
+        (after a discussion with Joanna Kaye)
+NOTE  * extended 'subset' methods for integer input of argument
+        'subset' which allows easier selection of rows by specifying
+        row indices
+NOTE  * changed dimnames handling in 'NMIwaldtest' which should have
+        no practical side effects
+ADDED * added utility functions 'ma.wtd.skewnessNA' and 
+        'ma.wtd.curtosisNA' for calculating skewness and curtosis
+        (due to a correspondence with Timo Ehmke)
+ADDED * added the function 'ma.wtd.quantileNA' for weighted quantile
+        calculation
+NOTE  * extended 'ma.wtd.statNA' functions to handle objects of
+        class 'BIFIEdata' from the BIFIEsurvey package
+NOTE  * renamed 'fast.groupmean' and 'fast.groupsum' into 'GroupMean'
+        and 'GroupSum' and added function 'GroupSD' for calculation
+        of group-wise standard deviations
+NOTE  * replace 'Hmisc::wtd.var' import by 'TAM::weighted_sd'
+NOTE  * shift Hmisc, inline, MBESS and pls packages from Imports 
+        to Suggests and removed bayesm from Imports
+NOTE  * rewrite of 'scan.vec' which avoids temporary file savings 
+NOTE  * extended 'micombine.cor' to nested multiply imputed datasets,
+        for objects of classes 'datlist' and 'nested.datlist' and
+        single datasets (optionally non-imputed), i.e. the input 
+        of 'micombine.cor' must not be mids objects
+NOTE  * added function 'micombine.cov' which has same functionality
+        as 'micombine.cor' 
+NOTE  * added attributes in 'datlist' and 'nested.datlist' for cases
+        of varying sample sizes in imputed datasets
+FIXED * added functionality of handling single imputed datasets in 
+        'pool_mi' function
+ADDED * added inference for partial correlation in 'micombine.cor'
+        using the argument 'partial' 
+FIXED * fixed an unnecessary warning message in 'datalist2mids' for
+        class checking (thanks to Janet Kwok) 
+ADDED * included imputation methode '2l.binary' of binary variable 
+        with two-level logistic regression models
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: subset.datlist (1), 
+        ma.wtd.statsNA (1,2,3,4), GroupMean (1), mi.combine.cor (1,2)
+
+---------------------------------------------------------------------
 Versions 1.7  -- 2016-02-18  --  CRAN miceadds 1.7-8
 ---------------------------------------------------------------------
 
@@ -69,7 +121,7 @@ NOTE  * added further calculation of fraction of missing information for
         Schafer (2002) in 'NMIcombine' which can be assessed by the
         argument 'method=2'.  
 NOTE  * extended imputation of latent group means to lme4-based imputation
-        in 'mice.impute.2l.latentgroupmean.ML' and MCMCglmm-based 
+        in 'mice.impute.2l.latentgroupmean.ML' and MCMCglmm based 
         imputation in 'mice.impute.2l.latentgroupmean.MCMC'
 NOTE  * added with and within methods for objects of class 'datlist'
         and 'nested.datlist'
@@ -105,7 +157,6 @@ EXAMP * included/modified examples: scale_datlist (1), save.data (1),
         draw.pv.ctt (1), write.fwf2 (1), data.graham (1,2),
         VariableNames2String (1), write.datlist (1), mi_dstat (1)
 
-
 ---------------------------------------------------------------------
 Versions 1.6  -- 2016-01-30  --  CRAN miceadds 1.6-0
 ---------------------------------------------------------------------
@@ -136,7 +187,7 @@ EXAMP * included/modified examples: mids2datlist (3),
 Versions 1.5  -- 2015-11-21  --  CRAN miceadds 1.5-0
 ---------------------------------------------------------------------
 
-NOTE  * changed function 'save.data' due to changes in recent sjmisc
+NOTE  * changed function 'save.data' due to changes in a recent sjmisc
         package update on CRAN
 
 DATA  * included/modified datasets: ---

@@ -11,6 +11,7 @@ pool_mi <- function( qhat , u=NULL , se=NULL ,
 	#****
 	CALL <- match.call()
 	
+	eps <- 1E-100
 	m <- length(qhat)
 	k <- length(qhat[[1]] )
 	
@@ -33,7 +34,7 @@ pool_mi <- function( qhat , u=NULL , se=NULL ,
 					}
     ubar <- apply( u, c(2, 3), mean)
     e <- qhat - matrix(qbar, nrow = m, ncol = k, byrow = TRUE)
-    b <- (t(e) %*% e)/(m - 1)
+    b <- (t(e) %*% e)/(m - 1 + eps )
     t <- ubar + (1 + 1/m) * b
     r <- (1 + 1/m) * diag(b/ubar)
     lambda <- (1 + 1/m) * diag(b/t)
@@ -62,7 +63,7 @@ pool_mi <- function( qhat , u=NULL , se=NULL ,
 mice_df <- function (m, lambda, dfcom, method){
 	eps <- 1E-4
     lambda[lambda < eps ] <- eps
-    dfold <- (m - 1)/lambda^2
+    dfold <- (m - 1 + eps )/lambda^2
     dfobs <- (dfcom + 1)/(dfcom + 3) * dfcom * (1 - lambda)
     df <- dfold * dfobs/(dfold + dfobs)
     if (method != "smallsample") 
@@ -78,7 +79,7 @@ summary.pool_mi <-function(object,alpha=0.05, ...){
   out <- data.frame( results= object$qbar , 
 				   se= sqrt(diag( object$t)) 
 				         )						 
-  crit<- stats::qt(alpha/2,object$df, lower.tail=FALSE)
+  crit <- stats::qt(alpha/2,object$df, lower.tail=FALSE)  
   out$"(lower"<- out$results-crit*out$se
   out$"upper)"<- out$results+crit*out$se
   out$"missInfo" <- paste0(round(100*object$fmi,1), " %")

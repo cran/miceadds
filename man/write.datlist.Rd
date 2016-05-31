@@ -10,7 +10,8 @@ Writes a list of multiply imputed datasets.
 
 \usage{
 write.datlist(datlist, name, include.varnames = TRUE, type = "csv2", 
-     separate = TRUE , Mplus = FALSE, round = NULL, Rdata = TRUE, ...)
+     separate = TRUE , Mplus = FALSE, round = NULL, Rdata = TRUE, 
+     subdir = TRUE , ...)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -42,7 +43,9 @@ Number of digits to round after decimal. The default is no rounding.
 Logical indicating whether \code{datlist} should also be saved
 in \R binary format.
   }
-  \item{\dots}{
+\item{subdir}{Logical indicating whether results should be written into
+a subdirectory.}
+\item{\dots}{
 Further arguments to be passed to \code{\link{save.data}}.
 }
 }

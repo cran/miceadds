@@ -1,15 +1,15 @@
 
 ####################################################
 scan.vector <- function( vec ){ 
-    cat(vec , file="ex.data", sep="\n")
-    vars <- scan( "ex.data" , what="character", quiet=TRUE)
-    file.remove( "ex.data" )
-    return(vars)
+    vec <- unlist( base::strsplit( vec , split="\n" , fixed=TRUE) )
+    vec <- unlist( base::strsplit( vec , split=" " , fixed=TRUE) )
+    vec <- vec[ vec != "" ] 
+    return(vec)
         }
 scan.vec <- scan.vector
 ####################################################				
 # scan function with default what = "character"
 scan0 <- function( file="" , ...){
-	scan( file=file , what="character" , ...)			
+	base::scan( file=file , what="character" , ...)			
 		}
 #########################################################		

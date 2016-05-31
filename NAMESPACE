@@ -19,6 +19,7 @@ importFrom(Rcpp, evalCpp)
 importFrom(stats, aggregate)
 importFrom(stats, aov)
 importFrom(stats, as.formula)
+importFrom(stats, binomial)
 importFrom(stats, coef)
 importFrom(stats, cov)
 importFrom(stats, cov2cor)
@@ -73,27 +74,28 @@ import(mice)
 #***************************************************
 #************** Imports ****************************
  
-importFrom(bayesm, rtrun)
 importFrom(car, Anova) 
 importFrom(foreign, read.spss) 
 importFrom(grouped, grouped)
-importFrom(Hmisc, wtd.var)
-importFrom(inline, getDynLib)
+importFrom(lme4, fixef)
+importFrom(lme4, getME)
+importFrom(lme4, glmer)
 importFrom(lme4, lmer)
 importFrom(lme4, ranef)
+importFrom(lme4, VarCorr)
 importFrom(MASS, mvrnorm)
-importFrom(MBESS, ci.reliability)
 importFrom(MCMCglmm, MCMCglmm)
 importFrom(mitools, MIcombine)
 importFrom(mvtnorm, dmvnorm)
 importFrom(mvtnorm, rmvnorm)
 importFrom(multiwayvcov, cluster.vcov)
-importFrom(pls, plsr)
 importFrom(sirt, rowKSmallest2.sirt)
 importFrom(sjmisc, write_spss)
 importFrom(sjmisc, set_label)
 importFrom(TAM, tam.pv)
 importFrom(TAM, tam.latreg)
+importFrom(TAM, weighted_quantile)
+importFrom(TAM, weighted_sd)
 
 
 
@@ -122,6 +124,9 @@ export(
     fast.groupsum,
     glm.cluster,
     grep.vec, 
+    GroupMean,
+    GroupSD,
+    GroupSum,
     index.dataframe, 
     jomo2datlist,
     kernelpls.fit2,
@@ -134,11 +139,15 @@ export(
     ma.scale2,
     ma.wtd.corNA,     
     ma.wtd.covNA, 
-    ma.wtd.meanNA, 
-    ma.wtd.sdNA ,
+    ma.wtd.curtosisNA,
+    ma.wtd.meanNA,
+    ma.wtd.quantileNA,
+    ma.wtd.sdNA,
+    ma.wtd.skewnessNA,
     mi.anova,
     mi_dstat,
     mice.1chain,
+    mice.impute.2l.binary,
     mice.impute.2l.contextual.norm,
     mice.impute.2l.contextual.pmm, 
     mice.impute.2l.eap,
@@ -163,6 +172,7 @@ export(
     mice.nmi,
     micombine.chisquare,
     micombine.cor,
+    micombine.cov,
     micombine.F,
     MIcombine.NestedImputationResultList,
     mids2datlist,

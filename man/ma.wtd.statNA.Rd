@@ -5,6 +5,10 @@
 \alias{ma.wtd.corNA}
 \alias{ma.wtd.meanNA}
 \alias{ma.wtd.sdNA}
+\alias{ma.wtd.skewnessNA}
+\alias{ma.wtd.curtosisNA}
+\alias{ma.wtd.quantileNA}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 
 
@@ -13,23 +17,34 @@ Some Multivariate Descriptive Statistics for Weighted Data in \pkg{miceadds}
 }
 \description{
 Some multivariate descriptive statistics for weighted datasets in \pkg{miceadds}.
-A list of multiply imputed data is also allowed as input.
+A list of (nested) multiply imputed data sets is also allowed as input.
 }
 
 \usage{
 ma.wtd.meanNA(data, weights = NULL , vars = NULL )
+
 ma.wtd.sdNA(data, weights = NULL , vars = NULL , method = "unbiased" )
+
 ma.wtd.covNA(data, weights = NULL , vars = NULL , method = "unbiased" )
+
 ma.wtd.corNA(data, weights = NULL , vars = NULL , method = "unbiased" )
+
+ma.wtd.skewnessNA(data, weights = NULL , vars = NULL , method = "unbiased" )
+
+ma.wtd.curtosisNA(data, weights = NULL , vars = NULL , method = "unbiased" )
+
+ma.wtd.quantileNA( data , weights = NULL , vars = NULL , type = 7 , 
+          probs = seq(0,1,.25) )
 }
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-Numeric data frame or objects of one of the classes \code{datlist}, 
+Numeric data vector or data frame or objects of one of the 
+classes \code{datlist}, 
 \code{imputationList}, \code{mids}, \code{mids.1chain},
-\code{nested.datlist} or 
-\code{NestedImputationList}.
+\code{nested.datlist},
+\code{NestedImputationList} or \code{BIFIEdata}.
 }
   \item{weights}{
 Optional vector of sampling weights
@@ -40,6 +55,10 @@ choosing the divisor \eqn{(n-1)} (\code{method="unbiased"})
 instead of \eqn{n} (\code{method="ML"}). See
 \code{\link[stats:cov.wt]{stats::cov.wt}} for further details.
 }
+\item{type}{Quantile type. This specification follows 
+\code{\link[TAM:weighted_quantile]{TAM::weighted_quantile}}
+}
+\item{probs}{Vector of probabilities used for calculation of quantiles.}
 }
 \details{
 Contrary to ordinary \R practice, missing values are ignored in the
@@ -49,7 +68,9 @@ calculation of descriptive statistics.
 \code{ma.wtd.meanNA} \tab weighted means \cr
 \code{ma.wtd.sdNA} \tab weighted standard deviations \cr
 \code{ma.wtd.covNA} \tab weighted covariance matrix \cr
-\code{ma.wtd.corNA} \tab weighted correlation matrix
+\code{ma.wtd.corNA} \tab weighted correlation matrix \cr
+\code{ma.wtd.skewnessNA} \tab weighted skewness \cr
+\code{ma.wtd.curtosisNA} \tab weighted (excess) curtosis \cr
 }
 
 }
@@ -62,16 +83,20 @@ A vector or a matrix depending on the requested statistic.
 \author{
 Alexander Robitzsch
 }
-%\note{
-%%  ~~further notes~~
-%}
+\note{
+If \code{data} is of class \code{BIFIEdata} and no weights are
+specified, sample weights are extracted from the \code{BIFIEdata}
+object.
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
+Some functions for weighted statistics:	
 \code{\link[stats:weighted.mean]{stats::weighted.mean}},
 \code{\link[stats:cov.wt]{stats::cov.wt}},
-\code{\link[Hmisc:wtd.var]{Hmisc::wtd.var}}
+\code{\link[Hmisc:wtd.var]{Hmisc::wtd.var}},
+\code{\link[TAM:weighted_quantile]{TAM::weighted_quantile}}, ...
 	
 See \code{\link{micombine.cor}} for statistical inference of correlation 
 coefficients.
@@ -98,6 +123,17 @@ ma.wtd.covNA( dat , weights=data.ma01$studwgt , vars = c("books","hisei") )
 # weighted correlation
 ma.wtd.corNA( dat , weights=data.ma01$studwgt )
 
+# weighted curtosis
+ma.wtd.skewnessNA( dat[,"books"] , weights=data.ma01$studwgt )
+# compare with result in TAM
+TAM::weighted_skewness( x=dat[,"books"] , w=data.ma01$studwgt )
+
+# weighted curtosis
+ma.wtd.curtosisNA( dat , weights=data.ma01$studwgt , vars = c("books","hisei") ) 
+# result in TAM
+TAM::weighted_curtosis( dat[,"books"] , w=data.ma01$studwgt )
+TAM::weighted_curtosis( dat[,"hisei"] , w=data.ma01$studwgt )
+
 \dontrun{
 #############################################################################
 # EXAMPLE 2: Weighted statistics multiply imputed dataset
@@ -120,6 +156,9 @@ implist <- mitools::imputationList(datlist)
 ma.wtd.meanNA(datlist)
 ma.wtd.meanNA(implist)
 ma.wtd.meanNA(imp)	
+
+# weighted quantiles
+ma.wtd.quantileNA( implist, weights=data.ma05$studwgt, vars = c("manote","Dscore")) 
 
 #############################################################################
 # EXAMPLE 3: Weighted statistics nested multiply imputed dataset
@@ -159,6 +198,42 @@ vars <- c("books","ASMMAT","likesc")
 ma.wtd.corNA( datlist ,  vars = vars )
 ma.wtd.corNA( imp2 ,  vars = vars )
 ma.wtd.corNA( imp1 ,  vars = vars )
+
+#############################################################################
+# EXAMPLE 4: Multiply imputed datasets in BIFIEdata format
+#############################################################################
+
+library(BIFIEsurvey)
+data(data.timss1, package="BIFIEsurvey")
+data(data.timssrep, package="BIFIEsurvey")
+
+# create BIFIEdata object
+bdat <- BIFIEsurvey::BIFIE.data( data.list=data.timss1 , wgt= data.timss1[[1]]$TOTWGT ,
+            wgtrep=data.timssrep[, -1 ] )
+summary(bdat)            
+# create BIFIEdata object in a compact way
+bdat2 <- BIFIEsurvey::BIFIE.data( data.list=data.timss1 , wgt= data.timss1[[1]]$TOTWGT ,
+            wgtrep=data.timssrep[, -1 ] , cdata=TRUE)
+summary(bdat2)  
+
+# compute skewness
+ma.wtd.skewnessNA( bdat , vars = c("ASMMAT" , "books" ) )
+ma.wtd.skewnessNA( bdat2 , vars = c("ASMMAT" , "books" ) )
+
+#############################################################################
+# EXAMPLE 5: Nested multiply imputed datasets in BIFIEdata format
+#############################################################################
+
+data(data.timss4, package="BIFIEsurvey")
+data(data.timssrep, package="BIFIEsurvey")
+
+# nested imputed dataset, save it in compact format
+bdat <- BIFIE.data( data.list=data.timss4 , wgt= data.timss4[[1]][[1]]$TOTWGT ,
+            wgtrep=data.timssrep[, -1 ] , NMI=TRUE , cdata=TRUE )
+summary(bdat)            
+# skewness
+ma.wtd.skewnessNA( bdat , vars = c("ASMMAT" , "books" ) )
+
 }	
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

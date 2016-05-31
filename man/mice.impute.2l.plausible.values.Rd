@@ -222,7 +222,7 @@ imp1 <- mice::mice( dat , predictorMatrix = predM , m = 4, maxit = 5 ,
 summary(imp1)
 
 # extract first imputed dataset
-dat11 <- complete( imp , 1 )
+dat11 <- mice::complete( imp , 1 )
 
 #*** Imputation Model 2: Imputation using one long chain
 imp2 <- mice.1chain( dat , predictorMatrix = predM , burnin=10 , iter=20 , Nimp=4 , 
@@ -244,7 +244,7 @@ predM[ "scale2" , c("V7","A1") ] <- 2
 imp <- mice::mice( dat , predictorMatrix = predM , m = 1 , maxit=10 , 
             imputationMethod = impMethod ,  allow.na = TRUE  , alpha = alpha,
             scale.values = scale.values )
-dat10 <- complete(imp)
+dat10 <- mice::complete(imp)
 
 # multilevel model
 library(lme4)

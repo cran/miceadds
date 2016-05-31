@@ -42,8 +42,6 @@ A vector with following entries
   \item{p}{The p value corresponding to \code{D}}
 \item{df}{Denominator degrees of freedom}
 \item{df2}{Numerator degrees of freedom}
-\item{chisq.approx}{Chi square approximation of the \eqn{D_2} statistic}
-\item{p.approx}{The p value corresponding to the \eqn{D_2} statistic}
 }
 
 

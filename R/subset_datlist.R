@@ -14,6 +14,15 @@ subset_datlist <- function( datlist , subset = TRUE ,
 									}		
 		
 		#*****************************
+		# check for subset if numeric
+		if ( ! is.null(subset) ){			
+			if ( is.integer(subset) ){
+				N <- nrow(datlist[[1]])
+				subset <- ( 1:N ) %in% subset
+							}			
+					}
+		
+		#*****************************
 		# check for expr
 		expr <- expr_subset 
 		is_expr <- FALSE

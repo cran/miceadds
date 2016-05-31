@@ -58,7 +58,8 @@ For \code{subset_nested.datlist} it is a list of datasets or an object of class
 }
 \item{subset}{
 Logical expression indicating elements or rows to keep, see
-\code{\link[base:subset]{base::subset}}.
+\code{\link[base:subset]{base::subset}}. \code{subset} can also
+be a numeric vector containing row indices.
 }
 \item{select}{Expression indicating columns to select from a data frame}
 \item{expr_subset}{Expression indicating a selection criterion for
@@ -174,6 +175,10 @@ datlist4c
 # migrant is imputed)
 datlist5a <- subset_datlist( datlist1a ,  expr_subset = migrant == 1 )
 datlist5a
+
+# select the first 100 cases
+datlist6a <- subset_datlist( datlist1a , select = c("idstud" , "books"), subset=1:100 )
+datlist6a
 
 #############################################################################
 # EXAMPLE 2: Subsetting and selection of nested multiply imputed datasets

@@ -1,77 +1,127 @@
-micombine.cor <- function( mi.res , variables = 1:( ncol(mi.list[[1]]) ) ,  conf.level = .95 ,
-		method="pearson"  ){
-    # INPUT:
-    # mi.res    ... MICE object
-    # variables ... which variables are selected?
-	if ( class(mi.res) == "mids.1chain"){
-		mi.res <- mi.res$midsobj
-			}	
-	mi.list <- .milist( mi.res )		
-    N <- nrow( mi.list[[1]] )
-    VV <- length(variables)    
+
+#################################################################################
+# inference for correlations | nested multiply and multiply imputed datasets
+micombine.cor <- function( mi.res , variables = NULL ,  
+        conf.level = .95 , method="pearson"  , nested = FALSE ,
+		partial = NULL ){
+	#****
+	if (class(mi.res) == "data.frame"){
+		mi.res <- list( mi.res )
+			}
+	
+	if ( class(mi.res) == "nested.datlist" ){ nested <- TRUE }
+	if (! nested ){
+		mi.list <- datlist_create(mi.res)
+					}
+	if (nested ){
+		mi.list <- nested.datlist_create(mi.res)
+					}
+	Nimp <- attr( mi.list , "Nimp")					
+	N <- attr( mi.list , "nobs_datasets")				
+
+	vars <- attr(mi.list, "variables")
+	if (is.null(variables)){
+		variables <- vars
+		}	
+	
+    VV <- length(variables)    			
+	N_partial <- 0	
+		
     # check if variables are given in character form
-    if (is.character(variables)){ variables <- which( colnames(mi.list[[1]]) %in%  variables ) }
+    if (is.character(variables)){ 
+	    if ( ! nested ){ 
+			variables <- which( vars %in%  variables ) 
+						}
+	    if ( nested ){ 
+			variables <- which( vars %in%  variables ) 
+						}
+						
+						
+					}
     dfr <- NULL
     for ( i in 1:(VV-1) ){
         for (j in (i+1):VV){
             if (i != j ){
             ii <- variables[i]
             jj <- variables[j]
+			
                 if ( i != j){ 
                     # calculate correlation coefficients
-                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  
-								stats::cor( dat[ , ii] , dat[,jj] , method=method) 
-									} ) )
-                    res.ii.jj <- .sub.micombine.cor( cor.list = cor.ii.jj , N = N , conf.level = conf.level )
+					if ( ! nested ){				
+						cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  
+								dat_ii <- dat[,ii]
+								dat_jj <- dat[,jj]	
+
+						if ( ! is.null(partial) ){
+							fm <- paste0( "dat_ii " , paste( partial , collapse= " ") )
+							mod_ii <- stats::lm( as.formula(fm) , data = dat )
+							rii <- resid(mod_ii)
+							mii <- as.numeric(names( mod_ii$residuals))
+							dat_ii <- NA*dat_ii
+							dat_ii[ mii ] <- rii							
+							fm <- paste0( "dat_jj " , paste( partial , collapse= " ") )
+							mod_jj <- stats::lm( as.formula(fm) , data = dat )
+							rjj <- resid(mod_jj)
+							mjj <- as.numeric(names( mod_jj$residuals))
+							dat_jj <- NA*dat_jj
+							dat_jj[ mjj ] <- rjj										
+							N_partial <- length( coef(mod_jj) ) - 1 
+									}	
+
+								stats::cor( dat_ii , dat_jj, method=method ,
+								    use = "pairwise.complete.obs" ) 
+									
+										} ) )
+									}
+					if ( nested){				
+						cor.ii.jj <- lapply( mi.list , FUN = function(mm){ 
+								lapply( mm , FUN = function(dat){  
+									if ( ! is.null(partial) ){
+										fm <- paste0( "dat_ii " , paste( partial , collapse= " ") )
+										mod_ii <- stats::lm( as.formula(fm) , data = dat )
+										rii <- resid(mod_ii)
+										mii <- as.numeric(names( mod_ii$residuals))
+										dat_ii <- NA*dat_ii
+										dat_ii[ mii ] <- rii							
+										fm <- paste0( "dat_jj " , paste( partial , collapse= " ") )
+										mod_jj <- stats::lm( as.formula(fm) , data = dat )
+										rjj <- resid(mod_jj)
+										mjj <- as.numeric(names( mod_jj$residuals))
+										dat_jj <- NA*dat_jj
+										dat_jj[ mjj ] <- rjj										
+										N_partial <- length( coef(mod_jj) ) - 1 
+												}										
+								dat_ii <- dat[,ii]
+								dat_jj <- dat[,jj]									
+								stats::cor( dat_ii , dat_jj , method=method,
+									   use = "pairwise.complete.obs") 
+										} ) } )
+								}
+                    res.ii.jj <- .sub.micombine.cor( cor.list = cor.ii.jj , N = N , 
+					                   conf.level = conf.level , nested = nested ,
+									   Nimp = Nimp , N_partial = N_partial)
                     dfr <- rbind( dfr , c( ii , jj , res.ii.jj ) )
             }   }}}
-    vars <- colnames( mi.list[[1]] )
+    # vars <- colnames( mi.list[[1]] )
 	dfr1 <- dfr
 	dfr <- rbind( dfr , dfr1[ , c(2,1,seq(3,ncol(dfr) )) ] )
-    if (VV == 2 ){  dfr <- dfr[ , -c(1:2) ] 
-                    cat( paste( "Correlation of " , vars[ii] , " with " , vars[jj] )  , "\n" ) 
-                    print( round( dfr[1,] , 4 ) )
-        } else {
-    dfr <- data.frame( "variable1" = vars[ dfr[,1] ] , "variable2" = vars[ dfr[,2] ] , dfr[ , -c(1:2) ] )
-    print( data.frame( dfr[,1:2] , round( dfr[,-c(1:2)] , 4 ) ) )
-            }
-    invisible(dfr)
+    dfr <- data.frame( "variable1" = vars[ dfr[,1] ] , 
+	      "variable2" = vars[ dfr[,2] ] , dfr[ , -c(1:2) ] )
+	#*** define attributes	  
+    class(dfr) <- "data.frame"
+	m1 <- vector2matrix( index1=dfr$variable1 , index2=dfr$variable2 , 
+			val=dfr$r , empty_val = 1 )	
+	attr(dfr,"r_matrix") <- m1
+	m1 <- vector2matrix( index1=dfr$variable1 , index2=dfr$variable2 , 
+			val=dfr$rse , empty_val = NA )	
+	attr(dfr,"rse_matrix") <- m1
+    return(dfr)
     }
-
+###################################################################
 	
 	
 	
 
-
-
-#----------------------------------------------------------------------------------------------------#
-# subroutine for combining correlations for multiply imputed data                                    #
-.sub.micombine.cor <- function( cor.list , N , conf.level ){
-        # convert correlations to Fisher transformed values
-        fisher.cor.list <- as.list(1/2*log( ( 1 + cor.list) / ( 1 - cor.list ) ))
-        var.fisher <- as.list( rep( 1/(N-3) , length(cor.list) ) )		
-        # combination of point estimators according Rubin's formula
-        fisher.cor.combine <- MIcombine( fisher.cor.list , var.fisher)		
-        zr <- coef(fisher.cor.combine)
-        zr.se <- sqrt( fisher.cor.combine$variance )[1,1]
-        t.zr <- zr / zr.se
-        fisher2cor <- function(z){ ( exp(2*z) - 1 )/ ( exp(2*z) + 1 ) }
-        res <- c( "r" = fisher2cor(zr)  ,  
-            "fisher_r" = zr ,
-            "fisher_rse" = zr.se ,
-			"fmi" = fisher.cor.combine$missinfo ,			
-            "t" = t.zr  , 
-            "p" = 2 * stats::pnorm( abs(t.zr) , lower.tail = FALSE ) ,
-             fisher2cor( zr + stats::qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) , 
-             fisher2cor( zr - stats::qnorm( ( 1 - conf.level ) / 2 ) * zr.se ) )
-            names(res)[7] <- paste( "lower" , round(100*conf.level,2),sep="")
-            names(res)[8] <- paste( "upper" , round(100*conf.level,2),sep="")
-        res <- c( res , - ( res[8] - res[7] ) / ( 2* stats::qnorm( ( 1 - conf.level )/2 ) ) )
-        names(res)[9] <- "rse"
-        res <- res[ c(1,9,2:8) ]
-        return(res)
-            }
-#----------------------------------------------------------------------------------------------------#
 
 #-------------------------------------------------------------------------
 # extract multiply imputed data sets from mice into a list of data frames

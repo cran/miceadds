@@ -10,7 +10,8 @@ NMIcombine <- function( qhat , u = NULL , se = NULL ,
 	if ( ! NMI ){
 			is_list <- TRUE	
 				}
-	
+				
+
 	#*********************************************					
 	if ( is_list ){	
 		#************************************	
@@ -54,7 +55,7 @@ NMIcombine <- function( qhat , u = NULL , se = NULL ,
 	NV <- length( qhat[[1]][[1]] )
 	qhat0 <- qhat
 	u0 <- u
-	
+		
 	# collect parameter estimates
 	qhat <- array( NA , dim=c( NB , NW , NV ) )
 	dimnames(qhat)[[3]] <- names(qhat0[[1]][[1]]) 
@@ -66,7 +67,6 @@ NMIcombine <- function( qhat , u = NULL , se = NULL ,
 	        qhat[bb,ww,] <- qhat0[[bb]][[ww]]
 						}
 					}
-	
 
 	# collect estimated variance matrices
 	u <- array( 0 , dim=c( NB , NW , NV , NV) )
@@ -92,11 +92,13 @@ NMIcombine <- function( qhat , u = NULL , se = NULL ,
 		dimnames(u)[[4]] <- dimnames(u)[[3]] <- dimnames(qhat)[[3]] 
 		dimnames(u)[[1]] <- paste0("Between_Imp" , 1:NB ) 
 		dimnames(u)[[2]] <- paste0("Within_Imp" , 1:NW )	
+		
 		for (bb in 1:NB){
 		   for (ww in 1:NW){
 				h1 <- se[[bb]][[ww]]
-				h1 <- diag( h1^2 )
-				u[bb,ww,,] <- h1
+				h2 <- matrix( 0 , nrow=NV , ncol=NV)
+				diag(h2) <- h1^2
+				u[bb,ww,,] <- h2
 							}
 						}
 		u_NULL <- FALSE

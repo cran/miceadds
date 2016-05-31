@@ -1,7 +1,7 @@
 #################################################
 write.datlist <- function( datlist, name , include.varnames = TRUE ,
 		type = "csv2" , separate = TRUE , Mplus = FALSE , round = NULL ,
-		Rdata = TRUE , ... ){
+		Rdata = TRUE , subdir = TRUE , ... ){
 
 		mplus <- Mplus
 		
@@ -17,9 +17,12 @@ write.datlist <- function( datlist, name , include.varnames = TRUE ,
 			}		
 				
 		# create subdirectory
-		pf.subf <- file.path( getwd() , paste( name , sep=""))		
-        dir.create(pf.subf)                 # define subdirectory
-
+		if ( subdir){
+			pf.subf <- file.path( getwd() , paste( name , sep=""))		
+			dir.create(pf.subf)                 # define subdirectory
+					} else {
+			pf.subf <- getwd()							
+					}
         # write legend of variables
 		vars <- colnames(datlist[[1]])
 		V <- length(vars)
@@ -82,7 +85,7 @@ write.datlist <- function( datlist, name , include.varnames = TRUE ,
                     paste( "FILE IS " , name , "__IMP_LIST.txt;" , sep=""),  "TYPE = IMPUTATION;"  , "" , 
                         "VARIABLE:" , "" , "NAMES ARE" , 
                        vars2 , ";" , "" , "! edit usevariables are;" , "!usevar are" , 
-                        "   " , "" , "MISSING = ." , "" , "!........................." ,
+                        "   " , "" , "MISSING = . ;" , "" , "!........................." ,
                         "! Mplus statements"
                             )
             base::writeLines( l1 , file.path( pf.subf , paste( name , "__MPLUS-INPUT-BODY.inp" , sep="") ))

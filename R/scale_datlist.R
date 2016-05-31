@@ -51,7 +51,8 @@ scale_datlist <- function( datlist , orig_var , trafo_var , weights = NULL ,
 			weights <- dd[ , weights0 ]
 					}
         m1 <- stats::weighted.mean( dd[,orig_var] , w = weights )
-        sd1 <- sqrt( Hmisc::wtd.var( dd[,orig_var] , weights ) )
+        # sd1 <- sqrt( Hmisc::wtd.var( dd[,orig_var] , weights ) )
+		sd1 <- TAM::weighted_sd( x=dd[,orig_var] , w=weights )
         c(m1,sd1)
             } )
     #---- compute averaged mean and SD
