@@ -12,7 +12,7 @@ mice.impute.weighted.pmm <- function (y, ry, x,  imputationWeights = NULL ,
     # PLS interactions and quadratics
     newstate <- get( "newstate" , pos = parent.frame() )  
     vname <- get("vname", pos = parent.frame()) # get variable name         
-    plsout <- .aux.pls.imputation( newstate = newstate , vname = vname , pls.impMethod = "pmm" , 
+    plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , pls.impMethod = "pmm" , 
                     x = x[,-1] , y = y , ry=ry , imputationWeights = imputationWeights , 
                     interactions = interactions , quadratics = quadratics ,  pls.facs = pls.facs ,  ... )
     # save PLS result

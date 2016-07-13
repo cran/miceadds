@@ -2,8 +2,7 @@
 \alias{GroupMean}
 \alias{GroupSum}
 \alias{GroupSD}
-\alias{fast.groupmean}
-\alias{fast.groupsum}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Calculation of Groupwise Descriptive Statistics for Matrices
@@ -16,10 +15,7 @@ GroupMean(data, group, weights=NULL, extend=FALSE)
 
 GroupSum(data, group, weights=NULL, extend=FALSE)	
 
-GroupSD(data, group, weights=NULL, extend=FALSE)
-	
-fast.groupmean(data, group, weights=NULL, extend=FALSE)
-fast.groupsum(data, group, weights=NULL, extend=FALSE)
+GroupSD(data, group, weights=NULL, extend=FALSE)	
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

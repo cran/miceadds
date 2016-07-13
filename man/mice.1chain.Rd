@@ -182,7 +182,7 @@ dat$read.migrant1 <- ifelse( paste(dat$migrant) == 1 , dat$read , NA )
 dat$read.migrant0 <- ifelse( paste(dat$migrant) == 0 , dat$read , NA )
 
 # define imputation method
-impmethod <- rep("2l.pls2" , ncol(dat) )
+impmethod <- rep("pls" , ncol(dat) )
 names(impmethod) <- colnames(dat)
 
 # define predictor matrix

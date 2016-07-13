@@ -8,17 +8,9 @@
 {
     xobs <- x[ry, ]
     yobs <- y[ry]
-#    xtx <- t(xobs) %*% xobs
-	# crossproduct is faster than direct multiplication
     xtx <- crossprod( xobs )
-#    pen <- ridge * diag(xtx)
     pen <- ridge * ( 1+0* diag(xtx) )	
-#	xtx1 <- xtx + diag(pen)
-#    v <- solve(xtx + pen)
     v <- solve(xtx + diag(pen) )
-#   coef <- t(yobs %*% xobs %*% v)
-#	coef <- solve(  xtx+pen , t(xobs) %*% yobs )
-#	coef <- solve(  xtx+pen , crossprod(xobs,yobs) )	
     coef <- v %*%  crossprod(xobs,yobs)
     residuals <- yobs - xobs %*% coef
 	df_r <- sum(ry) - ncol(x)

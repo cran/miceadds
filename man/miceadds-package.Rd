@@ -20,7 +20,7 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 1.8 \cr
+Version: \tab 1.9 \cr
 Publication Year: \tab 2016\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
@@ -36,12 +36,12 @@ imputation from a single chain.
 \code{\link{mice.nmi}}.
 
 \item Imputation based on partial least squares regression is implemented
-in \code{\link{mice.impute.2l.pls}}.
+in \code{\link{mice.impute.pls}}.
 
 \item Unidimensional plausible value imputation for latent variables (or
 variables with measurement error) in the \pkg{mice} sequential imputation
 framework can be applied by using the method 
-\code{\link{mice.impute.2l.plausible.values}}.
+\code{\link{mice.impute.plausible.values}}.
 
 \item Imputations for questionnaire items can be
 accomplished by two-way imputation (\code{\link{tw.imputation}}).

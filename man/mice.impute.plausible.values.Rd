@@ -1,5 +1,5 @@
-\name{mice.impute.2l.plausible.values}
-\alias{mice.impute.2l.plausible.values}
+\name{mice.impute.plausible.values}
+\alias{mice.impute.plausible.values}
 
 
 \title{
@@ -17,7 +17,7 @@ obtained by fitting an item response model.
 }
 
 \usage{
-mice.impute.2l.plausible.values(y, ry, x, type, alpha = NULL, 
+mice.impute.plausible.values(y, ry, x, type, alpha = NULL, 
     alpha.se = 0, scale.values = NULL, sig.e.miss = 1e+06, 
     like=NULL , theta=NULL , normal.approx=NULL , 
     pviter = 15, imputationWeights = rep(1, length(y)), plausible.value.print = TRUE, 
@@ -313,7 +313,7 @@ predictorMatrix <- 1 - diag(V)
 rownames(predictorMatrix) <- colnames(predictorMatrix) <- vars
 imputationMethod <- rep("norm" , V )
 names(imputationMethod) <- vars
-imputationMethod[c("PVA","X2")] <- "2l.plausible.values"
+imputationMethod[c("PVA","X2")] <- "plausible.values"
 
 #-- create argument lists for plausible value imputation
 # likelihood and theta grid of plausible value derived from IRT model

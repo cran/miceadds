@@ -4,7 +4,7 @@ mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.
 	# print some informations
     vname <- get("vname", pos = parent.frame()) # get variable name        
 	
-    t1 <- .extract.list.arguments( micearg = tricube.pmm.scale , 
+    t1 <- mice_imputation_extract_list_arguments( micearg = tricube.pmm.scale , 
                            vname = vname , miceargdefault = .2 )
 	
     cat( "\n" , paste( vname , "  Imputation Method tricube.pmm with scaling factor" , 
@@ -39,9 +39,7 @@ mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.
 	#***
     # extract scale parameter for tricube pmm
     vname <- get("vname", pos = parent.frame()) 
-# print(tricube.pmm.scale)	
-#    tricube.pmm.scale <- .extract.list.arguments( micearg = tricube.pmm.scale , 
-#                           vname = vname , miceargdefault = .2 )
+
     utils::flush.console()
     # doing tricube pmm
 	# distance function

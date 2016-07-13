@@ -45,8 +45,7 @@ BEGIN_RCPP
      double min_int_cor = MI[0] ;  
        
      // create vector with correlations  
-     Rcpp::NumericMatrix allcorrs(NI,2);  
-       
+     Rcpp::NumericMatrix allcorrs(NI,2);         
      arma::mat xobs(Xr.begin(), nobj, npred, false);  
      arma::mat Y(Yr.begin(), nobj, nresp , false);   
      arma::mat xall(Xallr.begin(), nall, npred, false);     
@@ -74,16 +73,16 @@ BEGIN_RCPP
      		IM.col(zz) = xxi2.col(0) ;   
      		allcorrs(nn,1)=1 ;  
      		zz = zz + 1 ;  
-     	if ( zz > maxcols[0] -1 ){  
-     		nn = NI ;  
-     				}  
-     				}  
-     			}  
+			if ( zz > maxcols[0] -1 ){  
+				nn = NI ;  
+			}  
+		}  
+     }  
        
      // select only relevant columns;  
      if (zz > 0 ){  
          xint = IM( arma::span(0,nall-1) , arma::span(0,zz-1) ) ;   
-          }   
+     }   
      //     else {   
      //    double xint = FALSE ;   
      //     }  

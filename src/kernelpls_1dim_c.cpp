@@ -36,10 +36,8 @@ BEGIN_RCPP
      // include double here  
        
      // run PLS algorithm 'kernelpls_aux'  
-     Rcpp::List res = kernelplsaux(Yr , Xr,  nc)  ;  
-       
-       
-     return( wrap(res) ) ;
+     Rcpp::List res = kernelplsaux(Yr , Xr,  nc)  ;                
+     return( Rcpp::wrap(res) ) ;
 END_RCPP
 }
 

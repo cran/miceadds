@@ -1,6 +1,6 @@
-\name{mice.impute.2l.pls2}
-\alias{mice.impute.2l.pls}
-\alias{mice.impute.2l.pls2}
+\name{mice.impute.pls}
+\alias{mice.impute.pls}
+
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Imputation using Partial Least Squares for Dimension Reduction
@@ -11,18 +11,11 @@ PLS regression (Mevik & Wehrens, 2007) for a dimension
 reduction of the predictor space.
 }
 \usage{
-mice.impute.2l.pls2(y, ry, x, type, pls.facs = NULL, 
-   pls.impMethod = "pmm", pls.print.progress = TRUE, 
+mice.impute.pls(y, ry, x, type, pls.facs = NULL, 
+   pls.impMethod = "pmm", pls.impMethodArgs = NULL , pls.print.progress = TRUE, 
    imputationWeights = rep(1, length(y)), pcamaxcols = 1E+09, 
-   tricube.pmm.scale = NULL, min.int.cor = 0, min.all.cor=0, 
-   N.largest = 0, pls.title = NULL, print.dims = TRUE,
+   min.int.cor = 0, min.all.cor=0, N.largest = 0, pls.title = NULL, print.dims = TRUE,
    pls.maxcols=5000 , ...)
-
-mice.impute.2l.pls(y, ry, x, type, pls.facs = NULL, 
-   pls.impMethod = "tricube.pmm2", pls.method = NULL, 
-   pls.print.progress = TRUE, imputationWeights = rep(1, length(y)), 
-   pcamaxcols = 1E+09, tricube.pmm.scale = NULL, min.int.cor = 0, min.all.cor=0, 
-   N.largest = 0, pls.title = NULL, print.dims = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -57,25 +50,15 @@ Number of factors used in PLS regression. This argument can also
 be specified as a list defining different numbers of factors
 for all variables to be imputed.
 }
-  \item{pls.impMethod}{
-Imputation method based in the PLS regression model: \cr
-
-\code{norm} -- normal linear regression
-
-\code{pmm} -- predictive mean matching (\code{pmm} method from \pkg{mice}) 
-
-\code{pmm5} -- predictive mean matching (\code{pmm5} method from \pkg{miceadds}) 
-
-\code{tricube.pmm}/\code{tricube.pmm2} -- predictive mean 
-matching with tricube kernel 
-
-\code{xplsfacs} -- create only PLS factors of the regression
-model 
+  \item{pls.impMethod}{Imputation method used for in PLS estimation.
+  	  Any imputation method can be used except if \code{imputationWeights}
+  is provided. Then, only \code{norm} and \code{pmm} are available.
+The method \code{xplsfacs} creates only PLS factors of the regression
+model. 
 }
-\item{pls.method}{
-Calculation method of PLS regression. See \code{\link[pls:plsr]{pls::plsr}}
-(\pkg{pls}) for more details.
-}
+
+\item{pls.impMethodArgs}{Arguments for imputation method 
+\code{pls.impMethod}.}
   \item{pls.print.progress}{
 Print progress during PLS regression.
 }
@@ -84,9 +67,6 @@ Vector of sample weights to be used in imputation models.
 }
   \item{pcamaxcols}{
 Maximum number of principal components.
-}
-  \item{tricube.pmm.scale}{
-Scale factor for tricube predictive mean matching.
 }
   \item{min.int.cor}{
 Minimum absolute correlation for an interaction of two predictors
@@ -114,11 +94,12 @@ Maximum number of interactions to be created.
 Further arguments to be passed.
 }
 }
-\details{
-The function \code{mice.impute.2l.pls2} uses \code{\link{kernelpls.fit2}}
-instead of \code{kernelpls.fit} from the \pkg{pls} package and is
-a bit faster.
-}
+
+%\details{
+%The function \code{mice.impute.2l.pls2} uses \code{\link{kernelpls.fit2}}
+%instead of \code{kernelpls.fit} from the \pkg{pls} package and is
+%a bit faster.
+%}
 
 \value{
 A vector of length \code{nmis=sum(!ry)} with imputations
@@ -161,7 +142,7 @@ rownames(predictorMatrix) <- colnames(predictorMatrix) <- colnames(dat)
 diag( predictorMatrix) <- 0
 
 # use PLS imputation method for all variables
-impMethod <- rep( "2l.pls2" , ncol(dat) )
+impMethod <- rep( "pls" , ncol(dat) )
 names(impMethod) <- colnames(dat)
 
 # define predictors for interactions (entries with type 4 in predictorMatrix)
@@ -179,18 +160,24 @@ pls.impMethod <- as.list( rep("norm" , length(impMethod) ) )
 names(pls.impMethod) <- names(impMethod)
 pls.impMethod[ c("IN1","IN6")] <- "pmm5"   
 
+# some arguments for imputation method  
+pls.impMethodArgs <- list( "IN1" = list( "donors" = 10 ) , 
+                           "IN2" = list( "ridge2" = 1E-4 ) )
+
 # Model 1: Three parallel chains
 imp1 <- mice::mice(data = dat , imputationMethod = impMethod ,  
      m=3 , maxit=5 , predictorMatrix = predictorMatrix ,
      pls.facs = pls.facs , # number of PLS factors
      pls.impMethod = pls.impMethod ,  # Imputation Method in PLS imputation
+     pls.impMethodArgs = pls.impMethodArgs , # arguments for imputation method
      pls.print.progress = TRUE )
 summary(imp1)
 
 # Model 2: One long chain
 imp2 <- mice.1chain(data = dat , imputationMethod = impMethod ,  
      burnin=10 , iter=21 , Nimp=3 , predictorMatrix = predictorMatrix ,
-     pls.facs = pls.facs , pls.impMethod = pls.impMethod )
+     pls.facs = pls.facs , pls.impMethod = pls.impMethod ,
+      pls.impMethodArgs = pls.impMethodArgs )
 summary(imp2)
 }
 }

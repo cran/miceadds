@@ -1,5 +1,5 @@
-\name{mice.impute.2l.eap}
-\alias{mice.impute.2l.eap}
+\name{mice.impute.eap}
+\alias{mice.impute.eap}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Imputation of a Variable with a Known Posterior Distribution
@@ -11,7 +11,7 @@ is known.
 }
 
 \usage{
-mice.impute.2l.eap(y, ry, x, eap, ...)
+mice.impute.eap(y, ry, x, eap, ...)
 }
 
 
@@ -83,7 +83,7 @@ dat1 <- as.matrix( dat[,vars] )
 impmethod <- rep( "pmm" , length(vars ))
 names(impmethod) <- vars
 # define plausible value imputation based on EAP and SEEAP for 'math_PV'
-impmethod[ "math_PV" ] <- "2l.eap"
+impmethod[ "math_PV" ] <- "eap"
 eap <- list( "math_PV" = list( "M" = dat$math_EAP  , "SE" = dat$math_SEEAP  ) )
 # define predictor matrix
 pM <- 1 - diag(1,length(vars))

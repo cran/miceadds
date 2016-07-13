@@ -98,7 +98,7 @@ predM[ , "idstud"] <- 0
 predM[ , "idclass" ] <- -2  
 
 # initialize with norm method
-impMethod <- rep( "norm" , length(impMethod) )
+impMethod <- rep( "norm" , length(imp0$method) )
 names(impMethod) <- names( imp0$method )
 impMethod[ c("idstud","idclass")] <- ""
 

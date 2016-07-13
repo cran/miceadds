@@ -4,14 +4,15 @@
 # load packages or install some packages
 # if they are needed.
 library_install <- function( pkg , ... ){
-	PP <- length(pkg)
+	PP <- base::length(pkg)
 	for (vv in 1:PP){
 		pp <- pkg[vv]
-		ab1 <- do.call( require , list( package=pp , quietly=TRUE ) )
+		ab1 <- base::do.call( what = base::require , 
+					args = base::list( package=pp , quietly=TRUE ) )
 		if ( ! ab1 ){
-			install.packages( pp , ...)
-				   }
-		do.call( require , list( package=pp ) )
-					}
-            }
+			utils::install.packages( pp , ...)
+		}
+		base::do.call( base::require , base::list( package=pp ) )
+	}
+}
 ################################################			

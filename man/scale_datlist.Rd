@@ -114,9 +114,9 @@ datlist2a <- within.imputationList( datlist0 , {
 datlist2b <- scale_datlist( datlist=datlist2a, orig_var="hisei", trafo_var="hisei100",
          weights = "wgt_books" , M=100, SD=15 )
 
-% # check mean and SD (groupwise)
-% ma.wtd.meanNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
-% ma.wtd.sdNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
+# check mean and SD (groupwise)
+ma.wtd.meanNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
+ma.wtd.sdNA(data=datlist1a, weights = datlist[[1]]$studwgt , vars = "hisei100" )
 
 #--- transformation for a single dataset
 dat0 <- datlist[[1]]

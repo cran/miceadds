@@ -13,15 +13,13 @@ using namespace Rcpp;
 /// PLS function
             
 Rcpp::List kernelplsaux(Rcpp::NumericMatrix Yr, Rcpp::NumericMatrix Xr, Rcpp::NumericVector nc){
+	
     int nobj = Xr.nrow(); 
     int npred = Xr.ncol();
     int nresp = Yr.ncol() ;
     int ncomp = nc[0] ;
 
-//    double eps_add = pow(10,-10) ;
-    double eps_add = 1e-10 ;
-    
-    
+    double eps_add = 1e-10 ;        
     arma::mat X(Xr.begin(), nobj, npred, false);       // reuses memory and avoids extra copy
     arma::mat Y(Yr.begin(), nobj, nresp , false); 
 
@@ -63,89 +61,88 @@ Rcpp::List kernelplsaux(Rcpp::NumericMatrix Yr, Rcpp::NumericMatrix Xr, Rcpp::Nu
 
     //    ## 1.
     //    XtY <- crossprod(X, Y)
-    arma::mat XtY = arma::mat( trans(X) * Y ) ;
+    arma::mat XtY = arma::mat( arma::trans(X) * Y ) ;
 
     // set component index ;
     // int aa=0 ;
     for (int aa=0;aa<ncomp;++aa){
 
-    //    ## 2.
-    //    w.a <- XtY / sqrt(c(crossprod(XtY)))
-    wa = arma::mat( XtY / repmat( sqrt( trans(XtY) * XtY + eps_add ) ,
-                npred,1) ) ;
-
-    //        ## 3.
-    //        r.a <- w.a
-    //            for (j in 1:(a - 1))
-    //                r.a <- r.a - (P[,j] %*% w.a) * R[,j]
-    //        }
-
-    ra = wa ;
-    for (int jj=0 ; jj < aa ; ++jj ){
-    //	int jj=0;  // include for loop here !!!!
-        tmp11 = arma::mat( trans(P.col(jj))  * wa ) ;
-        tmp12 = arma::repmat( tmp11 , npred , 1 ) ;
-        ra = arma::mat( ra -  tmp12 % R.col(jj) ) ;
-                }
-            
-        
-    //        ## 4.
-    //        t.a <- X %*% r.a
-    //        tsq <- c(crossprod(t.a))
-    //        p.a <- crossprod(X, t.a) / tsq
-    //        q.a <- crossprod(XtY, r.a) / tsq
-
-    ta = arma::mat( X * ra ) ;
-    tsq = arma::mat( trans(ta) * ta ) ;
-    tsq1 = arma::repmat( tsq , npred , 1 ) ;
-    pa = arma::mat( ( trans(X) * ta ) / tsq1) ;
-    qa = arma::mat( ( trans(XtY) * ra ) / tsq ) ;
-
-    //     ## 5.
-    //     XtY <- XtY - (tsq * p.a) %*% t(q.a)
-    tmp2 = arma::repmat( tsq , npred , 1 ) ;
-    XtY = arma::mat( XtY - ( tmp2 % pa ) * trans(qa) ) ;
-
-    //     ## 6.-8.
-    //     R[,a] <- r.a
-    //     P[,a] <- p.a
-    //     tQ[a,] <- q.a
-    //     B[,a] <- R[,1:a, drop=FALSE] %*% tQ[1:a,, drop=FALSE]
-    R.col(aa) = ra ;
-    P.col(aa) = pa ;
-    tQ.row(aa) = qa ;
-    B.col(aa) = arma::mat( 
-        R( arma::span(0,npred-1) , arma::span(0,aa) ) *
-        tQ( arma::span(0,aa) , arma::span(0,0) )
-                ) ; 
-
-    // # !stripped
-    // tsqs[a] <- tsq
-    tsqs( aa , 0 ) = tsq(0,0) ;
-    //     ## Extra step to calculate Y scores:
-    //     u.a <- Y %*% q.a / c(crossprod(q.a)) # Ok for nresp == 1 ??
-//    ua = arma::mat( ( Y * qa ) / 
-//        arma::repmat( trans(qa) * qa  , nobj , 1 ) ) ;        
-    // correction ARb 2013-11-12    
-    ua = arma::mat( ( Y * qa ) / 
-        arma::repmat( trans(qa) * qa  + eps_add , nobj , 1 ) ) ;        
-    //     ## make u orth to previous X scores:
-    //     if (a > 1) u.a <- u.a - TT %*% (crossprod(TT, u.a) / tsqs)
-    if (aa > 0 ){
-       ua = ua - arma::mat(  TT * ( ( trans(TT) * ua ) / ( tsqs + eps_add ) ) );	
-            }
-    //     U[,a] <- u.a
-    U.col(aa) = ua ;
-    //     TT[,a] <- t.a
-    TT.col(aa) = ta ;
-    //     W[,a] <- w.a
-    W.col(aa) = wa ;
-    //    fitted[,a] <- TT[,1:a] %*% tQ[1:a,, drop=FALSE]
-    fitted.col(aa) = arma::mat(
-        TT( arma::span(0,nobj-1) , arma::span(0,aa) ) *
-        tQ( arma::span(0,aa) , arma::span(0,0) )
-                ) ;
-        }  // end loop components
+		//    ## 2.
+		//    w.a <- XtY / sqrt(c(crossprod(XtY)))
+		wa = arma::mat( XtY / repmat( sqrt( arma::trans(XtY) * XtY + eps_add ) ,
+					npred,1) ) ;
+	
+		//        ## 3.
+		//        r.a <- w.a
+		//            for (j in 1:(a - 1))
+		//                r.a <- r.a - (P[,j] %*% w.a) * R[,j]
+		//        }
+	
+		ra = wa ;
+		for (int jj=0 ; jj < aa ; ++jj ){
+		//	int jj=0;  // include for loop here !!!!
+			tmp11 = arma::mat( arma::trans(P.col(jj))  * wa ) ;
+			tmp12 = arma::repmat( tmp11 , npred , 1 ) ;
+			ra = arma::mat( ra -  tmp12 % R.col(jj) ) ;
+		}
+							
+		//        ## 4.
+		//        t.a <- X %*% r.a
+		//        tsq <- c(crossprod(t.a))
+		//        p.a <- crossprod(X, t.a) / tsq
+		//        q.a <- crossprod(XtY, r.a) / tsq
+	
+		ta = arma::mat( X * ra ) ;
+		tsq = arma::mat( arma::trans(ta) * ta ) ;
+		tsq1 = arma::repmat( tsq , npred , 1 ) ;
+		pa = arma::mat( ( arma::trans(X) * ta ) / tsq1) ;
+		qa = arma::mat( ( arma::trans(XtY) * ra ) / tsq ) ;
+	
+		//     ## 5.
+		//     XtY <- XtY - (tsq * p.a) %*% t(q.a)
+		tmp2 = arma::repmat( tsq , npred , 1 ) ;
+		XtY = arma::mat( XtY - ( tmp2 % pa ) * arma::trans(qa) ) ;
+	
+		//     ## 6.-8.
+		//     R[,a] <- r.a
+		//     P[,a] <- p.a
+		//     tQ[a,] <- q.a
+		//     B[,a] <- R[,1:a, drop=FALSE] %*% tQ[1:a,, drop=FALSE]
+		R.col(aa) = ra ;
+		P.col(aa) = pa ;
+		tQ.row(aa) = qa ;
+		B.col(aa) = arma::mat( 
+			R( arma::span(0,npred-1) , arma::span(0,aa) ) *
+			tQ( arma::span(0,aa) , arma::span(0,0) )
+					) ; 
+	
+		// # !stripped
+		// tsqs[a] <- tsq
+		tsqs( aa , 0 ) = tsq(0,0) ;
+		//     ## Extra step to calculate Y scores:
+		//     u.a <- Y %*% q.a / c(crossprod(q.a)) # Ok for nresp == 1 ??
+	//    ua = arma::mat( ( Y * qa ) / 
+	//        arma::repmat( trans(qa) * qa  , nobj , 1 ) ) ;        
+		// correction ARb 2013-11-12    
+		ua = arma::mat( ( Y * qa ) / 
+			arma::repmat( arma::trans(qa) * qa  + eps_add , nobj , 1 ) ) ;        
+		//     ## make u orth to previous X scores:
+		//     if (a > 1) u.a <- u.a - TT %*% (crossprod(TT, u.a) / tsqs)
+		if (aa > 0 ){
+		   ua = ua - arma::mat(  TT * ( ( arma::trans(TT) * ua ) / ( tsqs + eps_add ) ) );	
+		}
+		//     U[,a] <- u.a
+		U.col(aa) = ua ;
+		//     TT[,a] <- t.a
+		TT.col(aa) = ta ;
+		//     W[,a] <- w.a
+		W.col(aa) = wa ;
+		//    fitted[,a] <- TT[,1:a] %*% tQ[1:a,, drop=FALSE]
+		fitted.col(aa) = arma::mat(
+			TT( arma::span(0,nobj-1) , arma::span(0,aa) ) *
+			tQ( arma::span(0,aa) , arma::span(0,0) )
+					) ;
+    }  // end loop components
     //*******************
 
     ////////////////////////////////////

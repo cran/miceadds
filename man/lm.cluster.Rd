@@ -142,12 +142,12 @@ datlist <- mids2datlist( imp )
 mod <- lapply(  datlist, FUN = function(data){
             lm.cluster( data=data , formula=denote ~ migrant+ misei , 
                     cluster = dat$idclass )
-                                }  )
+            }  )
 # extract parameters and covariance matrix
 betas <- lapply( mod , FUN = function(rr){ coef(rr) } )
 vars <- lapply( mod , FUN = function(rr){ vcov(rr) } )
 # conduct statistical inference
-summary( mitools::MIcombine(betas,vars) )
+summary(pool_mi( qhat = betas, u = vars )) 
 }
 }
 

@@ -39,6 +39,38 @@ CHANGELOG miceadds
 
 
 
+
+---------------------------------------------------------------------
+Versions 1.9  -- 2016-07-13  --  CRAN miceadds 1.9-0
+---------------------------------------------------------------------
+
+FIXED * fixed a bug in 'mice.impute.2l.binary'. Random slopes were
+        not properly handled in the previuos package version
+        (miceadds 1.8).
+ADDED * included lme4-based and blme-based imputation of normally 
+        distributed two-level data in 'mice.impute.2l.continuous' function.
+        Predictive mean matching for two-level data is also added
+        as the 'mice.impute.2l.pmm' function.
+ADDED * included imputation function '2lonly.function' for level 2
+        imputation based on (arbitrary) level 1 imputation function
+ADDED * added general group-wise imputation function 'mice.impute.bygroup'
+NOTE  * included t values and p values in output of 'pool_mi' for 
+        inference of multiply imputed datasets (due to a request on
+        R help list of Jennifer Lorenz)
+NOTE  * renamed PLS imputation method '2l.pls' into 'mice.impute.pls'
+NOTE  * renamed plausible value imputation method into
+        'mice.impute.plausible.values'
+NOTE  * renamed 'mice.impute.2l.eap' into 'mice.impute.eap'
+NOTE  * Defunct functions: 'mice.impute.2l.pls', 'mice.impute.2l.pls2',
+        'fast.groupmean', 'fast.groupsum', 'mice.impute.2l.plausible.values',
+        'mice.impute.2l.eap', 'mice.impute.2lonly.norm2', 
+        'mice.impute.2lonly.pmm2'
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: mice.impute.2l.lmer (1),
+        mice.impute.2lonly.function (1), mice.imputation.bygroup (1),
+        lm.cluster(1), mice.impute.pls (1)
+
 ---------------------------------------------------------------------
 Versions 1.8  -- 2016-05-31  --  CRAN miceadds 1.8-0
 ---------------------------------------------------------------------

@@ -40,7 +40,7 @@ latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) ,
 		utils::flush.console()
         # parameter update
         sig0 <- sigma ; beta0 <- cmod ; iter <- iter + 1
-                    }
+    }
     # standard errors for regression coefficients
     V <- ncol(X)    # number of X variables (predictors)
     scoefs <- matrix( 0 , nrow=V , ncol=5 )
@@ -54,16 +54,18 @@ latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) ,
         h1 <- weights * xvv^2  / sigma^2 * ( 1 - pv1$SE.EAP^2 / sigma^2 )    
         h1[ h1<0] <- 0
         scoefs[vv,3] <- sqrt( 1 / sum( h1 ) )    
-        }    
+    }    
     scoefs$t <- scoefs$est / scoefs$se
     scoefs$p <- 2 * ( 1 - stats::pnorm( abs( scoefs$t ) ) )
-    if ( ! is.null( colnames(X) ) ){ rownames(scoefs) <- colnames(X) } # use column names of X
+    if ( ! is.null( colnames(X) ) ){ 
+		rownames(scoefs) <- colnames(X)   # use column names of X
+	} 
     #********
     # list of results
     res <- list( "iterations" = iter - 1, "maxiter" = maxiter , "max.parchange" = max.parchange ,
                 "coef" = beta0 , "summary.coef" = scoefs , "sigma" = sigma )
     return(res)
-    }
+}
 
 	
 	

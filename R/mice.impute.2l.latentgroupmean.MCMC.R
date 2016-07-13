@@ -12,13 +12,12 @@ mice.impute.2l.latentgroupmean.MCMC <- function (y, ry, x, type ,
 
     # distinguish cases with and without covariates
     if ( sum( type == 1 ) > 0){ 
-
         # aggregate covariates
         cov2 <- cbind( cluster , covariates )
-        covaggr <- mice.impute.2l.groupmean( y , ry , x = cov2 , type = c(-2 , rep(1,ncol(covariates) ) ) ,
+        covaggr <- mice.impute.2l.groupmean( y , ry , x = cov2 , 
+			type = c(-2 , rep(1,ncol(covariates) ) ) ,
                        grmeanwarning=FALSE )
         colnames(covaggr) <- colnames(covariates)
-
         # aggregation at level 2
         covaggr.l2 <- stats::aggregate( covaggr , list( cluster ) , mean )
         colnames(covaggr.l2)[-1] <- colnames(covaggr)
@@ -29,7 +28,7 @@ mice.impute.2l.latentgroupmean.MCMC <- function (y, ry, x, type ,
         # PLS interactions and quadratics
         newstate <- get( "newstate" , pos = parent.frame() )  
         vname <- get("vname", pos = parent.frame()) # get variable name         
-        plsout <- .aux.pls.imputation( newstate = newstate , vname = vname , pls.impMethod = "xplsfacs" , 
+        plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , pls.impMethod = "xplsfacs" , 
                         x = h1 , y = y.l2[,2] , ry= ( ! is.na(y.l2[,2] )) , 
                         imputationWeights = rep( 1 , nrow(covaggr.l2)) , 
                         interactions = interactions, quadratics = quadratics ,  pls.facs = pls.facs ,  ... )

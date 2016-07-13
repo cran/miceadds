@@ -1,8 +1,10 @@
-mice.impute.tricube.pmm <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.boot = FALSE , ...){
+mice.impute.tricube.pmm <- function (y, ry, x, tricube.pmm.scale= .2 , 
+			tricube.boot = FALSE , ...){
     x <- cbind(1, as.matrix(x))
 	# print some informations
         vname <- get("vname", pos = parent.frame()) # get variable name        
-    cat( "\n" , paste( vname , "  Imputation Method tricube.pmm with scaling factor" , tricube.pmm.scale , "\n"))
+    cat( "\n" , paste( vname , "  Imputation Method tricube.pmm with scaling factor" ,
+			tricube.pmm.scale , "\n"))
     parm <- .norm.draw(y, ry, x, ...)
     yhatobs <- x[ry, ] %*% parm$coef
     yhatmis <- x[!ry, ] %*% parm$beta
@@ -29,7 +31,7 @@ mice.impute.tricube.pmm <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.b
 	#***
     # extract scale parameter for tricube pmm
     vname <- get("vname", pos = parent.frame()) 
-    tricube.pmm.scale <- .extract.list.arguments( micearg = tricube.pmm.scale , 
+    tricube.pmm.scale <- mice_imputation_extract_list_arguments( micearg = tricube.pmm.scale , 
                            vname = vname , miceargdefault = .2 )
     flush.console()
     # doing tricube pmm

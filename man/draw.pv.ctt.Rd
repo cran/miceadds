@@ -94,7 +94,7 @@ See also
 for plausible value imputation.
 
 Plausible value imputations can be conducted in \pkg{mice} using the
-imputation method \code{\link{mice.impute.2l.plausible.values}}.
+imputation method \code{\link{mice.impute.plausible.values}}.
 
 Plausible values can be drawn in \pkg{Amelia} by specifying observation-level
 priors, see \code{\link[Amelia:moPrep]{Amelia::moPrep}} and

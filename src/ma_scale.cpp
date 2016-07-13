@@ -40,11 +40,9 @@ BEGIN_RCPP
        
      int n = x.nrow() ;  
      int p = x.ncol() ;  
-     Rcpp::NumericMatrix y(n,p) ;  
-       
+     Rcpp::NumericMatrix y(n,p) ;         
      double mvv=0;  
-     double sdvv=0;  
-     
+     double sdvv=0;       
      double eps_add = 1e-10 ;
        
      for (int vv=0;vv<p;vv++){  
@@ -54,24 +52,15 @@ BEGIN_RCPP
          for (int ii=0;ii<n;ii++){  
              mvv += x(ii,vv) ;  
              sdvv += pow( x(ii,vv) , 2 ) ;  
-                 }  
+         }  
          mvv = mvv / n ;  
          sdvv = sqrt( ( sdvv - n * mvv*mvv )/(n-1 ) ) ;  
          // define standardization  
          y(_,vv) = ( x(_,vv) - mvv ) / ( sdvv + eps_add ) ;  
-             }              
+     }              
        
-     return( wrap(y) ) ;  
+     return( Rcpp::wrap(y) ) ;  
        
-         ////////////////////////////////////  
-         // OUTPUT:  
-     //    return Rcpp::List::create(  
-     //           Rcpp::Named("y") = y,  
-     //           Rcpp::Named("n") = n ,  
-     //           _["p"] = p ,  
-     //           _["mvv"]=mvv ,  
-     //        _["sdvv"] = sdvv  
-     //                ) ;
 END_RCPP
 }
 
@@ -84,14 +73,12 @@ END_RCPP
 
 SEXP scale2_NA_C( SEXP x_ ){
 BEGIN_RCPP
-  
-       
+         
      Rcpp::NumericMatrix x(x_);          
        
      int n = x.nrow() ;  
      int p = x.ncol() ;  
-     Rcpp::NumericMatrix y(n,p) ;  
-       
+     Rcpp::NumericMatrix y(n,p) ;         
      double mvv=0;  
      double sdvv=0;  
      double nvv = 0;  
@@ -106,17 +93,17 @@ BEGIN_RCPP
          for (int ii=0;ii<n;ii++){  
              if (! R_IsNA(x(ii,vv)) ) {  
                  mvv += x(ii,vv) ;  
-                 sdvv += pow( x(ii,vv) , 2 ) ;  
+                 sdvv += pow( x(ii,vv) , 2.0 ) ;  
                  nvv ++ ;  
-                         }  
-                 }  
+             }  
+         }  
          mvv = mvv / nvv ;  
          sdvv = sqrt( ( sdvv - nvv * mvv*mvv )/(nvv - 1 ) ) ;  
          // define standardization  
          y(_,vv) = ( x(_,vv) - mvv ) / ( sdvv + eps_add ) ;  
-             }              
+     }              
        
-     return( wrap(y) ) ;  
+     return( Rcpp::wrap(y) ) ;  
        
 END_RCPP
 }

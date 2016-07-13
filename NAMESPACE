@@ -26,6 +26,7 @@ importFrom(stats, cov2cor)
 importFrom(stats, cor)
 importFrom(stats, dnorm)
 importFrom(stats, fitted)
+importFrom(stats, formula)
 importFrom(stats, get_all_vars)
 importFrom(stats, glm)
 importFrom(stats, lm)
@@ -74,6 +75,9 @@ import(mice)
 #***************************************************
 #************** Imports ****************************
  
+
+importFrom(blme, bglmer)
+importFrom(blme, blmer)
 importFrom(car, Anova) 
 importFrom(foreign, read.spss) 
 importFrom(grouped, grouped)
@@ -90,8 +94,8 @@ importFrom(mvtnorm, dmvnorm)
 importFrom(mvtnorm, rmvnorm)
 importFrom(multiwayvcov, cluster.vcov)
 importFrom(sirt, rowKSmallest2.sirt)
-importFrom(sjmisc, write_spss)
 importFrom(sjmisc, set_label)
+importFrom(sjmisc, write_spss)
 importFrom(TAM, tam.pv)
 importFrom(TAM, tam.latreg)
 importFrom(TAM, weighted_quantile)
@@ -109,116 +113,121 @@ importFrom(TAM, weighted_sd)
 #############################
 ## exports
 
-export(
-    complete.mids.1chain,
-    complete.mids.nmi,
-    create.designMatrices.waldtest,
-    crlrem,
-    cxxfunction.copy, 
-    datlist2mids,
-    datlist2nested.datlist,
-    datalist2mids,
-    datlist_create,
-    draw.pv.ctt,
-    fast.groupmean,
-    fast.groupsum,
-    glm.cluster,
-    grep.vec, 
-    GroupMean,
-    GroupSD,
-    GroupSum,
-    index.dataframe, 
-    jomo2datlist,
-    kernelpls.fit2,
-    library_install,
-    List2nestedList,
-    lm.cluster,
-    load.data,
-    load.Rdata, 
-    load.Rdata2,
-    ma.scale2,
-    ma.wtd.corNA,     
-    ma.wtd.covNA, 
-    ma.wtd.curtosisNA,
-    ma.wtd.meanNA,
-    ma.wtd.quantileNA,
-    ma.wtd.sdNA,
-    ma.wtd.skewnessNA,
-    mi.anova,
-    mi_dstat,
-    mice.1chain,
-    mice.impute.2l.binary,
-    mice.impute.2l.contextual.norm,
-    mice.impute.2l.contextual.pmm, 
-    mice.impute.2l.eap,
-    mice.impute.2l.groupmean, 
-    mice.impute.2l.groupmean.elim, 
-    mice.impute.2l.latentgroupmean.MCMC,
-    mice.impute.2l.latentgroupmean.ML,
-    mice.impute.2l.plausible.values,
-    mice.impute.2l.pls,
-    mice.impute.2l.pls2,
-    mice.impute.2lonly.norm2,
-    mice.impute.2lonly.pmm2,
-    mice.impute.grouped,
-    mice.impute.pmm3, 
-    mice.impute.pmm4,  
-    mice.impute.pmm5,  
-    mice.impute.pmm6,     
-    mice.impute.tricube.pmm, 
-    mice.impute.tricube.pmm2, 
-    mice.impute.weighted.norm,
-    mice.impute.weighted.pmm,
-    mice.nmi,
-    micombine.chisquare,
-    micombine.cor,
-    micombine.cov,
-    micombine.F,
-    MIcombine.NestedImputationResultList,
-    mids2datlist,
-    MIwaldtest,
-    nested.datlist_create,
-    nested.datlist2datlist,
-    NestedImputationList,
-    nestedList2List,
-    NMIcombine,
-    NMIextract,
-    NMIwaldtest,
-    output.format1, 
-    pca.covridge,
-    pool_mi,
-    pool_nmi,
-    pool.mids.nmi,
-    read.fwf2,
-    Reval, 
-    Revalpr,
-    Revalprstr,
-    Rhat.mice,
-    round2, 
-    Rsessinfo, 
-    save.data,
-    save.Rdata, 
-    scale_datlist,
-    scan.vec,
-    scan.vector, 
-    scan0,
-    source.all, 
-    str_C.expand.grid,
-    subset_datlist,
-    sumpreserving.rounding,
-    systime,
-    tw.imputation,
-    tw.mcmc.imputation,
-    VariableNames2String,
-    visitSequence.determine,
-    within.imputationList,
-    withPool_MI,
-    withPool_NMI,
-    write.datlist,
-    write.fwf2, 
-    write.mice.imputation,
-    write.pspp 
-        )
+export(complete.mids.1chain)
+export(complete.mids.nmi)
+export(create.designMatrices.waldtest)
+export(crlrem)
+export(cxxfunction.copy)
+export(datlist2mids)
+export(datlist2nested.datlist)
+export(datalist2mids)
+export(datlist_create)
+export(draw.pv.ctt)
+export(fast.groupmean)		# defunct
+export(fast.groupsum)		# defunct
+export(glm.cluster)
+export(grep.vec)
+export(GroupMean)
+export(GroupSD)
+export(GroupSum)
+export(index.dataframe)
+export(jomo2datlist)
+export(kernelpls.fit2)
+export(library_install)
+export(List2nestedList)
+export(lm.cluster)
+export(load.data)
+export(load.Rdata)
+export(load.Rdata2)
+export(ma.scale2)
+export(ma.wtd.corNA)
+export(ma.wtd.covNA)
+export(ma.wtd.curtosisNA)
+export(ma.wtd.meanNA)
+export(ma.wtd.quantileNA)
+export(ma.wtd.sdNA)
+export(ma.wtd.skewnessNA)
+export(mi.anova)
+export(mi_dstat)
+export(mice.1chain)
+export(mice.impute.2l.binary)
+export(mice.impute.2l.contextual.norm)
+export(mice.impute.2l.contextual.pmm)
+export(mice.impute.2l.continuous)
+export(mice.impute.2l.eap)		# defunct
+export(mice.impute.2l.groupmean)
+export(mice.impute.2l.groupmean.elim)
+export(mice.impute.2l.latentgroupmean.MCMC)
+export(mice.impute.2l.latentgroupmean.ML)
+export(mice.impute.2l.plausible.values)	# defunct
+export(mice.impute.2l.pls)		# defunct
+export(mice.impute.2l.pls2)		# defunct
+export(mice.impute.2l.pmm)
+export(mice.impute.2lonly.function)
+export(mice.impute.2lonly.norm2)		# defunct
+export(mice.impute.2lonly.pmm2)		# defunct
+export(mice.impute.bygroup)
+export(mice.impute.eap)
+export(mice.impute.grouped)
+export(mice.impute.plausible.values)
+export(mice.impute.pls)
+export(mice.impute.pmm3)
+export(mice.impute.pmm4)
+export(mice.impute.pmm5)
+export(mice.impute.pmm6)
+export(mice.impute.tricube.pmm)
+export(mice.impute.tricube.pmm2)
+export(mice.impute.weighted.norm)
+export(mice.impute.weighted.pmm)
+export(mice.nmi)
+export(micombine.chisquare)
+export(micombine.cor)
+export(micombine.cov)
+export(micombine.F)
+export(MIcombine.NestedImputationResultList)
+export(mids2datlist)
+export(MIwaldtest)
+export(nested.datlist_create)
+export(nested.datlist2datlist)
+export(NestedImputationList)
+export(nestedList2List)
+export(NMIcombine)
+export(NMIextract)
+export(NMIwaldtest)
+export(output.format1)
+export(pca.covridge)
+export(pool_mi)
+export(pool_nmi)
+export(pool.mids.nmi)
+export(read.fwf2)
+export(Reval)
+export(Revalpr)
+export(Revalprstr)
+export(Rhat.mice)
+export(round2)
+export(Rsessinfo)
+export(save.data)
+export(save.Rdata)
+export(scale_datlist)
+export(scan.vec)
+export(scan.vector)
+export(scan0)
+export(source.all)
+export(str_C.expand.grid)
+export(subset_datlist)
+export(sumpreserving.rounding)
+export(systime)
+export(tw.imputation)
+export(tw.mcmc.imputation)
+export(VariableNames2String)
+export(visitSequence.determine)
+export(within.imputationList)
+export(withPool_MI)
+export(withPool_NMI)
+export(write.datlist)
+export(write.fwf2)
+export(write.mice.imputation)
+export(write.pspp)
 
 
 #########################################
