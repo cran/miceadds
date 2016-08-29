@@ -110,9 +110,20 @@ Simon Grund, Alexander Robitzsch
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+See \code{\link[mice:mice.impute.2l.norm]{mice::mice.impute.2l.norm}} and
+\code{\link[mice:mice.impute.2l.pan]{mice::mice.impute.2l.pan}} for
+imputation functions in the \pkg{mice} package under fully conditional
+specification.
+
+See the \pkg{pan} (\code{\link[pan:pan]{pan::pan}})
+and the \pkg{jomo} (\code{\link[jomo:jomo]{jomo::jomo}})
+package for joint multilevel imputation. See 
+\code{\link[mitml:panImpute]{mitml::panImpute}} and
+\code{\link[mitml:jomoImpute]{mitml::jomoImpute}} for 
+wrapper functions to these packages in the \pkg{mitml}
+package.
+}
 
 \examples{
 \dontrun{

@@ -54,6 +54,18 @@ A vector of length \code{nmis} with imputations.
 % }
 
 
+
+\seealso{
+See \code{\link[mice:mice.impute.2lonly.norm]{mice::mice.impute.2lonly.norm}} and
+the \code{\link[mice:mice.impute.2lonly.pmm]{mice::mice.impute.2lonly.pmm}}
+function.
+
+See also the \pkg{jomo} packlage (\code{\link[jomo:jomo2]{jomo::jomo2}})
+for joint multilevel imputationm of level 1 and
+level 2 variables.
+}
+
+
 \examples{
 \dontrun{
 #############################################################################

@@ -26,16 +26,13 @@ mice_multilevel_imputation_pmm5 <- function (y, ry, x, yhatobs ,
     dfr0 <- dfr[ dfr$obs == 0 , ]
     dfr1 <- dfr[ dfr$obs == 1 , ]	
     # create matrix for sampling
-    ydonors <- base::matrix( NA , nrow=N , ncol=2*donors )
-
-	dfr0 <- dfr0[ base::order(dfr0$index_obs_miss) , ]
+    ydonors <- matrix( NA , nrow=nrow(dfr0) , ncol=2*donors )
+	dfr0 <- dfr0[ order(dfr0$index_obs_miss) , ]
     for ( dd in 1:donors){
-		i1 <- mice::squeeze( dfr0$obsindex_low - dd + 1 , vy )
-        ydonors[,dd] <- dfr1[ i1 , "y"]
-		i2 <- mice::squeeze( dfr0$obsindex_upp + dd - 1 , vy )
-        ydonors[,dd+donors] <- dfr1[ i2, "y"]    
+        ydonors[,dd] <- dfr1[ mice::squeeze( dfr0$obsindex_low - dd + 1 ,c(1,Ny) ) , "y"]
+        ydonors[,dd+donors] <- dfr1[ mice::squeeze( dfr0$obsindex_upp + dd - 1 ,c(1,Ny) ) , "y"]    
                         }
-    ind.sample <- base::sample( 1:(2*donors) , N0 , replace = TRUE )
-    imp <- ydonors[ base::cbind( 1:N0 , ind.sample) ]
+    ind.sample <- sample( 1:(2*donors) , N0 , replace = TRUE )
+    imp <- ydonors[ cbind( 1:N0 , ind.sample) ]
     base::return(imp)
 }

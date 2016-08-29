@@ -41,6 +41,25 @@ CHANGELOG miceadds
 
 
 ---------------------------------------------------------------------
+Versions 2.0  -- 2016-08-29  --  CRAN miceadds 2.0-0
+---------------------------------------------------------------------
+
+FIXED * fixed an incorrect calculation in D2 statistic which appeared
+        differently in literature (thanks to David Tian)
+NOTE  * allow now vectors of strings to specify file names in 'load.data'.
+        Also included the value NULL of the argument 'path' if a path
+        should not be specified in this argument.
+ADDED * included mice imputation method 'mice.impute.hotDeck' for 
+        probabilistic hot deck imputation
+FIXED * fixed a bug included in 'mice.impute.plausible.values' using 
+        likelihood objects which was recently introduced in miceadds 1.9
+FIXED * fixed a bug in predicted mean matching of two-level data in
+        function 'mice.impute.2l.pmm'
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: mice.impute.hotDeck (1)
+
+---------------------------------------------------------------------
 Versions 1.9  -- 2016-07-13  --  CRAN miceadds 1.9-0
 ---------------------------------------------------------------------
 

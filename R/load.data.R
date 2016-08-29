@@ -12,6 +12,7 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 					file ,  "OR" )$x
 	if ( base::length(i1) == 0 ){							
 		files <- base::list.files( dir , filename )	
+		files <- grep.vec( filename , files , "AND")$x
 	} else {
 		files <- file
 	}
@@ -31,23 +32,24 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 	}
     #*** csv2 objects
 	if (type == "csv2" ){
-		dat4 <- utils::read.csv2( file.path(dir,file) , ... )
+
+		dat4 <- utils::read.csv2( file_path(dir,file) , ... )
 	}
     #*** csv objects
 	if (type == "csv" ){
-		dat4 <- utils::read.csv( file.path(dir,file) , ... )
+		dat4 <- utils::read.csv( file_path(dir,file) , ... )
 	}
     #*** table objects
 	if (type == "table" ){
-		dat4 <- utils::read.table( file.path(dir,file) , header=TRUE , ... )
+		dat4 <- utils::read.table( file_path(dir,file) , header=TRUE , ... )
 	}
     #*** sav objects (SPSS objects)
 	if (type == "sav" ){
 		if ( ! spss.default){
-			dat4 <- foreign::read.spss( file.path(dir,file) , ... )
+			dat4 <- foreign::read.spss( file_path(dir,file) , ... )
 		}
 		if ( spss.default){
-			dat4 <- foreign::read.spss( file.path(dir,file) , 
+			dat4 <- foreign::read.spss( file_path(dir,file) , 
 				to.data.frame=TRUE , use.value.labels=FALSE , ... )
 		}			
 	}				

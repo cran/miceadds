@@ -18,7 +18,6 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 	pos <- base::parent.frame(n=1)
 	res <- mice_imputation_get_states( pos = pos )				
 	vname <- res$vname
-	
 	# newstate <- res$newstate	
 	newstate <- get( "newstate" , pos = pos )  
 	
@@ -39,6 +38,8 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
           if ( ! is.null( alpha[[ vname ]] )){ pvmethod <- 1 }
           if (  is.null( alpha[[vname ]] )){ pvmethod <- 2 }            
                     }  
+
+
 					
     # define scale type
 #    scale.type <- .extract.list.arguments( micearg = scale.type , 
@@ -57,9 +58,11 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
     # Plausible value imputation according to the Rasch model
 	# adapt this to include only the likelihood
 	##############################################################
-    if (pvmethod == 4){     
-         res <- .include.2l.predictors( y=y, x=x , ry=ry , type=type , ... )
+    if (pvmethod == 4){ 
+         res <- include.2l.predictors_v1( y=y, x=x , ry=ry , type=type , vname = vname , 
+					newstate = newstate , ... )
          X <- res$X
+		 # X <- res
         #*+*+*+*
         # PLS
         if ( is.null(pls.facs) + is.null(interactions) + is.null(quadratics) < 3 ){
@@ -81,11 +84,11 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 			normal.approx <- TRUE
 						}
 		
-		 X <- X[,-1]	# exclude intercept
+		 X <- X[,-1,drop=FALSE]	# exclude intercept
 		 
 		 #-- perform latent regression		 
 		 mod0 <- TAM::tam.latreg(like=like, theta=theta, Y = X ,
-								control=list( progress=FALSE )  )		 
+								control=list( progress=FALSE )  )	
 		 #-- draw plausible values
 		 cat("\n")
 		 mod1 <- TAM::tam.pv( mod0 , normal.approx=normal.approx ,

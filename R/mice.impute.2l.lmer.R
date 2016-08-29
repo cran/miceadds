@@ -43,7 +43,6 @@ mice.impute.2l.lmer <- function(y, ry, x, type, intercept=TRUE,
 				groupcenter.slope = groupcenter.slope)
 	x <- res$x
 	type <- res$type
-
 	#--- create formulas for lme4
 	rhs.f <- mice_multilevel_create_formula( 
 					variables = base::colnames(x)[type %in% base::c(1,2)] , 
@@ -63,7 +62,7 @@ mice.impute.2l.lmer <- function(y, ry, x, type, intercept=TRUE,
     if ( model == "binary"){
 		lmer_args$family <- lmer_family
 	}
-	
+
 	# apply blme arguments if provided
 	lmer_args <- mice_multilevel_imputation_blme_args(
 						lmer_args = lmer_args , blme_args = blme_args )
@@ -72,7 +71,7 @@ mice.impute.2l.lmer <- function(y, ry, x, type, intercept=TRUE,
 	fit <- mice_multilevel_doCall_suppressWarnings( 
 				what = lmer_function , args = lmer_args , 
 				warnings = glmer.warnings )
-			
+
 	# clusters without missing values
 	clus0 <- clus[!ry]	
 	

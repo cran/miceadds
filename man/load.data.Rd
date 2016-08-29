@@ -21,7 +21,9 @@ load.data( filename , type="Rdata" , path=getwd() , spss.default=TRUE , ...)
 \arguments{
 \item{filename}{
 Name of the data file (matrix or data frame). This can also be a part
-of the file name and the most recent file is loaded.
+of the file name and the most recent file is loaded. 
+\code{filename} can also be a vector which strings and a file
+is loaded which contains all the specified strings. 
 }
   \item{type}{
 The type of file in which the data frame or matrix should be loaded.
@@ -32,7 +34,9 @@ This can be \code{Rdata} (for \R binary format, using \code{\link{load.Rdata2}})
 must have the file extension \code{dat} or \code{txt}) or 
 \code{sav} (using \code{\link[foreign:read.spss]{foreign::read.spss}}).	  
   	  }
-\item{path}{Directory from which the dataset should be loaded}
+\item{path}{Directory from which the dataset should be loaded.
+It can also be set to \code{NULL} if the absolute path is already
+included in \code{filename}.}
 \item{spss.default}{Optional logical which is only applied
 	for \code{type="sav"} indicating whether the arguments
 	\code{to.data.frame=TRUE} and \code{use.value.labels=FALSE}

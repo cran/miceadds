@@ -66,9 +66,12 @@ Alexander Robitzsch
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
+\seealso{
+The two-way imputation method is also implemented in
+the \code{TestDataImputation::Twoway} function of the
+\pkg{TestDataImputation} package.
+}
+
 \examples{
 #############################################################################
 # EXAMPLE 1: Two-way imputation data.internet

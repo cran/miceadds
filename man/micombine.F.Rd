@@ -13,7 +13,7 @@ an approximation based on \eqn{\chi^2} statistics
 }
 
 \usage{
-micombine.F(Fvalues, df1, display = TRUE)
+micombine.F(Fvalues, df1, display = TRUE, version=1)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -29,6 +29,13 @@ of freedom).
   \item{display}{
 A logical indicating whether results should be displayed at the console 
 }
+\item{version}{Integer indicating which calculation formula should be used.
+	The default \code{version=1} refers to the correct formula as in Enders (2010),
+	while \code{version=0} uses an incorrect formula as printed in Allison (2001).
+	The incorrect calculation \code{version=0} was included in \pkg{miceadds} versions
+smaller than version 2.0. 
+See also \emph{http://statisticalhorizons.com/wp-content/uploads/2012/01/combchi.sas}.
+}
 }
 
 %\details{
@@ -39,9 +46,11 @@ A logical indicating whether results should be displayed at the console
 The same output as in \code{\link{micombine.chisquare}}
 }
 
-%\references{
-%% ~put references to the literature/web site here ~
-%}
+\references{
+Allison, P. D. (2002). \emph{Missing data}. Newbury Park, CA: Sage.
+
+Enders, C. K. (2010). \emph{Applied missing data analysis}. Guilford Press.
+}
 
 \author{
 Alexander Robitzsch
