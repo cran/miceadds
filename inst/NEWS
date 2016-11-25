@@ -37,8 +37,19 @@ reproducible script.
 CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+---------------------------------------------------------------------
+Versions 2.1  -- 2016-11-25  --  CRAN miceadds 2.1-0
+---------------------------------------------------------------------
 
+NOTE  * added utility function 'filename_split' for splitting file names
+NOTE  * added utility function 'files_move' for moving files from one
+        directory into another directory 
+NOTE  * included starting values in imputations in the function
+        'mice.impute.2l.latentgroupmean.MCMC' which are obtained from 
+        previous iterations in MCMC imputation chain
 
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: filename_split (1), files_move (1)
 
 ---------------------------------------------------------------------
 Versions 2.0  -- 2016-08-29  --  CRAN miceadds 2.0-0

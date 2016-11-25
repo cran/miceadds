@@ -11,7 +11,7 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 	i1 <- grep.vec( base::c("Rdata" , "csv" , "csv2" , "table" , "sav" ) , 
 					file ,  "OR" )$x
 	if ( base::length(i1) == 0 ){							
-		files <- base::list.files( dir , filename )	
+		files <- base::list.files( dir , filename )			
 		files <- grep.vec( filename , files , "AND")$x
 	} else {
 		files <- file
@@ -21,7 +21,6 @@ load.data <- function( filename , type="Rdata" , path=getwd() ,
 		files <- grep.vec( c("dat","txt") , files , "OR" )$x
 		type1 <- "dat"
 	}		
-
 	files <- base::grep( base::gsub("csv2","csv" , type1) , files , value=TRUE)
 	file <- base::max(files)
 	cat( paste0( "*** Load " , file , "\n"))

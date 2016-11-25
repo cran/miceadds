@@ -31,7 +31,7 @@ mice.impute.2l.latentgroupmean.ML(y, ry, x, type, pls.facs = NULL,
 	
 mice.impute.2l.latentgroupmean.MCMC(y, ry, x, type, pls.facs = NULL, 
     imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
-    mcmc.burnin=100 , mcmc.iter=1000 , EAP=FALSE, ...)
+    mcmc.burnin=100 , mcmc.adapt=100 , mcmc.iter=1000 , EAP=FALSE, ...)
 	
 mice.impute.2l.groupmean(y, ry, x, type, grmeanwarning = TRUE, ...)
 
@@ -73,6 +73,7 @@ The default \code{FALSE} corresponds to sampling from the posterior
 distribution.
 }
 \item{mcmc.burnin}{Number of MCMC burn-in iterations.}
+\item{mcmc.adapt}{Number of MCMC iterations in adaptation phase.}
 \item{mcmc.iter}{Total number of MCMC iterations.}
   \item{grmeanwarning}{
 An optional logical indicating whether some group means cannot be calculated.

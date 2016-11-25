@@ -125,6 +125,8 @@ export(datlist_create)
 export(draw.pv.ctt)
 export(fast.groupmean)		# defunct
 export(fast.groupsum)		# defunct
+export(filename_split)
+export(files_move)
 export(glm.cluster)
 export(grep.vec)
 export(GroupMean)
