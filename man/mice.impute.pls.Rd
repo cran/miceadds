@@ -15,7 +15,7 @@ mice.impute.pls(y, ry, x, type, pls.facs = NULL,
    pls.impMethod = "pmm", pls.impMethodArgs = NULL , pls.print.progress = TRUE, 
    imputationWeights = rep(1, length(y)), pcamaxcols = 1E+09, 
    min.int.cor = 0, min.all.cor=0, N.largest = 0, pls.title = NULL, print.dims = TRUE,
-   pls.maxcols=5000 , ...)
+   pls.maxcols=5000, envir_pos = NULL , extract_data = TRUE , ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -90,6 +90,10 @@ inputs should be printed.
 \item{pls.maxcols}{
 Maximum number of interactions to be created.
 }
+\item{envir_pos}{Position of the environment from which the data should
+be extracted.}
+\item{extract_data}{Logical indicating whether input data should be extracted
+from parent environment within \code{\link[mice:mice]{mice::mice}}  routine}
   \item{\dots}{
 Further arguments to be passed.
 }
@@ -177,7 +181,7 @@ summary(imp1)
 imp2 <- mice.1chain(data = dat , imputationMethod = impMethod ,  
      burnin=10 , iter=21 , Nimp=3 , predictorMatrix = predictorMatrix ,
      pls.facs = pls.facs , pls.impMethod = pls.impMethod ,
-      pls.impMethodArgs = pls.impMethodArgs )
+     pls.impMethodArgs = pls.impMethodArgs )
 summary(imp2)
 }
 }

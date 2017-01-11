@@ -28,10 +28,10 @@ imputed datasets of one of the classes \code{nested_datlist} or
 \code{NestedImputationList}.
 }
   \item{orig_var}{
-Name of the variable to be transformed
+Vector with names of the variables to be transformed
 }
   \item{trafo_var}{
-Name of the standardized variable
+Vector with names of the standardized variables
 }
   \item{weights}{
 Optional vector of sample weights. Alternatively, the \code{weights}
@@ -150,6 +150,26 @@ imp1a <- scale_datlist( datlist=imp1, orig_var="scsci", trafo_var="zscsci", weig
 # check descriptives
 ma.wtd.meanNA( imp1a , weights=wgt , vars = c("scsci" , "zscsci" ) )
 ma.wtd.sdNA( imp1a , weights=wgt , vars = c("scsci" , "zscsci" ) )
+
+#############################################################################
+# EXAMPLE 3: Standardization of variables for imputed data in mice package
+#############################################################################
+
+data(nhanes, package="mice")
+set.seed(76)
+
+#--- impute nhanes data
+imp <- mice::mice(nhanes)
+#--- convert into datlist
+datlist <- mids2datlist(imp)
+#--- scale datlist (all variables)
+vars <- colnames(nhanes)
+sdatlist <- scale_datlist(datlist, orig_var = vars, trafo_var = paste0("z",vars) )
+#--- reconvert to mids object
+imp2 <- datlist2mids(sdatlist)
+#*** compare descriptive statistics of objects
+round( mean0( mice::complete(imp, action=1) ) , 2 )
+round( mean0( mice::complete(imp2, action=1) ) , 2 )
 }	
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

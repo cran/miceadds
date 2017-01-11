@@ -17,7 +17,7 @@ files_move(path1, path2, file_sep = "__", pattern = NULL)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{path1}{
-Original directopry
+Original directory
 }
   \item{path2}{
 Target directory in which the files should be moved
@@ -63,7 +63,7 @@ Pattern in file names to be searched for
 #############################################################################	
 
 # specify path
-path1 <- "p:\\IPN\\Projects\\PISA\\Trend_2015\\2__Data\\All_Waves\\"
+path1 <- "p:/IPN/Projects/PISA/Trend_2015/2__Data/All_Waves/"
 # specify target directory which is an archive
 path2 <- file.path( path1 , "__ARCHIVE" )
 # move files

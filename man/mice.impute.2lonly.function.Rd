@@ -60,8 +60,8 @@ See \code{\link[mice:mice.impute.2lonly.norm]{mice::mice.impute.2lonly.norm}} an
 the \code{\link[mice:mice.impute.2lonly.pmm]{mice::mice.impute.2lonly.pmm}}
 function.
 
-See also the \pkg{jomo} packlage (\code{\link[jomo:jomo2]{jomo::jomo2}})
-for joint multilevel imputationm of level 1 and
+See also the \pkg{jomo} package (\code{\link[jomo:jomo2]{jomo::jomo2}})
+for joint multilevel imputation of level 1 and
 level 2 variables.
 }
 
@@ -111,7 +111,7 @@ impM1[c("y","w","v")] <- c("2l.continuous" , "2lonly.function" , "2lonly.functio
 imputationFunction <- list( "w" = "sample" , "v" = "pmm5" )
 
 # do imputation
-imp1 <- mice::mice( as.matrix( dfr ) , m = 1 , predictorMatrix = predM1 ,
+imp1 <- mice::mice( as.matrix(dfr) , m = 1 , predictorMatrix = predM1 ,
            imputationMethod = impM1 , maxit = 5, 
            imputationFunction = imputationFunction )
 }

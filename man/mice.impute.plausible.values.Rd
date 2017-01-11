@@ -22,7 +22,7 @@ mice.impute.plausible.values(y, ry, x, type, alpha = NULL,
     like=NULL , theta=NULL , normal.approx=NULL , 
     pviter = 15, imputationWeights = rep(1, length(y)), plausible.value.print = TRUE, 
     pls.facs = NULL, interactions = NULL, 
-    quadratics = NULL, ...)
+    quadratics = NULL, extract_data=TRUE, ...)
 }
 
 %% like=NULL , theta=NULL , normal.approx=NULL , 
@@ -85,6 +85,8 @@ Vector of variable names used for creating interactions
   \item{quadratics}{
 Vector of variable names used for creating quadratic terms
 }
+\item{extract_data}{Logical indicating whether input data should be extracted
+from parent environment within \code{\link[mice:mice]{mice::mice}}  routine}
   \item{\dots}{
 Further objects to be passed
 }
@@ -177,11 +179,11 @@ names(impMethod) <- names( imp$method )
 colSums( is.na(dat) )
 
 # redefine imputation methods for plausible value imputation
-impMethod[ "scale1" ] <- "2l.plausible.values"
+impMethod[ "scale1" ] <- "plausible.values"
 predM[ "scale1" ,  ] <- 1
 predM[ "scale1" , c("A1" , "A2" ,  "A3" , "A4" ) ] <- 3
     # items corresponding to a scale should be declared by a 3 in the predictor matrix
-impMethod[ "scale2" ] <- "2l.plausible.values"
+impMethod[ "scale2" ] <- "plausible.values"
 predM[ ,"scale2"  ] <- 0
 predM[ "scale2" ,  c("A2","A3","A4","V6","V7") ] <- 1
 diag(predM) <- 0

@@ -81,11 +81,11 @@ p <- 100        # number of predictors
 rho1 <- .6      # correlations between predictors
 
 # simulate data
-Sigma <- diag(1-rho1,p) + rho1
+Sigma <- base::diag(1-rho1,p) + rho1
 X <- mvtnorm::rmvnorm( N , sigma=Sigma )
-beta <- seq( 0 , 1 , len=p )
-y <- ( X \%*\% beta )[,1] + rnorm( N , sd = .6 )
-Y <- matrix(y,nrow=N , ncol=1 )
+beta <- base::seq( 0 , 1 , len=p )
+y <- ( X \%*\% beta )[,1] + stats::rnorm( N , sd = .6 )
+Y <- base::matrix(y,nrow=N , ncol=1 )
 
 # PLS regression
 res <- kernelpls.fit2( X=X , Y = Y , ncomp=20 )
@@ -103,7 +103,7 @@ library(pls)
 data(yarn,package="pls")
 mod1 <- pls::kernelpls.fit( X = yarn$NIR , Y = yarn$density , ncomp = 10 )
 # use kernelpls.fit2 from miceadds package
-Y <- matrix( yarn$density, ncol=1 )
+Y <- base::matrix( yarn$density, ncol=1 )
 mod2 <- kernelpls.fit2( X = yarn$NIR , Y = Y , ncomp = 10 )
 }
 }

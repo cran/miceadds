@@ -39,7 +39,7 @@ subset_datlist(datlist, subset = TRUE, select = NULL, expr_subset = NULL ,
                      index = NULL , ...)
                      
 subset_nested.datlist( datlist , subset = TRUE, select = NULL , expr_subset = NULL, 
-          index_between = NULL , index_within = NULL , toclass = "nested.datlist" ,
+	  index_between = NULL , index_within = NULL , toclass = "nested.datlist" ,
           simplify = FALSE )
          
 \method{subset}{nested.datlist}(x, subset , select = NULL , expr_subset = NULL, 

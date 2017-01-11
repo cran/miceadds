@@ -24,10 +24,10 @@ miceadds:  Some additional multiple imputation functions,
 
 Alexander Robitzsch
 
-Questions or suggestions about miceadds can be sent to
+Questions or suggestions about miceadds should be sent to
 robitzsch@ipn.uni-kiel.de
 
-In case of bug reporting, please always provide a
+In case of reporting a bug, please always provide a
 reproducible script.
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -36,6 +36,28 @@ reproducible script.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+---------------------------------------------------------------------
+Versions 2.2  -- 2017-01-11  --  CRAN miceadds 2.2-0
+---------------------------------------------------------------------
+
+FIXED * fixed bug in data processing 'mice.impute.pls' and 
+        'mice.impute.plausible.values'. Additional arguments 'envir_pos'
+        and 'extract_data' have been included (thanks to Peter Lenz).
+FIXED * fixed problems in 'mice.impute.pls' due to derived predictor 
+        variables such as interactions due to standard deviations of zero
+        (thanks to Peter Lenz)
+NOTE  * included some utility descriptiptive statistics functions 
+        'stats0', 'mean0', 'sd0', ...
+NOTE  * included correct attributes in 'scale_datlist' function for
+        objects of class datlist (thanks to Andrew Frank-Wilson)
+NOTE  * extended 'scale_datlist' function to handle multiple variables to
+        be standardized
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: stats0 (1), scale_datlist (3)
 
 ---------------------------------------------------------------------
 Versions 2.1  -- 2016-11-25  --  CRAN miceadds 2.1-0

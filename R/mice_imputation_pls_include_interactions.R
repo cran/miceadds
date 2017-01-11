@@ -13,7 +13,7 @@ mice_imputation_pls_include_interactions <- function(pls.interactions ,
 			utils::flush.console() 
         }
     }
-
+		
     #------------ some interactions
 	if (use_interactions){					
 		use.int <- base::intersect( base::colnames(x) , pls.interactions  )
@@ -21,6 +21,7 @@ mice_imputation_pls_include_interactions <- function(pls.interactions ,
 		# standardize x
 		cx <- base::colMeans( x )
 		xs <- x - base::outer( base::rep(1, base::nrow(x)) , cx )
+		
         if (N1 > 0){
             # search for interaction variables in predictorMatrix x?
             ind.int <- base::sort( base::which(  base::colnames(x) %in% use.int ) )
@@ -43,8 +44,7 @@ mice_imputation_pls_include_interactions <- function(pls.interactions ,
 			dfr1 <- dfr[ ind , ]
 			dfr <- base::rbind( dfr[ base::setdiff( base::seq(1, base::nrow(dfr)),ind) , ] , 
 									dfr1[ dfr1[,1]< dfr1[,2] , ])
-			dfr <- dfr[ base::order( dfr[,1] ) , ]
-									
+			dfr <- dfr[ base::order( dfr[,1] ) , ]					
 			# create interactions
 			res <- mice_imputation_create_interactions( 
 						y_=y[ry] , 
@@ -53,15 +53,12 @@ mice_imputation_pls_include_interactions <- function(pls.interactions ,
 						index_int_ = base::as.matrix(dfr), 
 					    min_int_cor_= min.int.cor , 
 						maxcols_= base::min( base::nrow(dfr),pls.maxcols) )					
-												
-			r1 <- res$allcorrs
-			r1[ base::is.na( r1[,1] ) , 1] <- 0
-			res$allcorrs <- r1
-					
+																			
 			# total number of interactions
 			N1t <- base::nrow(res$index_int)
 			# retained number of interactions
 			N2t <- base::ncol( res$xint )
+			
 			hx <- res$xint
 			index_int2 <- res$index_int				
 			index_int2 <- index_int2[ res$allcorrs[,2] == 1 , , drop=FALSE]
@@ -82,7 +79,7 @@ mice_imputation_pls_include_interactions <- function(pls.interactions ,
 							"Interactions | Kept", N1h[,1] , "Interactions " , 
 							"\n") )				
 			}
-																		
+
 			#***************************
             if( pls.print.progress ){
 				cat("\n")
@@ -97,6 +94,7 @@ mice_imputation_pls_include_interactions <- function(pls.interactions ,
 			}              
         }
     }
+
 	#--- output
 	res <- base::list( x = x , xs = xs )
 	base::return(res)				   

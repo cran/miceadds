@@ -6,12 +6,14 @@
 Some Additional Multiple Imputation Functions, Especially for \pkg{mice} 
 }
 \description{
-    Contains some auxiliary functions for multiple imputation which 
-    complements existing functionality in \R.
-    In addition to some utility functions, main features include 
-    plausible value imputation, multilevel imputation functions,
-    imputation using partial least squares (PLS) for high dimensional 
-    predictors, nested multiple imputation, and two-way imputation.
+    Contains some auxiliary functions for multiple 
+    imputation which complements existing functionality 
+    in \R.
+    In addition to some utility functions, main features
+    include plausible value imputation, multilevel 
+    imputation functions, imputation using partial least 
+    squares (PLS) for high dimensional predictors, nested 
+    multiple imputation.
 }
 
 \details{
@@ -20,8 +22,8 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 2.1 \cr
-Publication Year: \tab 2016\cr
+Version: \tab 2.2 \cr
+Publication Year: \tab 2017\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
 }
@@ -70,7 +72,7 @@ URL: \url{https://sites.google.com/site/alexanderrobitzsch/}
 \seealso{
 See other \R packages for conducting multiple imputation: 
 \pkg{mice}, \pkg{Amelia}, \pkg{pan}, \pkg{mi}, \pkg{norm},
-\pkg{BaBooN}, \pkg{VIM}, ... \cr
+\pkg{norm2}, \pkg{BaBooN}, \pkg{VIM}, ... \cr
 
 Some links to internet sites related to missing data:
 

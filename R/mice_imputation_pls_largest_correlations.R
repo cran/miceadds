@@ -2,11 +2,11 @@
 mice_imputation_pls_largest_correlations <- function( y , x , ry , type ,
 	use.ymat , pls.print.progress , x10 , N.largest , min.all.cor )
 {
-	
+
 	# compute correlations
-	c1 <- mice_imputation_pls_correlation_criteria( y , x , ry , use.ymat)	
+	c1 <- mice_imputation_pls_correlation_criteria( y , x , ry , use.ymat)		
     elim.ind <- base::which( base::abs(c1) < min.all.cor )
-	N11 <- base::ncol(x)		
+	N11 <- base::ncol(x)
 
 	Nelim <- base::length(elim.ind)
 	if ( ( N11 - Nelim <= 1 ) & (N11>2) ){

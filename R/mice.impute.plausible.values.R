@@ -4,29 +4,32 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 						like=NULL , theta=NULL , normal.approx=NULL , 
                         pviter = 15 , imputationWeights = rep(1, length(y)) , 
                         plausible.value.print = TRUE , 
-                        pls.facs=NULL , interactions=NULL , quadratics =NULL , ...){  						
+                        pls.facs=NULL , interactions=NULL , quadratics =NULL , 
+						extract_data = TRUE , ...){  						
 	base::requireNamespace("MBESS")											
     #*******
 	# old arguments which are now excluded from the function
 	itemdiff=NULL ; item.resp = NULL ;
     pvirt.iter = 30 ; pvirt.burnin =10 ; 
-	pvirt.printprogress=TRUE ;	
-	pvirt.printprogress=FALSE ;	
+	pvirt.printprogress <- TRUE
+	pvirt.printprogress <- FALSE
 	
 	#********
 	#--- extract arguments
 	pos <- base::parent.frame(n=1)
+
 	res <- mice_imputation_get_states( pos = pos )				
 	vname <- res$vname
 	# newstate <- res$newstate	
-	newstate <- get( "newstate" , pos = pos )  
-	
-	res <- mice_imputation_prepare_2l_functions( vname = vname , envir = pos )		
-	y <- res$y
-	x <- res$x
-	ry <- res$ry
-	type <- res$type	
-	
+	newstate <- base::get( "newstate" , pos = pos )  
+
+	if (extract_data){
+		res <- mice_imputation_prepare_2l_functions( vname = vname , envir = pos )		
+		y <- res$y
+		x <- res$x
+		ry <- res$ry
+		type <- res$type	
+	}	
     pvmethod <- 0
     if ( ! is.null( scale.values[[ vname ]] )){ 
 			pvmethod <- 3 
@@ -38,22 +41,19 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
           if ( ! is.null( alpha[[ vname ]] )){ pvmethod <- 1 }
           if (  is.null( alpha[[vname ]] )){ pvmethod <- 2 }            
                     }  
-
-
-					
+		
     # define scale type
 #    scale.type <- .extract.list.arguments( micearg = scale.type , 
 #                           vname = vname , miceargdefault = "parallel" )
 	scale.type <- "parallel"
-		   
+	
     pls.facs <- mice_imputation_extract_list_arguments( micearg = pls.facs , 
                            vname = vname , miceargdefault = NULL )
     interactions <- mice_imputation_extract_list_arguments( micearg = interactions , 
                            vname = vname , miceargdefault = NULL )
     quadratics <- mice_imputation_extract_list_arguments( micearg = quadratics , 
                            vname = vname , miceargdefault = NULL )
-
-						
+					
     ##############################################################
     # Plausible value imputation according to the Rasch model
 	# adapt this to include only the likelihood
@@ -66,11 +66,14 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
         #*+*+*+*
         # PLS
         if ( is.null(pls.facs) + is.null(interactions) + is.null(quadratics) < 3 ){
-            plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , pls.impMethod = "xplsfacs" , 
-                            x = X[,-1] , y = y , ry= rep(TRUE,length(y)) , imputationWeights = imputationWeights , 
-                            interactions = interactions, quadratics = quadratics ,  pls.facs = pls.facs ,  ... )$yimp
-            X <- plsout[,-1]
-                }
+            plsout <- mice_imputation_pls_helper( newstate = newstate , 
+						vname = vname , pls.impMethod = "xplsfacs" , 
+                        x = X[,-1] , y = y , ry= rep(TRUE,length(y)) , 
+						imputationWeights = imputationWeights , 
+                        interactions = interactions, quadratics = quadratics ,  
+						pls.facs = pls.facs ,  envir_pos = pos ,   ... )$yimp
+            X <- plsout[,-1]						
+        }
         #*+*+* 
          cluster <- res$cluster
          # item response data matrix
@@ -97,6 +100,7 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
    	     ximp <- mod1$pv[,2]
 	 
                     }
+					
     #############################################
     # Plausible value imputation with known scale scores and standard errors
     if (pvmethod == 3){ 
@@ -128,13 +132,15 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
         if ( is.null(pls.facs) + is.null(interactions) + is.null(quadratics) < 3 ){
 			if ( is.null(interactions) ){ 
 				interactions <- names(type)[ type == 4 ]
-				}			
-				plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , 
-				      pls.impMethod = "xplsfacs" , 
-                      x = X , y = y , ry= rep(TRUE,length(y)) , imputationWeights = imputationWeights , 
-                      interactions = interactions, quadratics = quadratics ,  pls.facs = pls.facs ,  ... )$yimp
+			}			
+			plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , 
+			      pls.impMethod = "xplsfacs" , x = X , y = y , 
+				  ry= rep(TRUE,length(y)) , imputationWeights = imputationWeights , 
+                  interactions = interactions, quadratics = quadratics , 
+				  pls.facs = pls.facs ,  envir_pos = pos , 
+				  ... )$yimp
             X <- plsout[,-1]
-                }
+        }
 				
         #*+*+* 
 #        cluster <- res$cluster
@@ -173,11 +179,12 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
     # PV imputation scale score according to CTT (parallel measurements)
     #    alpha is known or unknown
     if ( pvmethod %in% c(1,2) ){
+	
         # extract scale values
         if ( sum(type==3) == 0){ 
                 cat( "\n",paste( "Items corresponding to scale" , vname , 
                         "must be declared by entries of 3 in the predictor matrix"),"\n")
-                               }
+        }
         dat.scale <- x[ , type == 3 , drop=FALSE ]
         x1 <- x[ , type %in% c(1,2) ]
         # group level predictors
@@ -185,16 +192,18 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 							type=type , ... )
         x1 <- x1[,-1]
 		
-    #*+*+*+*
-    # PLS
-    if ( is.null(pls.facs) + is.null(interactions) + is.null(quadratics) < 3 ){
-        plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , pls.impMethod = "xplsfacs" , 
-                        x = x1 , y = y , ry= rep(TRUE,length(y)) , imputationWeights = imputationWeights , 
-                        interactions = interactions, quadratics = quadratics ,  pls.facs = pls.facs ,  ... )$yimp
-        x1 <- plsout[,-1]
-            }
-    #*+*+* 
-
+		#*+*+*+*
+		# PLS
+		if ( is.null(pls.facs) + is.null(interactions) + is.null(quadratics) < 3 ){
+			ry_true <- base::rep(TRUE, base::length(y))
+			plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , 
+						pls.impMethod = "xplsfacs" , x = x1 , y = y , 
+						ry= ry_true , imputationWeights = imputationWeights , 
+						interactions = interactions, quadratics = quadratics , 
+						pls.facs = pls.facs , envir_pos = pos ,  ... )$yimp
+			x1 <- plsout[,-1]
+		}
+		#*+*+* 
         cluster <- res$cluster
         # group mean where the actual observation is eliminated
         if ( sum( type == -2 ) > 0 ){

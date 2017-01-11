@@ -1,3 +1,5 @@
+
+
 cxxfunction.copy <- function( cppfct , name ){
     base::requireNamespace("inline")
     g1 <- inline::getDynLib(cppfct)
@@ -9,18 +11,4 @@ cxxfunction.copy <- function( cppfct , name ){
 	name1 <- base::paste0( base::tolower(name) , ".cpp" )
     base::writeLines( h1 , name1 )
 	crlrem( filename1=name1 , filename2=name1 )
-            }
-
-######################################################
-# remove line endings
-crlrem <- function( filename1 , filename2 ){
-    filename <- filename1
-    con <- base::file(filename, "rb")
-    bin <- base::readBin(con, base::raw(), 100000)
-    bin <- bin[ base::which(bin != "0d") ]
-    base::close(con)
-    base::Sys.sleep(1)
-    con <- base::file(filename2, "wb")
-    base::writeBin(bin, con)
-    base::close(con)
-        }
+}

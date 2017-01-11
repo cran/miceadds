@@ -139,6 +139,8 @@ with grouped values (coarse data or interval data).
 \code{ $ FC_upp: num  15 10 10 10 10 100 100 10 10 100 ...} \cr
 
 
+
+
 }
 }
 

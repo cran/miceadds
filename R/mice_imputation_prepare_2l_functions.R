@@ -8,8 +8,9 @@ mice_imputation_prepare_2l_functions <- function( vname , envir , ... )
 	newstate <- base::get("newstate" , envir = envir )
 	j <- newstate$co	
 	r <- base::get("r" , envir = envir )
+
 	#*****************************************
-	#****** START: copy from mice
+	#****** start copy from mice
 		# for a multilevel imputation method
 		predictors <- p$predictorMatrix[j, ] != 0
 		# RB: formula-based specification
@@ -28,6 +29,6 @@ mice_imputation_prepare_2l_functions <- function( vname , envir , ... )
 		}
 	#****** END: copy from mice
 	#*****************************************	
-	res <- base::list( y = y , x = x , ry = ry , type = type)
+	res <- base::list( y = y , x = x , ry = ry , type = type)	
 	base::return(res)
 }
