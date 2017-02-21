@@ -4,22 +4,22 @@
 #-----------------------------------------------------------------------------
 # function for inclusion of group level predictors
 include.2l.predictors_v1 <- function( y, x , ry , type , vname , newstate , ... ){
-        X <- base::as.matrix( x[ , type %in% base::c(1,2)] )
-        X <- base::cbind( 1 , X )        
+        X <- as.matrix( x[ , type %in% c(1,2)] )
+        X <- cbind( 1 , X )        
         # group level predictors
-        if ( base::sum( type == -2 ) > 0 ){
+        if ( sum( type == -2 ) > 0 ){
             cluster <- x[ , type == -2 ]
-			if ( base::sum( type == 2 ) > 0 ){          
-				x1a <- base::as.matrix( base::cbind( x[ , type== - 2 ] , 
+			if ( sum( type == 2 ) > 0 ){          
+				x1a <- as.matrix( cbind( x[ , type== - 2 ] , 
 								x[ , type== 2 ]  ) )
-				base::colnames(x1a) <- base::c( base::colnames(x)[ type == -2 ] , 
-								base::colnames(x)[ type == 2 ] )
+				colnames(x1a) <- c( colnames(x)[ type == -2 ] , 
+								colnames(x)[ type == 2 ] )
 				gm0 <- mice.impute.2l.groupmean(y = y , ry = FALSE * ry , x = x1a, 
-							type = base::c( -2 , base::rep(1, base::ncol(x1a)-1 ) ),
+							type = c( -2 , rep(1, ncol(x1a)-1 ) ),
 							grmeanwarning=FALSE , ... )
-				gm0 <- base::as.matrix(gm0)
-				base::colnames(gm0) <- base::paste0("M." , base::colnames(x1a)[-1] )
-				X <- base::as.matrix( base::cbind( X , gm0 ))
+				gm0 <- as.matrix(gm0)
+				colnames(gm0) <- paste0("M." , colnames(x1a)[-1] )
+				X <- as.matrix( cbind( X , gm0 ))
             }
         }  else { 
 			cluster <- NULL 
@@ -28,7 +28,7 @@ include.2l.predictors_v1 <- function( y, x , ry , type , vname , newstate , ... 
 		vname <- res$vname
 		res$X <- X
 		res$cluster <- cluster
-        base::return(res)
+        return(res)
 }
 #-----------------------------------------------------------------------------
           

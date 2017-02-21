@@ -13,5 +13,5 @@ mice.impute.2l.continuous <- function(y, ry, x, type, intercept=TRUE,
                 glmer.warnings=glmer.warnings, 
 				blme_use = FALSE , blme_args = NULL , 
 				model = "continuous" , ...)
-	base::return(imp)
+	return(imp)
 }

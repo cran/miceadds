@@ -148,7 +148,7 @@ resp <- dat[ , - c(1:2) ]
 # object of class mids
 imp <- mice::mice( resp , imputationMethod="norm" , maxit=3 , m=5 )
 # object of class datlist
-datlist <- mids2datlist( imp )
+datlist <- miceadds::mids2datlist( imp )
 # object of class imputationList
 implist <- mitools::imputationList(datlist)
 
@@ -174,7 +174,7 @@ V <- ncol(data)
 # variables
 vars <- colnames(data)
 # variables not used for imputation
-vars_unused <- scan.vec("IDSTUD TOTWGT  JKZONE  JKREP" )
+vars_unused <- miceadds::scan.vec("IDSTUD TOTWGT  JKZONE  JKREP" )
 #- define imputation method
 impMethod <- rep("norm" , V )
 names(impMethod) <- vars
@@ -186,12 +186,12 @@ diag(predM) <- 0
 predM[ , vars_unused ] <- 0
 
 # object of class mids.nmi
-imp1 <- mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM, 
+imp1 <- miceadds::mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM, 
                 m=4 , maxit=3 )
 # object of class nested.datlist
-datlist <- mids2datlist(imp1)
+datlist <- miceadds::mids2datlist(imp1)
 # object of class NestedImputationList
-imp2 <- NestedImputationList(datlist)
+imp2 <- miceadds::NestedImputationList(datlist)
 
 # weighted correlations
 vars <- c("books","ASMMAT","likesc")

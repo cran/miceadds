@@ -59,7 +59,7 @@ data(data.internet)
 dat <- data.internet
 
 # z-standardize all variables in this dataset
-zdat <- ma.scale2( dat , missings=TRUE )
+zdat <- miceadds::ma.scale2( dat , missings=TRUE )
 	
 \dontrun{
 #############################################################################
@@ -83,13 +83,13 @@ for (bb in 1:B){
 
     s1 <- Sys.time()		# scale in miceadds
 for (bb in 1:B){    
-    res1 <- ma.scale2(x)
+    res1 <- miceadds::ma.scale2(x)
 } ; s2 <- Sys.time() ; d2 <- s2-s1
 
 # scale in miceadds with missing handling
     s1 <- Sys.time()
 for (bb in 1:B){    
-    res1 <- ma.scale2(x,missings=TRUE)
+    res1 <- miceadds::ma.scale2(x,missings=TRUE)
 } ; s2 <- Sys.time() ; d3 <- s2-s1
 d1      # scale in R
 d2      # scale in miceadds (no missing handling)

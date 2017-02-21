@@ -4,10 +4,10 @@
 # part from the mice:::sampler function
 mice_imputation_prepare_2l_functions <- function( vname , envir , ... )
 {   
-	p <- base::get("p" , envir = envir )
-	newstate <- base::get("newstate" , envir = envir )
+	p <- get("p" , envir = envir )
+	newstate <- get("newstate" , envir = envir )
 	j <- newstate$co	
-	r <- base::get("r" , envir = envir )
+	r <- get("r" , envir = envir )
 
 	#*****************************************
 	#****** start copy from mice
@@ -29,6 +29,6 @@ mice_imputation_prepare_2l_functions <- function( vname , envir , ... )
 		}
 	#****** END: copy from mice
 	#*****************************************	
-	res <- base::list( y = y , x = x , ry = ry , type = type)	
-	base::return(res)
+	res <- list( y = y , x = x , ry = ry , type = type)	
+	return(res)
 }

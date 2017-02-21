@@ -7,7 +7,7 @@ mice_multilevel_add_groupmeans <- function( y , ry , x , type ,
 		x0 <- as.matrix(cbind( x[,type==-2], x[,type %in% c(3,4)] ))
 		colnames(x0) <- c( colnames(x)[type==-2], colnames(x)[type %in% c(3,4)] )
 		type0 <- c( -2, rep(1,ncol(x0)-1) )
-		x0.aggr <- base::as.matrix( mice_multilevel_impute_groupmean(y=y, ry=ry, x=x0, 
+		x0.aggr <- as.matrix( mice_multilevel_impute_groupmean(y=y, ry=ry, x=x0, 
 						type=type0, grmeanwarning=FALSE ))
 		colnames(x0.aggr) <- paste0("M._", colnames(x0)[-1])
 		# group mean centering
@@ -26,6 +26,6 @@ mice_multilevel_add_groupmeans <- function( y , ry , x , type ,
 		type1[ type1 == 4 ] <- 2
 		type <- type1
 	}		
-	res <- base::list( "x" = x , "type" = type)	
-	base::return(res)	
+	res <- list( "x" = x , "type" = type)	
+	return(res)	
 }	

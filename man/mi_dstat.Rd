@@ -48,7 +48,7 @@ data(data.ma01)
 dat <- data.ma01
 
 # compute d effect sizes
-md <- mi_dstat(dat)
+md <- miceadds::mi_dstat(dat)
 round( md , 3 )
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -135,7 +135,7 @@ data(nhanes, package="mice")
 set.seed(9090)
 
 # nhanes data in one chain
-imp <- mice.1chain( nhanes , burnin=5 , iter=40 , Nimp=4 )
+imp <- miceadds::mice.1chain( nhanes , burnin=5 , iter=40 , Nimp=4 )
 # apply linear regression
 res <- with( imp , expr = stats::lm( hyp ~ age + bmi  ) )
 summary(res)
@@ -148,7 +148,7 @@ res2 <- with( imp , expr = c("M1"= mean(hyp) , "SD_age"=stats::sd(age) ) )
 withPool_MI(res2)
 
 # with method for datlist
-imp1 <- datlist_create(imp)
+imp1 <- miceadds::datlist_create(imp)
 res2b <- with( imp1 , fun = function(data){ 
                     dfr <- data.frame("M" = colMeans(data) ,
                              "Q5" = apply( data, 2, stats::quantile, .05 ),   
@@ -158,7 +158,7 @@ res2b <- with( imp1 , fun = function(data){
 withPool_MI(res2b)
 
 # convert mids object into an object of class imputationList
-datlist <- mids2datlist( imp )
+datlist <- miceadds::mids2datlist( imp )
 datlist <- mitools::imputationList(datlist)
 
 \dontrun{
@@ -171,7 +171,7 @@ datlist2 <- within( datlist , {
 head( datlist2$imputations[[1]] )
 
 # convert into a datlist
-datlist2b <- datlist_create( datlist2 )
+datlist2b <- miceadds::datlist_create( datlist2 )
 
 # apply linear model using expression
 mod1a <- with( datlist2 , expr = stats::lm( hyp ~ age.D3 ) )
@@ -205,17 +205,17 @@ for (ll in 1:M){
                 }
                 
 # nested multiple imputation using mice
-imp1 <- mice.nmi( datlist ,  m=4 , maxit=3 )
+imp1 <- miceadds::mice.nmi( datlist ,  m=4 , maxit=3 )
 summary(imp1)
 # apply linear model and use summary method for all analyses of imputed datasets
 res1 <- with( imp1 , stats::lm( ASMMAT ~ migrant + female ) )	
 summary(res1)
 
 # convert mids.nmi object into an object of class NestedImputationList
-datlist1 <- mids2datlist( imp1 )
-datlist1 <- NestedImputationList( datlist1 )
+datlist1 <- miceadds::mids2datlist( imp1 )
+datlist1 <- miceadds::NestedImputationList( datlist1 )
 # convert into nested.datlist object
-datlist1b <- nested.datlist_create(datlist1)
+datlist1b <- miceadds::nested.datlist_create(datlist1)
 
 # use with function
 res1b <- with( datlist1 , stats::glm( ASMMAT ~ migrant + female ) )

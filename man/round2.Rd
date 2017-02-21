@@ -54,7 +54,7 @@ round2(vec)
   ##   [1] 1.50 2.50 3.50 1.51 1.49
   ##   > round(vec)
   ##   [1] 2 2 4 2 1
-  ##   > round2(vec)
+  ##   > miceadds::round2(vec)
   ##   [1] 2 3 4 2 1
 
 #############################################################################
@@ -69,7 +69,7 @@ round2(vec)
   ##   [1] -1.50 -2.50 -3.50 -1.51 -1.49
   ##   > round(vec)
   ##   [1] -2 -2 -4 -2 -1
-  ##   > round2(vec)
+  ##   > miceadds::round2(vec)
   ##   [1] -2 -3 -4 -2 -1
 
 #############################################################################
@@ -83,11 +83,11 @@ round2( vec , digits=1)
 round2( -vec )
   ##   > round(vec)
   ##   [1] 8 8 9 7 8 8
-  ##   > round2( vec )
+  ##   > miceadds::round2( vec )
   ##   [1] 8 9 9 7 8 8
-  ##   > round2( vec , digits=1)
+  ##   > miceadds::round2( vec , digits=1)
   ##   [1] 8.5 8.5 8.5 7.5 7.5 7.5
-  ##   > round2( -vec )
+  ##   > miceadds::round2( -vec )
   ##   [1] -8 -9 -9 -7 -8 -8
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

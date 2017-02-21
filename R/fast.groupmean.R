@@ -1,3 +1,3 @@
 fast.groupmean <- function(...){
-	base::.Defunct(new="GroupMean", package="miceadds")
+	.Defunct(new="GroupMean", package="miceadds")
 }

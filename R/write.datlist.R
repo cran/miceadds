@@ -29,7 +29,7 @@ write.datlist <- function( datlist, name , include.varnames = TRUE ,
 		M <- length(datlist)
 		dfr <- data.frame("index" = 1:V , "variable" = vars)
 		
-#        base::writeLines( vars , 
+#        writeLines( vars , 
 #		      file.path( pf.subf , paste( name , "__LEGEND.txt" , sep="") ))
         utils::write.table( dfr , 
 				file.path( pf.subf , paste( name , "__LEGEND.txt" , sep="") ),
@@ -48,7 +48,7 @@ write.datlist <- function( datlist, name , include.varnames = TRUE ,
 
 		# save list of imputed datasets in Rdata format if requested
 		if ( Rdata ){
-			base::save( datlist , file=file.path( pf.subf ,
+			save( datlist , file=file.path( pf.subf ,
 					paste( name , "__DATLIST.Rdata" , sep="") ) )
 						}		
 		# write datlist in separate files	
@@ -88,7 +88,7 @@ write.datlist <- function( datlist, name , include.varnames = TRUE ,
                         "   " , "" , "MISSING = . ;" , "" , "!........................." ,
                         "! Mplus statements"
                             )
-            base::writeLines( l1 , file.path( pf.subf , paste( name , "__MPLUS-INPUT-BODY.inp" , sep="") ))
+            writeLines( l1 , file.path( pf.subf , paste( name , "__MPLUS-INPUT-BODY.inp" , sep="") ))
             }						
 
 				}

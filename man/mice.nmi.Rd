@@ -89,7 +89,7 @@ V <- ncol(data)
 # variables
 vars <- colnames(data)
 # variables not used for imputation
-vars_unused <- scan.vec("IDSTUD TOTWGT  JKZONE  JKREP" )
+vars_unused <- miceadds::scan.vec("IDSTUD TOTWGT  JKZONE  JKREP" )
 
 #- define imputation method
 impMethod <- rep("norm" , V )
@@ -104,13 +104,13 @@ predM[ , vars_unused ] <- 0
 
 #***************
 # (1) nested multiple imputation using mice
-imp1 <- mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM, 
+imp1 <- miceadds::mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM, 
                 m=4 , maxit=3 )
 summary(imp1)
 
 #***************
 # (2) nested multiple imputation using mice.1chain
-imp2 <- mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM , 
+imp2 <- miceadds::mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM , 
             Nimp=4 , burnin=10 ,iter =22, type="mice.1chain")
 summary(imp2)
 }

@@ -160,13 +160,13 @@ for (ll in 1:M){
                 
 #***************
 # (1) nested multiple imputation using mice
-imp1 <- mice.nmi( datlist ,  m=3 , maxit=2 )
+imp1 <- miceadds::mice.nmi( datlist ,  m=3 , maxit=2 )
 summary(imp1)
 
 #***************
 # (2) first linear regression: ASMMAT ~ migrant + female
 res1 <- with( imp1 , stats::lm( ASMMAT ~ migrant + female ) ) # fit
-pres1 <- pool.mids.nmi( res1 )  # pooling
+pres1 <- miceadds::pool.mids.nmi( res1 )  # pooling
 summary(pres1)  # summary
 coef(pres1) 
 vcov(pres1)
@@ -174,20 +174,20 @@ vcov(pres1)
 #***************
 # (3) second linear regression: likesc ~ migrant + books
 res2 <- with( imp1 , stats::lm( likesc ~ migrant + books  ) )
-pres2 <- pool.mids.nmi( res2 ) 
+pres2 <- miceadds::pool.mids.nmi( res2 ) 
 summary(pres2)
 
 #***************
 # (4) some descriptive statistics using the mids.nmi object
 res3 <- with( imp1 , c( "M_lsc"=mean(likesc) , "SD_lsc"= stats::sd(likesc) ) )
-pres3 <- NMIcombine( qhat = res3$analyses )
+pres3 <- miceadds::NMIcombine( qhat = res3$analyses )
 summary(pres3)
 
 #*************
 # (5) apply linear regression based on imputation list
 
 # convert mids object to datlist
-datlist2 <- mids2datlist( imp1 )
+datlist2 <- miceadds::mids2datlist( imp1 )
 str(datlist2, max.level=1)
 
 # double application of lapply to the list of list of nested imputed datasets
@@ -216,7 +216,7 @@ u <- lapply( res4 , FUN = function(bb){
 NMIextract( results=res4 , fun=vcov )                               
 
 # apply statistical inference using the NMIcombine function
-pres4 <- NMIcombine( qhat=qhat , u=u )                
+pres4 <- miceadds::NMIcombine( qhat=qhat , u=u )                
 summary(pres4)
 
 #--- statistical inference if only standard errors are available     
@@ -230,7 +230,7 @@ se <- lapply( res4 , FUN = function(bb){
                 } )        
 se
 # apply NMIcombine function
-pres4b <- NMIcombine( qhat=qhat , se=se )                
+pres4b <- miceadds::NMIcombine( qhat=qhat , se=se )                
 # compare results
 summary(pres4b)  
 summary(pres4)
@@ -246,7 +246,7 @@ data(data.ma02)
 imp <- mitools::imputationList( data.ma02 )
 print(imp)
 # save dataset as an mids object
-imp1 <- datlist2mids( imp )
+imp1 <- miceadds::datlist2mids( imp )
 
 # apply linear model based on imputationList
 mod <- with( imp , stats::lm( read ~ hisei + female ) )
@@ -264,10 +264,10 @@ semod <- lapply( mod , FUN = function(mm){
 vmod <- mitools::MIextract( mod , fun = vcov)
                         
 #*** pooling with NMIcombine with se (1a) and vcov (1b) as input
-pmod1a <- NMIcombine( qhat = cmod , se = semod , NMI = FALSE )
-pmod1b <- NMIcombine( qhat = cmod , u = vmod , NMI = FALSE )
+pmod1a <- miceadds::NMIcombine( qhat = cmod , se = semod , NMI = FALSE )
+pmod1b <- miceadds::NMIcombine( qhat = cmod , u = vmod , NMI = FALSE )
 # use method 2 which should conform to MI inference of mice::pool
-pmod1c <- NMIcombine( qhat = cmod , u = vmod , NMI = FALSE , method=2)
+pmod1c <- miceadds::NMIcombine( qhat = cmod , u = vmod , NMI = FALSE , method=2)
 
 #*** pooling with mitools::MIcombine function
 pmod2 <- mitools::MIcombine( results = cmod , variances = vmod )

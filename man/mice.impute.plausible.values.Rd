@@ -227,7 +227,7 @@ summary(imp1)
 dat11 <- mice::complete( imp , 1 )
 
 #*** Imputation Model 2: Imputation using one long chain
-imp2 <- mice.1chain( dat , predictorMatrix = predM , burnin=10 , iter=20 , Nimp=4 , 
+imp2 <- miceadds::mice.1chain( dat , predictorMatrix = predM , burnin=10 , iter=20 , Nimp=4 , 
           alpha.se = alpha.se ,  imputationMethod = impMethod ,  allow.na = TRUE  , alpha = alpha,
           scale.values = scale.values  )
 summary(imp2)	

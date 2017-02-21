@@ -63,13 +63,13 @@ Alexander Robitzsch
 # EXAMPLE 1: Example scan.vec | reading a string
 #############################################################################	
 	
-vars <- scan.vector( "female urbgrad  groesse  Nausg    grpgroesse   privat  ")
+vars <- miceadds::scan.vector( "female urbgrad  groesse  Nausg    grpgroesse   privat  ")
 vars
   ## [1] "female"     "urbgrad"    "groesse"    "Nausg"      "grpgroesse"
   ## [6] "privat"    
 
 ## the next lines are only commented out to fulfill CRAN checks  
-## vars2 <- scan0()
+## vars2 <- miceadds::scan0()
 ##     female urbgrad  groesse  Nausg    grpgroesse   privat    
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

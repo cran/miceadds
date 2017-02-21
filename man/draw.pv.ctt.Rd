@@ -128,12 +128,12 @@ theta_obs <- theta + stats::rnorm( n , sd=sig.e)
 X <- as.matrix( cbind(x , y ) )
 
 # plausible value imputation with scale score
-imp1 <- draw.pv.ctt( y=theta_obs , x = X , sig.e =sig.e )
+imp1 <- miceadds::draw.pv.ctt( y=theta_obs , x = X , sig.e =sig.e )
 # check results
 stats::lm( imp1 ~ x + y )
 
 # imputation with alpha as an input
-imp2 <- draw.pv.ctt( y=theta_obs , x = X , alpha = .74 )
+imp2 <- miceadds::draw.pv.ctt( y=theta_obs , x = X , alpha = .74 )
 stats::lm( imp2 ~ x + y )
 
 \dontrun{
@@ -149,7 +149,7 @@ overimp <- priors[,1:2]
 # run Amelia
 imp <- Amelia::amelia( dat , priors = priors , overimp=overimp, m = 10)
 # create object of class datlist and evaluate results
-datlist <- datlist_create( imp$imputations )
+datlist <- miceadds::datlist_create( imp$imputations )
 withPool_MI( with( datlist , stats::var(theta) ) )
 stats::var(theta)       # compare with true variance
 mod <- with( datlist ,  stats::lm( theta ~ x + y ) ) 

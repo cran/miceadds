@@ -1,5 +1,5 @@
 
 mice.impute.2lonly.pmm2 <- function(...){
-	base::.Defunct(new="mice::mice.impute.2lonly.pmm", package="miceadds")
+	.Defunct(new="mice::mice.impute.2lonly.pmm", package="miceadds")
 }
 

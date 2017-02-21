@@ -83,7 +83,7 @@ data <- data.internet
 #***
 # Model 1: Two-way imputation method of Sijtsma and van der Ark (2003)
 set.seed(765)
-dat.imp <- tw.imputation( data )
+dat.imp <- miceadds::tw.imputation( data )
 dat.imp[ 278:281,]
   ##       IN9     IN10    IN11     IN12
   ##   278   5 4.829006 5.00000 4.941611
@@ -94,7 +94,7 @@ dat.imp[ 278:281,]
 \dontrun{
 #***
 # Model 2: Two-way imputation method using MCMC
-dat.imp <- tw.mcmc.imputation( data , iter=3)
+dat.imp <- miceadds::tw.mcmc.imputation( data , iter=3)
 dat.imp[ 278:281,]
   ##       IN9     IN10     IN11     IN12
   ##   278   5 6.089222 5.000000 3.017244

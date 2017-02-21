@@ -55,3 +55,7 @@ functions can be safely replaced by the
 \code{\link[mice:mice.impute.2lonly.pmm]{mice::mice.impute.2lonly.pmm}}
 functions in the \pkg{mice} package.
 }
+
+% \examples{
+% # test
+% }

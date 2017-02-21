@@ -1,10 +1,10 @@
 
 file_path <- function( dir , file)
 {
-	if ( base::is.null(dir) ){
+	if ( is.null(dir) ){
 		p1 <- file
 	} else {
-		p1 <- base::file.path(dir, file)
+		p1 <- file.path(dir, file)
 	}
-	base::return(p1)
+	return(p1)
 }

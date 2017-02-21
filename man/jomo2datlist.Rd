@@ -54,7 +54,7 @@ dat <- nhanes
 # impute under multivariate normal model in jomo
 imp1 <- jomo::jomo1con(Y = dat , nburn=100, nbetween=10, nimp=5)
 # convert into a list of datasets
-datlist1 <- jomo2datlist(imp1)	
+datlist1 <- miceadds::jomo2datlist(imp1)	
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

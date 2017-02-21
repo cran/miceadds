@@ -39,7 +39,7 @@ Alexander Robitzsch
 	
 systime()
   ##  
-  ##  > systime()
+  ##  > miceadds::systime()
   ##  [1] "2016-02-29 10:25:44"        
   ##  [2] "2016-02-29"                 
   ##  [3] "20160229"                   

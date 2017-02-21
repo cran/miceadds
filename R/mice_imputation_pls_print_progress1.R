@@ -11,7 +11,7 @@ mice_imputation_pls_print_progress1 <- function( pls.print.progress , vname ,
 			cat("\n dim ry  " , length(ry) , " | sum(!ry)" ,  sum(!ry) )					
 			cat("\n dim x   " , dim(x) )										
 			cat("\n dim type" , length(type) )
-			t1 <- base::table(type)
+			t1 <- table(type)
 			cat("\n table(type)\n"  )					
 			print(t1)
 			cat("\n\n")

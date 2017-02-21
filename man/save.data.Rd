@@ -117,13 +117,13 @@ save.data( dat , filename="ma02data"  , type="sav" ,  path=pf2 )
 # save data file in different formats
 types <- c("Rdata" , "csv2" , "sav")
 sapply( types , FUN = function(type){
-    save.data( dat , filename="ma02data"  , type= type ,  path=pf2 ,
-               suffix = systime()[3] , row.names=TRUE  )
+    miceadds::save.data( dat , filename="ma02data"  , type= type ,  path=pf2 ,
+               suffix = miceadds::systime()[3] , row.names=TRUE  )
                                     } )
 
 # save data frame in multiple file formats (sav, table and csv2)
 save.data( dat , filename="ma03data"  , type= c("sav","table","csv2") ,  path=pf2 ,
-            suffix = systime()[7]  )
+            suffix = miceadds::systime()[7]  )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

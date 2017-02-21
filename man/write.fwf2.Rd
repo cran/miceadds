@@ -85,7 +85,7 @@ write.fwf2( dat , format.full=format.full, format.round=format.round ,
                 file = "testdata" )
 
 # read the data
-dat1 <- read.fwf2( file = "testdata.dat" , format.full = c(6,6,8) , 
+dat1 <- miceadds::read.fwf2( file = "testdata.dat" , format.full = c(6,6,8) , 
                variables = c("x","y","z") )
 # check differences between data frames
 dat - dat1

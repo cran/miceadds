@@ -121,7 +121,7 @@ write.pspp <- function (data , datafile, pspp.path , decmax=6 ,
 	# run PSPP		
 	p1 <- paste0( "\"" , pspp.path , "pspp.exe\" "  , codefile  )
 	if ( use.bat ){
-		base::writeLines( p1 , "_batch_pspp.bat" )
+		writeLines( p1 , "_batch_pspp.bat" )
 		system( "_batch_pspp.bat" )			
 				} else {
 		system( p1 )

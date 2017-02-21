@@ -88,7 +88,7 @@ y <- ( X \%*\% beta )[,1] + stats::rnorm( N , sd = .6 )
 Y <- base::matrix(y,nrow=N , ncol=1 )
 
 # PLS regression
-res <- kernelpls.fit2( X=X , Y = Y , ncomp=20 )
+res <- miceadds::kernelpls.fit2( X=X , Y = Y , ncomp=20 )
 
 # predict new scores
 Xpred <- predict( res , X = X[1:10,] )
@@ -104,7 +104,7 @@ data(yarn,package="pls")
 mod1 <- pls::kernelpls.fit( X = yarn$NIR , Y = yarn$density , ncomp = 10 )
 # use kernelpls.fit2 from miceadds package
 Y <- base::matrix( yarn$density, ncol=1 )
-mod2 <- kernelpls.fit2( X = yarn$NIR , Y = Y , ncomp = 10 )
+mod2 <- miceadds::kernelpls.fit2( X = yarn$NIR , Y = Y , ncomp = 10 )
 }
 }
 

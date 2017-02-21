@@ -104,7 +104,7 @@ write.mice.imputation(mi.res=imp1 , name="mice_imp1" )
 
 #**********
 # Model 2: Imputation using mice.1chain
-imp2 <- mice.1chain( nhanes , burnin=10 , iter=20 , Nimp=4 )
+imp2 <- miceadds::mice.1chain( nhanes , burnin=10 , iter=20 , Nimp=4 )
 # write results
 write.mice.imputation(mi.res=imp2 , name="mice_imp2" )
 }

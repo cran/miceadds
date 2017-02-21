@@ -83,7 +83,7 @@ dat <- as.matrix( data.internet)
 imp <- mice::mice( dat , m=1 , maxit=10 )
 
 # apply PCA
-pca.imp <- pca.covridge( complete(imp) )
+pca.imp <- miceadds::pca.covridge( complete(imp) )
   ##   > pca.imp$sdev
   ##      Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
   ##   3.0370905 2.3950176 2.2106816 2.0661971 1.8252900 1.7009921 1.6379599 

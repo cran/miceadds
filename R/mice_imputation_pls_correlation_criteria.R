@@ -9,8 +9,8 @@ mice_imputation_pls_correlation_criteria <- function( y , x , ry , use.ymat)
 		# look for correlations of all the dummy variables
 		# c1 <- stats::cor( y[ry,] , x[ry,] ) 
 		c1 <- cor_avoid_zero( y[ry] , x[ry,] )
-		c1 <- base::apply( base::abs(c1) , 2 , base::mean , na.rm=TRUE )
+		c1 <- apply( abs(c1) , 2 , mean , na.rm=TRUE )
 	}
-	base::return(c1)
+	return(c1)
 }
 	

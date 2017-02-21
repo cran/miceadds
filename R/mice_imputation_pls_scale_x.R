@@ -11,5 +11,5 @@ mice_imputation_pls_scale_x <- function( x , imputationWeights , use_weights)
     } else {  # without weights
         x0 <- x <- ma.scale2( x )		
     }
-	base::return(x)
+	return(x)
 }

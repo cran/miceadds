@@ -97,7 +97,7 @@ data(data.timss2 , package="BIFIEsurvey" )
 datlist <- data.timss2      
 
 # class datlist
-obj1 <- datlist_create(data.timss2)
+obj1 <- miceadds::datlist_create(data.timss2)
 
 #############################################################################
 # EXAMPLE 2: Multiply imputed datasets: Different object classes
@@ -108,15 +108,15 @@ data(nhanes2, package="mice")
 set.seed(990)
 
 # nhanes2 data imputation
-imp1 <- mice.1chain( nhanes2 , burnin=5 , iter=25 , Nimp=5 )
+imp1 <- miceadds::mice.1chain( nhanes2 , burnin=5 , iter=25 , Nimp=5 )
 # object of class datlist
-imp2 <- mids2datlist(imp1)
+imp2 <- miceadds::mids2datlist(imp1)
 # alternatively, one can use datlist_create
-imp2b <- datlist_create(imp1)
+imp2b <- miceadds::datlist_create(imp1)
 # object of class imputationList
 imp3 <- mitools::imputationList(imp2)
 # retransform object in class datlist
-imp2c <- datlist_create(imp3)
+imp2c <- miceadds::datlist_create(imp3)
 str(imp2c)
 
 #############################################################################
@@ -134,7 +134,7 @@ V <- ncol(data)
 # variables
 vars <- colnames(data)
 # variables not used for imputation
-vars_unused <- scan.vec("IDSTUD TOTWGT  JKZONE  JKREP" )
+vars_unused <- miceadds::scan.vec("IDSTUD TOTWGT  JKZONE  JKREP" )
 
 #- define imputation method
 impMethod <- rep("norm" , V )
@@ -148,14 +148,14 @@ diag(predM) <- 0
 predM[ , vars_unused ] <- 0
 
 # object of class nmi
-imp1 <- mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM, 
+imp1 <- miceadds::mice.nmi( datlist , imputationMethod=impMethod , predictorMatrix=predM, 
                 m=4 , maxit=3 )
 # object of class nested.datlist
-imp2 <- mids2datlist(imp1)
+imp2 <- miceadds::mids2datlist(imp1)
 # object of class NestedImputationList
-imp3 <- NestedImputationList(imp2)
+imp3 <- miceadds::NestedImputationList(imp2)
 # redefine class nested.datlist
-imp4 <- nested.datlist_create(imp3)
+imp4 <- miceadds::nested.datlist_create(imp3)
 
 #############################################################################
 # EXAMPLE 4: Conversions between nested lists of datasets and lists of datasets
@@ -166,17 +166,17 @@ data(data.timss4 , package="BIFIEsurvey" )
 datlist <- data.timss4
 
 # object of class nested.datlist
-datlist1a <- nested.datlist_create(datlist)
+datlist1a <- miceadds::nested.datlist_create(datlist)
 # object of class NestedImputationList
-datlist1b <- NestedImputationList(datlist)
+datlist1b <- miceadds::NestedImputationList(datlist)
 
 # conversion to datlist
-datlist2a <- nested.datlist2datlist(datlist1a)  # class datlist
-datlist2b <- nested.datlist2datlist(datlist1b)  # class imputationList
+datlist2a <- miceadds::nested.datlist2datlist(datlist1a)  # class datlist
+datlist2b <- miceadds::nested.datlist2datlist(datlist1b)  # class imputationList
 
 # convert into a nested list with 2 between nests and 10 within nests
-datlist3a <- datlist2nested.datlist(datlist2a, Nimp=c(2,10) )
-datlist3b <- datlist2nested.datlist(datlist2b, Nimp=c(4,5) )
+datlist3a <- miceadds::datlist2nested.datlist(datlist2a, Nimp=c(2,10) )
+datlist3b <- miceadds::datlist2nested.datlist(datlist2b, Nimp=c(4,5) )
 }  
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

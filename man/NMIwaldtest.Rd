@@ -112,33 +112,33 @@ for (ll in 1:M){
                 
 #***************
 # (1) nested multiple imputation using mice
-imp1 <- mice.nmi( datlist ,  m=3 , maxit=2 )
+imp1 <- miceadds::mice.nmi( datlist ,  m=3 , maxit=2 )
 summary(imp1)
 
 #**** Model 1: Linear regression with interaction effects
 res1 <- with( imp1 , stats::lm( likesc ~ female*migrant + female*books  ) )
-pres1 <- pool.mids.nmi( res1 )
+pres1 <- miceadds::pool.mids.nmi( res1 )
 summary(pres1)
 
 # test whether both interaction effects equals zero
 pars <- dimnames(pres1$qhat)[[3]]
-des <- create.designMatrices.waldtest( pars = pars , k=2)
+des <- miceadds::create.designMatrices.waldtest( pars = pars , k=2)
 Cdes <- des$Cdes
 rdes <- des$rdes
 Cdes[1, "female:migrant"] <- 1
 Cdes[2, "female:books"] <- 1
-wres1 <- NMIwaldtest( qhat=pres1$qhat , u=pres1$u , Cdes=Cdes , rdes=rdes )
+wres1 <- miceadds::NMIwaldtest( qhat=pres1$qhat , u=pres1$u , Cdes=Cdes , rdes=rdes )
 summary(wres1)
 
 # a simpler specification is the use of "testnull"
 testnull <- c("female:migrant" , "female:books")
-wres1b <- NMIwaldtest( qhat=qhat , u=u , testnull=testnull )
+wres1b <- miceadds::NMIwaldtest( qhat=qhat , u=u , testnull=testnull )
 summary(wres1b)
 
 #**** Model 2: Multivariate linear regression
 res2 <- with( imp1 , stats::lm( cbind( ASMMAT , ASSSCI ) ~ 
                            0 + I(1*(female==1)) + I(1*(female==0))   ) )
-pres2 <- pool.mids.nmi( res2 )
+pres2 <- miceadds::pool.mids.nmi( res2 )
 summary(pres2)
 
 # test whether both gender differences equals -10 points
@@ -147,7 +147,7 @@ pars <- dimnames(pres2$qhat)[[3]]
   ##  [1] "ASMMAT:I(1 * (female == 1))" "ASMMAT:I(1 * (female == 0))"
   ##  [3] "ASSSCI:I(1 * (female == 1))" "ASSSCI:I(1 * (female == 0))"
 
-des <- create.designMatrices.waldtest( pars = pars , k=2)
+des <- miceadds::create.designMatrices.waldtest( pars = pars , k=2)
 Cdes <- des$Cdes
 rdes <- c(-10,-10)
 Cdes[1, "ASMMAT:I(1*(female == 1))"] <- 1
@@ -155,11 +155,11 @@ Cdes[1, "ASMMAT:I(1*(female == 0))"] <- -1
 Cdes[2, "ASSSCI:I(1*(female == 1))"] <- 1
 Cdes[2, "ASSSCI:I(1*(female == 0))"] <- -1
 
-wres2 <- NMIwaldtest( qhat=pres2$qhat , u=pres2$u , Cdes=Cdes , rdes=rdes )
+wres2 <- miceadds::NMIwaldtest( qhat=pres2$qhat , u=pres2$u , Cdes=Cdes , rdes=rdes )
 summary(wres2)
 
 # test only first hypothesis
-wres2b <- NMIwaldtest( qhat=pres2$qhat , u=pres2$u , Cdes=Cdes[1,,drop=FALSE] ,
+wres2b <- miceadds::NMIwaldtest( qhat=pres2$qhat , u=pres2$u , Cdes=Cdes[1,,drop=FALSE] ,
                          rdes=rdes[1] )
 summary(wres2b)
 
@@ -184,36 +184,36 @@ summary(pres1)
 qhat <- pres1$qhat
 u <- pres1$u
 pars <- dimnames(pres1$qhat)[[2]]
-des <- create.designMatrices.waldtest( pars = pars , k=2)
+des <- miceadds::create.designMatrices.waldtest( pars = pars , k=2)
 Cdes <- des$Cdes
 rdes <- des$rdes
 Cdes[1, "female:migrant"] <- 1
 Cdes[2, "female:books"] <- 1
 
 # apply MIwaldtest function
-wres1 <- MIwaldtest( qhat , u , Cdes , rdes )
+wres1 <- miceadds::MIwaldtest( qhat , u , Cdes , rdes )
 summary(wres1)
 
 # use again "testnull"
 testnull <- c("female:migrant" , "female:books")
-wres1b <- MIwaldtest( qhat=qhat , u=u , testnull=testnull )
+wres1b <- miceadds::MIwaldtest( qhat=qhat , u=u , testnull=testnull )
 summary(wres1b)
 
 #***** linear regression with cluster robust standard errors
 
 # convert object of class mids into a list object
-datlist_imp <- mids2datlist( imp )
+datlist_imp <- miceadds::mids2datlist( imp )
 # define cluster
 idschool <- as.numeric( substring( data.timss2[[1]]$IDSTUD , 1 , 5 ) )
 # linear regression
 res2 <- lapply( datlist_imp , FUN = function(data){
-           lm.cluster( data=data , formula=likesc ~ female*migrant + female*books ,
+           miceadds::lm.cluster( data=data , formula=likesc ~ female*migrant + female*books ,
                             cluster= idschool ) } )
 # extract parameters and covariance matrix
 qhat <- lapply( res2 , FUN = function(rr){ coef(rr) } )
 u <- lapply( res2 , FUN = function(rr){ vcov(rr) } )
 # perform Wald test
-wres2 <- MIwaldtest( qhat , u , Cdes , rdes )
+wres2 <- miceadds::MIwaldtest( qhat , u , Cdes , rdes )
 summary(wres2)
 }
 }

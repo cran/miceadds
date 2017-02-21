@@ -55,7 +55,7 @@ data(data.ma01)
 # extract variable names
 vars <- colnames(data.ma01)
 # convert into a long string with line breaks at column 25
-vars2 <- VariableNames2String( vars , breaks=25)
+vars2 <- miceadds::VariableNames2String( vars , breaks=25)
 vars
   ##   [1] "idstud"   "idschool" "studwgt"  "math"     "read"     "migrant" 
   ##   [7] "books"    "hisei"    "paredu"   "female"   "urban"   

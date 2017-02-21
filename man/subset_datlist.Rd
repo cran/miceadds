@@ -123,45 +123,46 @@ data(data.ma02)
 # define original list of datasets
 datlist1a <- data.ma02
 # object of class datlist
-datlist1b <- datlist_create(datlist1a)
+datlist1b <- miceadds::datlist_create(datlist1a)
 datlist1b
 # object of class imputationList
 datlist1c <- mitools::imputationList(datlist1a)
 datlist1c
 # object of class mids
-datlist1d <- datlist2mids(datlist1a)
+datlist1d <- miceadds::datlist2mids(datlist1a)
 datlist1d
 
 # select some imputed datasets
-datlist2a <- subset_datlist( datlist1a , index = c(5,3,7) )
+datlist2a <- miceadds::subset_datlist( datlist1a , index = c(5,3,7) )
 datlist2a
 # convert to class imputationList
-datlist2b <- subset_datlist( datlist1a , index = c(5,3,7) , toclass = "imputationList")
+datlist2b <- miceadds::subset_datlist( datlist1a , index = c(5,3,7), 
+                      toclass = "imputationList")
 datlist2b
 # convert to class mids
-datlist2c <- subset_datlist( datlist1a , index = 1:3 , toclass = "mids")
+datlist2c <- miceadds::subset_datlist( datlist1a , index = 1:3 , toclass = "mids")
 datlist2c
 
 \dontrun{
 # select some variables
-datlist3a <- subset_datlist( datlist1a , select = c("idstud" , "books")  )
+datlist3a <- miceadds::subset_datlist( datlist1a , select = c("idstud" , "books")  )
 datlist3a
 # Because datlist1b is a datlist it is equivalent to 
 datlist3b <- subset( datlist1b , select = c("idstud" , "books")  )
 datlist3b
 # operating on imputationList class
-datlist3c <- subset_datlist( datlist1c , select = c("idstud" , "books")  )
+datlist3c <- miceadds::subset_datlist( datlist1c , select = c("idstud" , "books")  )
 datlist3c
 # operating on mids class
-datlist3d <- subset_datlist( datlist1d , select = c("idstud" , "books")  )
+datlist3d <- miceadds::subset_datlist( datlist1d , select = c("idstud" , "books")  )
 datlist3d
 # selection of rows and columns in multiply imputed datasets
-datlist4a <- subset_datlist( datlist1a , index = 1:5 , 
+datlist4a <- miceadds::subset_datlist( datlist1a , index = 1:5 , 
                   subset = datlist1a[[1]]$idschool < 1067 , 
                   select = c("idstud" , "idschool","hisei") )
 datlist4a
 # convert to class mids
-datlist4b <- subset_datlist( datlist1a , index = 1:5 , 
+datlist4b <- miceadds::subset_datlist( datlist1a , index = 1:5 , 
                   subset = datlist1a[[1]]$idschool < 1067 , 
                   select = c("idstud" , "idschool","hisei") , toclass = "mids" )
 datlist4b
@@ -173,11 +174,12 @@ datlist4c
 # expression for selecting rows specific in each data frame
 # which can result in differently sized datasets (because the variable
 # migrant is imputed)
-datlist5a <- subset_datlist( datlist1a ,  expr_subset = migrant == 1 )
+datlist5a <- miceadds::subset_datlist( datlist1a ,  expr_subset = migrant == 1 )
 datlist5a
 
 # select the first 100 cases
-datlist6a <- subset_datlist( datlist1a , select = c("idstud" , "books"), subset=1:100 )
+datlist6a <- miceadds::subset_datlist( datlist1a , select = c("idstud" , "books"), 
+                       subset=1:100 )
 datlist6a
 
 #############################################################################
@@ -189,11 +191,11 @@ data(data.timss4, package="BIFIEsurvey")
 dat <- data.timss4
 
 # create object of class 'nested.datlist'
-datlist1a <- nested.datlist_create( dat )
+datlist1a <- miceadds::nested.datlist_create( dat )
 # create object of class 'NestedImputationList'
-datlist1b <- NestedImputationList(dat)
+datlist1b <- miceadds::NestedImputationList(dat)
 # create object of class 'mids.nmi'
-datlist1c <- datlist2mids(dat)
+datlist1c <- miceadds::datlist2mids(dat)
 
 # select some between datasets
 datlist2a <- subset_nested.datlist( datlist1a , index_between = c(1,3,4) )

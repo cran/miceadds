@@ -59,14 +59,14 @@ data <- 100 * data / sum(data)
 
 ( x1 <- round( data ) )
 sum(x1)
-(x2 <- sumpreserving.rounding( data ) )
+(x2 <- miceadds::sumpreserving.rounding( data ) )
 sum(x2)
 
   ##   > ( x1 <- round( data ) )
   ##   [1] 27 23 20 18 11  2
   ##   > sum(x1)
   ##   [1] 101
-  ##   > (x2 <- sumpreserving.rounding( data ) )
+  ##   > (x2 <- miceadds::sumpreserving.rounding( data ) )
   ##   [1] 27 23 20 18 10  2
   ##   > sum(x2)
   ##   [1] 100
@@ -79,7 +79,7 @@ sum(x2)
 data <- rbind( data , data )
 ( x1 <- round( data ) )
 rowSums(x1)
-(x2 <- sumpreserving.rounding( data ) )
+(x2 <- miceadds::sumpreserving.rounding( data ) )
 rowSums(x2)
 
 #############################################################################
@@ -91,7 +91,7 @@ round(x2)
 sumpreserving.rounding(x2)
   ##   > round(x2)
   ##   [1] 1 1 1
-  ##   > sumpreserving.rounding(x2)
+  ##   > miceadds::sumpreserving.rounding(x2)
   ##   [1] 1 2 1
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

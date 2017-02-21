@@ -101,9 +101,9 @@ data(data.ma02)
 # save dataset as imputation list
 imp <- mitools::imputationList( data.ma02 )
 # mids object
-imp0 <- datlist2mids( imp )
+imp0 <- miceadds::datlist2mids( imp )
 # datlist object
-imp1 <- datlist_create(data.ma02)
+imp1 <- miceadds::datlist_create(data.ma02)
 
 #--- apply linear model based on imputationList
 mod <- with( imp , stats::lm( read ~ hisei + female ) )
@@ -120,13 +120,13 @@ semod <- lapply( mod , FUN = function(mm){
 vmod <- mitools::MIextract( mod , fun = vcov)
 
 #*** pooling based on covariance matrices
-res1 <- pool_mi( qhat=cmod , u = vmod )
+res1 <- miceadds::pool_mi( qhat=cmod , u = vmod )
 summary(res1)
 coef(res1)
 vcov(res1)
 
 #*** pooling based on standard errors
-res2 <- pool_mi( qhat=cmod , se = semod )
+res2 <- miceadds::pool_mi( qhat=cmod , se = semod )
 
 #*** pooling with MIcombine
 res3 <- mitools::MIcombine( results=cmod , variances=vmod )
@@ -176,7 +176,7 @@ se <- lapply( mod6b , FUN = function(ll){
         names(v1) <- parnames
         return(v1)    
      } ) 
-res6c <- pool_mi( qhat = qhat , se = se )     
+res6c <- miceadds::pool_mi( qhat = qhat , se = se )     
 
 # function runMI in semTools package
 res6d <- semTools::runMI(model=lavmodel , data = imp1 , m = length(imp1) )

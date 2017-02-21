@@ -17,16 +17,8 @@ Some Additional Multiple Imputation Functions, Especially for \pkg{mice}
 }
 
 \details{
-\code{DESCRIPTION} \pkg{miceadds} package
 
-\tabular{ll}{
-Package: \tab \pkg{miceadds} \cr
-Type: \tab Package\cr
-Version: \tab 2.2 \cr
-Publication Year: \tab 2017\cr
-License: \tab GPL (>= 2)\cr
-URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
-}
+
 
 \itemize{
 

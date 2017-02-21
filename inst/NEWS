@@ -22,9 +22,11 @@ miceadds:  Some additional multiple imputation functions,
                                      " "           <;___)------
                                                      " "
 
-Alexander Robitzsch
+Alexander Robitzsch, Simon Grund & Thorsten Henke
 
 Questions or suggestions about miceadds should be sent to
+
+Alexander Robitzsch
 robitzsch@ipn.uni-kiel.de
 
 In case of reporting a bug, please always provide a
@@ -37,6 +39,19 @@ reproducible script.
 CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+
+---------------------------------------------------------------------
+Versions 2.3  -- 2017-02-21  --  CRAN miceadds 2.3-0
+---------------------------------------------------------------------
+
+NOTE  * updated incorrect examples in miceadds::micombine.chisquare
+        and miceadds::micombine.F (thanks to Nicholas Breitborde)
+NOTE  * restructured Rcpp functions
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: micombine.F (1), 
+        micombine.chisquare (2)
 
 
 ---------------------------------------------------------------------

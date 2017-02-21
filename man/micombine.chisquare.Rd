@@ -80,12 +80,11 @@ for a Wald test to compare two fitted models in the \pkg{mice} package.
 #############################################################################
 
 # Vector of 7 chi square statistics
-dk <- c(24.957,18.051,18.812,17.362,21.234,18.615,19.84)
-dk.comb <- micombine.chisquare(dk=dk, df=4 )
-##   Combination of Chi Square Statistics for Multiply Imputed Data
-##   Using 7 Imputed Data Sets
-##   F(4,594.01)=4.486     p=0.00141 
-##   Chi Square Approximation Chi2(4)=17.946     p=0.00126 
+dk <- c(24.957, 18.051, 18.812, 17.362, 21.234, 18.615, 19.84)
+dk.comb <- miceadds::micombine.chisquare(dk=dk, df=4 )
+  ##  Combination of Chi Square Statistics for Multiply Imputed Data
+  ##  Using 7 Imputed Data Sets
+  ##  F(4, 482.06)=4.438     p=0.00157  
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

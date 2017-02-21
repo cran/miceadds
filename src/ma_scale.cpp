@@ -1,29 +1,8 @@
 
-// includes from the plugin
 
-#include <RcppArmadillo.h>
 #include <Rcpp.h>
 
-#ifndef BEGIN_RCPP
-#define BEGIN_RCPP
-#endif
-
-#ifndef END_RCPP
-#define END_RCPP
-#endif
-
 using namespace Rcpp;
-
-
-// user includes
-
-
-// declarations
-extern "C" {
-SEXP scale2_C( SEXP x_) ;
-SEXP scale2_NA_C( SEXP x_) ;
-}
-
 
 
 
@@ -31,27 +10,24 @@ SEXP scale2_NA_C( SEXP x_) ;
 /// Rcpp implementation of scale in R 
 
 
-
-SEXP scale2_C( SEXP x_ ){
-BEGIN_RCPP
-  
-       
-     Rcpp::NumericMatrix x(x_);          
+///********************************************************************
+///** scale2_C
+// [[Rcpp::export]]
+Rcpp::NumericMatrix scale2_C( Rcpp::NumericMatrix x ){
        
      int n = x.nrow() ;  
      int p = x.ncol() ;  
      Rcpp::NumericMatrix y(n,p) ;         
      double mvv=0;  
      double sdvv=0;       
-     double eps_add = 1e-10 ;
-       
+     double eps_add = 1e-10 ;       
      for (int vv=0;vv<p;vv++){  
          //int vv = 0 ;  
          mvv=0;  
          sdvv=0;  
          for (int ii=0;ii<n;ii++){  
              mvv += x(ii,vv) ;  
-             sdvv += pow( x(ii,vv) , 2 ) ;  
+             sdvv += pow( x(ii,vv) , 2.0 ) ;  
          }  
          mvv = mvv / n ;  
          sdvv = sqrt( ( sdvv - n * mvv*mvv )/(n-1 ) ) ;  
@@ -59,32 +35,24 @@ BEGIN_RCPP
          y(_,vv) = ( x(_,vv) - mvv ) / ( sdvv + eps_add ) ;  
      }              
        
-     return( Rcpp::wrap(y) ) ;  
-       
-END_RCPP
+     return y ;  
 }
-
-
 ///////////////////////////////////////////////////////////////
 
 
 
-// definition
+///********************************************************************
+///** scale2_NA_C
+// [[Rcpp::export]]
+Rcpp::NumericMatrix scale2_NA_C( Rcpp::NumericMatrix x ){
 
-SEXP scale2_NA_C( SEXP x_ ){
-BEGIN_RCPP
-         
-     Rcpp::NumericMatrix x(x_);          
-       
      int n = x.nrow() ;  
      int p = x.ncol() ;  
      Rcpp::NumericMatrix y(n,p) ;         
      double mvv=0;  
      double sdvv=0;  
-     double nvv = 0;  
-
+     double nvv=0;  
      double eps_add = 1e-10 ;     
-       
      for (int vv=0;vv<p;vv++){  
          //int vv = 0 ;  
          mvv=0;  
@@ -103,9 +71,7 @@ BEGIN_RCPP
          y(_,vv) = ( x(_,vv) - mvv ) / ( sdvv + eps_add ) ;  
      }              
        
-     return( Rcpp::wrap(y) ) ;  
-       
-END_RCPP
+     return y ;         
 }
 
 

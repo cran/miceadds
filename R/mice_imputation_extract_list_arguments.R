@@ -7,17 +7,17 @@ mice_imputation_extract_list_arguments <- function( micearg , vname , miceargdef
     # micearg   ... name of mice argument
     # vname     ... variable name
     # miceargdefault    ... default for this variable
-    if( base::is.list(micearg) ){
-        if ( ! base::is.null(micearg[[vname]] ) ){
+    if( is.list(micearg) ){
+        if ( ! is.null(micearg[[vname]] ) ){
             micearg <- micearg[[vname]]
         } else { 
 			micearg <- miceargdefault 
 		}                      
     }
-    if ( base::is.null(micearg) ){
+    if ( is.null(micearg) ){
 		micearg <- miceargdefault 
 	}       
-    base::return( micearg )
+    return( micearg )
 }
 #*****************************************************************************
 

@@ -6,7 +6,7 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
                         plausible.value.print = TRUE , 
                         pls.facs=NULL , interactions=NULL , quadratics =NULL , 
 						extract_data = TRUE , ...){  						
-	base::requireNamespace("MBESS")											
+	requireNamespace("MBESS")											
     #*******
 	# old arguments which are now excluded from the function
 	itemdiff=NULL ; item.resp = NULL ;
@@ -16,12 +16,12 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 	
 	#********
 	#--- extract arguments
-	pos <- base::parent.frame(n=1)
+	pos <- parent.frame(n=1)
 
 	res <- mice_imputation_get_states( pos = pos )				
 	vname <- res$vname
 	# newstate <- res$newstate	
-	newstate <- base::get( "newstate" , pos = pos )  
+	newstate <- get( "newstate" , pos = pos )  
 
 	if (extract_data){
 		res <- mice_imputation_prepare_2l_functions( vname = vname , envir = pos )		
@@ -195,7 +195,7 @@ mice.impute.plausible.values <- function (y, ry, x, type , alpha = NULL  ,
 		#*+*+*+*
 		# PLS
 		if ( is.null(pls.facs) + is.null(interactions) + is.null(quadratics) < 3 ){
-			ry_true <- base::rep(TRUE, base::length(y))
+			ry_true <- rep(TRUE, length(y))
 			plsout <- mice_imputation_pls_helper( newstate = newstate , vname = vname , 
 						pls.impMethod = "xplsfacs" , x = x1 , y = y , 
 						ry= ry_true , imputationWeights = imputationWeights , 

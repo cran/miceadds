@@ -105,20 +105,20 @@ data(data.ma01)
 dat <- data.ma01
 
 #*** Model 1: Linear regression
-mod1 <- lm.cluster( data = dat , formula = read ~ hisei + female , 
+mod1 <- miceadds::lm.cluster( data = dat , formula = read ~ hisei + female , 
                cluster = "idschool" )
 coef(mod1)
 vcov(mod1)
 summary(mod1)
 
 # estimate Model 1, but cluster is provided as a vector
-mod1b <- lm.cluster( data = dat, formula = read ~ hisei + female, 
+mod1b <- miceadds::lm.cluster( data = dat, formula = read ~ hisei + female, 
                  cluster = dat$idschool)
 summary(mod1b)
 
 #*** Model 2: Logistic regression
 dat$highmath <- 1 * ( dat$math > 600 )   # create dummy variable
-mod2 <- glm.cluster( data = dat , formula = highmath ~ hisei + female , 
+mod2 <- miceadds::glm.cluster( data = dat , formula = highmath ~ hisei + female , 
                 cluster = "idschool" , family="binomial")
 coef(mod2)
 vcov(mod2)
@@ -136,11 +136,11 @@ dat <- data.ma05
 # imputation of the dataset: use six imputations
 resp <- dat[ , - c(1:2) ]
 imp <- mice::mice( resp , imputationMethod="norm" , maxit=3 , m=6 )
-datlist <- mids2datlist( imp )
+datlist <- miceadds::mids2datlist( imp )
 
 # linear regression with cluster robust standard errors
 mod <- lapply(  datlist, FUN = function(data){
-            lm.cluster( data=data , formula=denote ~ migrant+ misei , 
+            miceadds::lm.cluster( data=data , formula=denote ~ migrant+ misei , 
                     cluster = dat$idclass )
             }  )
 # extract parameters and covariance matrix

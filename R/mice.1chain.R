@@ -15,22 +15,22 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
     ###################################################################------
 	CALL <- match.call()
     # burnin phase
-    iterstep0 <- base::round( base::seq( burnin , iter , length = Nimp+1 ) )
-    iterstep <- base::diff( iterstep0  )
-	implist <- base::list(  1:(Nimp+1) )
-	datlist <- base::list( 1:Nimp )
+    iterstep0 <- round( seq( burnin , iter , length = Nimp+1 ) )
+    iterstep <- diff( iterstep0  )
+	implist <- list(  1:(Nimp+1) )
+	datlist <- list( 1:Nimp )
 	# indicator for factors
-	VV <- base::ncol(data)
-	ind.factor <- base::sapply( 1:VV , FUN = function(vv){ 
-						base::is.factor( data[,vv]) } )
-	ind.num <- base::setdiff( 1:VV , base::which( ind.factor ) )	
-	meansObs <- base::colMeans( data[,ind.num] , na.rm=TRUE )
-	NObs <- base::colSums( 1 - base::is.na(data[,ind.num]))	
-	VarObs <- (base::colSums( data[,ind.num]^2 , na.rm=TRUE ) - NObs * meansObs^2)/NObs
-	NMiss <- base::colSums( base::is.na(data[,ind.num]))		
+	VV <- ncol(data)
+	ind.factor <- sapply( 1:VV , FUN = function(vv){ 
+						is.factor( data[,vv]) } )
+	ind.num <- setdiff( 1:VV , which( ind.factor ) )	
+	meansObs <- colMeans( data[,ind.num] , na.rm=TRUE )
+	NObs <- colSums( 1 - is.na(data[,ind.num]))	
+	VarObs <- (colSums( data[,ind.num]^2 , na.rm=TRUE ) - NObs * meansObs^2)/NObs
+	NMiss <- colSums( is.na(data[,ind.num]))		
 
 	#******************************
-    base::cat("************ BURNIN PHASE |", "Iterations 1 -" , burnin , 
+    cat("************ BURNIN PHASE |", "Iterations 1 -" , burnin , 
 			"******************\n") 
 			utils::flush.console()
     implist[[1]] <- imp0 <- mice::mice( data , maxit=burnin , m=1 , 
@@ -42,13 +42,13 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 				defaultImputationMethod=defaultImputationMethod ,
                 data.init = data.init , ... )
     dat0 <- mice::complete( imp0 , 1 )
-	chainMean <- base::t( imp0$chainMean[,,1] )
-	chainVar <- base::t( imp0$chainVar[,,1] )
-	base::rownames(chainVar)[ base::nrow(chainVar) ] <- 
-		base::rownames(chainMean)[ base::nrow(chainMean) ] <- "end_burnin"
+	chainMean <- t( imp0$chainMean[,,1] )
+	chainVar <- t( imp0$chainVar[,,1] )
+	rownames(chainVar)[ nrow(chainVar) ] <- 
+		rownames(chainMean)[ nrow(chainMean) ] <- "end_burnin"
     # imputation phase
 	
-    base::cat("\n\n************ IMPUTATION PHASE |", "Iterations", burnin+1 , "-" , 
+    cat("\n\n************ IMPUTATION PHASE |", "Iterations", burnin+1 , "-" , 
 				iter , "******************\n") ; 
 	utils::flush.console()
     for ( mm in 1:Nimp){
@@ -62,39 +62,39 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 					printFlag=printFlag , seed=seed , defaultImputationMethod=defaultImputationMethod ,
 					data.init = dat0 , ... ) 		
         datlist[[mm]] <- dat0 <- mice::complete( imp1 , 1 )
-		chainMean <- base::rbind( chainMean , base::t( imp1$chainMean[,,1] ) )
-		chainVar <- base::rbind( chainVar , base::t( imp1$chainVar[,,1] ) )
-		base::rownames(chainVar)[ base::nrow(chainVar) ] <- 
-			base::rownames(chainMean)[ base::nrow(chainMean) ] <- 
-				base::paste0( "imp_" , mm )	
+		chainMean <- rbind( chainMean , t( imp1$chainMean[,,1] ) )
+		chainVar <- rbind( chainVar , t( imp1$chainVar[,,1] ) )
+		rownames(chainVar)[ nrow(chainVar) ] <- 
+			rownames(chainMean)[ nrow(chainMean) ] <- 
+				paste0( "imp_" , mm )	
 	}
         
     ###################################################--------------------------
     # post-processing
 
 	# conversion into a mids object
-	ids <- base::seq( 1 , base::nrow(data) )
-	datalong <- base::data.frame( ".imp"=0 , "id"= ids , data )
+	ids <- seq( 1 , nrow(data) )
+	datalong <- data.frame( ".imp"=0 , "id"= ids , data )
     for ( mm in 1:Nimp ){ 
-		datalong <- base::rbind( datalong , 
-						base::data.frame( ".imp"=mm , "id" = ids , datlist[[mm]] ) )
+		datalong <- rbind( datalong , 
+						data.frame( ".imp"=mm , "id" = ids , datlist[[mm]] ) )
 	}
 	# midsobj <- datalist2mids(dat.list=datlist, progress = FALSE)
 	# as.mids in mice	
 	midsobj <- mice::as.mids(data = datalong , .imp=1, .id=2)
 	
 	# adjust M and Var for chains
-	vars <- base::colnames(chainMean)
-	cM <- base::nrow(chainMean)
+	vars <- colnames(chainMean)
+	cM <- nrow(chainMean)
 	eps <- 1E-20
 	meansObs[ is.na(meansObs) ] <- 0
-	LV <- base::length(vars)
-	chainMPar <- ( chainMean * base::matrix( NMiss[vars], nrow=cM, ncol=LV, byrow=TRUE)+
-				base::matrix( NObs[vars]*meansObs[vars], nrow=cM, ncol=LV, byrow=TRUE))/
-					( eps+  base::matrix( NObs[vars] + NMiss[vars] , nrow=cM , ncol=LV ,
+	LV <- length(vars)
+	chainMPar <- ( chainMean * matrix( NMiss[vars], nrow=cM, ncol=LV, byrow=TRUE)+
+				matrix( NObs[vars]*meansObs[vars], nrow=cM, ncol=LV, byrow=TRUE))/
+					( eps+  matrix( NObs[vars] + NMiss[vars] , nrow=cM , ncol=LV ,
 								byrow=TRUE ) )
-	vars <- base::colnames(chainVar)	
-	VarObs[ base::is.na(VarObs) ] <- 0	
+	vars <- colnames(chainVar)	
+	VarObs[ is.na(VarObs) ] <- 0	
 	chainVarPar <- ( chainVar * matrix( (NMiss[vars]) , nrow=cM , ncol=length(vars) , byrow=TRUE ) +
 				matrix( ( NObs[vars])* VarObs[vars] , nrow=cM , ncol=length(vars) , byrow=TRUE ) ) /
 						( eps+ matrix( NObs[vars] + NMiss[vars] , nrow=cM , ncol=length(vars) , byrow=TRUE ) )						
@@ -108,7 +108,7 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 	
 	midsobj$call <- CALL
 	
-	res <- base::list( "midsobj"=midsobj , "datlist"=datlist , "datalong" = datalong , 
+	res <- list( "midsobj"=midsobj , "datlist"=datlist , "datalong" = datalong , 
 					"implist" = implist ,
 					 "chainMPar"=chainMPar , 
 					"chainVarPar" =  chainVarPar   ,
@@ -116,10 +116,10 @@ mice.1chain <- function(data, burnin = 10 , iter = 20 , Nimp = 10 ,
 					"burnin" = burnin , "iter"=iter , "Nimp"=Nimp ,
 					"time" = Sys.time()
 					)
-	res$nobs <- base::nrow(data)
-	res$nvars <- base::ncol(data)					
-	base::class(res) <- "mids.1chain"
-    base::return(res)
+	res$nobs <- nrow(data)
+	res$nvars <- ncol(data)					
+	class(res) <- "mids.1chain"
+    return(res)
 }
 ###############################################################################
 ###############################################################################

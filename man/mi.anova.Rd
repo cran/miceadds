@@ -72,11 +72,11 @@ data(nhanes2, package="mice")
 set.seed(9090)
 
 # nhanes data in one chain and 8 imputed datasets
-mi.res <- mice.1chain( nhanes2 , burnin=4 , iter=20 , Nimp=8 )
+mi.res <- miceadds::mice.1chain( nhanes2 , burnin=4 , iter=20 , Nimp=8 )
 # 2-way analysis of variance (type 2)
-an2a <- mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" )
+an2a <- miceadds::mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" )
 # 2-way analysis of variance (type 3)
-an2b <- mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" , type=3)
+an2b <- miceadds::mi.anova(mi.res=mi.res, formula="bmi ~ age * chl" , type=3)
 
 #****** analysis based on first imputed dataset
 

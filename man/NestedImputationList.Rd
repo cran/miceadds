@@ -94,12 +94,12 @@ for (ll in 1:M){
                 }
                 
 # nested multiple imputation using mice
-imp1 <- mice.nmi( datlist ,  m=3 , maxit=2 )
+imp1 <- miceadds::mice.nmi( datlist ,  m=3 , maxit=2 )
 summary(imp1)
 
 # create object of class NestedImputationList
-datlist1 <- mids2datlist( imp1 )
-datlist1 <- NestedImputationList( datlist1 )
+datlist1 <- miceadds::mids2datlist( imp1 )
+datlist1 <- miceadds::NestedImputationList( datlist1 )
 
 # estimate linear model using with
 res1 <- with( datlist1 , stats::lm( ASMMAT ~ female + migrant ) )

@@ -80,18 +80,18 @@ for (ll in 1:M){
                 
 #***************
 # (1) nested multiple imputation using mice
-imp1 <- mice.nmi( datlist ,  m=4 , maxit=3 )
+imp1 <- miceadds::mice.nmi( datlist ,  m=4 , maxit=3 )
 summary(imp1)
 
 #***************
 # (2) nested multiple imputation using mice.1chain
-imp2 <- mice.nmi( datlist , Nimp=4 , burnin=10 ,iter=22, type="mice.1chain")
+imp2 <- miceadds::mice.nmi( datlist , Nimp=4 , burnin=10 ,iter=22, type="mice.1chain")
 summary(imp2)
 
 #**************
 # extract dataset for third orginal dataset the second within imputation
-dat32a <- complete.mids.nmi( imp1 , action = c(3,2) )
-dat32b <- complete.mids.nmi( imp2 , action = c(3,2) )
+dat32a <- miceadds::complete.mids.nmi( imp1 , action = c(3,2) )
+dat32b <- miceadds::complete.mids.nmi( imp2 , action = c(3,2) )
 
 #############################################################################
 # EXAMPLE 2: Imputation from one chain and extracting dataset for nhanes data
@@ -101,11 +101,11 @@ library(mice)
 data(nhanes, package="mice")
 
 # nhanes data in one chain
-imp1 <- mice.1chain( nhanes , burnin=5 , iter=40 , Nimp=4 ,
+imp1 <- miceadds::mice.1chain( nhanes , burnin=5 , iter=40 , Nimp=4 ,
           imputationMethod=rep("norm" , 4 ) )
     
 # extract first imputed dataset
-dati1 <- complete.mids.1chain( imp1 , action=1 )
+dati1 <- miceadds::complete.mids.1chain( imp1 , action=1 )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

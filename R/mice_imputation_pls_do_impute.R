@@ -8,7 +8,7 @@ mice_imputation_pls_do_impute <- function( x , y , ry , imputationWeights ,
 	
     if ( do_imputation ){   		
         if ( use_weights ){   # if there exists a real sample weight vector
-            x <- base::cbind(1, base::as.matrix(x) )
+            x <- cbind(1, as.matrix(x) )
             xobs <- x[ry,]
             yobs <- y[ry]
             weights.obs <- imputationWeights[ ry   ]
@@ -28,7 +28,7 @@ mice_imputation_pls_do_impute <- function( x , y , ry , imputationWeights ,
 			if (pls.impMethod == "pmm" ){ 
 				yhatobs <- x[ry, ] %*% parm$coef
 				yhatmis <- x[!ry, ] %*% parm$beta
-				x1 <- base::apply(as.array(yhatmis), 1, .pmm.match, 
+				x1 <- apply(as.array(yhatmis), 1, .pmm.match, 
 							yhat = yhatobs, y = y[ry], ... )
 			}
 			do_imputation <- FALSE
@@ -47,8 +47,8 @@ mice_imputation_pls_do_impute <- function( x , y , ry , imputationWeights ,
 		args$y <- y
 		args$ry <- ry
 		args$type <- type
-		impMethod <- base::paste0("mice.impute." , pls.impMethod)
-		x1 <- base::do.call( impMethod , args )	
+		impMethod <- paste0("mice.impute." , pls.impMethod)
+		x1 <- do.call( impMethod , args )	
 	}
 		
 	#-- no imputation
@@ -56,5 +56,5 @@ mice_imputation_pls_do_impute <- function( x , y , ry , imputationWeights ,
 		x1 <- x   
 	}
 		
-	base::return(x1)			
+	return(x1)			
 }		

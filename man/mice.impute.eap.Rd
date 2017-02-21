@@ -97,8 +97,8 @@ imp1 <- mice::mice( dat1 , m=3 , maxit=5 , imputationMethod=impmethod ,
 summary(imp1)   # summary
 
 # imputation using one long chain
-imp2 <- mice.1chain( dat1 , burnin=10 , iter=20 , Nimp =3 , imputationMethod=impmethod ,  
-              predictorMatrix = pM ,  allow.na =TRUE , eap=eap )
+imp2 <- miceadds::mice.1chain( dat1 , burnin=10 , iter=20 , Nimp =3, 
+            imputationMethod=impmethod, predictorMatrix = pM ,  allow.na =TRUE , eap=eap)
 summary(imp2)    # summary
 }
 }

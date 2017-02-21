@@ -16,5 +16,5 @@ mice.impute.2l.pmm <- function(y, ry, x, type, intercept=TRUE,
 				match_sampled_pars = match_sampled_pars , 
 				blme_use = FALSE , blme_args = NULL , 				
 				...)
-	base::return(imp)
+	return(imp)
 }

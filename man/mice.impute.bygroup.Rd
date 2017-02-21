@@ -78,7 +78,7 @@ group <- list( "books" = "idschool" )
 imputationFunction <- list("books" = "norm" )
 
 #** conduct multiple imputation in mice
-imp <- mice::mice( dat , imputationMethod = imputationMethod , predictorMatrix = predictorMatrix ,
+imp <- mice::mice( dat, imputationMethod=imputationMethod, predictorMatrix=predictorMatrix,
             m=1 , maxit=1 , group = group , imputationFunction = imputationFunction )
 }
 }

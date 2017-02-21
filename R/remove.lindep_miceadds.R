@@ -47,7 +47,7 @@ remove.lindep_miceadds <- function(x, y, ry, eps = 1e-04, maxcor = 0.99,
 	#        updateLog(out = out, frame = updateLog_frame )
 		}
 	} else {
-		keep <- base::rep( TRUE , ncol(xobs) )
+		keep <- rep( TRUE , ncol(xobs) )
 	}
     return(keep)
 }

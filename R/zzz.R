@@ -11,7 +11,7 @@ version <- function(pkg="miceadds"){
 # on attach TAM
 .onAttach <- function(libname,pkgname){
   d <- utils::packageDescription("miceadds")
-  base::packageStartupMessage( 
+  packageStartupMessage( 
 			paste0( "* " , d$Package," " , d$Version," (",d$Date,")") 
 								)
 }

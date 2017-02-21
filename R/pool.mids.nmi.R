@@ -3,13 +3,13 @@
 # pooling function for nested multiple imputation objects
 pool.mids.nmi <- function( object , method="largesample" ){
 
-		call <- base::match.call()
+		call <- match.call()
 		Nimp <- object$Nimp
 		NB <- Nimp["between"]
 		NW <- Nimp["within"]
 		anal <- object$analyses
 
-		pool_results <- base::as.list(1:NB)
+		pool_results <- as.list(1:NB)
 		for (bb in 1:NB){
 		#    bb <- 1
 			anal.bb <- anal[[bb]]
@@ -56,8 +56,8 @@ pool.mids.nmi <- function( object , method="largesample" ){
 ###########################################################################			
 # coef and vcov method
 coef.mipo.nmi <- function( object , ... ){
-	base::return(object$qbar)
+	return(object$qbar)
 }
 vcov.mipo.nmi <- function( object , ... ){
-	base::return(object$Tm)
+	return(object$Tm)
 }		

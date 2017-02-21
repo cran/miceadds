@@ -178,7 +178,7 @@ imp1 <- mice::mice(data = dat , imputationMethod = impMethod ,
 summary(imp1)
 
 # Model 2: One long chain
-imp2 <- mice.1chain(data = dat , imputationMethod = impMethod ,  
+imp2 <- miceadds::mice.1chain(data = dat , imputationMethod = impMethod ,  
      burnin=10 , iter=21 , Nimp=3 , predictorMatrix = predictorMatrix ,
      pls.facs = pls.facs , pls.impMethod = pls.impMethod ,
      pls.impMethodArgs = pls.impMethodArgs )

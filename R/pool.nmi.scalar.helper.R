@@ -88,10 +88,10 @@ pool.nmi.scalar.helper <- function( qhat , u , NV , NB , NW , comp_cov=TRUE ,
 		#*** In the MI case 
 		# fmi <- (r + 2/(df + 3))/(r + 1)	
 		
-		names1 <- base::colnames(Wm)
-		tval <- qbar / base::sqrt( base::diag(Tm) )
-		pval <- 2 * stats::pt( - base::abs(tval) , df = df )
-		base::names(tval) <- base::names(pval) <- names1
+		names1 <- colnames(Wm)
+		tval <- qbar / sqrt( diag(Tm) )
+		pval <- 2 * stats::pt( - abs(tval) , df = df )
+		names(tval) <- names(pval) <- names1
 		
 		#*******
 		# output

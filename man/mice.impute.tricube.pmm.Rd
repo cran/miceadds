@@ -93,7 +93,7 @@ iM2["bmi"] <- "pmm6"
 # use tricube.pmm2 for hyp and chl
 # select different scale parameters for these variables
 tricube.pmm.scale1 <- list( "hyp" = .15 , "chl" = .30 )
-imp.mi2 <- mice.1chain( nhanes , burnin=5 , iter=20 , Nimp=4 ,
+imp.mi2 <- miceadds::mice.1chain( nhanes , burnin=5 , iter=20 , Nimp=4 ,
     imputationMethod= iM2 , tricube.pmm.scale=tricube.pmm.scale1  )
 }
 }

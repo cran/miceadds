@@ -85,7 +85,7 @@ imp0 <- mice::mice( dat , m=1 , imputationMethod = impMethod , maxit=0 )
 imp0$vis
 
 # update visit sequence
-vis1 <- visitSequence.determine( impMethod=impMethod , vis=imp0$vis , data = dat)
+vis1 <- miceadds::visitSequence.determine( impMethod=impMethod , vis=imp0$vis , data = dat)
 
 # imputation with updated visit sequence
 imp <- mice::mice( dat, m=1, imputationMethod=impMethod, visitSequence=vis1, maxit=2)

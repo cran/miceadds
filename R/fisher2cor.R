@@ -2,8 +2,8 @@
 ##################################################
 # back transform fisher correlations
 fisher2cor <- function(z){ 
-	c1 <- ( base::exp(2*z) - 1 )/ ( base::exp(2*z) + 1 )
-	base::return(c1)
+	c1 <- ( exp(2*z) - 1 )/ ( exp(2*z) + 1 )
+	return(c1)
 }
 #####################################################
 

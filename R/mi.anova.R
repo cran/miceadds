@@ -30,7 +30,7 @@ mi.anova <- function( mi.res , formula , type = 2 ){
 	#**** type III sum of squares
 	if (type==3){
 	     Nimp <- length(mi.list)
-	     vars <- base::all.vars( stats::as.formula( formula ))[-1]
+	     vars <- all.vars( stats::as.formula( formula ))[-1]
 		 VV <- length(vars)
 		 # define contrasts
          ma_contrasts <- as.list(1:VV)		 

@@ -4,12 +4,12 @@
 List2nestedList <- function( List , N_between , N_within = NULL ,
 		loop_within = TRUE ){
 
-	M <- base::length(List)	
-	if ( base::is.null(N_within) ){ 
-		N_within <- base::floor(M / N_between) 
+	M <- length(List)	
+	if ( is.null(N_within) ){ 
+		N_within <- floor(M / N_between) 
 	}
 	
-	nl <- base::as.list(1:N_between)
+	nl <- as.list(1:N_between)
 	M2 <- N_between * N_within
 	for (bb in 1:N_between){
 		nl[[bb]] <- as.list(1:N_within)
@@ -43,6 +43,6 @@ List2nestedList <- function( List , N_between , N_within = NULL ,
 			}		
 		}
 	}		
-	base::return(nl)
+	return(nl)
 }
 #########################################################		

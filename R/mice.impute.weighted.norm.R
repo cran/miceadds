@@ -28,7 +28,7 @@ mice.impute.weighted.norm <- function(y, ry, x, ridge = .00001 , pls.facs = NULL
                         weights.obs = weights.obs , ... )   
         yimp <- x[!ry,  ] %*% parm$beta + stats::rnorm(sum(!ry)) * parm$sigma
     }
-    base::return(yimp)
+    return(yimp)
 }
 
 	

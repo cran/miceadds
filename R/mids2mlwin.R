@@ -7,9 +7,9 @@ mids2mlwin <- function(imp, file.prefix, path = getwd(), sep = " ", dec = ".", s
   varnames <- names(imp$imp)[!sapply(imp$imp, is.null)]
   impnames <- paste0(file.prefix, seq(1, m, 1), ".txt")
   f1 <- paste0( file.prefix , "__impvals.txt" ) 
-  base::write(x = varnames, file = f1 , append = F, ncolumns = length(varnames), sep = " ")
-  base::write(x = c(n, m),  file = f1 , append = T, ncolumns = 1)
-  base::write(x = impnames, file = f1 , append = T, ncolumns = m, sep = "\t")
+  write(x = varnames, file = f1 , append = F, ncolumns = length(varnames), sep = " ")
+  write(x = c(n, m),  file = f1 , append = T, ncolumns = 1)
+  write(x = impnames, file = f1 , append = T, ncolumns = m, sep = "\t")
   for (k in 1:m){
     h1 <- mice::complete(imp, k)
 	if ( ! is.null(X) ){

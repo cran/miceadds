@@ -58,12 +58,12 @@ data(nhanes,package="mice")
 #**** imputation using mice
 imp1 <- mice::mice( nhanes , m=3 , maxit=5 )
 # convert mids object into list
-datlist1 <- mids2datlist( imp1 )
+datlist1 <- miceadds::mids2datlist( imp1 )
 
 #**** imputation using mice.1chain
-imp2 <- mice.1chain( nhanes , burnin=4 , iter=20 , Nimp=5 )
+imp2 <- miceadds::mice.1chain( nhanes , burnin=4 , iter=20 , Nimp=5 )
 # convert mids.1chain object into list
-datlist2 <- mids2datlist( imp2 )
+datlist2 <- miceadds::mids2datlist( imp2 )
 
 #############################################################################
 # EXAMPLE 2: Nested multiple imputation and datalist conversion
@@ -82,18 +82,18 @@ for (ll in 1:M){
                 
 #***************
 # (1) nested multiple imputation using mice
-imp1 <- mice.nmi( datlist ,  m=4 , maxit=3 )
+imp1 <- miceadds::mice.nmi( datlist ,  m=4 , maxit=3 )
 summary(imp1)
 
 #***************
 # (2) nested multiple imputation using mice.1chain
-imp2 <- mice.nmi( datlist , Nimp=4 , burnin=10 ,iter=22, type="mice.1chain")
+imp2 <- miceadds::mice.nmi( datlist , Nimp=4 , burnin=10 ,iter=22, type="mice.1chain")
 summary(imp2)
 
 #**************
 # conversion into a datalist
-datlist.i1 <- mids2datlist( imp1 )
-datlist.i2 <- mids2datlist( imp2 )
+datlist.i1 <- miceadds::mids2datlist( imp1 )
+datlist.i2 <- miceadds::mids2datlist( imp2 )
 
 #############################################################################
 # EXAMPLE 3: mids object conversion and inclusion of further variables
@@ -107,9 +107,9 @@ resp <- dat[ , - c(1:2) ]
 imp <- mice::mice( resp , imputationMethod="norm" , maxit=2 , m=3 )
 
 # convert mids object into datalist
-datlist0 <- mids2datlist( imp )
+datlist0 <- miceadds::mids2datlist( imp )
 # convert mids object into datalist and include some id variables
-datlist1 <- mids2datlist( imp , X = dat[,c(1,2) ] )
+datlist1 <- miceadds::mids2datlist( imp , X = dat[,c(1,2) ] )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

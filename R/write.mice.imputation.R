@@ -18,7 +18,7 @@ write.mice.imputation <- function( mi.res , name , include.varnames = TRUE , lon
 		
         dir.create(pf.subf)                 # define subdirectory
         # write legend of variables
-        base::writeLines( colnames(mi.res$data) , 
+        writeLines( colnames(mi.res$data) , 
 		      file.path( pf.subf , paste( name , "__LEGEND.txt" , sep="") ))
         l1 <- paste( name , "__IMPDATA" , 1:mi.res$m , ".dat" , sep="")
         utils::write.table( l1 , file.path( pf.subf , 
@@ -60,7 +60,7 @@ write.mice.imputation <- function( mi.res , name , include.varnames = TRUE , lon
                                     file = file.path( pf.subf , paste( name , "__LONG.dat" , sep="")) , quote=F , 
                                         row.names=F , col.names= TRUE , na ="." )         
         # variable names
-        base::writeLines( colnames( mice::complete( mi.res , 1 ) ) , file.path( pf.subf , paste( name , "__VARNAMES.txt" , sep="")) )
+        writeLines( colnames( mice::complete( mi.res , 1 ) ) , file.path( pf.subf , paste( name , "__VARNAMES.txt" , sep="")) )
         # write SPSS file
         if (mids2spss){ 
             mice::mids2spss(mi.res, filedat = paste( name , "__SPSS.txt" , sep="") , 
@@ -80,15 +80,15 @@ write.mice.imputation <- function( mi.res , name , include.varnames = TRUE , lon
                         "   " , "" , "MISSING = . ;" , "" , "!........................." ,
                         "! Mplus statements"
                             )
-            base::writeLines( l1 , file.path( pf.subf , paste( name , "__MPLUS-INPUT-BODY.inp" , sep="") ))
+            writeLines( l1 , file.path( pf.subf , paste( name , "__MPLUS-INPUT-BODY.inp" , sep="") ))
             }
         # write predictorMatrix and imputationMethod
         utils::write.csv2( mi.res$method  , file.path( pf.subf , paste( name , "__IMPMETHOD.csv" , sep="")) , quote=F)
         utils::write.csv2( mi.res$predictorMatrix  , file.path( pf.subf , paste( name , "__PREDICTORMATRIX.csv" , sep="")) , quote=F)               
 		# write mice object as a Rdata object
-		base::save( mi.res , file=file.path( pf.subf , paste( name , ".Rdata" , sep="") ) )
+		save( mi.res , file=file.path( pf.subf , paste( name , ".Rdata" , sep="") ) )
 		# save list of imputed datasets
 		datlist <- mids2datlist( mi.res )
-		base::save( datlist , file=file.path( pf.subf , paste( name , "__DATALIST.Rdata" , sep="") ) )		
+		save( datlist , file=file.path( pf.subf , paste( name , "__DATALIST.Rdata" , sep="") ) )		
         }
 #########################################################################

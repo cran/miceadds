@@ -38,7 +38,7 @@ micombine.chisquare <- function( dk , df , display = TRUE ,
         if (display){   
             cat("Combination of Chi Square Statistics for Multiply Imputed Data\n")
             cat(paste( "Using" , M , "Imputed Data Sets\n"))
-            cat( paste( "F(",df,",", round(df2,2),")", "=" , round( Dval , 3 ) , 
+            cat( paste( "F(",df,", ", round(df2,2),")", "=" , round( Dval , 3 ) , 
                             "     p=" , round(pval,5) , sep="") , "\n" )
                 }
         invisible(res)

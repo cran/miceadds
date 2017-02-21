@@ -137,7 +137,7 @@ data(nhanes, package="mice")
 set.seed(9090)
 
 # nhanes data in one chain
-imp.mi1 <- mice.1chain( nhanes , burnin=5 , iter=40 , Nimp=4 ,
+imp.mi1 <- miceadds::mice.1chain( nhanes , burnin=5 , iter=40 , Nimp=4 ,
     imputationMethod=rep("norm" , 4 ) )
 summary(imp.mi1)       # summary of mids.1chain   
 plot( imp.mi1 ) # trace plot excluding burnin iterations
@@ -161,7 +161,7 @@ data(nhanes2, package="mice")
 set.seed(9090)
 
 # nhanes2 data in one chain
-imp.mi1 <- mice.1chain( nhanes2 , burnin=5 , iter=25 , Nimp=5 )
+imp.mi1 <- miceadds::mice.1chain( nhanes2 , burnin=5 , iter=25 , Nimp=5 )
 # summary
 summary( imp.mi1$midsobj )
 

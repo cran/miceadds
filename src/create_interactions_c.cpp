@@ -1,42 +1,21 @@
 
 
-// includes from the plugin
+// [[Rcpp::depends(RcppArmadillo)]]
+
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
-
-
-#ifndef BEGIN_RCPP
-#define BEGIN_RCPP
-#endif
-
-#ifndef END_RCPP
-#define END_RCPP
-#endif
 
 using namespace Rcpp;
 
 
-// user includes
+///********************************************************************
+///** create_interactions_cpp
+// [[Rcpp::export]]
+Rcpp::List create_interactions_cpp( Rcpp::NumericVector Yr , 
+	Rcpp::NumericMatrix Xr, Rcpp::NumericMatrix Xallr, 
+	Rcpp::NumericMatrix index_int , 
+	Rcpp::NumericVector MI , Rcpp::NumericVector maxcols ){
 
-
-// declarations
-extern "C" {
-SEXP create_interactions_cpp( SEXP y_, SEXP xobs_, SEXP xall_, SEXP index_int_, SEXP min_int_cor_, SEXP maxcols_) ;
-}
-
-// definition
-
-SEXP create_interactions_cpp( SEXP y_, SEXP xobs_, SEXP xall_, SEXP index_int_, SEXP min_int_cor_, SEXP maxcols_ ){
-BEGIN_RCPP
-  
-       
-     Rcpp::NumericVector Yr(y_);          
-     Rcpp::NumericMatrix Xr(xobs_);  
-     Rcpp::NumericMatrix Xallr(xall_);    
-     Rcpp::NumericMatrix index_int(index_int_) ;  
-     Rcpp::NumericVector MI(min_int_cor_);   
-     Rcpp::NumericVector maxcols(maxcols_);   
-       
      int nobj = Xr.nrow();   
      int nall = Xallr.nrow();  
      int npred = Xr.ncol();  
@@ -83,9 +62,6 @@ BEGIN_RCPP
      if (zz > 0 ){  
          xint = IM( arma::span(0,nall-1) , arma::span(0,zz-1) ) ;   
      }   
-     //     else {   
-     //    double xint = FALSE ;   
-     //     }  
      			  
      ////////////////////////////////////  
      // OUTPUT:  
@@ -96,8 +72,6 @@ BEGIN_RCPP
             Rcpp::Named("min_int_cor") = min_int_cor ,  
             Rcpp::Named("N_interactions") = zz  
             		) ;  
-     
-END_RCPP
 }
 
 

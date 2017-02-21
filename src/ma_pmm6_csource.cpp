@@ -1,41 +1,25 @@
 
+// [[Rcpp::depends(RcppArmadillo)]]
 
-// includes from the plugin
 #include <RcppArmadillo.h>
 #include <Rcpp.h>
-
-
-#ifndef BEGIN_RCPP
-#define BEGIN_RCPP
-#endif
-
-#ifndef END_RCPP
-#define END_RCPP
-#endif
 
 using namespace Rcpp;
 
 
-// user includes
-
-
-// declarations
-extern "C" {
-SEXP ma_pmm6_C( SEXP y_, SEXP ry01_, SEXP x_, SEXP ridge_, SEXP coefu_, SEXP donorsample_) ;
-}
-
-// definition
-
-SEXP ma_pmm6_C( SEXP y_, SEXP ry01_, SEXP x_, SEXP ridge_, SEXP coefu_, SEXP donorsample_ ){
-BEGIN_RCPP
-  
-       
-     Rcpp::NumericVector y(y_); // varlist only one variable  
-     Rcpp::NumericVector ry01(ry01_); // varlist only one variable  
-     Rcpp::NumericMatrix x(x_);         
-     double ridge = Rcpp::as<double>(ridge_);   // ridge parameter  
-     Rcpp::NumericVector coefu1(coefu_); // sampling regression coefficients  
-     Rcpp::NumericVector donorsample(donorsample_); // sampling regression coefficients  
+///********************************************************************
+///** ma_pmm6_C
+// [[Rcpp::export]]
+Rcpp::NumericVector ma_pmm6_C( Rcpp::NumericVector y , Rcpp::NumericVector ry01, 
+	Rcpp::NumericMatrix x , double ridge, Rcpp::NumericVector coefu1, 
+	Rcpp::NumericVector donorsample ){
+   
+     // y // varlist only one variable  
+     //  ry01(ry01_); // varlist only one variable  
+     //  x(x_);         
+     // double ridge = Rcpp::as<double>(ridge_);   // ridge parameter  
+     //  coefu1(coefu_); // sampling regression coefficients  
+     // donorsample(donorsample_); // sampling regression coefficients  
        
      //********************************  
      // fit linear model  
@@ -48,8 +32,7 @@ BEGIN_RCPP
      arma::mat xA(x.begin(), n, k, false);    
      arma::mat xobs=xA.rows(ind_obs) ;  
      arma::colvec yA(y.begin(), y.size(), false);   
-     arma::colvec yobs = yA.rows(ind_obs) ;  
-     // arma::colvec coef = arma::solve(xobs, yobs);        
+     arma::colvec yobs = yA.rows(ind_obs) ;        
      arma::mat xtx = arma::mat( arma::trans(xobs) * xobs ) ;  
      for (int ii=0;ii<k;ii++){ 
      	xtx(ii,ii)=xtx(ii,ii)+ridge;
@@ -62,11 +45,9 @@ BEGIN_RCPP
      arma::mat vcoef = arma::mat( sig2 * xinv ) ;  
      arma::colvec coefu(coefu1.begin(), coefu1.size(), false);   
      arma::mat coef = arma::mat( coef2 + arma::chol(vcoef) * coefu ) ;  
-       
-       
+              
      //*********************************  
-     // prediction and matrix arrangement  
-       
+     // prediction and matrix arrangement         
      Rcpp::NumericVector yimp_ind(nmiss) ;  
      Rcpp::NumericVector yimp(nmiss) ;  
      Rcpp::NumericVector yimp_donors(nobs) ;  
@@ -112,15 +93,11 @@ BEGIN_RCPP
              yimp_ind[ YSM_sort(nn,3) - 1 ] = g1 ;  
          }                          
      }                  
-       
      // allocation  
      for (int zz=0;zz<nmiss;zz++){  
          yimp[zz] = yimp_donors[ yimp_ind[zz] - 1 ] ;  
-     }  
-       
-     return( Rcpp::wrap( yimp) ) ;  
-     
-END_RCPP
+     }         
+     return yimp ;  
 }
 
 

@@ -15,5 +15,5 @@ mice.impute.2l.binary <- function(y, ry, x, type, intercept=TRUE,
                 glmer.warnings=glmer.warnings, 
 				blme_use = blme_use , blme_args = blme_args , 
 				model = "binary" , ...)
-	base::return(imp)
+	return(imp)
 }

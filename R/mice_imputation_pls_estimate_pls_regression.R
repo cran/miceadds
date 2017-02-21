@@ -4,7 +4,7 @@ mice_imputation_pls_estimate_pls_regression <- function( pls.facs , x , y, ry ,
 {
 
     # calculate partial least squares regression
-    nfac <- base::min( pls.facs, base::ncol(x) )      
+    nfac <- min( pls.facs, ncol(x) )      
     yobs <- y[ ry ]
 	if (use.ymat){ 
 		yobs <- y[ry,] 
@@ -18,7 +18,7 @@ mice_imputation_pls_estimate_pls_regression <- function( pls.facs , x , y, ry ,
     # in the regression model, only PLS factors of X are used		
     if( use_weights ){
         yobs <- weight.obs * yobs
-        xobs <- base::outer( weight.obs , base::rep(1, base::ncol(xobs) ) ) * xobs
+        xobs <- outer( weight.obs , rep(1, ncol(xobs) ) ) * xobs
     }
 								
 																
@@ -33,15 +33,15 @@ mice_imputation_pls_estimate_pls_regression <- function( pls.facs , x , y, ry ,
         cat("\n\n" ) 
     }
     if (pls.facs > 0){
-		VV <- base::ncol(xobs)			
-		mod <- kernelpls.fit2( X= base::as.matrix(xobs) , 
-						Y= base::matrix(yobs,ncol=1) ,ncomp=nfac) 	
+		VV <- ncol(xobs)			
+		mod <- kernelpls.fit2( X= as.matrix(xobs) , 
+						Y= matrix(yobs,ncol=1) ,ncomp=nfac) 	
 		if( pls.print.progress ){  
-			base::print( base::round( 100*mod$R2 , 2 ))
+			print( round( 100*mod$R2 , 2 ))
 		}
         dfr2 <- x
 		pmod <- predict.kernelpls.fit2( mod , X= as.matrix(x) )						
-		x <- base::cbind(1, base::as.matrix(pmod))
+		x <- cbind(1, as.matrix(pmod))
         x11a <- x
         if( pls.print.progress ){  
 			cat( "\nPLS estimation finished " , substring(Sys.time(),1) ,"\n" )
@@ -49,10 +49,10 @@ mice_imputation_pls_estimate_pls_regression <- function( pls.facs , x , y, ry ,
 		}
     }
     if ( pls.facs == 0){ 
-		x <- base::cbind( 1 , x ) 
+		x <- cbind( 1 , x ) 
 	}
         
 	#--- output	
-	res <- base::list( x = x , x11a = x11a )		
-	base::return(res)			
+	res <- list( x = x , x11a = x11a )		
+	return(res)			
 }

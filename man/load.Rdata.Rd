@@ -70,7 +70,7 @@ load.Rdata( filename = "data_s3.Rdata" , "dat.s3" )
 head(dat.s3) 
 
 # Alternatively one can use the function
-dat.s3 <- load.Rdata2( filename = "data_s3.Rdata")
+dat.s3 <- miceadds::load.Rdata2( filename = "data_s3.Rdata")
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

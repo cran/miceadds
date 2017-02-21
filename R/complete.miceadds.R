@@ -10,7 +10,7 @@ complete.mids.nmi <- function( x , action = c(1,1) ){
 	if ( x$type == "mice.1chain" ){
 		data <- complete.mids.1chain( x$imp[[ action[1] ]] , action = action[2] )
 	}							
-	base::return(data)					
+	return(data)					
 }
 #######################################################
 

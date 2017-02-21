@@ -75,7 +75,7 @@ a.out <- Amelia::amelia(x =  nhanes , m=10)
 plot(a.out)
 
 # convert list of multiply imputed datasets into a mids object
-a.mids <- datlist2mids( a.out$imputations )
+a.mids <- miceadds::datlist2mids( a.out$imputations )
 
 # linear regression: apply mice functionality lm.mids
 mod <- with( a.mids , stats::lm( bmi ~ age ) )

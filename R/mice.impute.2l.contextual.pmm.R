@@ -1,6 +1,6 @@
 mice.impute.2l.contextual.pmm <- function (y, ry, x, type , imputationWeights = NULL , 
                 interactions=NULL , quadratics = NULL , ...){
-	res <- mice_imputation_get_states( pos = base::parent.frame(n=1) )	
+	res <- mice_imputation_get_states( pos = parent.frame(n=1) )	
 	vname <- res$vname
 	newstate <- res$newstate
 	# data preparation
@@ -10,5 +10,5 @@ mice.impute.2l.contextual.pmm <- function (y, ry, x, type , imputationWeights = 
 	ximp <- mice.impute.weighted.pmm( y= y , ry=ry, x = xcov , 
 				imputationWeights = imputationWeights , 
 				interactions= interactions , quadratics = quadratics ,   ... ) 
-	base::return(ximp)
+	return(ximp)
 }

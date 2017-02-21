@@ -238,7 +238,7 @@ datlist1b <- mitools::imputationList( datlist1b )
 # declared as factors
 dat <- dat0
 # define two variables as factors
-vars <- scan.vec(" rskreb71 rskreb72")
+vars <- miceadds::scan.vec(" rskreb71 rskreb72")
 for (vv in vars){
     dat[, vv] <- as.factor( dat[,vv] )
           }

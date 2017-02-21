@@ -77,10 +77,10 @@ data(nhanes, package="mice")
 set.seed(9090)
 
 # nhanes data in one chain
-imp.mi <- mice.1chain( nhanes , burnin=5 , iter=20 , Nimp=4 ,
+imp.mi <- miceadds::mice.1chain( nhanes , burnin=5 , iter=20 , Nimp=4 ,
                   imputationMethod=rep("norm" , 4 ) )
 # correlation coefficients of variables 4, 2 and 3 (indexed in nhanes data)
-res <- micombine.cor(mi.res=imp.mi, variables = c(4,2,3) )
+res <- miceadds::micombine.cor(mi.res=imp.mi, variables = c(4,2,3) )
   ##     variable1 variable2       r    rse fisher_r fisher_rse    fmi       t      p
   ##   1       chl       bmi  0.2458 0.2236   0.2510     0.2540 0.3246  0.9879 0.3232
   ##   2       chl       hyp  0.2286 0.2152   0.2327     0.2413 0.2377  0.9643 0.3349
@@ -95,10 +95,10 @@ attr(res, "r_matrix")
 attr(res, "rse_matrix")
   
 # inference for covariance  
-res2 <- micombine.cov(mi.res=imp.mi, variables = c(4,2,3) )  
+res2 <- miceadds::micombine.cov(mi.res=imp.mi, variables = c(4,2,3) )  
 
 # inference can also be conducted for non-imputed data
-res3 <- micombine.cov(mi.res= nhanes , variables = c(4,2,3) )
+res3 <- miceadds::micombine.cov(mi.res= nhanes , variables = c(4,2,3) )
 
 #############################################################################
 # EXAMPLE 2: nhanes data | comparing different correlation coefficients
@@ -112,10 +112,10 @@ imp1 <- mice::mice( nhanes ,  imputationMethod=rep("norm" , 4 ) )
 summary(imp1)
 
 #*** Pearson correlation
-res1 <- micombine.cor(mi.res=imp1, variables = c(4,2) )
+res1 <- miceadds::micombine.cor(mi.res=imp1, variables = c(4,2) )
 
 #*** Spearman rank correlation
-res2 <- micombine.cor(mi.res=imp1, variables = c(4,2) ,  method="spearman")
+res2 <- miceadds::micombine.cor(mi.res=imp1, variables = c(4,2) ,  method="spearman")
 
 #*** Kendalls tau
 # test of computation of tau for first imputed dataset
@@ -144,9 +144,9 @@ data(data.timss4 , package="BIFIEsurvey" )
 datlist <- data.timss4
 
 # object of class nested.datlist
-datlist <- nested.datlist_create(datlist)
+datlist <- miceadds::nested.datlist_create(datlist)
 # inference for correlations
-res2 <- micombine.cor(mi.res= datlist , variables=c("lang", "migrant", "ASMMAT"))
+res2 <- miceadds::micombine.cor(mi.res= datlist , variables=c("lang", "migrant", "ASMMAT"))
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

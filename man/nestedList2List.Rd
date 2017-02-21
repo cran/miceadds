@@ -77,12 +77,12 @@ nestedList[[2]] <- as.list( 34 )
 nestedList[[3]] <- as.list( 4:9 )
 
 # convert a nested list into a list
-v2 <- nestedList2List( nestedList)
+v2 <- miceadds::nestedList2List( nestedList)
 
 ## reconvert list v2 into a nested list, looping within first
-v3 <- List2nestedList(v2, N_between=5)
+v3 <- miceadds::List2nestedList(v2, N_between=5)
 # looping between first
-v4 <- List2nestedList(v2, N_between=5, loop_within = FALSE)
+v4 <- miceadds::List2nestedList(v2, N_between=5, loop_within = FALSE)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

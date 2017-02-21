@@ -35,7 +35,7 @@ Alexander Robitzsch
 %}
 \examples{
 Rsessinfo()
-  ##   > Rsessinfo()
+  ##   > miceadds::Rsessinfo()
   ##   [1] "R version 2.15.2 (2012-10-26) x86_64, mingw32 | nodename = SD70 | login = robitzsch"
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

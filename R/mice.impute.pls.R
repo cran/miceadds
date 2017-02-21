@@ -29,11 +29,11 @@ mice.impute.pls <- function(y, ry, x , type , pls.facs = NULL ,
 	# pls.title 		... title which is displayed 							#
     #...........................................................................#
  
-	time1 <- base::Sys.time()	
+	time1 <- Sys.time()	
 
 	#--- extract arguments
 	if ( is.null(envir_pos) ){
-		pos <- base::parent.frame(n=1)
+		pos <- parent.frame(n=1)
 	} else {
 		pos <- envir_pos
 	}
@@ -60,7 +60,7 @@ mice.impute.pls <- function(y, ry, x , type , pls.facs = NULL ,
     pls.impMethod <- mice_imputation_extract_list_arguments( pls.impMethod , 
 				vname , "pmm" )
     pls.impMethodArgs <- mice_imputation_extract_list_arguments( pls.impMethodArgs , 
-				vname , base::list() )				
+				vname , list() )				
     # define minimal correlation for interactions
     min.int.cor <- mice_imputation_extract_list_arguments( min.int.cor , vname , 0 ) 
 	
@@ -69,11 +69,11 @@ mice.impute.pls <- function(y, ry, x , type , pls.facs = NULL ,
 					print.dims , y , ry , x , type )
 						
 	# include predictor variables with type != 0
-	nt <- base::names(type)[ type != 0 ]
-	nt <- base::intersect( nt , base::colnames(x) )	
+	nt <- names(type)[ type != 0 ]
+	nt <- intersect( nt , colnames(x) )	
 	x10 <- x <- x[ , nt]
-	use.ymat <- ( ! base::is.null( base::dim(y) ) )		
-	x <- base::as.matrix(x)	
+	use.ymat <- ( ! is.null( dim(y) ) )		
+	x <- as.matrix(x)	
 	use_weights <- stats::sd( imputationWeights ) > 1E-30
 	
 	# standardize matrix of covariates
@@ -84,15 +84,15 @@ mice.impute.pls <- function(y, ry, x , type , pls.facs = NULL ,
 	res <- mice_imputation_include_cluster_effect( x=x , y=y , ry=ry , type=type )
 	type <- res$type
 	x0 <- x10 <- x <- res$x
-	N <- base::ncol(x)
+	N <- ncol(x)
 	
     #*** print progress | print section 2   
 	res <- mice_imputation_pls_print_progress2(pls.print.progress , imp.temp,
 				pls.title, y , x)
 										   								   
     # extract interactions and quadratic terms
-    pls.interactions <- base::names(type)[ type == 4 ]
-    pls.quadratics <- base::names(type)[ type == 5 ]   
+    pls.interactions <- names(type)[ type == 4 ]
+    pls.quadratics <- names(type)[ type == 5 ]   
 	
 	#-- include interactions
 	res <- mice_imputation_pls_include_interactions(pls.interactions , 
@@ -126,9 +126,9 @@ mice.impute.pls <- function(y, ry, x , type , pls.facs = NULL ,
 				use_weights , pls.impMethod ,
 				pls.print.progress, pls.impMethodArgs , type , ... )	
 	#--- finished all steps!
-	time2 <- base::Sys.time()
+	time2 <- Sys.time()
 	res <- mice_imputation_pls_print_progress3(pls.print.progress , time1 , time2 )	
-    base::return(x1)
+    return(x1)
 }
 
 
