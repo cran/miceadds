@@ -31,7 +31,7 @@ mice.impute.2l.latentgroupmean.ML(y, ry, x, type, pls.facs = NULL,
 	
 mice.impute.2l.latentgroupmean.MCMC(y, ry, x, type, pls.facs = NULL, 
     imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
-    mcmc.burnin=100 , mcmc.adapt=100 , mcmc.iter=1000 , EAP=FALSE, ...)
+    mcmc.burnin=100, mcmc.adapt=100, mcmc.iter=1000, draw.fixed=TRUE, EAP=FALSE, ...)
 	
 mice.impute.2l.groupmean(y, ry, x, type, grmeanwarning = TRUE, ...)
 
@@ -68,6 +68,8 @@ Vector of variable names used for creating interactions
   \item{quadratics}{
 Vector of variable names used for creating quadratic terms
 }
+\item{draw.fixed}{Optional logical indicating whether parameters for fixed
+effects should be sampled.}
 \item{EAP}{Logical indicating whether EAPs should be used for imputation.
 The default \code{FALSE} corresponds to sampling from the posterior
 distribution.

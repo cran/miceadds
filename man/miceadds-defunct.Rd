@@ -1,7 +1,6 @@
 \name{miceadds-defunct}
 \alias{miceadds-defunct}
 \alias{mice.impute.2l.pls}
-\alias{mice.impute.2l.pls2}
 \alias{fast.groupmean}
 \alias{fast.groupsum}
 \alias{mice.impute.2l.plausible.values}
@@ -24,7 +23,6 @@ fast.groupsum(...)
 mice.impute.2l.eap(...)
 mice.impute.2l.plausible.values(...)
 mice.impute.2l.pls(...)
-mice.impute.2l.pls2(...)
 mice.impute.2lonly.norm2(...)
 mice.impute.2lonly.pmm2(...)
 }

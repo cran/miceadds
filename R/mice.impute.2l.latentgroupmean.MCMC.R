@@ -2,7 +2,7 @@ mice.impute.2l.latentgroupmean.MCMC <- function (y, ry, x, type ,
                     pls.facs = NULL , imputationWeights = NULL ,
                     interactions = NULL , quadratics = NULL , 
                     mcmc.burnin=100, mcmc.adapt=100, mcmc.iter=1000 , 
-	          		EAP = FALSE , ...){  
+	          		draw.fixed = TRUE, EAP = FALSE , ...){  
 
     # retrieve mice objects
     k <- get("k", envir=parent.frame())           # iteration
@@ -96,10 +96,17 @@ mice.impute.2l.latentgroupmean.MCMC <- function (y, ry, x, type ,
     storeState.latentgroupmean.MCMC[[vname]][[i]] <- new.state
     assign("storeState.latentgroupmean.MCMC", storeState.latentgroupmean.MCMC, pos=parent.frame())
 
-    # parameter estimates
-    modf <- stats::model.matrix(mcmcfml, data=mcmcdf) %*% apply(mod$Sol,2,mean)
-    psi2 <- mean(mod$VCV[,1])
-    sig2 <- mean(mod$VCV[,2])
+    # parameter estimates (post. draw by default, EAP otherwise)
+    if (draw.fixed){
+      beta <- mod$Sol[mcmc.iter,]
+      psi2 <- mod$VCV[mcmc.iter,1]
+      sig2 <- mod$VCV[mcmc.iter,2]
+    } else {
+      beta <- apply(mod$Sol,2,mean)
+      psi2 <- mean(mod$VCV[,1])
+      sig2 <- mean(mod$VCV[,2])
+    }
+    modf <- stats::model.matrix(mcmcfml, data=mcmcdf) %*% beta
 
     # aggregate: cluster size, fixed prediction, residual from fixed
     a1 <- stats::aggregate( cbind( 1 , modf , y-modf ) , list( cluster) , sum )
@@ -113,5 +120,4 @@ mice.impute.2l.latentgroupmean.MCMC <- function (y, ry, x, type ,
     ximp <- stats::rnorm( nrow(a1) , mean = a1[,3]+a1[,5] , 
 				sd = (1-EAP)*sqrt(a1[,6]) )[ ind ]
     return(ximp)
-
 }

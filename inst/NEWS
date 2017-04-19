@@ -40,6 +40,18 @@ CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+---------------------------------------------------------------------
+VERSIONS miceadds 2.4  |  2017-04-19  |  Last: miceadds 2.4-12
+---------------------------------------------------------------------
+
+NOTE  * included argument 'draw.fixed' in 'mice.impute.2l.latentgroupmean.MCMC'
+        which allows to specify whether fixed effects parameters
+        should be sampled or not in imputation
+NOTE  * included 'mice.impute.2l.pls2' from previous miceadds versions
+        to ensure backward compatability 
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
 
 ---------------------------------------------------------------------
 Versions 2.3  -- 2017-02-21  --  CRAN miceadds 2.3-0
@@ -52,7 +64,6 @@ NOTE  * restructured Rcpp functions
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: micombine.F (1), 
         micombine.chisquare (2)
-
 
 ---------------------------------------------------------------------
 Versions 2.2  -- 2017-01-11  --  CRAN miceadds 2.2-0

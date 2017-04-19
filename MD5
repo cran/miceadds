@@ -1,5 +1,5 @@
-e4ca086897d325a9990081362fb25781 *DESCRIPTION
-69e7871ecb4da3eabcf2d1f5369d3f78 *NAMESPACE
+1b1214aad17b8019bc88559fd1b05799 *DESCRIPTION
+ddc2db362ec1720d6a55ac9796fbeadc *NAMESPACE
 a0d57902e984affcd4114c768558c925 *R/ANSI_create_table.R
 f884f0e0316785e5ed1d871972b5d749 *R/ANSI_extend_table.R
 0a4e2f3a5c6a352d3929c3ab2154acca *R/ANSI_fomat_latex_table.R
@@ -17,6 +17,7 @@ ac8c31a5021e56602bc7c0cbe4796573 *R/NMIextract.R
 aaef0bee28fc8345f506dd9f7531bfa6 *R/NestedImputationList.R
 d3391f0aa76610036d63527c814075b4 *R/RcppExports.R
 5bf4555df3e2552d5d786a1b9feacb88 *R/Reval.R
+c67f65700910be9e10f20c9e3c769365 *R/Rfunction_include_argument_values.R
 810e73079148f8bd22c5ce1e43554d92 *R/Rhat.mice.R
 431a69d2d18920661a090967b02c4333 *R/Rhat1.R
 cf9e19b448b92a094350146dd10f5f45 *R/Rsessinfo.R
@@ -62,7 +63,7 @@ ca3ff93591d01fae38f5c5a6b0e0557e *R/ma.wtd.meanNA.R
 3b4743467f9fd1a0cb731e97aead78cc *R/ma.wtd.skewnessNA.R
 60925d1afd3ad27441c6825957b68786 *R/max0.R
 638ad463914f7349e96920db9b2bcf17 *R/mean0.R
-2740116d241557db50f3f8b60d8b2e7a *R/mi.anova.R
+7058073815b4cf8fad1fec58033db37d *R/mi.anova.R
 8bb53841d99f7afcc0897b762eee11ee *R/mi_dstat.R
 40180a1920b5d10fc0ee262087182fba *R/mice.1chain.R
 048038700fea029b5b117126f4f6e47f *R/mice.impute.2l.binary.R
@@ -72,12 +73,13 @@ ea3b74a48682c414e35abd97127c692c *R/mice.impute.2l.contextual.norm.R
 2a9f9be05d5094ea02062586a417fd91 *R/mice.impute.2l.eap.R
 1a0dfbbdf8b7e8e4685d773b3ba15799 *R/mice.impute.2l.groupmean.R
 0b60c0f1ee060eed8adb24f7aeb817e8 *R/mice.impute.2l.groupmean.elim.R
-5d5fa8720088e53889696e5a57a9cc3e *R/mice.impute.2l.latentgroupmean.MCMC.R
+5b5417df9e79feeec4d90e4458a2f20c *R/mice.impute.2l.latentgroupmean.MCMC.R
 1f1bf215f3bd4a72d485c755d4f5d9ec *R/mice.impute.2l.latentgroupmean.ML.R
 e3c856f49f56c10574df22049ad1e13b *R/mice.impute.2l.lmer.R
 dc5b282d559dd01badec8979b49c8342 *R/mice.impute.2l.plausible.values.R
 6a5bb10e3dddb39f8af99d3edd2a3fea *R/mice.impute.2l.pls.R
-0460fe58621a3b8450bacda65fdae00f *R/mice.impute.2l.pls2.R
+14bd20ddbd4de41cbd7add5931a62901 *R/mice.impute.2l.pls2.R
+c9855b5ee6fd2be8f1c9dc02365ee58b *R/mice.impute.2l.pls2_aux.R
 34850e4bc0453b3224d5d1b1cb3d84fd *R/mice.impute.2l.pmm.R
 1113b3937e18a66a8d539ac697072ccd *R/mice.impute.2lonly.function.R
 68d79ee1b294be1b77e495e205f91099 *R/mice.impute.2lonly.norm2.R
@@ -210,7 +212,7 @@ cf7e69d26cdc950c370fbb221065f310 *data/data.ma01.rda
 267b06d59e25afee187a830862399ece *data/data.ma05.rda
 efd86ffd9bd9f01e4d86e4d21c1c4c81 *data/data.ma06.rda
 3d0ea3bb3ac6a71e839c26817567d18a *data/data.smallscale.rda
-b0c18df301eba8c7e137102927c4e22c *inst/NEWS
+6013ddf3b539b0e04b8b3ed1b9e78c25 *inst/NEWS
 b0f800e997c3e97fce7a49dfe1ba41c6 *man/GroupMean.Rd
 cef97fcc647325922cdb5c3c6ff6129d *man/NMIwaldtest.Rd
 562b628d1d6e44ba6f517a806316f173 *man/NestedImputationList.Rd
@@ -248,7 +250,7 @@ ad1a3e58378d2aeb27870250fb069b1d *man/ma.wtd.statNA.Rd
 8eb3616bef1894f09d322f627075dd74 *man/mice.1chain.Rd
 51f0e59cec1ec7712ee2ac217ae2adb0 *man/mice.impute.2l.contextual.norm.Rd
 1a0a6e35706ade0a291e6584abd8cc97 *man/mice.impute.2l.contextual.pmm.Rd
-df440d6120d0d7cac0bf9860f35166c1 *man/mice.impute.2l.latentgroupmean.ML.Rd
+0698865bfecc5ee42ea419160e02c780 *man/mice.impute.2l.latentgroupmean.ML.Rd
 6decee8982c6fd56701351605ed20281 *man/mice.impute.2l.lmer.Rd
 30848f66d67177807823079c964cc95e *man/mice.impute.2lonly.function.Rd
 1483752810196bbeae932e927d701b91 *man/mice.impute.bygroup.Rd
@@ -256,13 +258,13 @@ df440d6120d0d7cac0bf9860f35166c1 *man/mice.impute.2l.latentgroupmean.ML.Rd
 edcd8de3194c996f79ac5009649dbb37 *man/mice.impute.grouped.Rd
 1f04f19f825cfff2c8ece4f16bfe3e0b *man/mice.impute.hotDeck.Rd
 c008389d2e7a2fd66eb38ba3011f83b7 *man/mice.impute.plausible.values.Rd
-d54d8df9d19de2c27d711a005f9398ec *man/mice.impute.pls.Rd
+10c58a57149d3ee5efc92d4ce534f082 *man/mice.impute.pls.Rd
 253ddb180bb63b5d5e3967b5d09fa7ed *man/mice.impute.pmm3.Rd
 ff6ed73c7630575712b3ddcf9434b3a6 *man/mice.impute.tricube.pmm.Rd
 91ef1fc0bb36452f24af645b7d205de4 *man/mice.impute.weighted.norm.Rd
 a6cf34fc65fefa1cb4e578a664c3d4ea *man/mice.impute.weighted.pmm.Rd
 023001582a4ddae0353a4c3585812e61 *man/mice.nmi.Rd
-2181e49624622760aedff022d5ffec4c *man/miceadds-defunct.Rd
+9b2f708b9ea1591eb864a9189fcdc57e *man/miceadds-defunct.Rd
 34ecc88825a0b473050dd65ac9514c56 *man/miceadds-package.Rd
 92adccdfb6b24656df57dd0c7d2495f7 *man/micombine.F.Rd
 b11e0c9ae84caddeb33df232ca162f7c *man/micombine.chisquare.Rd

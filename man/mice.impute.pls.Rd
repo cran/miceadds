@@ -1,5 +1,6 @@
 \name{mice.impute.pls}
 \alias{mice.impute.pls}
+\alias{mice.impute.2l.pls2}
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -16,6 +17,11 @@ mice.impute.pls(y, ry, x, type, pls.facs = NULL,
    imputationWeights = rep(1, length(y)), pcamaxcols = 1E+09, 
    min.int.cor = 0, min.all.cor=0, N.largest = 0, pls.title = NULL, print.dims = TRUE,
    pls.maxcols=5000, envir_pos = NULL , extract_data = TRUE , ...)
+
+mice.impute.2l.pls2(y, ry, x, type, pls.facs = NULL, pls.impMethod="pmm", 
+   pls.print.progress=TRUE, imputationWeights=rep(1, length(y)), pcamaxcols = 1E+09, 
+   tricube.pmm.scale=NULL, min.int.cor = 0, min.all.cor=0, N.largest = 0, 
+   pls.title = NULL, print.dims = TRUE, pls.maxcols=5000, ...)   
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -97,6 +103,7 @@ from parent environment within \code{\link[mice:mice]{mice::mice}}  routine}
   \item{\dots}{
 Further arguments to be passed.
 }
+\item{tricube.pmm.scale}{Scale factor for tricube PMM imputation.}
 }
 
 %\details{
@@ -121,9 +128,10 @@ Principal component and partial least squares regression in \R.
 \author{
 Alexander Robitzsch
 }
-%\note{
-%%  ~~further notes~~
-%}
+\note{
+The \code{mice.impute.2l.pls2} function is just included for reasons of
+backward compatability to former \pkg{miceadds} versions. 
+}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 

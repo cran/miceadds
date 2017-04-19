@@ -171,7 +171,7 @@ export(mice.impute.2l.latentgroupmean.MCMC)
 export(mice.impute.2l.latentgroupmean.ML)
 export(mice.impute.2l.plausible.values)	# defunct
 export(mice.impute.2l.pls)		# defunct
-export(mice.impute.2l.pls2)		# defunct
+export(mice.impute.2l.pls2)	
 export(mice.impute.2l.pmm)
 export(mice.impute.2lonly.function)
 export(mice.impute.2lonly.norm2)	# defunct

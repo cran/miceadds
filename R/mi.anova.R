@@ -18,7 +18,9 @@ mi.anova <- function( mi.res , formula , type = 2 ){
         mi.list <- h1
     }
     # converting mi.norm objects
-    if (class(mi.res) == "mi.norm" ){ mi.list <- mi.list$imp.data }
+    if (class(mi.res) == "mi.norm" ){ 
+		mi.list <- mi.list$imp.data 
+	}
 	#**** type II sum of squares
 	if ( type==2){
 		anova.imp0 <- lapply( mi.list , FUN = function(dat){ 
@@ -29,14 +31,14 @@ mi.anova <- function( mi.res , formula , type = 2 ){
 	}
 	#**** type III sum of squares
 	if (type==3){
-	     Nimp <- length(mi.list)
-	     vars <- all.vars( stats::as.formula( formula ))[-1]
-		 VV <- length(vars)
-		 # define contrasts
-         ma_contrasts <- as.list(1:VV)		 
-		 names(ma_contrasts) <- vars
-		 dat <- mi.list[[1]]
-         for (vv in 1:VV){	
+	    Nimp <- length(mi.list)
+	    vars <- all.vars( stats::as.formula( formula ))[-1]
+		VV <- length(vars)
+		# define contrasts
+        ma_contrasts <- as.list(1:VV)		 
+		names(ma_contrasts) <- vars
+		dat <- mi.list[[1]]
+        for (vv in 1:VV){	
 			ma_contrasts[[ vars[vv] ]] <- "contr.sum"
 			if ( ! is.factor( dat[, vars[vv] ]  ) ){
 					ma_contrasts[[ vars[vv] ]] <- NULL
@@ -47,15 +49,13 @@ mi.anova <- function( mi.res , formula , type = 2 ){
 			dat <- mi.list[[ii]]
 			mod1 <- stats::lm( formula , data=dat , contrasts=ma_contrasts)
 			return(mod1)
-				} )
+		} )
 		# compute summary
 		anova.imp <- lapply( as.list( 1:Nimp) , FUN = function( ii ){ 
-					obj <- anova.imp0[[ii]]
-					car::Anova(obj , type=3) 
-						} 
-							)
-
-				
+				obj <- anova.imp0[[ii]]
+				car::Anova(obj , type=3) 
+					} 
+				)				
 	}
 						
     # number of F statistics to be evaluated
@@ -78,11 +78,12 @@ mi.anova <- function( mi.res , formula , type = 2 ){
                             df1 = ifelse (type==2 , anova.imp[[1]][[1]]$Df[ff] ,
 										 anova.imp[[1]]["Df"][ff+1,1]     )  , 							
 							display = FALSE )
+#Revalpr("anova.imp[[1]][[1]]$Df[ff]")							
 				} ) )
-
+			
 				
     # ANOVA results
-    res <- anova.imp.inf[ , c(3,4,1,2) ]
+    res <- anova.imp.inf[ , c(3,4,1,2) ]			
     res <- matrix( res , ncol = 4 )
     res[,3] <- round( res[,3] , 4 )
     res[,4] <- round( res[,4] , 6 )
@@ -116,11 +117,12 @@ mi.anova <- function( mi.res , formula , type = 2 ){
     res[ nrow(res) , ] <- NA
     res <- data.frame( "SSQ" = SS , res )
     colnames(res)[-1] <- c1
-    cat("Univariate ANOVA for Multiply Imputed Data ", paste0("Type " , type , ")" ) , " \n\n")
+    cat("Univariate ANOVA for Multiply Imputed Data", 
+	              paste0("(Type " , type , ")" ) , " \n\n")
     cat("lm Formula: ", formula  )
-    cat( paste( "\nR^2=" , round(r.squared , 6 ) , sep="") , "\n" )
+    cat( paste( "\nR^2=" , round(r.squared , 4 ) , sep="") , "\n" )
     cat("..........................................................................\n")
-    cat("ANOVA Table \n " )
+    cat("ANOVA Table \n" )
     print( round( res ,5) )	
     invisible( list( "r.squared" = r.squared , "anova.table" = res , type=type ) )
 }
