@@ -1,5 +1,5 @@
-1b1214aad17b8019bc88559fd1b05799 *DESCRIPTION
-ddc2db362ec1720d6a55ac9796fbeadc *NAMESPACE
+847eb76c1400eb3b1a566450a7de84ab *DESCRIPTION
+dc267f1924c195dfba04862964eefcae *NAMESPACE
 a0d57902e984affcd4114c768558c925 *R/ANSI_create_table.R
 f884f0e0316785e5ed1d871972b5d749 *R/ANSI_extend_table.R
 0a4e2f3a5c6a352d3929c3ab2154acca *R/ANSI_fomat_latex_table.R
@@ -18,6 +18,7 @@ aaef0bee28fc8345f506dd9f7531bfa6 *R/NestedImputationList.R
 d3391f0aa76610036d63527c814075b4 *R/RcppExports.R
 5bf4555df3e2552d5d786a1b9feacb88 *R/Reval.R
 c67f65700910be9e10f20c9e3c769365 *R/Rfunction_include_argument_values.R
+780dd49affd7d56813d9740aa24d580e *R/Rfunction_output_list_result_function.R
 810e73079148f8bd22c5ce1e43554d92 *R/Rhat.mice.R
 431a69d2d18920661a090967b02c4333 *R/Rhat1.R
 cf9e19b448b92a094350146dd10f5f45 *R/Rsessinfo.R
@@ -157,7 +158,8 @@ fe1f46313bdfaca002215f87750c69e1 *R/read.fwf2.R
 5c77a90115541ad861f83574c4a595a0 *R/remove.lindep_miceadds.R
 050658938e6664aed85c80ffaf31b40a *R/round2.R
 a08cbe979beb16c184232c81e0cff0a7 *R/save.Rdata.R
-4f44a006daa1133ca140747a8f0a9471 *R/save.data.R
+7f146a340d619c715ca23006317aacf8 *R/save.data.R
+37610887078f693946dcf4936f63edd0 *R/save_data_calc_filename.R
 0834b06dde82ab1a08e02d0b2c4bd3e3 *R/scale_datlist.R
 a8a6631913040b2be624e4394f9dc047 *R/scan0.R
 c6d8db1c2fdb08293e59925273735ee5 *R/sd0.R
@@ -212,7 +214,8 @@ cf7e69d26cdc950c370fbb221065f310 *data/data.ma01.rda
 267b06d59e25afee187a830862399ece *data/data.ma05.rda
 efd86ffd9bd9f01e4d86e4d21c1c4c81 *data/data.ma06.rda
 3d0ea3bb3ac6a71e839c26817567d18a *data/data.smallscale.rda
-6013ddf3b539b0e04b8b3ed1b9e78c25 *inst/NEWS
+7391057aa6208bab28596a73654de692 *inst/CITATION
+7116cadb3fae7057d44ab314a285c3c7 *inst/NEWS
 b0f800e997c3e97fce7a49dfe1ba41c6 *man/GroupMean.Rd
 cef97fcc647325922cdb5c3c6ff6129d *man/NMIwaldtest.Rd
 562b628d1d6e44ba6f517a806316f173 *man/NestedImputationList.Rd
@@ -266,8 +269,8 @@ a6cf34fc65fefa1cb4e578a664c3d4ea *man/mice.impute.weighted.pmm.Rd
 023001582a4ddae0353a4c3585812e61 *man/mice.nmi.Rd
 9b2f708b9ea1591eb864a9189fcdc57e *man/miceadds-defunct.Rd
 34ecc88825a0b473050dd65ac9514c56 *man/miceadds-package.Rd
-92adccdfb6b24656df57dd0c7d2495f7 *man/micombine.F.Rd
-b11e0c9ae84caddeb33df232ca162f7c *man/micombine.chisquare.Rd
+5776276fe9cc05adf61316b37222769e *man/micombine.F.Rd
+3fd7b7ab03e83ebc021ebe98731bed0d *man/micombine.chisquare.Rd
 9d9b9e2c2345e1457721025c8f9605a8 *man/micombine.cor.Rd
 920ff8c6ef007ebe7f9c69ca516f330a *man/mids2datlist.Rd
 97aa0db1472d1e5ae1acdf23297b3b5b *man/mids2mlwin.Rd
@@ -297,7 +300,7 @@ d463c79d3888b2e28483f5de56825ccf *man/write.mice.imputation.Rd
 489b262d4f81136a32f0bb09936fe53e *src/Makevars
 a73031cbe7d6aaf0bd22e20f6526977d *src/Makevars.win
 abc7f2beaf057b32da4537846e038616 *src/RcppExports.cpp
-80ae32080c4cf3962bdc364b5263a515 *src/create_interactions_c.cpp
+a4593fbac33ca924f9ba4062a3081d4c *src/create_interactions_c.cpp
 df96b076a729a66da5da7d5e8fb2def2 *src/init.c
 a36734933df639e0281399eae054bffa *src/kernelpls_1dim_c.cpp
 fd04850c04cbafd5bea115b3a669a3a5 *src/ma_pmm6_csource.cpp

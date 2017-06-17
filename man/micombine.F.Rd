@@ -22,7 +22,7 @@ micombine.F(Fvalues, df1, display = TRUE, version=1)
 Vector containing \eqn{F} values.
 }
   \item{df1}{
-Degrees of freedom of the denominator. Degrees of freedom of the
+Degrees of freedom of the numerator. Degrees of freedom of the
 numerator are approximated by \eqn{\infty} (large number of degrees
 of freedom).
 }

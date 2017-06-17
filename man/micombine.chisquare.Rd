@@ -47,8 +47,8 @@ A vector with following entries
  \item{D}{Combined \eqn{D_2} statistic which is approximately \eqn{F}-distributed
  with (\code{df}, \code{df2}) degrees of freedom}
   \item{p}{The p value corresponding to \code{D}}
-\item{df}{Denominator degrees of freedom}
-\item{df2}{Numerator degrees of freedom}
+\item{df}{Numerator degrees of freedom}
+\item{df2}{Denominator degrees of freedom}
 }
 
 

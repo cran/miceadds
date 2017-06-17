@@ -40,6 +40,21 @@ CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+---------------------------------------------------------------------
+VERSIONS miceadds 2.5  |  2017-06-17  |  Last: miceadds 2.5-9
+---------------------------------------------------------------------
+
+NOTE  * fixed an incorrect description in the manual of 'micombine.F'
+        and 'micombine.chisquare' (thanks to Tobias Rolfes)
+NOTE  * dependency for writing SPSS data to the sjmisc packahe in 
+        save.data function has been changed to the sjlabelled package
+        because imported functions were moved from sjmisc to sjlabelled
+        (requested by the maintainer Daniel Luedecke)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
 ---------------------------------------------------------------------
 VERSIONS miceadds 2.4  |  2017-04-19  |  Last: miceadds 2.4-12
 ---------------------------------------------------------------------

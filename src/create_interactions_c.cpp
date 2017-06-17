@@ -31,13 +31,13 @@ Rcpp::List create_interactions_cpp( Rcpp::NumericVector Yr ,
        
      // matrix of interactions  
      arma::mat IM = arma::zeros( nall , maxcols[0]  );   
-     arma::mat xint ;  
+     arma::mat xint;  
        
      // create interaction vector in arma  
      arma::mat xxi = arma::zeros( nobj , 1  );  
      arma::mat xxi2 = arma::zeros( nall , 1  );  
        
-     arma::mat cii = arma::zeros( 1 , 1  ) ;  
+     arma::mat cii = arma::zeros( 1 , 1  );  
        
      int zz = 0 ; // init zz: the number of interactions  
        
@@ -45,11 +45,11 @@ Rcpp::List create_interactions_cpp( Rcpp::NumericVector Yr ,
      	// int nn = 0 ;   
      	// create vector with interactions  
      	xxi = arma::mat( xobs.col( index_int(nn,0)-1 ) % xobs.col( index_int(nn,1)-1 ) ) ;   
-     	cii = arma::abs( arma::cor( Y , xxi )  ) ;  
+     	cii = arma::abs( arma::cor( Y , xxi )  );  
      	allcorrs(nn,0) =  cii(0,0);  
      	if ( cii(0,0) > min_int_cor ){  
      		xxi2 = arma::mat( xall.col( index_int(nn,0)-1 ) % xall.col( index_int(nn,1)-1 ) ) ;	  
-     		IM.col(zz) = xxi2.col(0) ;   
+     		IM.col(zz) = xxi2.col(0);   
      		allcorrs(nn,1)=1 ;  
      		zz = zz + 1 ;  
 			if ( zz > maxcols[0] -1 ){  
