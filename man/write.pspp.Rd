@@ -66,7 +66,7 @@ The code is adapted from
 See also \code{\link[foreign:write.foreign]{foreign::write.foreign}}. 
 
 For writing sav files see also \code{\link[haven:write_sav]{haven::write_sav}} 
-and  \code{\link[sjmisc:write_spss]{sjmisc::write_spss}}.
+and  \code{\link[sjlabelled:write_spss]{sjlabelled::write_spss}}.
 
 For convenient viewing \emph{sav} files we recommend the freeware
 program \emph{ViewSav}, see \url{http://www.asselberghs.dds.nl/stuff.htm}.
@@ -114,10 +114,10 @@ library(haven)
 haven::write_sav( data , "example_data1a.sav" )      
 
 #****
-# write sav file using sjmisc package
-library(sjmisc)
-data <- sjmisc::set_label( data, attr(data, "variable.labels") )
-sjmisc::write_spss( data , "example_data1b.sav" )
+# write sav file using sjlabelled package
+library(sjlabelled)
+data <- sjlabelled::set_label( data, attr(data, "variable.labels") )
+sjlabelled::write_spss( data , "example_data1b.sav" )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
