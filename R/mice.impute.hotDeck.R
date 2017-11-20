@@ -1,3 +1,5 @@
+## File Name: mice.impute.hotDeck.R
+## File Version: 0.04
 mice.impute.hotDeck <- function (y, ry, x, donors=5 , 
 	method = "Mahalanobis" , ...)
 {

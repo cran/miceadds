@@ -1,3 +1,5 @@
+## File Name: VariableNames2String.R
+## File Version: 0.04
 #############################################################
 VariableNames2String <- function( vars , breaks = 80 , sep=" "){
     vars2 <- vars	

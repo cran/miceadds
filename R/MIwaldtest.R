@@ -1,3 +1,5 @@
+## File Name: MIwaldtest.R
+## File Version: 0.04
 
 ########################################
 # MI Wald test

@@ -1,3 +1,6 @@
+%% File Name: data.internet.Rd
+%% File Version: 0.15
+
 \name{data.internet}
 \alias{data.internet}
 \docType{data}

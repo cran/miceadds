@@ -1,3 +1,5 @@
+## File Name: NMIcombine.R
+## File Version: 0.24
 
 #################################################
 # extension of MIcombine function to nested

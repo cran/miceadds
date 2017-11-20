@@ -40,6 +40,29 @@ CHANGELOG miceadds
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+---------------------------------------------------------------------
+VERSIONS miceadds 2.8  |  2017-11-20  |  Last: miceadds 2.8-24
+---------------------------------------------------------------------
+
+NOTE  * changed default value of argument 'progress' in 
+        'datalist2mids' to FALSE
+NOTE  * included utility functions 'in_CI' and 'string_extract_part'
+NOTE  * changed names of imputation methods 'mice.impute.2l.latentgroupmean.ML' 
+        and 'mice.impute.2l.latentgroupmean.MCMC' to
+        'mice.impute.2l.latentgroupmean.ml' and 
+        'mice.impute.2l.latentgroupmean.mcmc'
+NOTE  * changed function name of internal function 'mice.impute.2l.lmer' 
+        to 'mice_impute_2l_lmer' to avoid confusion because a function 
+        'mice::mice.impute.2l.lmer' has been recently included in the 
+        mice package
+NOTE  * added example for computing global F-test in 'lm.cluster'
+        (suggested by Thiemo Knaust)        
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: in_CI (1), filenames_split (2),
+        lm.cluster (2)
+
 ---------------------------------------------------------------------
 VERSIONS miceadds 2.7  |  2017-08-24  |  Last: miceadds 2.7-19
 ---------------------------------------------------------------------
@@ -60,7 +83,6 @@ DATA  * included/modified datasets: data.ma07
 EXAMP * included/modified examples: jomo2datlist (1), 
         mice.impute.ml.lmer (1), ma_rmvnorm (1),
         Rfunction_include_argument_values (1)
-
 
 ---------------------------------------------------------------------
 VERSIONS miceadds 2.6  |  2017-08-09  |  Last: miceadds 2.6-21

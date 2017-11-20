@@ -1,3 +1,5 @@
+## File Name: micombine.cov.R
+## File Version: 1.10
 
 #################################################################################
 # inference for correlations | nested multiply and multiply imputed datasets

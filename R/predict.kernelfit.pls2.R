@@ -1,3 +1,5 @@
+## File Name: predict.kernelfit.pls2.R
+## File Version: 0.02
 
 ###########################################################
 # prediction for kernelpls.fit2 function

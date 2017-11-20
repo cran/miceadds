@@ -1,3 +1,6 @@
+%% File Name: mice.impute.ml.lmer.Rd
+%% File Version: 0.16
+
 \name{mice.impute.ml.lmer}
 \alias{mice.impute.ml.lmer}
 %- Also NEED an '\alias' for EACH other topic documented here.

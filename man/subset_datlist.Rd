@@ -1,3 +1,6 @@
+%% File Name: subset_datlist.Rd
+%% File Version: 0.28
+
 \name{subset_datlist}
 \alias{subset_datlist}
 \alias{subset.datlist}

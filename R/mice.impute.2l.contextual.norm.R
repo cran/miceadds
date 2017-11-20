@@ -1,3 +1,5 @@
+## File Name: mice.impute.2l.contextual.norm.R
+## File Version: 0.08
 mice.impute.2l.contextual.norm <- function (y, ry, x, type , ridge = 10^(-5) , 
 			imputationWeights = NULL , interactions=NULL , quadratics = NULL ,  ...){									
 	res <- mice_imputation_get_states( pos = parent.frame(n=1) )	

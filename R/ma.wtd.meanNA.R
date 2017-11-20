@@ -1,3 +1,5 @@
+## File Name: ma.wtd.meanNA.R
+## File Version: 0.04
 
 
 

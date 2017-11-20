@@ -1,3 +1,6 @@
+%% File Name: pca.covridge.Rd
+%% File Version: 0.15
+
 \name{pca.covridge}
 \alias{pca.covridge}
 %- Also NEED an '\alias' for EACH other topic documented here.

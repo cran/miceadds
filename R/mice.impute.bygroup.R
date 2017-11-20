@@ -1,3 +1,5 @@
+## File Name: mice.impute.bygroup.R
+## File Version: 0.10
 
 mice.impute.bygroup <- function( y , ry , x , group , 
 		imputationFunction , ... ){

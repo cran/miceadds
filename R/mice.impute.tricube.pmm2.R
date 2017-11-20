@@ -1,3 +1,5 @@
+## File Name: mice.impute.tricube.pmm2.R
+## File Version: 0.10
 mice.impute.tricube.pmm2 <- function (y, ry, x, tricube.pmm.scale= .2 , tricube.boot = FALSE , ...){
 	NM <- NULL
     x <- cbind(1, as.matrix(x))	

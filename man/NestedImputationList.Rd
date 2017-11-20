@@ -1,3 +1,6 @@
+%% File Name: NestedImputationList.Rd
+%% File Version: 0.13
+
 \name{NestedImputationList}
 \alias{NestedImputationList}
 \alias{MIcombine.NestedImputationResultList}

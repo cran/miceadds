@@ -1,3 +1,6 @@
+%% File Name: data.smallscale.Rd
+%% File Version: 0.18
+
 \name{data.smallscale}
 \alias{data.smallscale}
 \docType{data}

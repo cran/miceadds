@@ -1,3 +1,5 @@
+## File Name: mice_imputation_pls_largest_correlations.R
+## File Version: 0.04
 
 mice_imputation_pls_largest_correlations <- function( y , x , ry , type ,
 	use.ymat , pls.print.progress , x10 , N.largest , min.all.cor )

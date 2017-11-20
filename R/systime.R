@@ -1,3 +1,5 @@
+## File Name: systime.R
+## File Version: 0.06
 
 ########################################################################
 # several variants for getting system time

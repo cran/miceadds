@@ -1,3 +1,5 @@
+## File Name: subset_datlist.R
+## File Version: 0.17
 
 #######################################################
 subset_datlist <- function( datlist , subset = TRUE ,

@@ -1,3 +1,6 @@
+%% File Name: round2.Rd
+%% File Version: 0.14
+
 \name{round2}
 \alias{round2}
 %- Also NEED an '\alias' for EACH other topic documented here.

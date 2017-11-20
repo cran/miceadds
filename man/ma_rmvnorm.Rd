@@ -1,3 +1,6 @@
+%% File Name: ma_rmvnorm.Rd
+%% File Version: 0.03
+
 \name{ma_rmvnorm}
 \alias{ma_rmvnorm}
 %- Also NEED an '\alias' for EACH other topic documented here.

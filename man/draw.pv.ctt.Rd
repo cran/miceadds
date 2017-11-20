@@ -1,3 +1,6 @@
+%% File Name: draw.pv.ctt.Rd
+%% File Version: 1.16
+
 \name{draw.pv.ctt}
 \alias{draw.pv.ctt}
 %- Also NEED an '\alias' for EACH other topic documented here.

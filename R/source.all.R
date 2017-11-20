@@ -1,3 +1,5 @@
+## File Name: source.all.R
+## File Version: 1.02
 
 #**********************************************************
 # function for sourcing all files within a directory

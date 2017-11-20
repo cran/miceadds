@@ -1,3 +1,5 @@
+## File Name: mice_multilevel_imputation_draw_residuals.R
+## File Version: 0.03
 
 ################################################
 # draw residuals

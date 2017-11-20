@@ -1,3 +1,5 @@
+## File Name: round2.R
+## File Version: 0.04
 round2 <- function( vec , digits=0 ){
     vec0 <- vec
 	eps <- 10^(-10)

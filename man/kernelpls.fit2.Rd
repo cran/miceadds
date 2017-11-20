@@ -1,3 +1,6 @@
+%% File Name: kernelpls.fit2.Rd
+%% File Version: 0.18
+
 \name{kernelpls.fit2}
 \alias{kernelpls.fit2}
 \alias{predict.kernelpls.fit2}

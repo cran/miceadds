@@ -1,3 +1,5 @@
+## File Name: write.pspp.R
+## File Version: 1.21
 write.pspp <- function (data , datafile, pspp.path , decmax=6 ,
   as.factors=TRUE ,  use.bat=FALSE) {
     data <- as.data.frame(data) 

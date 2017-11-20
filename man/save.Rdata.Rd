@@ -1,3 +1,6 @@
+%% File Name: save.Rdata.Rd
+%% File Version: 0.05
+
 \name{save.Rdata}
 \alias{save.Rdata}
 %- Also NEED an '\alias' for EACH other topic documented here.

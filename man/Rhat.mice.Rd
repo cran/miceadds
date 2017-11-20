@@ -1,3 +1,6 @@
+%% File Name: Rhat.mice.Rd
+%% File Version: 0.07
+
 \name{Rhat.mice}
 \alias{Rhat.mice}
 %- Also NEED an '\alias' for EACH other topic documented here.

@@ -1,3 +1,5 @@
+## File Name: with.nested.datlist.R
+## File Version: 1.03
 
 ##################################################################
 # with function for a nested imputation list

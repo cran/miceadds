@@ -1,3 +1,5 @@
+## File Name: cxxfunction.copy.R
+## File Version: 1.03
 
 
 cxxfunction.copy <- function( cppfct , name ){

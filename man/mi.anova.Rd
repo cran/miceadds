@@ -1,3 +1,6 @@
+%% File Name: mi.anova.Rd
+%% File Version: 0.13
+
 \name{mi.anova}
 \alias{mi.anova}
 %- Also NEED an '\alias' for EACH other topic documented here.

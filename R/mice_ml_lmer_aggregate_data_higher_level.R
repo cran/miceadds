@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_aggregate_data_higher_level.R
+## File Version: 0.05
 
 mice_ml_lmer_aggregate_data_higher_level <- function(vname_level, y, ry, x, data,
 		levels_id )

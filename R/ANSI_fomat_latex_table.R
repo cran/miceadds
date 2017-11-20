@@ -1,3 +1,5 @@
+## File Name: ANSI_fomat_latex_table.R
+## File Version: 0.11
 
 ANSI_format_latex_table <- function(dat, round=NULL,
 	phantom_minus = FALSE, phantom_digit = -Inf, 

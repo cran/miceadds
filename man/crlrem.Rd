@@ -1,3 +1,6 @@
+%% File Name: crlrem.Rd
+%% File Version: 0.07
+
 \name{crlrem}
 \alias{crlrem}
 %- Also NEED an '\alias' for EACH other topic documented here.

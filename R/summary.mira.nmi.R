@@ -1,3 +1,5 @@
+## File Name: summary.mira.nmi.R
+## File Version: 0.03
 
 ###############################################
 # summary function for mira.nmi object

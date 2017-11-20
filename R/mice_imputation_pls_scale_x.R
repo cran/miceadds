@@ -1,3 +1,5 @@
+## File Name: mice_imputation_pls_scale_x.R
+## File Version: 0.03
 
 mice_imputation_pls_scale_x <- function( x , imputationWeights , use_weights)
 {

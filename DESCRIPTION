@@ -2,8 +2,8 @@ Package: miceadds
 Type: Package
 Title: Some Additional Multiple Imputation Functions, Especially for
         'mice'
-Version: 2.7-19
-Date: 2017-08-24 17:34:44
+Version: 2.8-24
+Date: 2017-11-20 19:47:38
 Author: 
     Alexander Robitzsch [aut, cre], Simon Grund [aut],
     Thorsten Henke [aut]
@@ -29,6 +29,6 @@ Suggests: Amelia, BIFIEsurvey, blme, car, foreign, grouped, haven, hmi,
 URL: https://github.com/alexanderrobitzsch/miceadds
 License: GPL (>= 2)
 NeedsCompilation: yes
-Packaged: 2017-08-24 15:35:21 UTC; sunpn563
+Packaged: 2017-11-20 18:48:25 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2017-08-24 21:35:08 UTC
+Date/Publication: 2017-11-20 19:21:45 UTC

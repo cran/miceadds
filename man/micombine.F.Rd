@@ -1,3 +1,6 @@
+%% File Name: micombine.F.Rd
+%% File Version: 0.15
+
 \name{micombine.F}
 \alias{micombine.F}
 %- Also NEED an '\alias' for EACH other topic documented here.

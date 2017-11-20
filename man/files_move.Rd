@@ -1,3 +1,6 @@
+%% File Name: files_move.Rd
+%% File Version: 0.11
+
 \name{files_move}
 \alias{files_move}
 %- Also NEED an '\alias' for EACH other topic documented here.

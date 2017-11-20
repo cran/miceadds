@@ -1,3 +1,5 @@
+## File Name: mice_imputation_extract_arguments_list.R
+## File Version: 0.01
 
 mice_imputation_extract_arguments_list <- function(v1, vname)
 {

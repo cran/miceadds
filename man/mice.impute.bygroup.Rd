@@ -1,3 +1,6 @@
+%% File Name: mice.impute.bygroup.Rd
+%% File Version: 0.08
+
 \name{mice.impute.bygroup}
 \alias{mice.impute.bygroup}
 %- Also NEED an '\alias' for EACH other topic documented here.

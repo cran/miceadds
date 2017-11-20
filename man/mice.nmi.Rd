@@ -1,3 +1,6 @@
+%% File Name: mice.nmi.Rd
+%% File Version: 0.13
+
 \name{mice.nmi}
 \alias{mice.nmi}
 \alias{summary.mids.nmi}

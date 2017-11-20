@@ -1,3 +1,5 @@
+## File Name: MIcombine.NestedImputationResultList.R
+## File Version: 0.02
 
 #####################################################################
 MIcombine.NestedImputationResultList <- function(results, ...){

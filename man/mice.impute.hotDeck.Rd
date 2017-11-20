@@ -1,3 +1,6 @@
+%% File Name: mice.impute.hotDeck.Rd
+%% File Version: 0.12
+
 \name{mice.impute.hotDeck}
 \alias{mice.impute.hotDeck}
 %- Also NEED an '\alias' for EACH other topic documented here.

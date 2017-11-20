@@ -1,3 +1,6 @@
+%% File Name: library_install.Rd
+%% File Version: 0.06
+
 \name{library_install}
 \alias{library_install}
 

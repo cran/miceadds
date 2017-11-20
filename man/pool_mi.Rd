@@ -1,3 +1,6 @@
+%% File Name: pool_mi.Rd
+%% File Version: 0.16
+
 \name{pool_mi}
 \alias{pool_mi}
 \alias{summary.pool_mi}

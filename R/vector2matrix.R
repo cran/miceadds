@@ -1,3 +1,5 @@
+## File Name: vector2matrix.R
+## File Version: 0.04
 
 
 ##############################################

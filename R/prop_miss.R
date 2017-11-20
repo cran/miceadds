@@ -1,3 +1,5 @@
+## File Name: prop_miss.R
+## File Version: 0.02
 
 
 prop_miss <- function(x){

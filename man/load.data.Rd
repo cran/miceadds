@@ -1,3 +1,6 @@
+%% File Name: load.data.Rd
+%% File Version: 0.20
+
 \name{load.data}
 \alias{load.data}
 

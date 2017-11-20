@@ -1,3 +1,6 @@
+%% File Name: sumpreserving.rounding.Rd
+%% File Version: 0.08
+
 \name{sumpreserving.rounding}
 \alias{sumpreserving.rounding}
 %- Also NEED an '\alias' for EACH other topic documented here.

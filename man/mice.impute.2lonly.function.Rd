@@ -1,3 +1,6 @@
+%% File Name: mice.impute.2lonly.function.Rd
+%% File Version: 0.20
+
 \name{mice.impute.2lonly.function}
 \alias{mice.impute.2lonly.function}
 

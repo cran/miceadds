@@ -1,3 +1,5 @@
+## File Name: mice_imputation_pls_estimate_pls_regression.R
+## File Version: 0.05
 
 mice_imputation_pls_estimate_pls_regression <- function( pls.facs , x , y, ry ,
 	use.ymat , imputationWeights , use_weights , pls.print.progress )

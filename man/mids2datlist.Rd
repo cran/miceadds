@@ -1,3 +1,6 @@
+%% File Name: mids2datlist.Rd
+%% File Version: 0.10
+
 \name{mids2datlist}
 \alias{mids2datlist}
 %- Also NEED an '\alias' for EACH other topic documented here.

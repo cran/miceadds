@@ -1,3 +1,5 @@
+## File Name: write_fwf2_format2.R
+## File Version: 0.02
 
 #----------------------------------------------------------------
 # utility function for formatting output in write.fwf2

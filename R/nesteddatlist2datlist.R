@@ -1,3 +1,5 @@
+## File Name: nesteddatlist2datlist.R
+## File Version: 0.02
 
 
 nesteddatlist2datlist <- function(datlist){

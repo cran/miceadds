@@ -1,3 +1,5 @@
+## File Name: mice.impute.grouped.R
+## File Version: 0.11
 
 ##################################################
 # imputation for grouped data

@@ -1,3 +1,5 @@
+## File Name: ma.wtd.aux.data.R
+## File Version: 2.11
 
 ########################################################
 # auxiliary function

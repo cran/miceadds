@@ -1,3 +1,6 @@
+%% File Name: jomo2datlist.Rd
+%% File Version: 0.09
+
 \name{jomo2datlist}
 \alias{jomo2datlist}
 \alias{jomo2mids}

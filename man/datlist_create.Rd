@@ -1,3 +1,6 @@
+%% File Name: datlist_create.Rd
+%% File Version: 0.12
+
 \name{datlist_create}
 \alias{datlist_create}
 \alias{nested.datlist_create}

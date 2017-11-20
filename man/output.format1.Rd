@@ -1,3 +1,6 @@
+%% File Name: output.format1.Rd
+%% File Version: 0.10
+
 \name{output.format1}
 \alias{output.format1}
 %- Also NEED an '\alias' for EACH other topic documented here.

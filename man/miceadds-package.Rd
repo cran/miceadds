@@ -1,3 +1,6 @@
+%% File Name: miceadds-package.Rd
+%% File Version: 1.56
+
 \name{miceadds-package}
 \alias{miceadds-package}
 \alias{miceadds}

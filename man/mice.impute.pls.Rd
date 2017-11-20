@@ -1,3 +1,6 @@
+%% File Name: mice.impute.pls.Rd
+%% File Version: 2.23
+
 \name{mice.impute.pls}
 \alias{mice.impute.pls}
 \alias{mice.impute.2l.pls2}

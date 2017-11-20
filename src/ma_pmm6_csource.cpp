@@ -1,3 +1,5 @@
+//// File Name: ma_pmm6_csource.cpp
+//// File Version: 1.01
 
 // [[Rcpp::depends(RcppArmadillo)]]
 

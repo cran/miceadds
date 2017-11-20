@@ -1,3 +1,6 @@
+%% File Name: Rfunction_include_argument_values.Rd
+%% File Version: 0.02
+
 \name{Rfunction_include_argument_values}
 \alias{Rfunction_include_argument_values}
 \alias{Rfunction_output_list_result_function}
@@ -14,7 +17,7 @@ Utility functions for writing \R functions.
 }
 \usage{
 ## include argument values in a function input
-Rfunction_include_argument_values(string, maxlen = 80)
+Rfunction_include_argument_values(string, maxlen = 70)
 
 ## assign objects to entries in a list 
 Rfunction_output_list_result_function(string, mid = " <- res$")

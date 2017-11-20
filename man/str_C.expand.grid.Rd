@@ -1,3 +1,6 @@
+%% File Name: str_C.expand.grid.Rd
+%% File Version: 0.10
+
 \name{str_C.expand.grid}
 \alias{str_C.expand.grid}
 %- Also NEED an '\alias' for EACH other topic documented here.

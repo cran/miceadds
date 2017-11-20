@@ -1,3 +1,6 @@
+%% File Name: Rsessinfo.Rd
+%% File Version: 0.05
+
 \name{Rsessinfo}
 \alias{Rsessinfo}
 %- Also NEED an '\alias' for EACH other topic documented here.

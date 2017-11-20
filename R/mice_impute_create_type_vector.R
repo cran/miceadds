@@ -1,3 +1,5 @@
+## File Name: mice_impute_create_type_vector.R
+## File Version: 0.03
 
 mice_impute_create_type_vector <- function( variables , value = 1)
 {

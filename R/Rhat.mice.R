@@ -1,3 +1,5 @@
+## File Name: Rhat.mice.R
+## File Version: 1.06
 Rhat.mice <- function( mice.object){ 
         #############################################################################
 #	if (class( mice.object) == "mids.1chain"){	

@@ -1,3 +1,6 @@
+%% File Name: mice.impute.eap.Rd
+%% File Version: 0.16
+
 \name{mice.impute.eap}
 \alias{mice.impute.eap}
 %- Also NEED an '\alias' for EACH other topic documented here.

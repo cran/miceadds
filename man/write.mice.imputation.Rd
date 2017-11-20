@@ -1,3 +1,6 @@
+%% File Name: write.mice.imputation.Rd
+%% File Version: 0.14
+
 \name{write.mice.imputation}
 \alias{write.mice.imputation}
 %- Also NEED an '\alias' for EACH other topic documented here.

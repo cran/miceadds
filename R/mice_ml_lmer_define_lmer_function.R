@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_define_lmer_function.R
+## File Version: 0.01
 
 mice_ml_lmer_define_lmer_function <- function( model, blme_use )
 {	

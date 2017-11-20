@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_arrange_cluster_identifiers.R
+## File Version: 0.02
 
 
 mice_ml_lmer_arrange_cluster_identifiers <- function( levels_id , data )

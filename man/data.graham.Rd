@@ -1,3 +1,6 @@
+%% File Name: data.graham.Rd
+%% File Version: 0.17
+
 \name{data.graham}
 \alias{data.graham}
 

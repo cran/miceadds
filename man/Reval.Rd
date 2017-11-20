@@ -1,3 +1,6 @@
+%% File Name: Reval.Rd
+%% File Version: 0.12
+
 \name{Reval}
 \alias{Reval}
 

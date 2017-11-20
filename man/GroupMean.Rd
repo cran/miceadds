@@ -1,3 +1,6 @@
+%% File Name: GroupMean.Rd
+%% File Version: 0.20
+
 \name{GroupMean}
 \alias{GroupMean}
 \alias{GroupSum}

@@ -1,3 +1,5 @@
+## File Name: summary.mipo.nmi.R
+## File Version: 0.06
 
 #################################################################
 summary.mipo.nmi <- function(object, digits=4 ,  ...) {

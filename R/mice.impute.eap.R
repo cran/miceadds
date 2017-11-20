@@ -1,3 +1,5 @@
+## File Name: mice.impute.eap.R
+## File Version: 2.02
 
 mice.impute.eap <- function (y, ry, x, eap , ...){  
 	pos <- parent.frame(n=1)

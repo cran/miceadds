@@ -1,6 +1,9 @@
+## File Name: Rfunction_include_argument_values.R
+## File Version: 0.06
 
-Rfunction_include_argument_values <- function(string, maxlen=80)
+Rfunction_include_argument_values <- function(string, maxlen=70)
 {
+
 	a1 <- strsplit( string , split= "(" , fixed = TRUE )[[1]]
 	s1 <- a1[2]
 	s1 <- strsplit( s1 , split= ")" , fixed = TRUE )[[1]][1]

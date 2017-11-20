@@ -1,3 +1,6 @@
+%% File Name: micombine.chisquare.Rd
+%% File Version: 0.16
+
 \name{micombine.chisquare}
 \alias{micombine.chisquare}
 %- Also NEED an '\alias' for EACH other topic documented here.

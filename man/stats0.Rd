@@ -1,3 +1,6 @@
+%% File Name: stats0.Rd
+%% File Version: 0.05
+
 \name{stats0}
 \alias{stats0}
 \alias{max0}

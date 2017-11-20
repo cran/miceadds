@@ -1,3 +1,5 @@
+## File Name: jomo2datlist.R
+## File Version: 0.04
 
 ##################################################
 # converts a dataframe in longformat (produced

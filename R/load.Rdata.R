@@ -1,3 +1,5 @@
+## File Name: load.Rdata.R
+## File Version: 1.02
 
 #****************************************
 # load R data objects globally

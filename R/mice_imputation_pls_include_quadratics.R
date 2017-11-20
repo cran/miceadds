@@ -1,3 +1,5 @@
+## File Name: mice_imputation_pls_include_quadratics.R
+## File Version: 0.02
 
 
 mice_imputation_pls_include_quadratics <- function( pls.quadratics , 

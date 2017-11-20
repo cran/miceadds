@@ -1,3 +1,5 @@
+## File Name: mean0.R
+## File Version: 0.04
 
 
 mean0 <- function(x, na.rm=TRUE){

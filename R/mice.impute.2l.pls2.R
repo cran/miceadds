@@ -1,3 +1,5 @@
+## File Name: mice.impute.2l.pls2.R
+## File Version: 3.04
 mice.impute.2l.pls2 <- function(y, ry, x , type , pls.facs = NULL , 
                                 pls.impMethod = "pmm" , 
                                 pls.print.progress = TRUE , 

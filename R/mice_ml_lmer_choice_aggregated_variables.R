@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_choice_aggregated_variables.R
+## File Version: 0.01
 
 
 mice_ml_lmer_choice_aggregated_variables <- function( x_sel , clus , eps = 1E-5)

@@ -1,3 +1,5 @@
+## File Name: write.mice.imputation.R
+## File Version: 0.14
 ##################################################
 # write mice imputation object
 write.mice.imputation <- function( mi.res , name , include.varnames = TRUE , long = TRUE , 

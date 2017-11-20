@@ -1,3 +1,5 @@
+## File Name: latent.regression.em.R
+## File Version: 0.16
 latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) , 
                                 beta.init=rep(0,ncol(X)) , sigma.init =1 , 
                                 b = b , a= rep(1 , length(b)) , c= rep(0 , length(b)) , 

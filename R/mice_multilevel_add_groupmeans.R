@@ -1,3 +1,5 @@
+## File Name: mice_multilevel_add_groupmeans.R
+## File Version: 0.07
 
 
 mice_multilevel_add_groupmeans <- function( y , ry , x , type ,

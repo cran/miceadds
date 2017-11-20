@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_collect_lme4_input.R
+## File Version: 0.01
 
 mice_ml_lmer_collect_lme4_input <- function(y, x, ry, data, levels_id, NL, fml,
 		lmer_family, model, lmer_args, blme_args )

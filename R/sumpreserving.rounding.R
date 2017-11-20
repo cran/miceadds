@@ -1,3 +1,5 @@
+## File Name: sumpreserving.rounding.R
+## File Version: 0.07
 
 
 ############################################################

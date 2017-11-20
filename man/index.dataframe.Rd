@@ -1,3 +1,6 @@
+%% File Name: index.dataframe.Rd
+%% File Version: 0.12
+
 \name{index.dataframe}
 \alias{index.dataframe}
 %- Also NEED an '\alias' for EACH other topic documented here.

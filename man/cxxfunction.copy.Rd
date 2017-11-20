@@ -1,3 +1,6 @@
+%% File Name: cxxfunction.copy.Rd
+%% File Version: 0.14
+
 \name{cxxfunction.copy}
 \alias{cxxfunction.copy}
 %- Also NEED an '\alias' for EACH other topic documented here.

@@ -1,3 +1,5 @@
+## File Name: mids2datlist.R
+## File Version: 0.10
 mids2datlist <- function( midsobj , X = NULL){
     datlist <- midsobj   # init
 	if ( class(midsobj) == "mids.1chain" ){

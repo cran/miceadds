@@ -1,3 +1,5 @@
+## File Name: grep.vec.R
+## File Version: 1.02
 
 ##################################################
 # vector version of grep

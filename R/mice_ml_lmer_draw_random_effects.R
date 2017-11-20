@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_draw_random_effects.R
+## File Version: 0.02
 
 
 mice_ml_lmer_draw_random_effects <- function( clus, clus_unique, y , ry , fl , fit_vc,

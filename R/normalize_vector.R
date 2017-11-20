@@ -1,3 +1,5 @@
+## File Name: normalize_vector.R
+## File Version: 0.02
 
 ##########################################
 # normalize vector to sum of length x

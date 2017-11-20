@@ -1,3 +1,5 @@
+## File Name: NestedImputationList.R
+## File Version: 0.04
 
 #######################################################
 # list of nested of multiply imputed datasets

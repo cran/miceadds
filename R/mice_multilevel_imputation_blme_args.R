@@ -1,3 +1,5 @@
+## File Name: mice_multilevel_imputation_blme_args.R
+## File Version: 0.02
 
 mice_multilevel_imputation_blme_args <- function(lmer_args , blme_args){
 	if ( ! is.null( blme_args) ){

@@ -1,3 +1,5 @@
+## File Name: with.NestedImputationList.R
+## File Version: 0.04
 
 ##################################################################
 # with function for a nested imputation list

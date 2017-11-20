@@ -1,3 +1,5 @@
+## File Name: mice_imputation_pls_do_impute.R
+## File Version: 0.02
 
 mice_imputation_pls_do_impute <- function( x , y , ry , imputationWeights , 
 	use_weights , pls.impMethod , pls.print.progress ,

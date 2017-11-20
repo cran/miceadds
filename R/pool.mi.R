@@ -1,3 +1,5 @@
+## File Name: pool.mi.R
+## File Version: 0.26
 ##############################################################
 # Inference for multiply imputed datasets
 # The following code is copied from the mice package

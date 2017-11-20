@@ -1,3 +1,5 @@
+## File Name: read.fwf2.R
+## File Version: 0.03
 
 
  

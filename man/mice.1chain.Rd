@@ -1,3 +1,6 @@
+%% File Name: mice.1chain.Rd
+%% File Version: 0.27
+
 \name{mice.1chain}
 \alias{mice.1chain}
 \alias{summary.mids.1chain}

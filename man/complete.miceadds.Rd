@@ -1,3 +1,6 @@
+%% File Name: complete.miceadds.Rd
+%% File Version: 0.12
+
 \name{complete.miceadds}
 \alias{complete.mids.nmi}
 \alias{complete.mids.1chain}

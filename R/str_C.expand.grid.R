@@ -1,3 +1,5 @@
+## File Name: str_C.expand.grid.R
+## File Version: 0.04
 
 #************************************************
 # combine strings using expand.grid

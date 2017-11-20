@@ -1,3 +1,6 @@
+%% File Name: write.fwf2.Rd
+%% File Version: 0.07
+
 \name{write.fwf2}
 \alias{write.fwf2}
 \alias{read.fwf2}

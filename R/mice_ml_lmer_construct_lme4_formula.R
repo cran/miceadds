@@ -1,3 +1,5 @@
+## File Name: mice_ml_lmer_construct_lme4_formula.R
+## File Version: 0.02
 
 mice_ml_lmer_construct_lme4_formula <- function(x, intercept, levels_id, fixed_effects,
 		NL, random_slopes )

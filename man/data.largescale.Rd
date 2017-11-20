@@ -1,3 +1,6 @@
+%% File Name: data.largescale.Rd
+%% File Version: 0.18
+
 \name{data.largescale}
 \alias{data.largescale}
 \docType{data}

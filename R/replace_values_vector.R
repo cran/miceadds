@@ -1,3 +1,5 @@
+## File Name: replace_values_vector.R
+## File Version: 0.01
 
 replace_values_vector <- function(vec, vec_names, value)
 {

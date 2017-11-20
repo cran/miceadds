@@ -1,3 +1,5 @@
+## File Name: NMIextract.R
+## File Version: 0.02
 
 
 NMIextract <- function(results, expr, fun){

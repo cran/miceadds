@@ -1,3 +1,5 @@
+## File Name: create_interactions.R
+## File Version: 1.02
 
 ################################################
 # create interactions

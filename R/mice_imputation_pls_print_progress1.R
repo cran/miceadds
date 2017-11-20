@@ -1,3 +1,5 @@
+## File Name: mice_imputation_pls_print_progress1.R
+## File Version: 0.02
 
 mice_imputation_pls_print_progress1 <- function( pls.print.progress , vname ,
 	print.dims , y , ry , x , type )

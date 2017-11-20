@@ -1,3 +1,5 @@
+## File Name: pca.covridge.R
+## File Version: 0.05
 pca.covridge <- function( x , ridge = 1E-10 ){
     cx <- stats::cov(x)
     diag(cx) <- diag(cx) + ridge

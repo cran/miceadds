@@ -1,3 +1,5 @@
+## File Name: micombine.chisquare.R
+## File Version: 0.13
 micombine.chisquare <- function( dk , df , display = TRUE ,
 			version = 1){
         # INPUT:

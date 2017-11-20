@@ -1,3 +1,5 @@
+## File Name: List2nestedList.R
+## File Version: 0.03
 
 ###########################################
 # convert a List into a nestedList

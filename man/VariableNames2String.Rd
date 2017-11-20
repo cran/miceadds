@@ -1,3 +1,6 @@
+%% File Name: VariableNames2String.Rd
+%% File Version: 0.03
+
 \name{VariableNames2String}
 \alias{VariableNames2String}
 %- Also NEED an '\alias' for EACH other topic documented here.

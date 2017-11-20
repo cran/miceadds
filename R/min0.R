@@ -1,3 +1,5 @@
+## File Name: min0.R
+## File Version: 0.02
 
 
 min0 <- function(x, na.rm=TRUE){

@@ -1,3 +1,6 @@
+%% File Name: scan.vector.Rd
+%% File Version: 0.14
+
 \name{scan.vec}
 \alias{scan.vec}
 \alias{scan.vector}

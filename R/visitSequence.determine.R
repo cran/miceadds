@@ -1,3 +1,5 @@
+## File Name: visitSequence.determine.R
+## File Version: 0.10
 
 ########################################################
 visitSequence.determine <- function( impMethod , vis ,

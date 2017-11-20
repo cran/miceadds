@@ -1,3 +1,5 @@
+## File Name: fisher2cor.R
+## File Version: 0.04
 
 ##################################################
 # back transform fisher correlations

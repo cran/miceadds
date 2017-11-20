@@ -1,3 +1,6 @@
+%% File Name: grep.vec.Rd
+%% File Version: 0.11
+
 \name{grep.vec}
 \alias{grep.vec}
 %- Also NEED an '\alias' for EACH other topic documented here.

@@ -1,3 +1,5 @@
+## File Name: mice_multilevel_doCall_suppressWarnings.R
+## File Version: 0.02
 
 #######################################################
 # calls a function and suppresses warnings if requested

@@ -1,3 +1,5 @@
+## File Name: mi.anova.R
+## File Version: 0.28
 mi.anova <- function( mi.res , formula , type = 2 ){
     # INPUT:
     # mi.res  ... mids object (from mice imputation function)

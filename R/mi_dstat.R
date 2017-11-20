@@ -1,3 +1,5 @@
+## File Name: mi_dstat.R
+## File Version: 0.03
 ################################################
 # d effect size for missingness indicators
 mi_dstat <- function(dat){

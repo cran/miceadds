@@ -1,3 +1,5 @@
+## File Name: covTest.R
+## File Version: 0.04
 
 ############################################
 # function for testing the covariance

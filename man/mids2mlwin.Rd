@@ -1,3 +1,6 @@
+%% File Name: mids2mlwin.Rd
+%% File Version: 0.05
+
 \name{mids2mlwin}
 \alias{mids2mlwin}
 \title{Export \code{mids} object to MLwiN}

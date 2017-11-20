@@ -1,3 +1,6 @@
+%% File Name: systime.Rd
+%% File Version: 0.12
+
 \name{systime}
 \alias{systime}
 %- Also NEED an '\alias' for EACH other topic documented here.

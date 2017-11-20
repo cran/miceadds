@@ -1,3 +1,5 @@
+## File Name: GroupSum.R
+## File Version: 1.02
 
 
 GroupSum <- function( data , group , weights=NULL , extend=FALSE){

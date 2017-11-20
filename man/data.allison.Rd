@@ -1,3 +1,6 @@
+%% File Name: data.allison.Rd
+%% File Version: 0.13
+
 \name{data.allison}
 \alias{data.allison}
 \alias{data.allison.gssexp}

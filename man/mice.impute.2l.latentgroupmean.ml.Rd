@@ -1,6 +1,9 @@
-\name{mice.impute.2l.latentgroupmean.ML}
-\alias{mice.impute.2l.latentgroupmean.ML}
-\alias{mice.impute.2l.latentgroupmean.MCMC}
+%% File Name: mice.impute.2l.latentgroupmean.ml.Rd
+%% File Version: 1.21
+
+\name{mice.impute.2l.latentgroupmean.ml}
+\alias{mice.impute.2l.latentgroupmean.ml}
+\alias{mice.impute.2l.latentgroupmean.mcmc}
 \alias{mice.impute.2l.groupmean}
 \alias{mice.impute.2l.groupmean.elim}
 
@@ -25,11 +28,11 @@ Therefore, this imputation method will lead to different values of
 individuals within the same group.
 }
 \usage{
-mice.impute.2l.latentgroupmean.ML(y, ry, x, type, pls.facs = NULL, 
+mice.impute.2l.latentgroupmean.ml(y, ry, x, type, pls.facs = NULL, 
     imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
     EAP=FALSE, ...)	
 	
-mice.impute.2l.latentgroupmean.MCMC(y, ry, x, type, pls.facs = NULL, 
+mice.impute.2l.latentgroupmean.mcmc(y, ry, x, type, pls.facs = NULL, 
     imputationWeights = NULL, interactions = NULL, quadratics = NULL, 
     mcmc.burnin=100, mcmc.adapt=100, mcmc.iter=1000, draw.fixed=TRUE, EAP=FALSE, ...)
 	
@@ -89,9 +92,9 @@ Further arguments to be passed.
 \details{
 The imputation of the latent group mean uses the 
 \code{\link[lme4:lmer]{lme4::lmer}} function of the \pkg{lme4} package
-for \code{mice.impute.2l.latentgroupmean.ML} and the
+for \code{mice.impute.2l.latentgroupmean.ml} and the
 \code{\link[MCMCglmm:MCMCglmm]{MCMCglmm::MCMCglmm}} function
-of the \pkg{MCMCglmm} package for \code{mice.impute.2l.latentgroupmean.ML}. 
+of the \pkg{MCMCglmm} package for \code{mice.impute.2l.latentgroupmean.ml}. 
 Latent group mean imputation also follows
 Mislevy (1991).
 }
@@ -195,7 +198,7 @@ predM[ c("sprengel","groesse") , "idclass" ] <- -2
 # manifest group mean for Mscore
 impMethod[ "M.Mscore" ] <- "2l.groupmean"
 # latent group mean for Mscore
-impMethod[ "LM.Mscore" ] <- "2l.latentgroupmean.ML"
+impMethod[ "LM.Mscore" ] <- "2l.latentgroupmean.ml"
 predM[ "M.Mscore" , "Mscore" ] <- 2
 
 # covariates for latent group mean of 'Mscore'

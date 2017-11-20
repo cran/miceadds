@@ -1,10 +1,12 @@
-datalist2mids <- function( dat.list , progress=TRUE ){
+## File Name: datalist2mids.R
+## File Version: 0.25
+
+datalist2mids <- function( dat.list , progress=FALSE ){
     
 	CALL <- match.call()
 	
 	#*** preliminary check whether dat.list of type
 	#    imputationList
-	# if ( class(dat.list) %in% "imputationList" ){
 	if ( inherits(dat.list , "imputationList" ) ){
 		dat.list <- dat.list$imputations
 	}

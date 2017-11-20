@@ -1,3 +1,5 @@
+## File Name: mice.impute.2l.groupmean.R
+## File Version: 0.10
 mice.impute.2l.groupmean <- function (y, ry, x, type , grmeanwarning=TRUE, ...){  
     if ( ( ncol(x) > 2 ) & grmeanwarning ){
 		warning("\nMore than one variable is requested to be aggregated.\n") 

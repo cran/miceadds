@@ -1,3 +1,5 @@
+## File Name: ma.scale2.R
+## File Version: 0.06
 
 ########################################################
 # Call to Rcpp function

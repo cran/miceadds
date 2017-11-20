@@ -1,3 +1,6 @@
+%% File Name: write.datlist.Rd
+%% File Version: 0.07
+
 \name{write.datlist}
 \alias{write.datlist}
 %- Also NEED an '\alias' for EACH other topic documented here.

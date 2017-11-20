@@ -1,3 +1,5 @@
+## File Name: crlrem.R
+## File Version: 1.03
 
 ######################################################
 # remove line endings

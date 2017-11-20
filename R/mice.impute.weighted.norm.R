@@ -1,3 +1,5 @@
+## File Name: mice.impute.weighted.norm.R
+## File Version: 0.08
 mice.impute.weighted.norm <- function(y, ry, x, ridge = .00001 , pls.facs = NULL ,
                     imputationWeights = NULL ,
                     interactions = NULL , quadratics = NULL , 
