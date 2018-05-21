@@ -6,6 +6,11 @@ If you use `miceadds` and have suggestions for improvement or have found bugs, p
 
 #### CRAN version
 
+<!---
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/miceadds)](https://cran.r-project.org/package=miceadds)
+&#160;&#160;
+-->
+
 The official version of `miceadds` is hosted on CRAN and may be found [here](https://cran.r-project.org/package=miceadds). 
 The CRAN version can be installed from within R using:
 

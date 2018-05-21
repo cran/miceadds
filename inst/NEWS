@@ -41,6 +41,35 @@ CHANGELOG miceadds
 
 
 
+---------------------------------------------------------------------
+VERSIONS miceadds 2.11  |  2018-05-21  |  Last: miceadds 2.11-87
+---------------------------------------------------------------------
+
+ADDED * included utility Rcpp sourcing function source.Rcpp.all()
+NOTE  * included utility functions Revalpr_maxabs() and 
+        Revalpr_round()
+FIXED * fixed bug in Rfunction_include_argument_values() when some
+        arguments contain parentheses
+FIXED * fixed a bug in mice.1chain() with implausible input arguments
+        (communicated by Linying Ji)
+FIXED * corrected a bug in ANSI_create_table() if only one empty row
+        or column should be included
+NOTE  * included utility functions grep_leading(), grepvec_leading()
+        and grepvec()
+NOTE  * included utility function rcpp_create_header_file() for
+        writing cpp header files
+FIXED * fixed a bug in mice.impute.pmm6() which caused installation
+        problems (thanks to Stef van Buuren)
+NOTE  * changed output in datalist2mids() due to changes of data type
+        of 'visitSequence' in mice (>= 3.0) (requested by Stef 
+        van Buuren; Github miceadds 6#issuecomment-390218252)
+NOTE  * handle also character input of visit sequence in 
+        visitSequence.determine() for coming changes in mice (>= 3.0)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: grep.vec (1)
+
+
 
 ---------------------------------------------------------------------
 VERSIONS miceadds 2.10  |  2018-03-29  |  Last: miceadds 2.10-14
@@ -61,8 +90,6 @@ NOTE  * excluded some packages from list of package 'Suggests'
 
 DATA  * included/modified datasets: ---
 EXAMP * included/modified examples: ---
-
-
 
 ---------------------------------------------------------------------
 VERSIONS miceadds 2.9  |  2017-12-18  |  Last: miceadds 2.9-15
