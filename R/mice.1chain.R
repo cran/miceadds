@@ -1,12 +1,12 @@
 ## File Name: mice.1chain.R
-## File Version: 0.61
+## File Version: 0.65
 
 #*** apply mice algorithm in a single chain
 mice.1chain <- function(data, burnin=10, iter=20, Nimp=10,
-            method = NULL, where = NULL, visitSequence = NULL,
-            blots = NULL, post = NULL,        
+            method=NULL, where=NULL, visitSequence=NULL,
+            blots=NULL, post=NULL,
             defaultMethod=c("pmm", "logreg", "polyreg", "polr"),
-            printFlag = TRUE, seed = NA, data.init=NULL, ...)        
+            printFlag=TRUE, seed=NA, data.init=NULL, ...)
 {
     CALL <- match.call()
 
@@ -37,9 +37,9 @@ mice.1chain <- function(data, burnin=10, iter=20, Nimp=10,
             "******************\n")
     utils::flush.console()
     implist[[1]] <- imp0 <- mice::mice( data, maxit=burnin, m=1,
-                    method=method, where = where,
-                    visitSequence=visitSequence, blots = blots, post=post,
-                    defaultMethod=defaultMethod, printFlag=printFlag, seed=seed,    
+                    method=method, where=where,
+                    visitSequence=visitSequence, blots=blots, post=post,
+                    defaultMethod=defaultMethod, printFlag=printFlag, seed=seed,
                     data.init=data.init, ... )
     dat0 <- mice::complete( imp0, 1 )
     chainMean <- t( imp0$chainMean[,,1] )
@@ -56,9 +56,9 @@ mice.1chain <- function(data, burnin=10, iter=20, Nimp=10,
         iterstep0[mm] + 1, "-", iterstep0[mm+1], "\n" )
         utils::flush.console()
         implist[[mm+1]] <- imp1 <- mice::mice( data, maxit=burnin, m=1,
-                    method=method, where = where,
-                    visitSequence=visitSequence, blots = blots, post=post,
-                    defaultMethod=defaultMethod, printFlag=printFlag, seed=seed,    
+                    method=method, where=where,
+                    visitSequence=visitSequence, blots=blots, post=post,
+                    defaultMethod=defaultMethod, printFlag=printFlag, seed=seed,
                     data.init=data.init, ... )
         datlist[[mm]] <- dat0 <- mice::complete( imp1, 1 )
         chainMean <- rbind( chainMean, t( imp1$chainMean[,,1] ) )
@@ -67,7 +67,7 @@ mice.1chain <- function(data, burnin=10, iter=20, Nimp=10,
             rownames(chainMean)[ nrow(chainMean) ] <-
                 paste0( "imp_", mm )
     }
-    
+
     #------ post-processing
     # conversion into a mids object
     ids <- seq( 1, nrow(data) )
@@ -118,13 +118,13 @@ mice.1chain <- function(data, burnin=10, iter=20, Nimp=10,
 # S3 method summary
 summary.mids.1chain <- function( object, ... )
 {
-   cat("Multiply imputed dataset using one chain\n\n")
-   cat( paste0( "Number of iterations=", object$iter), "\n")
-   cat( paste0( "Number of burnin-iterations=", object$burnin), "\n")
-   cat( paste0( "Number of imputations=", object$Nimp), "\n")
-   cat( paste0( object$nobs, " cases and ", object$nvars, " variables \n\n" ) )
-   cat("---------\n")
-   print( summary( object$midsobj ) )
+    cat("Multiply imputed dataset using one chain\n\n")
+    cat( paste0( "Number of iterations=", object$iter), "\n")
+    cat( paste0( "Number of burnin-iterations=", object$burnin), "\n")
+    cat( paste0( "Number of imputations=", object$Nimp), "\n")
+    cat( paste0( object$nobs, " cases and ", object$nvars, " variables \n\n" ) )
+    cat("---------\n")
+    print( summary( object$midsobj ) )
 }
 
 #--- print method

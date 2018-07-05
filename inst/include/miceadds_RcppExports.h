@@ -24,6 +24,234 @@ namespace miceadds {
         }
     }
 
+    inline Rcpp::List miceadds_rcpp_ml_mcmc_sampler(arma::colvec y_obs, arma::mat X, arma::mat xtx_inv, Rcpp::List ztz_list, Rcpp::List Z_list, arma::colvec beta_init, Rcpp::List Psi_list_init, double sigma2_init, arma::colvec alpha_init, Rcpp::List u_list_init, Rcpp::List idcluster_list, Rcpp::List onlyintercept_list, Rcpp::List ncluster_list, int sigma2_nu0, double sigma2_sigma2_0, Rcpp::List psi_nu0_list, Rcpp::List psi_S0_list, int NR, bool est_sigma2, bool est_probit, Rcpp::List parameter_index, Rcpp::List est_parameter, int npar, int iter, Rcpp::IntegerVector save_iter, bool verbose, int print_iter, bool est_thresh, int K, Rcpp::NumericVector sd_proposal) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_sampler)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_sampler p_miceadds_rcpp_ml_mcmc_sampler = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_sampler == NULL) {
+            validateSignature("Rcpp::List(*miceadds_rcpp_ml_mcmc_sampler)(arma::colvec,arma::mat,arma::mat,Rcpp::List,Rcpp::List,arma::colvec,Rcpp::List,double,arma::colvec,Rcpp::List,Rcpp::List,Rcpp::List,Rcpp::List,int,double,Rcpp::List,Rcpp::List,int,bool,bool,Rcpp::List,Rcpp::List,int,int,Rcpp::IntegerVector,bool,int,bool,int,Rcpp::NumericVector)");
+            p_miceadds_rcpp_ml_mcmc_sampler = (Ptr_miceadds_rcpp_ml_mcmc_sampler)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_sampler");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_sampler(Shield<SEXP>(Rcpp::wrap(y_obs)), Shield<SEXP>(Rcpp::wrap(X)), Shield<SEXP>(Rcpp::wrap(xtx_inv)), Shield<SEXP>(Rcpp::wrap(ztz_list)), Shield<SEXP>(Rcpp::wrap(Z_list)), Shield<SEXP>(Rcpp::wrap(beta_init)), Shield<SEXP>(Rcpp::wrap(Psi_list_init)), Shield<SEXP>(Rcpp::wrap(sigma2_init)), Shield<SEXP>(Rcpp::wrap(alpha_init)), Shield<SEXP>(Rcpp::wrap(u_list_init)), Shield<SEXP>(Rcpp::wrap(idcluster_list)), Shield<SEXP>(Rcpp::wrap(onlyintercept_list)), Shield<SEXP>(Rcpp::wrap(ncluster_list)), Shield<SEXP>(Rcpp::wrap(sigma2_nu0)), Shield<SEXP>(Rcpp::wrap(sigma2_sigma2_0)), Shield<SEXP>(Rcpp::wrap(psi_nu0_list)), Shield<SEXP>(Rcpp::wrap(psi_S0_list)), Shield<SEXP>(Rcpp::wrap(NR)), Shield<SEXP>(Rcpp::wrap(est_sigma2)), Shield<SEXP>(Rcpp::wrap(est_probit)), Shield<SEXP>(Rcpp::wrap(parameter_index)), Shield<SEXP>(Rcpp::wrap(est_parameter)), Shield<SEXP>(Rcpp::wrap(npar)), Shield<SEXP>(Rcpp::wrap(iter)), Shield<SEXP>(Rcpp::wrap(save_iter)), Shield<SEXP>(Rcpp::wrap(verbose)), Shield<SEXP>(Rcpp::wrap(print_iter)), Shield<SEXP>(Rcpp::wrap(est_thresh)), Shield<SEXP>(Rcpp::wrap(K)), Shield<SEXP>(Rcpp::wrap(sd_proposal)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<Rcpp::List >(rcpp_result_gen);
+    }
+
+    inline arma::mat miceadds_rcpp_arma_chol_ridge(arma::mat sigma0, double ridge) {
+        typedef SEXP(*Ptr_miceadds_rcpp_arma_chol_ridge)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_arma_chol_ridge p_miceadds_rcpp_arma_chol_ridge = NULL;
+        if (p_miceadds_rcpp_arma_chol_ridge == NULL) {
+            validateSignature("arma::mat(*miceadds_rcpp_arma_chol_ridge)(arma::mat,double)");
+            p_miceadds_rcpp_arma_chol_ridge = (Ptr_miceadds_rcpp_arma_chol_ridge)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_arma_chol_ridge");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_arma_chol_ridge(Shield<SEXP>(Rcpp::wrap(sigma0)), Shield<SEXP>(Rcpp::wrap(ridge)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
+    }
+
+    inline arma::colvec miceadds_rcpp_mvrnorm(arma::colvec mu, arma::mat sigma) {
+        typedef SEXP(*Ptr_miceadds_rcpp_mvrnorm)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_mvrnorm p_miceadds_rcpp_mvrnorm = NULL;
+        if (p_miceadds_rcpp_mvrnorm == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_mvrnorm)(arma::colvec,arma::mat)");
+            p_miceadds_rcpp_mvrnorm = (Ptr_miceadds_rcpp_mvrnorm)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_mvrnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_mvrnorm(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::colvec >(rcpp_result_gen);
+    }
+
+    inline arma::mat miceadds_rcpp_rwishart(int df, arma::mat S) {
+        typedef SEXP(*Ptr_miceadds_rcpp_rwishart)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_rwishart p_miceadds_rcpp_rwishart = NULL;
+        if (p_miceadds_rcpp_rwishart == NULL) {
+            validateSignature("arma::mat(*miceadds_rcpp_rwishart)(int,arma::mat)");
+            p_miceadds_rcpp_rwishart = (Ptr_miceadds_rcpp_rwishart)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rwishart");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_rwishart(Shield<SEXP>(Rcpp::wrap(df)), Shield<SEXP>(Rcpp::wrap(S)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
+    }
+
+    inline arma::mat miceadds_rcpp_riwishart(int df, arma::mat S) {
+        typedef SEXP(*Ptr_miceadds_rcpp_riwishart)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_riwishart p_miceadds_rcpp_riwishart = NULL;
+        if (p_miceadds_rcpp_riwishart == NULL) {
+            validateSignature("arma::mat(*miceadds_rcpp_riwishart)(int,arma::mat)");
+            p_miceadds_rcpp_riwishart = (Ptr_miceadds_rcpp_riwishart)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_riwishart");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_riwishart(Shield<SEXP>(Rcpp::wrap(df)), Shield<SEXP>(Rcpp::wrap(S)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
+    }
+
+    inline double miceadds_rcpp_rtnorm_double(double mu, double sigma, double lower, double upper) {
+        typedef SEXP(*Ptr_miceadds_rcpp_rtnorm_double)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_rtnorm_double p_miceadds_rcpp_rtnorm_double = NULL;
+        if (p_miceadds_rcpp_rtnorm_double == NULL) {
+            validateSignature("double(*miceadds_rcpp_rtnorm_double)(double,double,double,double)");
+            p_miceadds_rcpp_rtnorm_double = (Ptr_miceadds_rcpp_rtnorm_double)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rtnorm_double");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_rtnorm_double(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline arma::colvec miceadds_rcpp_rtnorm(arma::colvec mu, arma::colvec sigma, arma::colvec lower, arma::colvec upper) {
+        typedef SEXP(*Ptr_miceadds_rcpp_rtnorm)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_rtnorm p_miceadds_rcpp_rtnorm = NULL;
+        if (p_miceadds_rcpp_rtnorm == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_rtnorm)(arma::colvec,arma::colvec,arma::colvec,arma::colvec)");
+            p_miceadds_rcpp_rtnorm = (Ptr_miceadds_rcpp_rtnorm)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rtnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_rtnorm(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::colvec >(rcpp_result_gen);
+    }
+
+    inline Rcpp::NumericVector miceadds_rcpp_arma2vec(arma::colvec x) {
+        typedef SEXP(*Ptr_miceadds_rcpp_arma2vec)(SEXP);
+        static Ptr_miceadds_rcpp_arma2vec p_miceadds_rcpp_arma2vec = NULL;
+        if (p_miceadds_rcpp_arma2vec == NULL) {
+            validateSignature("Rcpp::NumericVector(*miceadds_rcpp_arma2vec)(arma::colvec)");
+            p_miceadds_rcpp_arma2vec = (Ptr_miceadds_rcpp_arma2vec)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_arma2vec");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_arma2vec(Shield<SEXP>(Rcpp::wrap(x)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<Rcpp::NumericVector >(rcpp_result_gen);
+    }
+
+    inline Rcpp::NumericVector miceadds_rcpp_pnorm(Rcpp::NumericVector x, Rcpp::NumericVector mu, double sigma) {
+        typedef SEXP(*Ptr_miceadds_rcpp_pnorm)(SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_pnorm p_miceadds_rcpp_pnorm = NULL;
+        if (p_miceadds_rcpp_pnorm == NULL) {
+            validateSignature("Rcpp::NumericVector(*miceadds_rcpp_pnorm)(Rcpp::NumericVector,Rcpp::NumericVector,double)");
+            p_miceadds_rcpp_pnorm = (Ptr_miceadds_rcpp_pnorm)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_pnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_pnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<Rcpp::NumericVector >(rcpp_result_gen);
+    }
+
+    inline Rcpp::NumericVector miceadds_rcpp_qnorm(Rcpp::NumericVector x, Rcpp::NumericVector mu, double sigma) {
+        typedef SEXP(*Ptr_miceadds_rcpp_qnorm)(SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_qnorm p_miceadds_rcpp_qnorm = NULL;
+        if (p_miceadds_rcpp_qnorm == NULL) {
+            validateSignature("Rcpp::NumericVector(*miceadds_rcpp_qnorm)(Rcpp::NumericVector,Rcpp::NumericVector,double)");
+            p_miceadds_rcpp_qnorm = (Ptr_miceadds_rcpp_qnorm)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_qnorm");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_qnorm(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<Rcpp::NumericVector >(rcpp_result_gen);
+    }
+
+    inline arma::colvec miceadds_rcpp_rtnorm2(arma::colvec mu, double sigma0, arma::colvec lower, arma::colvec upper, double minval, double maxval) {
+        typedef SEXP(*Ptr_miceadds_rcpp_rtnorm2)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_rtnorm2 p_miceadds_rcpp_rtnorm2 = NULL;
+        if (p_miceadds_rcpp_rtnorm2 == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_rtnorm2)(arma::colvec,double,arma::colvec,arma::colvec,double,double)");
+            p_miceadds_rcpp_rtnorm2 = (Ptr_miceadds_rcpp_rtnorm2)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rtnorm2");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_rtnorm2(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma0)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)), Shield<SEXP>(Rcpp::wrap(minval)), Shield<SEXP>(Rcpp::wrap(maxval)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::colvec >(rcpp_result_gen);
+    }
+
+    inline arma::mat miceadds_rcpp_ml_mcmc_compute_xtx(arma::mat X) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_compute_xtx)(SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_compute_xtx p_miceadds_rcpp_ml_mcmc_compute_xtx = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_compute_xtx == NULL) {
+            validateSignature("arma::mat(*miceadds_rcpp_ml_mcmc_compute_xtx)(arma::mat)");
+            p_miceadds_rcpp_ml_mcmc_compute_xtx = (Ptr_miceadds_rcpp_ml_mcmc_compute_xtx)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_compute_xtx");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_compute_xtx(Shield<SEXP>(Rcpp::wrap(X)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
+    }
+
     inline arma::mat miceadds_rcpp_ml_mcmc_compute_ztz(arma::mat Z, Rcpp::IntegerVector idcluster, int ncluster) {
         typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_compute_ztz)(SEXP,SEXP,SEXP);
         static Ptr_miceadds_rcpp_ml_mcmc_compute_ztz p_miceadds_rcpp_ml_mcmc_compute_ztz = NULL;
@@ -92,6 +320,44 @@ namespace miceadds {
         {
             RNGScope RCPP_rngScope_gen;
             rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_predict_random(Shield<SEXP>(Rcpp::wrap(Z)), Shield<SEXP>(Rcpp::wrap(u)), Shield<SEXP>(Rcpp::wrap(idcluster)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::colvec >(rcpp_result_gen);
+    }
+
+    inline arma::colvec miceadds_rcpp_ml_mcmc_predict_random_list(Rcpp::List Z_list, Rcpp::List u_list, Rcpp::List idcluster_list, int NR, int N) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_predict_random_list)(SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_predict_random_list p_miceadds_rcpp_ml_mcmc_predict_random_list = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_predict_random_list == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_ml_mcmc_predict_random_list)(Rcpp::List,Rcpp::List,Rcpp::List,int,int)");
+            p_miceadds_rcpp_ml_mcmc_predict_random_list = (Ptr_miceadds_rcpp_ml_mcmc_predict_random_list)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_predict_random_list");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_predict_random_list(Shield<SEXP>(Rcpp::wrap(Z_list)), Shield<SEXP>(Rcpp::wrap(u_list)), Shield<SEXP>(Rcpp::wrap(idcluster_list)), Shield<SEXP>(Rcpp::wrap(NR)), Shield<SEXP>(Rcpp::wrap(N)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::colvec >(rcpp_result_gen);
+    }
+
+    inline arma::colvec miceadds_rcpp_ml_mcmc_predict_fixed_random(arma::mat X, arma::colvec beta, Rcpp::List Z_list, Rcpp::List u_list, Rcpp::List idcluster_list, int NR) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_predict_fixed_random)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_predict_fixed_random p_miceadds_rcpp_ml_mcmc_predict_fixed_random = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_predict_fixed_random == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_ml_mcmc_predict_fixed_random)(arma::mat,arma::colvec,Rcpp::List,Rcpp::List,Rcpp::List,int)");
+            p_miceadds_rcpp_ml_mcmc_predict_fixed_random = (Ptr_miceadds_rcpp_ml_mcmc_predict_fixed_random)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_predict_fixed_random");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_predict_fixed_random(Shield<SEXP>(Rcpp::wrap(X)), Shield<SEXP>(Rcpp::wrap(beta)), Shield<SEXP>(Rcpp::wrap(Z_list)), Shield<SEXP>(Rcpp::wrap(u_list)), Shield<SEXP>(Rcpp::wrap(idcluster_list)), Shield<SEXP>(Rcpp::wrap(NR)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -195,6 +461,24 @@ namespace miceadds {
         return Rcpp::as<arma::mat >(rcpp_result_gen);
     }
 
+    inline void miceadds_rcpp_print_arma_mat(arma::mat x, int row1, int row2, int col1, int col2, int digits) {
+        typedef SEXP(*Ptr_miceadds_rcpp_print_arma_mat)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_print_arma_mat p_miceadds_rcpp_print_arma_mat = NULL;
+        if (p_miceadds_rcpp_print_arma_mat == NULL) {
+            validateSignature("void(*miceadds_rcpp_print_arma_mat)(arma::mat,int,int,int,int,int)");
+            p_miceadds_rcpp_print_arma_mat = (Ptr_miceadds_rcpp_print_arma_mat)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_print_arma_mat");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_print_arma_mat(Shield<SEXP>(Rcpp::wrap(x)), Shield<SEXP>(Rcpp::wrap(row1)), Shield<SEXP>(Rcpp::wrap(row2)), Shield<SEXP>(Rcpp::wrap(col1)), Shield<SEXP>(Rcpp::wrap(col2)), Shield<SEXP>(Rcpp::wrap(digits)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
     inline Rcpp::List miceadds_rcpp_ml_mcmc_sample_psi(Rcpp::List u_list, Rcpp::List nu0_list, Rcpp::List S0_list, int NR) {
         typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_sample_psi)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_miceadds_rcpp_ml_mcmc_sample_psi p_miceadds_rcpp_ml_mcmc_sample_psi = NULL;
@@ -252,17 +536,17 @@ namespace miceadds {
         return Rcpp::as<double >(rcpp_result_gen);
     }
 
-    inline arma::colvec miceadds_rcpp_mvrnorm(arma::colvec mu, arma::mat sigma) {
-        typedef SEXP(*Ptr_miceadds_rcpp_mvrnorm)(SEXP,SEXP);
-        static Ptr_miceadds_rcpp_mvrnorm p_miceadds_rcpp_mvrnorm = NULL;
-        if (p_miceadds_rcpp_mvrnorm == NULL) {
-            validateSignature("arma::colvec(*miceadds_rcpp_mvrnorm)(arma::colvec,arma::mat)");
-            p_miceadds_rcpp_mvrnorm = (Ptr_miceadds_rcpp_mvrnorm)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_mvrnorm");
+    inline arma::colvec miceadds_rcpp_ml_mcmc_sample_latent_probit(arma::mat X, arma::colvec beta, Rcpp::List Z_list, Rcpp::List u_list, Rcpp::List idcluster_list, int NR, Rcpp::IntegerVector y_int, arma::colvec alpha, double minval, double maxval) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_sample_latent_probit)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_sample_latent_probit p_miceadds_rcpp_ml_mcmc_sample_latent_probit = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_sample_latent_probit == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_ml_mcmc_sample_latent_probit)(arma::mat,arma::colvec,Rcpp::List,Rcpp::List,Rcpp::List,int,Rcpp::IntegerVector,arma::colvec,double,double)");
+            p_miceadds_rcpp_ml_mcmc_sample_latent_probit = (Ptr_miceadds_rcpp_ml_mcmc_sample_latent_probit)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_sample_latent_probit");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_miceadds_rcpp_mvrnorm(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)));
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_sample_latent_probit(Shield<SEXP>(Rcpp::wrap(X)), Shield<SEXP>(Rcpp::wrap(beta)), Shield<SEXP>(Rcpp::wrap(Z_list)), Shield<SEXP>(Rcpp::wrap(u_list)), Shield<SEXP>(Rcpp::wrap(idcluster_list)), Shield<SEXP>(Rcpp::wrap(NR)), Shield<SEXP>(Rcpp::wrap(y_int)), Shield<SEXP>(Rcpp::wrap(alpha)), Shield<SEXP>(Rcpp::wrap(minval)), Shield<SEXP>(Rcpp::wrap(maxval)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -271,55 +555,74 @@ namespace miceadds {
         return Rcpp::as<arma::colvec >(rcpp_result_gen);
     }
 
-    inline arma::mat miceadds_rcpp_rwishart(int df, arma::mat S) {
-        typedef SEXP(*Ptr_miceadds_rcpp_rwishart)(SEXP,SEXP);
-        static Ptr_miceadds_rcpp_rwishart p_miceadds_rcpp_rwishart = NULL;
-        if (p_miceadds_rcpp_rwishart == NULL) {
-            validateSignature("arma::mat(*miceadds_rcpp_rwishart)(int,arma::mat)");
-            p_miceadds_rcpp_rwishart = (Ptr_miceadds_rcpp_rwishart)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rwishart");
+    inline Rcpp::NumericVector miceadds_rcpp_ml_mcmc_probit_fill_index_lower(Rcpp::IntegerVector y_int, arma::colvec alpha) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_probit_fill_index_lower)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_probit_fill_index_lower p_miceadds_rcpp_ml_mcmc_probit_fill_index_lower = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_probit_fill_index_lower == NULL) {
+            validateSignature("Rcpp::NumericVector(*miceadds_rcpp_ml_mcmc_probit_fill_index_lower)(Rcpp::IntegerVector,arma::colvec)");
+            p_miceadds_rcpp_ml_mcmc_probit_fill_index_lower = (Ptr_miceadds_rcpp_ml_mcmc_probit_fill_index_lower)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_probit_fill_index_lower");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_miceadds_rcpp_rwishart(Shield<SEXP>(Rcpp::wrap(df)), Shield<SEXP>(Rcpp::wrap(S)));
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_probit_fill_index_lower(Shield<SEXP>(Rcpp::wrap(y_int)), Shield<SEXP>(Rcpp::wrap(alpha)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::mat >(rcpp_result_gen);
+        return Rcpp::as<Rcpp::NumericVector >(rcpp_result_gen);
     }
 
-    inline arma::mat miceadds_rcpp_riwishart(int df, arma::mat S) {
-        typedef SEXP(*Ptr_miceadds_rcpp_riwishart)(SEXP,SEXP);
-        static Ptr_miceadds_rcpp_riwishart p_miceadds_rcpp_riwishart = NULL;
-        if (p_miceadds_rcpp_riwishart == NULL) {
-            validateSignature("arma::mat(*miceadds_rcpp_riwishart)(int,arma::mat)");
-            p_miceadds_rcpp_riwishart = (Ptr_miceadds_rcpp_riwishart)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_riwishart");
+    inline Rcpp::NumericVector miceadds_rcpp_ml_mcmc_probit_fill_index_upper(Rcpp::IntegerVector y_int, arma::colvec alpha) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_probit_fill_index_upper)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_probit_fill_index_upper p_miceadds_rcpp_ml_mcmc_probit_fill_index_upper = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_probit_fill_index_upper == NULL) {
+            validateSignature("Rcpp::NumericVector(*miceadds_rcpp_ml_mcmc_probit_fill_index_upper)(Rcpp::IntegerVector,arma::colvec)");
+            p_miceadds_rcpp_ml_mcmc_probit_fill_index_upper = (Ptr_miceadds_rcpp_ml_mcmc_probit_fill_index_upper)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_probit_fill_index_upper");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_miceadds_rcpp_riwishart(Shield<SEXP>(Rcpp::wrap(df)), Shield<SEXP>(Rcpp::wrap(S)));
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_probit_fill_index_upper(Shield<SEXP>(Rcpp::wrap(y_int)), Shield<SEXP>(Rcpp::wrap(alpha)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::mat >(rcpp_result_gen);
+        return Rcpp::as<Rcpp::NumericVector >(rcpp_result_gen);
     }
 
-    inline double miceadds_rcpp_rtnorm_double(double mu, double sigma, double lower, double upper) {
-        typedef SEXP(*Ptr_miceadds_rcpp_rtnorm_double)(SEXP,SEXP,SEXP,SEXP);
-        static Ptr_miceadds_rcpp_rtnorm_double p_miceadds_rcpp_rtnorm_double = NULL;
-        if (p_miceadds_rcpp_rtnorm_double == NULL) {
-            validateSignature("double(*miceadds_rcpp_rtnorm_double)(double,double,double,double)");
-            p_miceadds_rcpp_rtnorm_double = (Ptr_miceadds_rcpp_rtnorm_double)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rtnorm_double");
+    inline Rcpp::NumericVector miceadds_rcpp_ml_mcmc_probit_category_prob(Rcpp::IntegerVector y_int, arma::colvec alpha, Rcpp::NumericVector mu1, bool use_log) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_probit_category_prob)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_probit_category_prob p_miceadds_rcpp_ml_mcmc_probit_category_prob = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_probit_category_prob == NULL) {
+            validateSignature("Rcpp::NumericVector(*miceadds_rcpp_ml_mcmc_probit_category_prob)(Rcpp::IntegerVector,arma::colvec,Rcpp::NumericVector,bool)");
+            p_miceadds_rcpp_ml_mcmc_probit_category_prob = (Ptr_miceadds_rcpp_ml_mcmc_probit_category_prob)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_probit_category_prob");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_miceadds_rcpp_rtnorm_double(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)));
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_probit_category_prob(Shield<SEXP>(Rcpp::wrap(y_int)), Shield<SEXP>(Rcpp::wrap(alpha)), Shield<SEXP>(Rcpp::wrap(mu1)), Shield<SEXP>(Rcpp::wrap(use_log)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<Rcpp::NumericVector >(rcpp_result_gen);
+    }
+
+    inline double miceadds_rcpp_ml_mcmc_probit_loglike(Rcpp::IntegerVector y_int, arma::colvec alpha, Rcpp::NumericVector mu1, bool use_log) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_probit_loglike)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_probit_loglike p_miceadds_rcpp_ml_mcmc_probit_loglike = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_probit_loglike == NULL) {
+            validateSignature("double(*miceadds_rcpp_ml_mcmc_probit_loglike)(Rcpp::IntegerVector,arma::colvec,Rcpp::NumericVector,bool)");
+            p_miceadds_rcpp_ml_mcmc_probit_loglike = (Ptr_miceadds_rcpp_ml_mcmc_probit_loglike)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_probit_loglike");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_probit_loglike(Shield<SEXP>(Rcpp::wrap(y_int)), Shield<SEXP>(Rcpp::wrap(alpha)), Shield<SEXP>(Rcpp::wrap(mu1)), Shield<SEXP>(Rcpp::wrap(use_log)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -328,17 +631,36 @@ namespace miceadds {
         return Rcpp::as<double >(rcpp_result_gen);
     }
 
-    inline arma::colvec miceadds_rcpp_rtnorm(arma::colvec mu, arma::colvec sigma, arma::colvec lower, arma::colvec upper) {
-        typedef SEXP(*Ptr_miceadds_rcpp_rtnorm)(SEXP,SEXP,SEXP,SEXP);
-        static Ptr_miceadds_rcpp_rtnorm p_miceadds_rcpp_rtnorm = NULL;
-        if (p_miceadds_rcpp_rtnorm == NULL) {
-            validateSignature("arma::colvec(*miceadds_rcpp_rtnorm)(arma::colvec,arma::colvec,arma::colvec,arma::colvec)");
-            p_miceadds_rcpp_rtnorm = (Ptr_miceadds_rcpp_rtnorm)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rtnorm");
+    inline double miceadds_rcpp_rnorm_double(double mu, double sigma) {
+        typedef SEXP(*Ptr_miceadds_rcpp_rnorm_double)(SEXP,SEXP);
+        static Ptr_miceadds_rcpp_rnorm_double p_miceadds_rcpp_rnorm_double = NULL;
+        if (p_miceadds_rcpp_rnorm_double == NULL) {
+            validateSignature("double(*miceadds_rcpp_rnorm_double)(double,double)");
+            p_miceadds_rcpp_rnorm_double = (Ptr_miceadds_rcpp_rnorm_double)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_rnorm_double");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_miceadds_rcpp_rtnorm(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)), Shield<SEXP>(Rcpp::wrap(lower)), Shield<SEXP>(Rcpp::wrap(upper)));
+            rcpp_result_gen = p_miceadds_rcpp_rnorm_double(Shield<SEXP>(Rcpp::wrap(mu)), Shield<SEXP>(Rcpp::wrap(sigma)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<double >(rcpp_result_gen);
+    }
+
+    inline arma::colvec miceadds_rcpp_ml_mcmc_sample_thresholds(arma::mat X, arma::colvec beta, Rcpp::List Z_list, Rcpp::List u_list, Rcpp::List idcluster_list, int NR, int K, arma::colvec alpha, Rcpp::NumericVector sd_proposal, Rcpp::IntegerVector y_int) {
+        typedef SEXP(*Ptr_miceadds_rcpp_ml_mcmc_sample_thresholds)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_miceadds_rcpp_ml_mcmc_sample_thresholds p_miceadds_rcpp_ml_mcmc_sample_thresholds = NULL;
+        if (p_miceadds_rcpp_ml_mcmc_sample_thresholds == NULL) {
+            validateSignature("arma::colvec(*miceadds_rcpp_ml_mcmc_sample_thresholds)(arma::mat,arma::colvec,Rcpp::List,Rcpp::List,Rcpp::List,int,int,arma::colvec,Rcpp::NumericVector,Rcpp::IntegerVector)");
+            p_miceadds_rcpp_ml_mcmc_sample_thresholds = (Ptr_miceadds_rcpp_ml_mcmc_sample_thresholds)R_GetCCallable("miceadds", "_miceadds_miceadds_rcpp_ml_mcmc_sample_thresholds");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_miceadds_rcpp_ml_mcmc_sample_thresholds(Shield<SEXP>(Rcpp::wrap(X)), Shield<SEXP>(Rcpp::wrap(beta)), Shield<SEXP>(Rcpp::wrap(Z_list)), Shield<SEXP>(Rcpp::wrap(u_list)), Shield<SEXP>(Rcpp::wrap(idcluster_list)), Shield<SEXP>(Rcpp::wrap(NR)), Shield<SEXP>(Rcpp::wrap(K)), Shield<SEXP>(Rcpp::wrap(alpha)), Shield<SEXP>(Rcpp::wrap(sd_proposal)), Shield<SEXP>(Rcpp::wrap(y_int)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
