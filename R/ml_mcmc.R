@@ -1,5 +1,5 @@
 ## File Name: ml_mcmc.R
-## File Version: 0.477
+## File Version: 0.483
 
 ml_mcmc <- function( formula, data, iter=3000, burnin=500, print_iter=100,
     outcome="normal", nu0=NULL, s0=1, inits_lme4=TRUE, thresh_fac=5.8)

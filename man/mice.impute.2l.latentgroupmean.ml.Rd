@@ -1,5 +1,5 @@
 %% File Name: mice.impute.2l.latentgroupmean.ml.Rd
-%% File Version: 1.34
+%% File Version: 1.36
 
 \name{mice.impute.2l.latentgroupmean.ml}
 \alias{mice.impute.2l.latentgroupmean.ml}
@@ -16,7 +16,7 @@ Imputation of Latent and Manifest Group Means for Multilevel Data
 \description{
 The imputation method \code{2l.latentgroupmean} imputes a latent group mean
 assuming an infinite population of subjects within a group
-(Grund, Luedtke & Robitzsch, 2018; see also 
+(Grund, Luedtke & Robitzsch, 2018; see also
 Luedtke, Marsh, Robitzsch, Trautwein, Asparouhov & Muthen, 2008
  or Croon & van Veldhoven, 2007).
 Therefore, unreliability of group means when treating subjects as
@@ -112,9 +112,9 @@ Croon, M. A., & van Veldhoven, M. J. (2007). Predicting group-level outcome
 variables from variables measured at the individual level: a latent variable
 multilevel model. \emph{Psychological Methods, 12}, 45-57.
 
-Grund, S., Luedtke, O., & Robitzsch, A. (2018). Multiple imputation of missing data at 
-level 2: A comparison of fully conditional and joint modeling in multilevel designs. 
-\emph{Journal of Educational and Behavioral Statistics, 43}(3), 316-353. 
+Grund, S., Luedtke, O., & Robitzsch, A. (2018). Multiple imputation of missing data at
+level 2: A comparison of fully conditional and joint modeling in multilevel designs.
+\emph{Journal of Educational and Behavioral Statistics, 43}(3), 316-353.
 
 Luedtke, O., Marsh, H. W., Robitzsch, A., Trautwein, U., Asparouhov, T., &
 Muthen, B. (2008). The multilevel latent covariate model: a new, more
@@ -154,19 +154,15 @@ dat$M.Mscore <- NA
 # include latent group group for 'Mscore'
 dat$LM.Mscore <- NA    #=> LM: latent group mean
 
-# empty imputation
-imp <- mice( dat, maxit=0 )
-summary(imp)
-
 # define predictor matrix
-predM <- imp$pred
+predM <- mice::make.predictorMatrix(data=dat)
 # exclude student ISs
 predM[, "idstud"] <- 0
 # idclass is the cluster identifier
 predM[, "idclass" ] <- -2
 
 # define imputation methods
-impMethod <- imp$method
+impMethod <- mice::make.method(data=dat)
 # initialize with norm
 impMethod <- rep( "norm", length(impMethod) )
 names(impMethod) <- names( imp$method )

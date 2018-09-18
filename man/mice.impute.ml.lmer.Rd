@@ -1,5 +1,5 @@
 %% File Name: mice.impute.ml.lmer.Rd
-%% File Version: 0.31
+%% File Version: 0.34
 
 \name{mice.impute.ml.lmer}
 \alias{mice.impute.ml.lmer}
@@ -27,7 +27,7 @@ to be imputed.
 Several strategies for the specification of the design
 matrix \eqn{\bold{X}} are accommodated. By default, predictors at a lower level
 are automatically aggregated to the higher level and included as further
-predictors to maintain the multilevel structure in the data (Grund, Luedtke & Robitzsch, 
+predictors to maintain the multilevel structure in the data (Grund, Luedtke & Robitzsch,
 2018; Enders, Mistler & Keller, 2016; argument \code{aggregate_automatically=TRUE}). Further,
 interactions and quadratic effects can be defined by respective arguments
 \code{interactions} and \code{quadratics}. The dimension
@@ -177,9 +177,6 @@ dat <- data.ma07
 # variables at level 2 (identifier id2): y1 (some missings), y2 (complete)
 # variables at level 3 (identifier id3): z1 (some missings), z2 (complete)
 
-# start with empty imputation
-imp0 <- mice::mice( dat, maxit=0)
-
 #****************************************************************************
 # Imputation model 1
 
@@ -191,14 +188,14 @@ variables_levels[ c("y1","y2") ] <- "id2"
 variables_levels[ c("z1","z2") ] <- "id3"
 
 #----- specify predictor matrix
-predmat <- imp0$predictorMatrix
+predmat <- mice::make.predictorMatrix(data=dat)
 predmat[, c("id2", "id3") ] <- 0
 # set -2 for cluster identifier for level 3 variable z1
 # because "2lonly" function is used
 predmat[ "z1", "id3" ] <- -2
 
 #----- specify imputation methods
-method <- imp0$method
+method <- mice::make.method(data=dat)
 method[c("x1","y1")] <- "ml.lmer"
 method[c("z1")] <- "2lonly.norm"
 
