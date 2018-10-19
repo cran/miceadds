@@ -7,7 +7,7 @@ If you use `miceadds` and have suggestions for improvement or have found bugs, p
 #### CRAN version
 
 <!---
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/miceadds)](https://cran.r-project.org/package=miceadds)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/miceadds)](https://cran.r-project.org/package=miceadds)
 &#160;&#160;
 -->
 
