@@ -1,5 +1,5 @@
 %% File Name: mice.impute.2l.contextual.pmm.Rd
-%% File Version: 0.35
+%% File Version: 0.37
 
 \name{mice.impute.2l.contextual.pmm}
 \alias{mice.impute.2l.contextual.pmm}
@@ -142,7 +142,7 @@ predM[ c("sprengel","groesse"), "idclass" ] <- -2
 
 # do imputation
 imp <- mice::mice( dat, predictorMatrix=predM, m=3,  maxit=4,
-           imputationMethod=impMethod, paniter=100)
+           method=impMethod, paniter=100)
 summary(imp)
 
 #**** imputation model 2 with PLS dimension reduction
@@ -160,5 +160,5 @@ summary(imp2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{mice imputation method}
+%% \keyword{mice imputation method}
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

@@ -2,8 +2,8 @@ Package: miceadds
 Type: Package
 Title: Some Additional Multiple Imputation Functions, Especially for
         'mice'
-Version: 3.0-16
-Date: 2018-12-11 10:39:14
+Version: 3.1-37
+Date: 2019-03-18 12:09:03
 Author: 
     Alexander Robitzsch [aut, cre], Simon Grund [aut],
     Thorsten Henke [aut]
@@ -31,12 +31,12 @@ Imports: CDM (>= 5.8-5), coda, graphics, lme4, MASS, methods, mitools,
 LinkingTo: Rcpp, RcppArmadillo
 Suggests: Amelia, BIFIEsurvey, blme, car, foreign, grouped, haven,
         inline, jomo, MBESS, MCMCglmm, mitml, multiwayvcov, numDeriv,
-        pan, sjlabelled
+        pan, readxl, sjlabelled
 URL: https://github.com/alexanderrobitzsch/miceadds,
         https://sites.google.com/site/alexanderrobitzsch2/software
 License: GPL (>= 2)
 BugReports: https://github.com/alexanderrobitzsch/miceadds/issues?state=open
 NeedsCompilation: yes
-Packaged: 2018-12-11 09:42:19 UTC; sunpn563
+Packaged: 2019-03-18 11:12:07 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2018-12-11 12:20:03 UTC
+Date/Publication: 2019-03-18 12:10:09 UTC

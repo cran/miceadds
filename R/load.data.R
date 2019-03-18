@@ -1,30 +1,46 @@
 ## File Name: load.data.R
-## File Version: 0.39
+## File Version: 0.476
 
 
-#########################################################################
-# miceadds::load.data: load conveniently R objects of different data formats
-load.data <- function( filename, type="Rdata", path=getwd(), spss.default=TRUE, ...)
+
+#--- miceadds::load.data: load conveniently R objects of different data formats
+load.data <- function( filename, type=NULL, path=getwd(), load_fun=NULL,
+        spss.default=TRUE, ...)
 {
-    if (type=="sav"){
-        TAM::require_namespace_msg("foreign")
-    }
-    #*** the resulting object is dat4!
     dir <- path
     file <- filename
-    i1 <- grep.vec( c("Rdata", "RData", "csv", "csv2", "table", "sav" ), file, "OR" )$x
+    file0 <- NULL
+    type0 <- type
+    if (! is.null(load_fun)){
+        type <- "user_"
+        file0 <- file
+    }
+    i1 <- grep.vec( c("Rdata", "RData", "csv", "csv2", "table", "sav", "xls",
+                    "xlsx", type0 ), file, "OR" )$x
     if ( length(i1)==0 ){
         files <- list.files( dir, filename )
         files <- grep.vec( filename, files, "AND")$x
     } else {
         files <- file
     }
+    if (is.null(type)){
+        s1 <- strsplit(files, split=".", fixed=TRUE)[[1]]
+        type <- s1[ length(s1) ]
+    }
+    if (type=="sav"){
+        TAM::require_namespace_msg("foreign")
+    }
+    if (type %in% c("xls", "xlsx")){
+        TAM::require_namespace_msg("readxl")
+    }
     type1 <- type
     if ( type=="table" ){
         files <- grep.vec( c("dat","txt"), files, "OR" )$x
         type1 <- "dat"
     }
-    files <- grep( gsub("csv2","csv", type1), files, value=TRUE)
+    if (type %in% c("csv2","csv", "CSV", "CSV2")){
+        files <- grep( gsub("csv2","csv", type1), files, value=TRUE)
+    }
     file <- max(files)
     cat( paste0( "*** Load ", file, "\n"))
 
@@ -33,11 +49,11 @@ load.data <- function( filename, type="Rdata", path=getwd(), spss.default=TRUE, 
         dat4 <- load.Rdata2( filename=file, path=dir )
     }
     #*** csv2 objects
-    if (type=="csv2"){
+    if (type %in% c("csv2","CSV2")){
         dat4 <- utils::read.csv2( file=file_path(dir,file), ... )
     }
     #*** csv objects
-    if (type=="csv"){
+    if (type %in% c("csv","CSV")){
         dat4 <- utils::read.csv( file=file_path(dir,file), ... )
     }
     #*** table objects
@@ -45,7 +61,7 @@ load.data <- function( filename, type="Rdata", path=getwd(), spss.default=TRUE, 
         dat4 <- utils::read.table( file=file_path(dir,file), header=TRUE, ... )
     }
     #*** sav objects (SPSS objects)
-    if (type=="sav" ){
+    if (type %in% c("sav","SAV") ){
         if ( ! spss.default){
             dat4 <- foreign::read.spss( file=file_path(dir,file), ... )
         } else {
@@ -53,6 +69,16 @@ load.data <- function( filename, type="Rdata", path=getwd(), spss.default=TRUE, 
                         use.value.labels=FALSE, ... )
         }
     }
+    #*** xlsx objects
+    if (type %in% c("xls","XLS","xlsx","XLSX")){
+        dat4 <- readxl::read_excel( path=file_path(dir,file), ... )
+        dat4 <- as.data.frame(dat4)
+    }
+    #*** user-defined loading function
+    if (type %in% c("user_")){
+        args <- list(file_path(dir,file), ...)
+        dat4 <- do.call( what=load_fun, args=args)
+    }
+    #--- output
     return(dat4)
 }
-#########################################################################
