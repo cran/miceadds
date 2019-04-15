@@ -1,5 +1,5 @@
 %% File Name: mice.impute.pls.Rd
-%% File Version: 2.35
+%% File Version: 2.365
 
 \name{mice.impute.pls}
 \alias{mice.impute.pls}
@@ -19,7 +19,7 @@ mice.impute.pls(y, ry, x, type, pls.facs=NULL,
    pls.impMethod="pmm", pls.impMethodArgs=NULL, pls.print.progress=TRUE,
    imputationWeights=rep(1, length(y)), pcamaxcols=1E+09,
    min.int.cor=0, min.all.cor=0, N.largest=0, pls.title=NULL, print.dims=TRUE,
-   pls.maxcols=5000, envir_pos=NULL, extract_data=TRUE, ...)
+   pls.maxcols=5000, use_boot=FALSE, envir_pos=NULL, extract_data=TRUE, ...)
 
 mice.impute.2l.pls2(y, ry, x, type, pls.facs=NULL, pls.impMethod="pmm",
    pls.print.progress=TRUE, imputationWeights=rep(1, length(y)), pcamaxcols=1E+09,
@@ -100,6 +100,8 @@ inputs should be printed.
 \item{pls.maxcols}{
 Maximum number of interactions to be created.
 }
+\item{use_boot}{Logical whether Bayesian bootstrap should be used for
+drawing regression parameters}
 \item{envir_pos}{Position of the environment from which the data should
 be extracted.}
 \item{extract_data}{Logical indicating whether input data should be extracted
@@ -193,6 +195,26 @@ imp2 <- miceadds::mice.1chain(data=dat, method=impMethod,
      pls.facs=pls.facs, pls.impMethod=pls.impMethod,
      pls.impMethodArgs=pls.impMethodArgs, ls.meth="ridge" )
 summary(imp2)
+
+#*** example for using imputation function at the level of a variable
+
+# extract first imputed dataset
+imp1 <- mice::complete(imp1, action=1)
+data_imp1[ is.na(dat$IN1), "IN1" ] <- NA
+
+# define variables
+y <- data_imp1$IN1
+x <- data_imp1[, -1 ]
+ry <- ! is.na(y)
+cn <- colnames(dat)
+p <- ncol(dat)
+type <- rep(1,p)
+names(type) <- cn
+type["IN1"] <- 0
+
+# imputation of variable 'IN1'
+imp0 <- miceadds::mice.impute.pls(y=y, x=x, ry=ry, type=type, pls.facs=10, pls.impMethod="norm",
+             ls.meth="ridge", extract_data=FALSE )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

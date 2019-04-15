@@ -1,12 +1,12 @@
-## File Name: mice_impute_2l_lmer.R
-## File Version: 0.42
+## File Name: mice_imputation_2l_lmer.R
+## File Version: 0.575
 
-#########################################################################
-# main function for multilevel imputation with lme4 which
+
+#**** main function for multilevel imputation with lme4 which
 # is just wrapper by methods "2l.continuous", "2l.binary" and "2l.pmm"
-mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
+mice_imputation_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
                     groupcenter.slope=FALSE, draw.fixed=TRUE, random.effects.shrinkage=1E-6,
-                    glmer.warnings=TRUE, model="continuous", donors=3, match_sampled_pars=FALSE,
+                    glmer.warnings=TRUE, model="continuous", donors=5, match_sampled_pars=FALSE,
                     blme_use=FALSE, blme_args=NULL,...)
 {
     if (blme_use){
@@ -20,19 +20,24 @@ mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
     ngr <- length(clus_unique)
     clus_name <- colnames(x)[type==-2]  # name of cluster identifier
 
-#zz0 <- Sys.time()
+    #* select previous lme4 optimizer "bobyqa"
+    # control_input <- FALSE
+    control_input <- TRUE
+    if (control_input){
+        control <- mice_imputation_multilevel_lmerControl_define_optimizer(model=model, ...)
+    }
 
     # arguments for lmer model
     if ( model=="binary"){
         lmer_family <- stats::binomial(link="logit")
-        if ( blme_use){
+        if (blme_use){
             lmer_function <- blme::bglmer
         } else {
             lmer_function <- lme4::glmer
         }
     }
     if ( model %in% c("continuous","pmm") ){
-        if ( blme_use){
+        if (blme_use){
             lmer_function <- blme::blmer
         } else {
             lmer_function <- lme4::lmer
@@ -45,11 +50,9 @@ mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
     x <- res$x
     type <- res$type
     #--- create formulas for lme4
-    rhs.f <- mice_multilevel_create_formula(
-                    variables=colnames(x)[type %in% c(1,2)],
+    rhs.f <- mice_multilevel_create_formula( variables=colnames(x)[type %in% c(1,2)],
                     include_intercept=intercept )
-    rhs.r <- mice_multilevel_create_formula(
-                    variables=colnames(x)[type==2],
+    rhs.r <- mice_multilevel_create_formula( variables=colnames(x)[type==2],
                     include_intercept=TRUE )
     # combine formulas
     fml <- paste0( "dv._lmer~", rhs.f, "+(", rhs.r,"|", clus_name,")" )
@@ -58,8 +61,10 @@ mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
     y1 <- y
     y1[!ry] <- NA
     dat_lme4 <- data.frame(dv._lmer=y1, x)
-    lmer_args <- list( formula=fml, data=dat_lme4,
-                        na.action="na.omit"  )
+    lmer_args <- list( formula=fml, data=dat_lme4, na.action="na.omit")
+    if (control_input){
+        lmer_args$control <- control
+    }
     if ( model=="binary"){
         lmer_args$family <- lmer_family
     }
@@ -69,9 +74,8 @@ mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
                         lmer_args=lmer_args, blme_args=blme_args )
 
     # fit based on observed y
-    fit <- mice_multilevel_doCall_suppressWarnings(
-                what=lmer_function, args=lmer_args,
-                warnings=glmer.warnings )
+    fit <- mice_multilevel_doCall_suppressWarnings( what=lmer_function,
+                    args=lmer_args, warnings=glmer.warnings )
 
     # clusters without missing values
     clus0 <- clus[!ry]
@@ -137,11 +141,11 @@ mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
     }
     if ( model=="continuous"){
         sigma <- attr( fit_VarCorr,"sc")
-        imp <- mice_multilevel_imputation_draw_residuals(
-                    predicted=predicted0, sigma=sigma  )
+        imp <- mice_multilevel_imputation_draw_residuals( predicted=predicted0,
+                            sigma=sigma )
     }
     if ( model=="pmm"){
-        imp <- mice_multilevel_imputation_pmm5(y=y, ry=ry, x,
+        imp <- mice_multilevel_imputation_pmm5(y=y, ry=ry, x=x,
                     yhatobs=predicted1, yhatmis=predicted0,
                     donors=donors, noise=1E5, ...)
     }
@@ -149,7 +153,6 @@ mice_impute_2l_lmer <- function(y, ry, x, type, intercept=TRUE,
     return(imp)
 }
 
-mice.impute.2l.lmer <- mice_impute_2l_lmer
 
 #----------------------------------
 # mice: predictive mean matching
