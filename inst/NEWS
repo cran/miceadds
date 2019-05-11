@@ -42,12 +42,34 @@ CHANGELOG miceadds
 
 
 
+
+---------------------------------------------------------------------
+VERSIONS miceadds 3.3  |  2019-05-11  |  Last: miceadds 3.3-33
+---------------------------------------------------------------------
+
+ADDED * added imputation methods "rlm", "lqs", "lm" and "lm_fun"
+        based on robust and non-robust linear models and 
+        transformations of dependent variable
+NOTE  * included argument 'col1_numeric' in split_to_matrix()
+NOTE  * corrected bug in ?mice.impute.ml.lmer
+        (thanks to Rima Izem)
+ADDED * included argument 'remove_lindep' in mice.impute.pls()
+        which allows to enable the procedure for removing predictors
+NOTE  * replaced multiwaycov package by sandwich package in
+        lm.cluster() and glm.cluster (thanks to @jaySf, issue #16).
+        Included arguments 'weights' and 'subset' in these functions.
+NOTE  * included argument 'donors' in mice.impute.pls()
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: mice.impute.rlm (1),
+        filename_split (5), mice.impute.ml.lmer (1)
+
 ---------------------------------------------------------------------
 VERSIONS miceadds 3.2  |  2019-04-15  |  Last: miceadds 3.2-48
 ---------------------------------------------------------------------
 
 NOTE  * changed default 'inits_lme4=TRUE' to 'inits_lme4=FALSE' (do not
-        use use lme4::lmer() for starting values) in ml_mcmc()
+        use lme4::lmer() for starting values) in ml_mcmc()
 NOTE  * use optimizer 'bobyqa' by default in multilevel imputations which 
         rely on lme4 package (mice.impute.2l.foo() for foo="pmm","binary"
         and "continuous" and mice.impute.ml.lmer()) if a 'control' argument 
