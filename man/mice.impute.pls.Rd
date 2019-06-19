@@ -1,5 +1,5 @@
 %% File Name: mice.impute.pls.Rd
-%% File Version: 2.371
+%% File Version: 2.372
 
 \name{mice.impute.pls}
 \alias{mice.impute.pls}
@@ -178,7 +178,7 @@ pls.facs$IN1 <- 15   # use 15 PLS factors for variable IN1
 # choose norm or pmm imputation method
 pls.impMethod <- as.list( rep("norm", length(impMethod) ) )
 names(pls.impMethod) <- names(impMethod)
-pls.impMethod[ c("IN1","IN6")] <- "pmm5"
+pls.impMethod[ c("IN1","IN6")] <- "pmm"
 
 # some arguments for imputation method
 pls.impMethodArgs <- list( "IN1"=list( "donors"=10 ),

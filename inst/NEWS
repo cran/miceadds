@@ -44,6 +44,23 @@ CHANGELOG miceadds
 
 
 ---------------------------------------------------------------------
+VERSIONS miceadds 3.4  |  2019-06-19  |  Last: miceadds 3.4-17
+---------------------------------------------------------------------
+
+FIXED * fixed a bug with missing parameter names in MIwaldtest()
+        (thanks to Joost van Ginkel)
+FIXED * fixed issues in cases with one or no predictors in
+        mice.impute.ml.lmer()
+FIXED * fixed bug in mice.impute.ml.lmer() with more than one random
+        effect if lme4 automatically changes the order of random
+        effects in model output
+NOTE  * handle cases of removed predictors in mice.impute.ml.lmer()
+        by lme4::lmer() function (thanks to Rushani Wijesuriya)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+---------------------------------------------------------------------
 VERSIONS miceadds 3.3  |  2019-05-11  |  Last: miceadds 3.3-33
 ---------------------------------------------------------------------
 
@@ -51,7 +68,7 @@ ADDED * added imputation methods "rlm", "lqs", "lm" and "lm_fun"
         based on robust and non-robust linear models and 
         transformations of dependent variable
 NOTE  * included argument 'col1_numeric' in split_to_matrix()
-NOTE  * corrected bug in ?mice.impute.ml.lmer
+NOTE  * corrected a mistake in ?mice.impute.ml.lmer manual
         (thanks to Rima Izem)
 ADDED * included argument 'remove_lindep' in mice.impute.pls()
         which allows to enable the procedure for removing predictors

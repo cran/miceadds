@@ -1,5 +1,5 @@
 ## File Name: mice.impute.ml.lmer.R
-## File Version: 0.589
+## File Version: 0.627
 
 
 #*** main function for multilevel imputation with lme4 with several levels
@@ -21,8 +21,7 @@ mice.impute.ml.lmer <- function(y, ry, x, type, levels_id, variables_levels=NULL
         require_namespace("blme")
     }
 
-    # *** ...............................
-    # extraction of arguments
+    #--- extraction of arguments
     pos <- parent.frame(n=2)
     res <- mice_ml_lmer_extract_input( pos=pos, levels_id=levels_id, random_slopes=random_slopes,
                 variables_levels=variables_levels, pls.facs=pls.facs, min.int.cor=min.int.cor,
@@ -47,7 +46,7 @@ mice.impute.ml.lmer <- function(y, ry, x, type, levels_id, variables_levels=NULL
 
     #--- aggregate data to a higher level if requested
     res <- mice_ml_lmer_aggregate_data_higher_level( vname_level=vname_level, y=y, ry=ry,
-                    x=x, data=data, levels_id=levels_id )
+                    x=x, data=data, levels_id=levels_id, vname=vname )
     data <- res$data
     y <- res$y
     ry <- res$ry
@@ -98,7 +97,6 @@ mice.impute.ml.lmer <- function(y, ry, x, type, levels_id, variables_levels=NULL
         lmer_args$control <- control
     }
 
-
     #--- fit lme4 or blme model based on observed y
     fit <- mice_multilevel_doCall_suppressWarnings( what=lmer_function, args=lmer_args,
                 warnings=glmer.warnings )
@@ -111,6 +109,7 @@ mice.impute.ml.lmer <- function(y, ry, x, type, levels_id, variables_levels=NULL
 
     #--- extract posterior distribution of random effects
     fl <- lme4::getME(fit, "flist")
+
     #--- variance matrix of random effects
     fit_vc <- lme4::VarCorr(fit)
     # extract random effects
@@ -118,15 +117,25 @@ mice.impute.ml.lmer <- function(y, ry, x, type, levels_id, variables_levels=NULL
 
     predicted <- 0
     for (ll in 1:NL){
-        predicted_u <- mice_ml_lmer_draw_random_effects( clus=clus[[ll]], clus_unique=clus_unique[[ll]], y=y,
-                            ry=ry, fl=fl[[ll]], fit_vc=fit_vc[[ll]], re0=re0[[ll]], ngr=ngr[[ll]],
-                            used_slopes=used_slopes, levels_id_ll=levels_id[ll], x=x,
+        levels_id_ll <- levels_id[ll]
+        predicted_u <- mice_ml_lmer_draw_random_effects( clus=clus[[levels_id_ll]],
+                            clus_unique=clus_unique[[levels_id_ll]], y=y,
+                            ry=ry, fl=fl[[levels_id_ll]], fit_vc=fit_vc[[levels_id_ll]],
+                            re0=re0[[levels_id_ll]], ngr=ngr[[levels_id_ll]],
+                            used_slopes=used_slopes, levels_id_ll=levels_id_ll, x=x,
                             random.effects.shrinkage=random.effects.shrinkage)
         predicted <- predicted + predicted_u
     }
 
     #--- x and z for prediction
-    x0 <- as.matrix( x[,fixed_effects,drop=FALSE ] )
+    x0 <- as.matrix( x[,fixed_effects, drop=FALSE ] )
+    # handle cases of removed predictors due to singularity
+    if (length(b.star) > 1){
+        if ( length(b.star)-1 < ncol(x0) ){
+            vars1 <- intersect(colnames(x0), names(b.star))
+            x0 <- x0[, vars1, drop=FALSE]
+        }
+    }
     if (intercept){
         x0 <- cbind( 1, x0 )
     }
@@ -134,9 +143,10 @@ mice.impute.ml.lmer <- function(y, ry, x, type, levels_id, variables_levels=NULL
     #--- compute predicted values including fixed and random part
     predicted <- x0 %*% b.star + predicted
 
-    # predicted values for cases with missing data
+    #--- predicted values for cases with missing data
     predicted0 <- predicted[ !ry ]
-    # predicted values for cases with observed data
+
+    #--- predicted values for cases with observed data
     if ( model=="pmm"){
         pred <- predicted
         predicted1 <- pred[ ry ]
