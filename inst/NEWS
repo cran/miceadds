@@ -41,6 +41,21 @@ CHANGELOG miceadds
 
 
 
+---------------------------------------------------------------------
+VERSIONS miceadds 3.7  |  2019-12-15  |  Last: miceadds 3.7-6
+---------------------------------------------------------------------
+
+FIXED * changes in ma.wtd.stats() functions because since R 4.0
+        matrices are also of class "array" which causes ambiguity
+        in code evaluation (requested by CRAN checks)
+
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+
+
+
 
 ---------------------------------------------------------------------
 VERSIONS miceadds 3.6  |  2019-11-04  |  Last: miceadds 3.6-21
