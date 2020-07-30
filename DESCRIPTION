@@ -2,10 +2,11 @@ Package: miceadds
 Type: Package
 Title: Some Additional Multiple Imputation Functions, Especially for
         'mice'
-Version: 3.9-14
-Date: 2020-05-09 11:27:27
+Version: 3.10-28
+Date: 2020-07-29 21:56:24
 Author: 
-    Alexander Robitzsch [aut, cre], Simon Grund [aut],
+    Alexander Robitzsch [aut,cre] (<https://orcid.org/0000-0002-8226-3132>),
+    Simon Grund [aut] (<https://orcid.org/0000-0002-1290-8986>),
     Thorsten Henke [ctb]
 Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de>
 Description: 
@@ -24,21 +25,24 @@ Description:
     partial least squares (PLS) for high dimensional 
     predictors (Robitzsch, Pham & Yanagida, 2016), 
     nested multiple imputation (Rubin, 2003, 
-    <doi:10.1111/1467-9574.00217>) and substantive model
+    <doi:10.1111/1467-9574.00217>), substantive model
     compatible imputation (Bartlett et al., 2015,
-    <doi:10.1177/0962280214521348>).
+    <doi:10.1177/0962280214521348>), and features
+    for the generation of synthetic datasets
+    (Reiter, 2005, <doi:10.1111/j.1467-985X.2004.00343.x>;
+    Nowok, Raab, & Dibben, 2016, <doi:10.18637/jss.v074.i11>).
 Depends: R (>= 3.0), mice (>= 3.0.0)
 Imports: graphics, methods, mitools, Rcpp, stats, utils
 LinkingTo: Rcpp, RcppArmadillo
 Suggests: BIFIEsurvey, blme, car, CDM, coda, foreign, grouped, imputeR,
         inline, lme4, MASS, MBESS, MCMCglmm, mdmb, numDeriv, readxl,
-        sandwich, simputation, sirt, sjlabelled, TAM
+        sandwich, simputation, sirt, sjlabelled, synthpop, TAM
 Enhances: Amelia, jomo, micemd, mitml, pan
 URL: https://github.com/alexanderrobitzsch/miceadds,
         https://sites.google.com/site/alexanderrobitzsch2/software
 License: GPL (>= 2)
 BugReports: https://github.com/alexanderrobitzsch/miceadds/issues?state=open
 NeedsCompilation: yes
-Packaged: 2020-05-09 09:32:11 UTC; sunpn563
+Packaged: 2020-07-29 20:01:12 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2020-05-09 12:20:03 UTC
+Date/Publication: 2020-07-30 05:00:02 UTC
