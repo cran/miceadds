@@ -42,6 +42,17 @@ CHANGELOG miceadds
 
 
 ---------------------------------------------------------------------
+VERSIONS miceadds 3.11  |  2021-01-21  |  Last: miceadds 3.11-6
+---------------------------------------------------------------------
+
+FIXED * fixed a bug in ml_mcmc() when using the argument
+        'inits_lme4=FALSE' (thanks to a discussion with
+        Rushani Wijesuriya regarding the mdmb::frm_fb() function)
+
+DATA  * included/modified datasets: ---
+EXAMP * included/modified examples: ---
+
+---------------------------------------------------------------------
 VERSIONS miceadds 3.10  |  2020-07-29  |  Last: miceadds 3.10-28
 ---------------------------------------------------------------------
 

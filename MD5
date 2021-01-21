@@ -1,4 +1,4 @@
-7738462dea24621b38407e3c13e6f4a9 *DESCRIPTION
+bafdea237bb873676473890307e2fd62 *DESCRIPTION
 96ca15231a9fcd368b76af69a76e7c6a *NAMESPACE
 7f0c5359dcb743592291b52a2a1f0c4f *R/ANSI_create_table.R
 ec248e40e444f48ffac52bc5c0a91fd8 *R/ANSI_create_table_check_variable_values.R
@@ -24,7 +24,7 @@ abee19598d61a2e846ab87560d16ebfa *R/NMIcombine_include_dimnames.R
 f3d2f29ac181ce5147c27b913cd6fb86 *R/NMIwaldtest_qhat2list.R
 8a7f227c910b0f2851d255e87113efc6 *R/NMIwaldtest_u2list.R
 906ac2781daf727f977d958e0632feea *R/NestedImputationList.R
-9420c3e6118f4ac77728a1b2bbde9623 *R/RcppExports.R
+3d7d10720805773c8644e289171896fa *R/RcppExports.R
 eb70b9b7485b7ab93faa0d2d3418de25 *R/Rcppfunction_remove_classes.R
 903f57c20d60a93e3a5a78f49947c35a *R/Reval.R
 600b061b97de4e74660788732c0d2b35 *R/Revalpr.R
@@ -133,7 +133,7 @@ d5e3db56d4fabec7032e0582230f7e74 *R/mice.impute.2l.pmm.R
 b5ad94dde437dc1b48c65984fe896395 *R/mice.impute.2lonly.norm2.R
 22c7b374f81f133facaff8f01affa1af *R/mice.impute.2lonly.pmm2.R
 5d7ef20bed762f8cbd7b1fdaf38e9d00 *R/mice.impute.bygroup.R
-81a3dd015b718da7f96fc69ee9020693 *R/mice.impute.constant.R
+7d4cbfcdaee4cc4b6cca8b3bf9c5e616 *R/mice.impute.constant.R
 22ea6f982959df5561d46430d7899fff *R/mice.impute.eap.R
 75103db5e0a2918f181fafc0ef8ac6da *R/mice.impute.grouped.R
 2ea91edeb272bb7f25cb359bcdbb9a4c *R/mice.impute.hotDeck.R
@@ -142,7 +142,7 @@ a7bc55866d3739d7667f2971574bd08f *R/mice.impute.imputeR.cFun.R
 af20e412a6d801e21200ed4c6c1c835b *R/mice.impute.lm.R
 9d0be3d769e862b373e0d7277e9372f0 *R/mice.impute.lm_fun.R
 89ad272ba0cb44bc3ba814036b8fb421 *R/mice.impute.lqs.R
-0d1f5909a47c2242ea786e12ed18b6ae *R/mice.impute.ml.lmer.R
+43ddf512678646fa507d5747dceea612 *R/mice.impute.ml.lmer.R
 4e89da39a674f9098ed47a76ed812ab9 *R/mice.impute.norm3.R
 569cab60b3b1953d88bffe9de6ed7a3e *R/mice.impute.plausible.values.R
 ccf4bbae1f1a8121c543afdde84207a3 *R/mice.impute.pls.R
@@ -252,10 +252,10 @@ e1b1acc440925bd53d6806c2ce4010f6 *R/micombine_cov_compute.R
 33f65d67a21aeedfe794f81cfcad0a75 *R/mids2datlist.R
 ea55a48a413b292a1f5d66eb0296b016 *R/mids2mlwin.R
 395fa1898bae2f8f214f49703143142e *R/min0.R
-b296e330e68da7d6f937e0e64ef010db *R/ml_mcmc.R
+14eaea8a0d8ad51990be400f4589f8b9 *R/ml_mcmc.R
 6207f970e66586a205e2c11263cd2a4b *R/ml_mcmc_create_parameter_index.R
-3901132d726d734eb09852bc16bb9a0a *R/ml_mcmc_fit.R
-170b0f3eab5f6c03de1476cfe9460756 *R/ml_mcmc_initial_values.R
+067ec1dc076501cde4078dda700d2f02 *R/ml_mcmc_fit.R
+99c45e41dbf88e5d53962ace8cfced2e *R/ml_mcmc_initial_values.R
 8bf29b141ffe79d5260652dbff6d8a89 *R/ml_mcmc_parameter_index_matrix.R
 6046093c33f7d3ba67ffd658fc84f934 *R/ml_mcmc_proc_data.R
 d9bb87243c32e7897d37f555a32887be *R/ml_mcmc_summary_print_descriptives.R
@@ -284,7 +284,7 @@ a711d62579e80b3c92755317c0badbe2 *R/prop_miss.R
 19ac3badc5bda3d01cec750cc289d194 *R/require_namespace.R
 cb4aa487f48c5141724b7ad0ed83f5d1 *R/round2.R
 c98bc0de4908fb3f962b5da91a87921d *R/save.Rdata.R
-155517264580be8a47547b85c4d89adc *R/save.data.R
+26435a56aa18ad4eb2c64fd63ecce34c *R/save.data.R
 96e9ab0fe2dbe347e51c41dab3402139 *R/save_data_calc_filename.R
 b6674aa3b9532f25d79157afe7fc985a *R/scale_datlist.R
 2f86b20ca03efcea3bbf1c21aa6be8be *R/scan.vec.R
@@ -348,7 +348,7 @@ f20c02ead6dd6a1e06c0124c746cb84d *R/within.nested.datlist.R
 0799262085f2984d95750e0aa72355fd *R/write_fwf2_format2.R
 247fd71c46e9a250d99c3bc4191f5f4d *R/zzz.R
 07ff0a052cd5270a88d23898ede84ceb *README.md
-1e8b9f3f272949c26943ee0d19b34e7a *build/partial.rdb
+2f1893dd1cbb87bf0e22c38c29bdd385 *build/partial.rdb
 4be4a5e2668f35f2975b68acdcd6ccac *data/data.allison.gssexp.rda
 c7975ff19a1fbb1beca76b58113f2d3d *data/data.allison.hip.rda
 ef269ad03a665278f3589f3ea3040203 *data/data.allison.usnews.rda
@@ -373,7 +373,7 @@ becd53660c90063e25cc34f200dd3046 *data/data.ma07.rda
 9d56d129f1c8676c371db699fddc418c *data/data.smallscale.rda
 657282322e7efbbacc1e9b4474e3607b *data/datalist
 86fb0b0444afccc0a6c939a3f724a9be *inst/CITATION
-e24683268993b8edc6f7a60c29c5ee5b *inst/NEWS
+7fee2a211d3ce221bb4813089c6affd3 *inst/NEWS
 efbb0fe5e8242131e5150f09f625d6da *inst/include/miceadds.h
 4deffdf5ac5182a3d07e9153295d4097 *inst/include/miceadds_RcppExports.h
 672a4900c3c7a4a0c2840b8d829914b6 *man/GroupMean.Rd
@@ -387,7 +387,7 @@ cd5fe8d2aa6f0c78e8ff0c6bfecfbdbe *man/Rfunction_include_argument_values.Rd
 1c53f249bc5f5d0b040d54670742285e *man/complete.miceadds.Rd
 848d3ccb49e40e811e2f4589060bcd50 *man/crlrem.Rd
 7da28c7bf6318c0cdf4d67288bfa532d *man/cxxfunction.copy.Rd
-c7782dc574fe89b983cee4e89f1c519e *man/data.allison.Rd
+af1d49c617fdca93be26b152a4bb116a *man/data.allison.Rd
 77c4db57308fdf4136e3f890102984a4 *man/data.enders.Rd
 2f8592f57f81188ce4377b92d0dbdd7c *man/data.graham.Rd
 c37d24ddf0e741a1a047ce1f46db0dda *man/data.internet.Rd
@@ -432,7 +432,7 @@ b540f77f23668f553d7fdda37cee5197 *man/mice.impute.pmm3.Rd
 06ebefb6b770046b99e61ffa99ace32e *man/mice.impute.rlm.Rd
 31da748b954a0f25d13649f4a13a2493 *man/mice.impute.simputation.Rd
 37fb453c4df284348b9753510098086d *man/mice.impute.smcfcs.Rd
-fb9c6e616c36b30670adc57647b27c97 *man/mice.impute.synthpop.Rd
+87e571b8c59026df06ec95f4b50ddf56 *man/mice.impute.synthpop.Rd
 2139466173738fa38b7e61ac1a9f3b54 *man/mice.impute.tricube.pmm.Rd
 2e9c77e9571db5136489e580682db577 *man/mice.impute.weighted.pmm.Rd
 ce0680acdaf7712b2ba3620e07580571 *man/mice.nmi.Rd
@@ -446,7 +446,7 @@ c3d039f54bd310ac93d3ce5e82d5f485 *man/micombine.chisquare.Rd
 be97c25c78f7b6b0f5453eb702fa4567 *man/micombine.cor.Rd
 c9c399ed5b86c6cf7a5edeb14c9529d3 *man/mids2datlist.Rd
 d0811fac8e44722d501623064fb1a71f *man/mids2mlwin.Rd
-ff5304352bbdb66af089c3e9323bbea3 *man/ml_mcmc.Rd
+abe33fefdec4367f5a9798aa25af28ad *man/ml_mcmc.Rd
 1cc9ffde5deff063af69f25aa265693e *man/nestedList2List.Rd
 db2e2c38f3a33637a63cfd3017c5c2aa *man/nnig_sim.Rd
 530f2194e97a8324ddb2741a59955244 *man/output.format1.Rd
@@ -477,7 +477,7 @@ cf9863d27b117a926028cd6b7cfa541c *man/write.mice.imputation.Rd
 7b55eaf3088b66f2232b3975d3af3297 *man/write.pspp.Rd
 3900e4e4b505787e0f3cb83ad8ba2138 *src/Makevars
 36dc26a5d3e080089104b503a783361f *src/Makevars.win
-6f83a0c32d4037518071e8cef1438bf5 *src/RcppExports.cpp
+2c1149523517461ce5af0edbc615044f *src/RcppExports.cpp
 9211f607f09ce050b9471691d787f5f4 *src/miceadds_rcpp_create_interactions.cpp
 21d6a5788e61f7405b5ab47d4922e0f5 *src/miceadds_rcpp_kernelpls_1dim.cpp
 118be31744e18b70e10472b4074fe6bb *src/miceadds_rcpp_ml_mcmc_sampler.cpp
