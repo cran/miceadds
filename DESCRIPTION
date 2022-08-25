@@ -2,8 +2,8 @@ Package: miceadds
 Type: Package
 Title: Some Additional Multiple Imputation Functions, Especially for
         'mice'
-Version: 3.13-12
-Date: 2022-05-30 15:14:07
+Version: 3.14-3
+Date: 2022-08-24 12:57:22
 Author: 
     Alexander Robitzsch [aut,cre] (<https://orcid.org/0000-0002-8226-3132>),
     Simon Grund [aut] (<https://orcid.org/0000-0002-1290-8986>),
@@ -43,6 +43,6 @@ URL: https://github.com/alexanderrobitzsch/miceadds,
 License: GPL (>= 2)
 BugReports: https://github.com/alexanderrobitzsch/miceadds/issues?state=open
 NeedsCompilation: yes
-Packaged: 2022-05-30 13:16:52 UTC; sunpn563
+Packaged: 2022-08-24 11:00:38 UTC; sunpn563
 Repository: CRAN
-Date/Publication: 2022-06-01 08:10:02 UTC
+Date/Publication: 2022-08-25 09:20:02 UTC
