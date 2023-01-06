@@ -44,6 +44,24 @@ CHANGELOG miceadds
 
 
 --------------------------------------------------------------------------
+VERSIONS miceadds 3.16  |  2023-01-06  |  Last: miceadds 3.16-18
+--------------------------------------------------------------------------
+ 
+NOTE  * allow RDS objects in load.data() and save.data()
+NOTE  * added argument 'RDS' in load.Rdata2()
+NOTE  * automatically create missing directories in calls 
+        of files_move()
+ADDED * added function for generating synthetic data syn_da()
+        based on the data augmentation method of Jiang et al. (2022)
+FIXED * fixed an issue of not runnable models in 'ml.lmer' imputation 
+        method when random slopes are used (thanks to Rushani Wijesuriya)
+FIXED * tried to avoid numerical issue in 'mice.impute.pls' by including
+        several numerical checks (thanks to Karoline Sachse)
+
+DATA  * data.ma09
+EXAMP * ---
+
+--------------------------------------------------------------------------
 VERSIONS miceadds 3.15  |  2022-09-22  |  Last: miceadds 3.15-21
 --------------------------------------------------------------------------
  
@@ -53,10 +71,8 @@ ADDED * added imputation function mice.impute.catpmm() that performs
         multivariate predictive mean matching for categotical variables
 NOTE  * included imputation method 'catpmm' in mice.impute.pls()
 
-
 DATA  * ---
 EXAMP * datlist2Amelia (1), mice.impute.catpmm (1)
-
 
 --------------------------------------------------------------------------
 VERSIONS miceadds 3.14  |  2022-08-24  |  Last: miceadds 3.14-3

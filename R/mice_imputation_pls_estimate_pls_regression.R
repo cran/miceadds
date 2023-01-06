@@ -1,11 +1,16 @@
 ## File Name: mice_imputation_pls_estimate_pls_regression.R
-## File Version: 0.325
+## File Version: 0.336
 
 mice_imputation_pls_estimate_pls_regression <- function( pls.facs, x, y, ry,
     use.ymat, imputationWeights, use_weights, pls.print.progress,
     pls.impMethod="pmm")
 {
+    # clean missing values
+    x <- mice_imputation_pls_clean_missings(x=x, eps=1e-12)
+
+    #-- process input
     x00 <- x
+
     x11a <- NULL
     # calculate partial least squares regression
     nfac <- min( pls.facs, ncol(x) )
@@ -58,7 +63,6 @@ mice_imputation_pls_estimate_pls_regression <- function( pls.facs, x, y, ry,
             Y <- matrix(yobs,ncol=1)
             pls_fun <- kernelpls.fit2
         }
-
 
         # apply PLS dimension reduction
         pls_args <- list( X=X, Y=Y, ncomp=nfac)
