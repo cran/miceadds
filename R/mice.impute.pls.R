@@ -1,5 +1,5 @@
 ## File Name: mice.impute.pls.R
-## File Version: 3.745
+## File Version: 3.788
 
 
 mice.impute.pls <- function(y, ry, x, type, pls.facs=NULL,
@@ -7,9 +7,8 @@ mice.impute.pls <- function(y, ry, x, type, pls.facs=NULL,
             pls.print.progress=TRUE, imputationWeights=rep(1, length(y)), pcamaxcols=1E9,
             min.int.cor=0, min.all.cor=0, N.largest=0, pls.title=NULL, print.dims=TRUE,
             pls.maxcols=5000, use_boot=FALSE, envir_pos=NULL, extract_data=TRUE,
-            remove_lindep=TRUE, ... )
+            remove_lindep=TRUE, derived_vars=NULL, ... )
 {
-
     time1 <- Sys.time()
     res <- mice_imputation_factor_pmm_prepare(y=y)
     y <- res$y
@@ -45,7 +44,7 @@ mice.impute.pls <- function(y, ry, x, type, pls.facs=NULL,
     imputationWeights <- normalize_vector( x=imputationWeights)
 
     # extract PLS factors
-    pls.facs <- mice_imputation_extract_list_arguments( pls.facs, vname,  20 )
+    pls.facs <- mice_imputation_extract_list_arguments( pls.facs, vname, 20 )
     # extract PLS imputation method
     pls.impMethod <- mice_imputation_extract_list_arguments( pls.impMethod,
                 vname, "pmm" )
@@ -53,6 +52,12 @@ mice.impute.pls <- function(y, ry, x, type, pls.facs=NULL,
                 vname, list() )
     # define minimal correlation for interactions
     min.int.cor <- mice_imputation_extract_list_arguments( min.int.cor, vname, 0 )
+
+    # proportion of explained variance in PCA
+    pcamaxcols <- mice_imputation_extract_list_arguments( pcamaxcols, vname, 1e9 )
+
+    # derived variables
+    derived_vars <- mice_imputation_extract_list_arguments( derived_vars, vname, NULL )
 
     #*** print progress | print section 1
     res <- mice_imputation_pls_print_progress1( pls.print.progress=pls.print.progress,
@@ -87,6 +92,12 @@ mice.impute.pls <- function(y, ry, x, type, pls.facs=NULL,
     # extract interactions and quadratic terms
     pls.interactions <- names(type)[ type==4 ]
     pls.quadratics <- names(type)[ type==5 ]
+
+    #-- include derived variables in x
+    res <- mice_imputation_pls_include_derived_vars(x=x, derived_vars=derived_vars,
+                y=y, vname=vname)
+    x <- res$x
+    added_vars <- res$added_vars
 
     #-- include interactions
     res <- mice_imputation_pls_include_interactions( pls.interactions=pls.interactions,
