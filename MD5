@@ -1,4 +1,4 @@
-80820087f723c3958b06d0e5838d3890 *DESCRIPTION
+54de4cbc53e8c249568834891b8e6b54 *DESCRIPTION
 fdfa45f63669b4cb99a9871df69f80ea *NAMESPACE
 3551a90152d168a2f116816dc4000fad *R/ANSI_create_table.R
 f4a9ff1f87c222d643217e283ee816e2 *R/ANSI_create_table_check_variable_values.R
@@ -24,7 +24,7 @@ aaee3749f002cf8a022727bf1660d01e *R/NMIwaldtest.R
 f3d2f29ac181ce5147c27b913cd6fb86 *R/NMIwaldtest_qhat2list.R
 8a7f227c910b0f2851d255e87113efc6 *R/NMIwaldtest_u2list.R
 906ac2781daf727f977d958e0632feea *R/NestedImputationList.R
-29f19f324ccc5be27fb7717ca999e1bd *R/RcppExports.R
+089fe32a46b982dfccb081111969bfae *R/RcppExports.R
 f96aa9688ae784e0d78b1a67bfed3cab *R/Rcppfunction_remove_classes.R
 903f57c20d60a93e3a5a78f49947c35a *R/Reval.R
 600b061b97de4e74660788732c0d2b35 *R/Revalpr.R
@@ -148,7 +148,7 @@ af20e412a6d801e21200ed4c6c1c835b *R/mice.impute.lm.R
 69cfdc38d0740c941e362bad9860d3dc *R/mice.impute.ml.lmer.R
 4e89da39a674f9098ed47a76ed812ab9 *R/mice.impute.norm3.R
 de6e72f767549b0fe1ffa52a774d4faa *R/mice.impute.plausible.values.R
-5ecf53b5729438d88ae1f740bf5f2e40 *R/mice.impute.pls.R
+42d28dd9d1fee9ae9efcaeebfa9c6c28 *R/mice.impute.pls.R
 216ce47cdf709ac1edcc69b3e73920e3 *R/mice.impute.pmm3.R
 4f27c9b2b914796ffd4efdd77d3f9afa *R/mice.impute.pmm4.R
 2cb99b6ee32e53f6789798b1d5974791 *R/mice.impute.pmm5.R
@@ -172,7 +172,7 @@ d64eb7f6b935b8652433676546faea76 *R/mice_imputation_create_interactions.R
 e7543d4c0b88cf5e776e9527c528994f *R/mice_imputation_create_type_vector.R
 0bb4b1f0e607ce3c4b6e33488787d7a8 *R/mice_imputation_define_wy.R
 8e545507576e14f8361edd312e19e987 *R/mice_imputation_extract_arguments_list.R
-b383a0f057ace61f2f4a8644f530f2a4 *R/mice_imputation_extract_list_arguments.R
+e53a3cdf6bf00a5c2f0102e97d370bb2 *R/mice_imputation_extract_list_arguments.R
 bab2cfc863691e3ef162b4cc2c8b8120 *R/mice_imputation_extract_parameters_bc.R
 aa9c15cf14f5c0cbb60aa89606bbdf42 *R/mice_imputation_extract_parameters_lm.R
 8798b26ea1a5dcbea38f8399f57d7713 *R/mice_imputation_extract_parameters_yj.R
@@ -191,7 +191,7 @@ ba85a08677918341457bd2c11585612c *R/mice_imputation_pls_clean_missings.R
 0da6468ac5e4debd04266f71f6277450 *R/mice_imputation_pls_correlation_criteria.R
 a4f0a38f7284f0b655d61850f8519f3b *R/mice_imputation_pls_do_impute.R
 fda80e31541bc127221df85a6fdafdf5 *R/mice_imputation_pls_draw_bootstrap_sample.R
-4b80afd45fbd6413d2ba0e40ea13eadf *R/mice_imputation_pls_estimate_pls_regression.R
+710457654414c95f1b53ffb5c68eedbe *R/mice_imputation_pls_estimate_pls_regression.R
 f38392981cd81352315fc6bc5e3173e1 *R/mice_imputation_pls_helper.R
 9023e6365f17a24f56a4cd651757d68e *R/mice_imputation_pls_include_derived_vars.R
 a1a491ab3681e54cfe2d36e3e9ccbced *R/mice_imputation_pls_include_interactions.R
@@ -364,7 +364,7 @@ d371ac8a7e66661639c514d897e6389e *R/write.mice.imputation.R
 c460ca007cf51d755bdaa5986a4679e8 *R/write_fwf2_format2.R
 a7b16120c56fc281c9394409c278167a *R/zzz.R
 0fba1557f8b91b10f6f86e8c10ded117 *README.md
-ad05f8811e560e55ffa9198e263bd918 *build/partial.rdb
+0e5ceebba3137458243338ccdb1eb8ad *build/partial.rdb
 cdb8a67c48b0541d82fd6a385ec39128 *data/data.allison.gssexp.rda
 4d4a480e29d91561bf6313ef91af2441 *data/data.allison.hip.rda
 8daf640d7a3ea48490e990346f751f6d *data/data.allison.usnews.rda
@@ -390,7 +390,7 @@ c066759a5f22db068569a5e28ae87356 *data/data.ma08.rda
 7ca1911ae1cbb23f6c97e7d98ab1080a *data/data.smallscale.rda
 496181e1236f65adeda9d9f837c82679 *data/datalist
 7e84e75fcfdd52f6efffff392433f5f6 *inst/CITATION
-6b8872c2b92f4540c9a0da36e7dd0a7b *inst/NEWS
+513fb360097d02cc46372396b4b19d98 *inst/NEWS
 efbb0fe5e8242131e5150f09f625d6da *inst/include/miceadds.h
 4deffdf5ac5182a3d07e9153295d4097 *inst/include/miceadds_RcppExports.h
 89e3236c00d5146a9cb3c439eeffc829 *man/GroupMean.Rd
@@ -496,7 +496,7 @@ cf9863d27b117a926028cd6b7cfa541c *man/write.mice.imputation.Rd
 2e4f2b4653c02aa023e243c0b77f7e84 *man/write.pspp.Rd
 0c9cc79f08505e9cca997e1a534f7dee *src/Makevars
 0e81d60597731727defa465f000280f6 *src/Makevars.win
-5953b12cdbcaf6b49ede2234b5860b66 *src/RcppExports.cpp
+ec2137133073e780af34e1ad5796b3ef *src/RcppExports.cpp
 29bebe93f0bc83c95d3e9ae3bc519298 *src/miceadds_rcpp_create_interactions.cpp
 ebb3ef4d76047136517ccf4ee24d79a0 *src/miceadds_rcpp_kernelpls_1dim.cpp
 a9a3524b5f878a7b7220fe22bd1e56d8 *src/miceadds_rcpp_ml_mcmc_sampler.cpp
